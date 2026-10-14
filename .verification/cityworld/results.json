@@ -1,0 +1,442 @@
+{
+  "date": "2026-10-11",
+  "baselinePassed": true,
+  "storyFrames": [
+    {
+      "progress": 0.319853,
+      "stage": "problem",
+      "headline": [
+        "02 / THE UNEXPECTED\n\nOne small problem can affect an entire community.\n\nA pothole. A moment to react. The car stops safely, but the hazard stays."
+      ],
+      "labelsVisible": false,
+      "reportVisible": false
+    },
+    {
+      "progress": 0.579963,
+      "stage": "report",
+      "headline": [
+        "03 / MAKE IT VISIBLE\n\nSee it. \n Report it.\n\nMark the problem. Share its location. Give the right team a place to start."
+      ],
+      "labelsVisible": false,
+      "reportVisible": true
+    },
+    {
+      "progress": 0.930147,
+      "stage": "hub",
+      "headline": [
+        "04 / A CITY WE CARE FOR\n\nTogether, we make our city better.\n\nExplore RoadNa JO.\n\nClick a location to explore."
+      ],
+      "labelsVisible": true,
+      "reportVisible": false
+    }
+  ],
+  "interactionChecks": [
+    {
+      "check": "skip",
+      "stage": "hub",
+      "progress": 1,
+      "focus": "explore-city",
+      "labels": [
+        {
+          "label": "Report an Issue\n↗",
+          "href": "../login/index.html"
+        },
+        {
+          "label": "Explore Reports\n↗",
+          "href": "../public-guest-menu/index.html"
+        },
+        {
+          "label": "Resident Area\n↗",
+          "href": "../login/index.html"
+        },
+        {
+          "label": "Municipality\n↗",
+          "href": "../login/index.html"
+        },
+        {
+          "label": "Community Report\n↗",
+          "href": "../report-details/index.html"
+        },
+        {
+          "label": "How RoadNa Works\n↗",
+          "href": "#how-it-works"
+        }
+      ]
+    },
+    {
+      "check": "dialog-keyboard",
+      "closed": true,
+      "focus": "park"
+    },
+    {
+      "check": "hotspot-report",
+      "destination": "/screens/login/index.html"
+    },
+    {
+      "check": "hotspot-map",
+      "destination": "/screens/public-guest-menu/index.html"
+    },
+    {
+      "check": "hotspot-resident",
+      "destination": "/screens/login/index.html"
+    },
+    {
+      "check": "hotspot-hall",
+      "destination": "/screens/login/index.html"
+    },
+    {
+      "check": "hotspot-community",
+      "destination": "/screens/report-details/index.html"
+    },
+    {
+      "check": "WebGL-raycast-map",
+      "destination": "/screens/public-guest-menu/index.html"
+    },
+    {
+      "check": "zoom-pan-reset",
+      "zoomBefore": 1,
+      "zoomAfter": 1.1451719855601015,
+      "zoomReset": 1.00651646034368,
+      "panTarget": [
+        -3.460896772370356,
+        0.65,
+        3.4476394041862743
+      ],
+      "resetTarget": [
+        -0.030138151579965904,
+        0.65,
+        0.03004550345022744
+      ]
+    },
+    {
+      "check": "mobile-location-selector",
+      "destination": "/screens/public-guest-menu/index.html"
+    }
+  ],
+  "reverseChecks": [
+    {
+      "progress": 0.599864,
+      "chapter": "report",
+      "carStop": {
+        "carFront": 3.9499999999999997,
+        "potholeNearEdge": 4.16
+      },
+      "camera": {
+        "zoom": 3.1429965083487135,
+        "target": [
+          4.869665694777515,
+          0.4551821362075929,
+          0.7800499546261522
+        ],
+        "position": [
+          34.86966569477752,
+          36.45518213620759,
+          30.78004995462615
+        ]
+      }
+    },
+    {
+      "progress": 0.330163,
+      "chapter": "problem",
+      "carStop": {
+        "carFront": -3.6984586151317713,
+        "potholeNearEdge": 4.16
+      },
+      "camera": {
+        "zoom": 2.771837667334823,
+        "target": [
+          4.002025819477641,
+          0.48991806719224396,
+          0.6403501627775057
+        ],
+        "position": [
+          34.00202581947764,
+          36.48991806719224,
+          30.640350162777505
+        ]
+      }
+    },
+    {
+      "progress": 0.0499321,
+      "chapter": "welcome",
+      "carStop": {
+        "carFront": -12.1,
+        "potholeNearEdge": 4.16
+      },
+      "camera": {
+        "zoom": 1.0514194789418534,
+        "target": [
+          0.08802808988360247,
+          0.6464788566077314,
+          0.01408506697073614
+        ],
+        "position": [
+          30.088028089883604,
+          36.64647885660773,
+          30.014085066970736
+        ]
+      }
+    }
+  ],
+  "layoutChecks": [
+    {
+      "width": 320,
+      "height": 740,
+      "overflow": false,
+      "stage": "hub",
+      "canvasSize": [
+        320,
+        676
+      ],
+      "brokenImages": 0,
+      "controls": [
+        {
+          "text": "−",
+          "inside": true
+        },
+        {
+          "text": "+",
+          "inside": true
+        },
+        {
+          "text": "Reset Camera",
+          "inside": true
+        }
+      ],
+      "selector": "flex"
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "overflow": false,
+      "stage": "hub",
+      "canvasSize": [
+        375,
+        748
+      ],
+      "brokenImages": 0,
+      "controls": [
+        {
+          "text": "−",
+          "inside": true
+        },
+        {
+          "text": "+",
+          "inside": true
+        },
+        {
+          "text": "Reset Camera",
+          "inside": true
+        }
+      ],
+      "selector": "flex"
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "overflow": false,
+      "stage": "hub",
+      "canvasSize": [
+        768,
+        960
+      ],
+      "brokenImages": 0,
+      "controls": [
+        {
+          "text": "−",
+          "inside": true
+        },
+        {
+          "text": "+",
+          "inside": true
+        },
+        {
+          "text": "Reset Camera",
+          "inside": true
+        }
+      ],
+      "selector": "flex"
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "overflow": false,
+      "stage": "hub",
+      "canvasSize": [
+        1280,
+        660
+      ],
+      "brokenImages": 0,
+      "controls": [
+        {
+          "text": "−",
+          "inside": true
+        },
+        {
+          "text": "+",
+          "inside": true
+        },
+        {
+          "text": "Reset Camera",
+          "inside": true
+        }
+      ],
+      "selector": "none"
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "overflow": false,
+      "stage": "hub",
+      "canvasSize": [
+        1440,
+        936
+      ],
+      "brokenImages": 0,
+      "controls": [
+        {
+          "text": "−",
+          "inside": true
+        },
+        {
+          "text": "+",
+          "inside": true
+        },
+        {
+          "text": "Reset Camera",
+          "inside": true
+        }
+      ],
+      "selector": "none"
+    }
+  ],
+  "reducedStart": {
+    "traffic": [
+      [
+        -3.293353039361458,
+        0,
+        -8.169154633848164
+      ],
+      [
+        12.362572771643153,
+        0,
+        -7.788244129621457
+      ],
+      [
+        3.410197387542053,
+        0,
+        -0.2373319029934771
+      ]
+    ],
+    "camera": {
+      "zoom": 1,
+      "target": [
+        0,
+        0.65,
+        0
+      ],
+      "position": [
+        30,
+        36.65,
+        30
+      ]
+    },
+    "time": 0
+  },
+  "reducedCheck": {
+    "motionEnabled": false,
+    "stage": "hub",
+    "time": 0,
+    "traffic": [
+      [
+        -3.293353039361458,
+        0,
+        -8.169154633848164
+      ],
+      [
+        12.362572771643153,
+        0,
+        -7.788244129621457
+      ],
+      [
+        3.410197387542053,
+        0,
+        -0.2373319029934771
+      ]
+    ],
+    "camera": {
+      "zoom": 1,
+      "target": [
+        0,
+        0.65,
+        0
+      ],
+      "position": [
+        30,
+        36.65,
+        30
+      ]
+    },
+    "transcript": true,
+    "position": "relative",
+    "height": 837
+  },
+  "noWebGLCheck": {
+    "ready": false,
+    "message": "The 3D view is unavailable. Explore RoadNa JO with the location links below.",
+    "locations": 6,
+    "transcript": true,
+    "fallbackImage": 1200,
+    "overflow": false,
+    "navigation": "/screens/public-guest-menu/index.html"
+  },
+  "noTimelineCheck": {
+    "stage": "hub",
+    "pinned": "relative",
+    "transcript": true
+  },
+  "noJSCheck": {
+    "navigation": "/screens/public-guest-menu/index.html"
+  },
+  "pauseCheck": {
+    "offscreenBefore": 2.1425000000000014,
+    "offscreenAfter": 2.1425000000000014,
+    "hiddenBefore": 2.4130000000000003,
+    "hiddenAfter": 2.4130000000000003
+  },
+  "shortCheck": {
+    "stage": "hub",
+    "pinned": "relative",
+    "transcript": true,
+    "overflow": false
+  },
+  "changedOtherFiles": [],
+  "performanceHardware": "ANGLE (Intel, Intel(R) UHD Graphics (0x00009A60) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "fpsChecks": [
+    {
+      "width": 1280,
+      "height": 900,
+      "frames": 83,
+      "elapsedMs": 1505,
+      "approximateRenderFPS": 55
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "frames": 42,
+      "elapsedMs": 1501,
+      "approximateRenderFPS": 28
+    }
+  ],
+  "regression": [],
+  "responseErrors": [],
+  "pageErrors": [],
+  "responsiveCases": 80,
+  "originalCheck": {
+    "title": "RoadNa JO | See it. Report it. Get it fixed.",
+    "pothole": true,
+    "story": true,
+    "overflow": false
+  },
+  "reachableScreens": 20
+}

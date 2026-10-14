@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f9ff">
+  <title>Log In | RoadNa JO</title>
+  <link rel="stylesheet" href="../../shared/base.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src="../../shared/ui.js" defer></script>
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#email">Skip to login</a>
+  <header class="trust-bar">
+    <div class="bar-content">
+      <p class="trust-label"><span class="status-dot" aria-hidden="true"></span>Official Municipal Service Platform</p>
+      <p class="security-label"><img src="./assets/lock.svg" alt="">Secure Civic Gateway</p>
+    </div>
+  </header>
+  <main class="login-main">
+    <a class="login-back" href="../landing-page/index.html">← Back to RoadNa JO</a>
+    <section class="login-card" aria-labelledby="login-heading">
+      <div class="brand">
+        <div class="brand-emblem"><img src="./assets/municipal.svg" alt=""></div>
+        <div class="brand-name"><span>RoadNa JO</span><span class="portal-badge">Portal</span></div>
+        <p class="brand-description">Municipal Infrastructure &amp; Governance</p>
+      </div>
+      <div class="welcome">
+        <h1 id="login-heading">Welcome back</h1>
+        <p>Enter your credentials to access your civic account</p>
+      </div>
+      <!-- Frontend preview. ASP.NET will handle real submissions. -->
+      <form class="login-form" aria-labelledby="login-heading" data-next="../home-menu/index.html" data-next-staff="../admin-dashboard/index.html">
+        <div class="field">
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" placeholder="name@domain.com" autocomplete="username" spellcheck="false" autocapitalize="none" required>
+        </div>
+        <div class="field password-field">
+          <div class="password-label">
+            <label for="password">Password</label>
+            <a class="forgot-link" href="../forgot-password/index.html">Forgot password?</a>
+          </div>
+          <input id="password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+        </div>
+        <fieldset class="account-type">
+          <legend>Sign in as</legend>
+          <label><input type="radio" name="account" value="resident" checked><span>Resident</span></label>
+          <label><input type="radio" name="account" value="staff"><span>Municipal staff</span></label>
+        </fieldset>
+        <button class="login-button" type="submit">
+          <span>Log In</span>
+          <img src="./assets/arrow-right.svg" alt="">
+        </button>
+      </form>
+        <div class="demo-access" role="group" aria-labelledby="demo-title">
+          <p class="demo-access__title" id="demo-title">No account needed in this preview</p>
+          <div class="demo-access__actions">
+            <a class="demo-access__btn" href="../home-menu/index.html">Continue as resident</a>
+            <a class="demo-access__btn" href="../admin-dashboard/index.html">Continue as municipal staff</a>
+          </div>
+        </div>
+      <div class="register-footer">
+        <p>Don't have an account? <a href="../register/index.html">Create one</a></p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="bar-content">
+      <p>© 2025 RoadNa JO Municipal Services Portal. All rights reserved.</p>
+      <nav class="legal-links" aria-label="Legal information">
+        <a href="../help/index.html#privacy">Privacy Policy</a>
+        <span aria-hidden="true">•</span>
+        <a href="../help/index.html#terms">Terms of Service</a>
+        <span aria-hidden="true">•</span>
+        <a href="../help/index.html#accessibility">Accessibility</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
+

@@ -1,0 +1,27 @@
+/* Help & Policies — screen-specific styles. Shared: ../../shared/base.css, ../../shared/auth.css */
+
+.page-help .auth-main { align-items: flex-start; padding-block: 48px 64px; }
+.help { display: flex; flex-direction: column; gap: 16px; width: min(100%, 760px); margin-inline: auto; }
+.help__head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px; }
+.help__head h1 { font-family: var(--font-head); font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: -.02em; text-wrap: balance; }
+.help__head p { font-size: 16px; line-height: 26px; color: var(--muted); }
+.help__note { width: fit-content; padding: 6px 12px; border: 1px solid var(--amber-line); border-radius: var(--radius-sm); background: var(--amber-wash); color: var(--amber-ink) !important; font-size: 13px !important; line-height: 18px !important; }
+
+.help__toc ul { display: flex; flex-wrap: wrap; gap: 8px; }
+.help__toc a { display: inline-flex; align-items: center; min-height: 36px; padding: 0 14px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--surface); font-size: 13px; font-weight: 600; color: var(--text); text-decoration: none; }
+.help__toc a:hover { border-color: var(--teal); color: var(--teal-deep); }
+
+.help__section { display: flex; flex-direction: column; gap: 10px; padding: 24px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); scroll-margin-top: 24px; }
+.help__section:target { border-color: var(--teal); box-shadow: 0 0 0 3px rgb(14 124 134 / 14%); }
+.help__section h2 { font-family: var(--font-head); font-size: 20px; line-height: 28px; font-weight: 700; }
+.help__section p { font-size: 15px; line-height: 25px; color: #3e494a; }
+.help__section--alert { border-color: var(--red-line); background: var(--red-wash); }
+.help__section--alert h2, .help__section--alert strong { color: var(--red-ink); }
+.help__links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.help__links a { font-weight: 600; color: var(--teal-deep); }
+
+@media (max-width: 640px) {
+  .page-help .auth-main { padding-block: 24px 40px; }
+  .help__head h1 { font-size: 26px; line-height: 32px; }
+  .help__section { padding: 20px 16px; }
+}

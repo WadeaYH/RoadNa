@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f9ff">
+  <meta name="description" content="Review incoming reports, confirm or correct the AI category and priority, merge duplicates and forward work to departments.">
+  <title>Incident Triage | RoadNa JO Admin</title>
+  <link rel="stylesheet" href="../../shared/base.css">
+  <link rel="stylesheet" href="../../shared/app.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src="../../shared/ui.js" defer></script>
+  <script src="./script.js" defer></script>
+</head>
+<body class="page-triage">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-account-balance" viewBox="0 0 20 20"><path d="M3 16V9H5V16H3ZM9 16V9H11V16H9ZM0 20V18H20V20H0ZM15 16V9H17V16H15ZM0 7V5L10 0L20 5V7H0Z"/></symbol>
+  <symbol id="i-account-circle" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></symbol>
+  <symbol id="i-assignment-done" viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-2 14l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></symbol>
+  <symbol id="i-block" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9C4.63 15.55 4 13.85 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1C19.37 8.45 20 10.15 20 12c0 4.42-3.58 8-8 8z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/></symbol>
+  <symbol id="i-construction" viewBox="0 0 16 16"><path d="M13.6667 15.0208L9.10417 10.4583L10.8542 8.70833L15.4167 13.2708L13.6667 15.0208ZM2.16667 15.0208L0.416667 13.2708L6.16667 7.52083L4.75 6.10417L4.16667 6.6875L3.10417 5.625V7.33333L2.52083 7.91667L0 5.39583L0.583333 4.8125H2.29167L1.25 3.77083L4.20833 0.8125C4.48611 0.534722 4.78472 0.333333 5.10417 0.208333C5.42361 0.0833333 5.75 0.0208333 6.08333 0.0208333C6.41667 0.0208333 6.74306 0.0833333 7.0625 0.208333C7.38194 0.333333 7.68056 0.534722 7.95833 0.8125L6.04167 2.72917L7.08333 3.77083L6.5 4.35417L7.91667 5.77083L9.79167 3.89583C9.73611 3.74306 9.69097 3.58333 9.65625 3.41667C9.62153 3.25 9.60417 3.08333 9.60417 2.91667C9.60417 2.09722 9.88542 1.40625 10.4479 0.84375C11.0104 0.28125 11.7014 0 12.5208 0C12.7292 0 12.9271 0.0208333 13.1146 0.0625C13.3021 0.104167 13.4931 0.166667 13.6875 0.25L11.625 2.3125L13.125 3.8125L15.1875 1.75C15.2847 1.94444 15.3507 2.13542 15.3854 2.32292C15.4201 2.51042 15.4375 2.70833 15.4375 2.91667C15.4375 3.73611 15.1562 4.42708 14.5938 4.98958C14.0312 5.55208 13.3403 5.83333 12.5208 5.83333C12.3542 5.83333 12.1875 5.81944 12.0208 5.79167C11.8542 5.76389 11.6944 5.71528 11.5417 5.64583L2.16667 15.0208Z"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></symbol>
+  <symbol id="i-dashboard" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></symbol>
+  <symbol id="i-delete" viewBox="0 0 11 12"><path d="M2 12C1.63333 12 1.31944 11.8694 1.05833 11.6083C0.797222 11.3472 0.666667 11.0333 0.666667 10.6667V2H0V0.666667H3.33333V0H7.33333V0.666667H10.6667V2H10V10.6667C10 11.0333 9.86944 11.3472 9.60833 11.6083C9.34722 11.8694 9.03333 12 8.66667 12H2ZM8.66667 2H2V10.6667H8.66667V2ZM3.33333 9.33333H4.66667V3.33333H3.33333V9.33333ZM6 9.33333H7.33333V3.33333H6V9.33333ZM2 2V10.6667V2Z"/></symbol>
+  <symbol id="i-done" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></symbol>
+  <symbol id="i-find" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></symbol>
+  <symbol id="i-hot" viewBox="0 0 24 24"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></symbol>
+  <symbol id="i-hourglass" viewBox="0 0 24 24"><path d="M6 2v6h.01L6 8.01 10 12l-4 4 .01.01H6V22h12v-5.99h-.01L18 16l-4-4 4-3.99-.01-.01H18V2H6zm10 14.5V20H8v-3.5l4-4 4 4zm-4-5l-4-4V4h8v3.5l-4 4z"/></symbol>
+  <symbol id="i-info" viewBox="0 0 17 17"><path d="M7.5 12.5H9.16667V7.5H7.5V12.5ZM8.33333 5.83333C8.56944 5.83333 8.76736 5.75347 8.92708 5.59375C9.08681 5.43403 9.16667 5.23611 9.16667 5C9.16667 4.76389 9.08681 4.56597 8.92708 4.40625C8.76736 4.24653 8.56944 4.16667 8.33333 4.16667C8.09722 4.16667 7.89931 4.24653 7.73958 4.40625C7.57986 4.56597 7.5 4.76389 7.5 5C7.5 5.23611 7.57986 5.43403 7.73958 5.59375C7.89931 5.75347 8.09722 5.83333 8.33333 5.83333ZM8.33333 16.6667C7.18056 16.6667 6.09722 16.4479 5.08333 16.0104C4.06944 15.5729 3.1875 14.9792 2.4375 14.2292C1.6875 13.4792 1.09375 12.5972 0.65625 11.5833C0.21875 10.5694 0 9.48611 0 8.33333C0 7.18056 0.21875 6.09722 0.65625 5.08333C1.09375 4.06944 1.6875 3.1875 2.4375 2.4375C3.1875 1.6875 4.06944 1.09375 5.08333 0.65625C6.09722 0.21875 7.18056 0 8.33333 0C9.48611 0 10.5694 0.21875 11.5833 0.65625C12.5972 1.09375 13.4792 1.6875 14.2292 2.4375C14.9792 3.1875 15.5729 4.06944 16.0104 5.08333C16.4479 6.09722 16.6667 7.18056 16.6667 8.33333C16.6667 9.48611 16.4479 10.5694 16.0104 11.5833C15.5729 12.5972 14.9792 13.4792 14.2292 14.2292C13.4792 14.9792 12.5972 15.5729 11.5833 16.0104C10.5694 16.4479 9.48611 16.6667 8.33333 16.6667ZM8.33333 15C10.1944 15 11.7708 14.3542 13.0625 13.0625C14.3542 11.7708 15 10.1944 15 8.33333C15 6.47222 14.3542 4.89583 13.0625 3.60417C11.7708 2.3125 10.1944 1.66667 8.33333 1.66667C6.47222 1.66667 4.89583 2.3125 3.60417 3.60417C2.3125 4.89583 1.66667 6.47222 1.66667 8.33333C1.66667 10.1944 2.3125 11.7708 3.60417 13.0625C4.89583 14.3542 6.47222 15 8.33333 15Z"/></symbol>
+  <symbol id="i-lightbulb" viewBox="0 0 12 15"><path d="M5.625 15C5.2125 15 4.85938 14.8531 4.56563 14.5594C4.27188 14.2656 4.125 13.9125 4.125 13.5H7.125C7.125 13.9125 6.97812 14.2656 6.68437 14.5594C6.39062 14.8531 6.0375 15 5.625 15ZM2.625 12.75V11.25H8.625V12.75H2.625ZM2.8125 10.5C1.95 9.9875 1.26562 9.3 0.759375 8.4375C0.253125 7.575 0 6.6375 0 5.625C0 4.0625 0.546875 2.73438 1.64062 1.64062C2.73438 0.546875 4.0625 0 5.625 0C7.1875 0 8.51562 0.546875 9.60938 1.64062C10.7031 2.73438 11.25 4.0625 11.25 5.625C11.25 6.6375 10.9969 7.575 10.4906 8.4375C9.98438 9.3 9.3 9.9875 8.4375 10.5H2.8125ZM3.2625 9H7.9875C8.55 8.6 8.98438 8.10625 9.29062 7.51875C9.59687 6.93125 9.75 6.3 9.75 5.625C9.75 4.475 9.35 3.5 8.55 2.7C7.75 1.9 6.775 1.5 5.625 1.5C4.475 1.5 3.5 1.9 2.7 2.7C1.9 3.5 1.5 4.475 1.5 5.625C1.5 6.3 1.65313 6.93125 1.95938 7.51875C2.26562 8.10625 2.7 8.6 3.2625 9Z"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></symbol>
+  <symbol id="i-map-fill" viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z"/></symbol>
+  <symbol id="i-merge" viewBox="0 0 24 24"><path d="M17 20.41L18.41 19 15 15.59 13.59 17 17 20.41zM7.5 8H11v5.59L5.59 19 7 20.41l6-6V8h3.5L12 3.5 7.5 8z"/></symbol>
+  <symbol id="i-park" viewBox="0 0 24 24"><path d="M17 12h2L12 2 5.05 12H7l-3.9 6h6.92v4h3.96v-4H21z"/></symbol>
+  <symbol id="i-pin-drop" viewBox="0 0 10 14"><path d="M4.66667 9.65C5.76667 8.76111 6.59722 7.90556 7.15833 7.08333C7.71944 6.26111 8 5.48889 8 4.76667C8 3.76667 7.68889 2.94444 7.06667 2.3C6.44444 1.65556 5.64444 1.33333 4.66667 1.33333C3.68889 1.33333 2.88889 1.65556 2.26667 2.3C1.64444 2.94444 1.33333 3.76667 1.33333 4.76667C1.33333 5.48889 1.61389 6.26111 2.175 7.08333C2.73611 7.90556 3.56667 8.76111 4.66667 9.65ZM4.66667 11.3333C3.1 10.1778 1.93056 9.05556 1.15833 7.96667C0.386111 6.87778 0 5.81111 0 4.76667C0 3.37778 0.433333 2.23611 1.3 1.34167C2.16667 0.447222 3.28889 0 4.66667 0C6.04444 0 7.16667 0.447222 8.03333 1.34167C8.9 2.23611 9.33333 3.37778 9.33333 4.76667C9.33333 5.81111 8.94722 6.87778 8.175 7.96667C7.40278 9.05556 6.23333 10.1778 4.66667 11.3333ZM4.66667 6C5.03333 6 5.34722 5.86944 5.60833 5.60833C5.86944 5.34722 6 5.03333 6 4.66667C6 4.3 5.86944 3.98611 5.60833 3.725C5.34722 3.46389 5.03333 3.33333 4.66667 3.33333C4.3 3.33333 3.98611 3.46389 3.725 3.725C3.46389 3.98611 3.33333 4.3 3.33333 4.66667C3.33333 5.03333 3.46389 5.34722 3.725 5.60833C3.98611 5.86944 4.3 6 4.66667 6ZM0 13.3333V12H9.33333V13.3333H0Z"/></symbol>
+  <symbol id="i-schedule" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5zM19 15l-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25L19 15z"/></symbol>
+  <symbol id="i-trending-down" viewBox="0 0 24 24"><path d="M16 18l2.29-2.29-4.88-4.88-4 4L2 7.41 3.41 6l6 6 4-4 6.3 6.29L22 12v6z"/></symbol>
+  <symbol id="i-trending-up" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></symbol>
+  <symbol id="i-tune" viewBox="0 0 24 24"><path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"/></symbol>
+  <symbol id="i-walk" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></symbol>
+  <symbol id="i-water-drop" viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/></symbol>
+  </svg>
+  <div class="app-shell app-shell--admin">
+    <header class="admin-header">
+    <button class="icon-btn topbar__menu" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="app-sidebar" aria-label="Open navigation menu"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg></button>
+    <a class="admin-header__brand brand" href="../admin-dashboard/index.html" aria-label="RoadNa JO admin console">
+      <span class="brand__mark"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-account-balance"/></svg></span>
+      <span class="brand__name">RoadNa JO</span>
+      <span class="console-badge">Admin Console</span>
+    </a>
+    <span class="topbar__spacer"></span>
+    <label class="topbar__search">
+      <span class="sr-only">Search incidents, work orders and units</span>
+      <svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-find"/></svg>
+      <input type="search" placeholder="Search incidents, work orders, units" autocomplete="off">
+    </label>
+    <a class="icon-btn" href="../admin-incident-triage/index.html" aria-label="12 incidents awaiting triage"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span class="icon-btn__dot" aria-hidden="true"></span></a>
+    <p class="role-chip"><strong>Elena Kovacs</strong>Roads Dept. Manager</p>
+    <span class="avatar avatar--slate" aria-hidden="true">EK</span>
+  </header>
+    <aside class="sidebar" id="app-sidebar" aria-label="Administration navigation">
+    <p class="sidebar__label">Operations</p>
+    <nav aria-label="Main">
+      <ul class="sidebar__nav">
+        <li><a class="nav-item" href="../admin-dashboard/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-dashboard"/></svg>Dashboard</a></li>
+        <li><a class="nav-item" href="../admin-incident-triage/index.html" aria-current="page"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-assignment-done"/></svg>Incident Triage<span class="nav-item__badge">12</span></a></li>
+        <li><a class="nav-item" href="../admin-dispatch-units/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-truck"/></svg>Dispatch &amp; Units</a></li>
+        <li><a class="nav-item" href="../admin-sla-orders/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-hourglass"/></svg>SLA &amp; Orders<span class="nav-item__badge nav-item__badge--soft">5</span></a></li>
+        <li><a class="nav-item" href="../admin-heatmap/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-hot"/></svg>Heatmap</a></li>
+      </ul>
+      <p class="sidebar__label">Platform</p>
+      <ul class="sidebar__nav">
+        <li><a class="nav-item" href="../public-guest-menu/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-map-fill"/></svg>Public Map</a></li>
+        <li><a class="nav-item" href="../home-menu/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-account-circle"/></svg>Resident View</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar__foot">
+      <p class="status-line">All municipal systems operational</p>
+      <a class="nav-item" href="../login/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-logout"/></svg>Log out</a>
+    </div>
+  </aside>
+  <button class="scrim" type="button" aria-label="Close navigation menu" data-sidebar-close></button>
+    <div class="app-main">
+      <main class="app-content app-content--wide" id="main">
+        <header class="page-head">
+          <div class="page-head__text">
+            <p class="eyebrow">Call-centre workspace</p>
+            <h1>Incident triage</h1>
+            <p>Confirm or correct what the AI suggested, merge duplicates, reject spam and forward each report to the right department.</p>
+          </div>
+          <div class="page-head__actions">
+            <button class="btn btn--outline" type="button" data-preview-action="Queue settings will be available when the service is connected. This is a frontend preview."><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-tune"/></svg>Queue settings</button>
+          </div>
+        </header>
+
+        <section class="stats triage-stats" aria-label="Queue summary">
+          <article class="stat"><p class="stat__label"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-assignment-done"/></svg>Awaiting review</p><p class="stat__value num" id="stat-waiting">12</p><p class="stat__delta stat__delta--flat">8 shown on this page</p></article>
+          <article class="stat"><p class="stat__label"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-schedule"/></svg>Median wait</p><p class="stat__value num">38 min</p><p class="stat__delta"><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-trending-down"/></svg>11 min faster than yesterday</p></article>
+          <article class="stat"><p class="stat__label"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-sparkle"/></svg>AI agreement</p><p class="stat__value num">93.6%</p><p class="stat__delta"><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-trending-up"/></svg>Moderators accepted the suggestion</p></article>
+          <article class="stat"><p class="stat__label"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-copy"/></svg>Duplicates flagged</p><p class="stat__value num">4</p><p class="stat__delta stat__delta--flat">2 need a decision</p></article>
+        </section>
+
+        <div class="triage">
+          <section class="panel queue" aria-labelledby="queue-title">
+            <header class="panel__head">
+              <h2 class="panel__title" id="queue-title">Incoming queue</h2>
+              <label class="search-field queue__search"><span class="sr-only">Search the queue</span><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-find"/></svg><input type="search" id="queue-search" placeholder="Search title, ID, district" autocomplete="off"></label>
+            </header>
+            <div class="queue__filters" role="group" aria-label="Filter the queue">
+              <button class="pill-btn is-active" type="button" aria-pressed="true" data-flag="all">All <span>8</span></button>
+              <button class="pill-btn" type="button" aria-pressed="false" data-flag="review">Needs review <span>3</span></button>
+              <button class="pill-btn" type="button" aria-pressed="false" data-flag="duplicate">Duplicates <span>1</span></button>
+              <button class="pill-btn" type="button" aria-pressed="false" data-flag="spam">Spam <span>1</span></button>
+            </div>
+            <ul class="queue__list" id="queue-list" role="list">
+              <li><button class="q-item is-selected" type="button" aria-pressed="true" data-flag="" data-id="RN-2025-0431" data-title="Pothole near school gate in Bayt Ras" data-desc="Wide pothole at the kerb where parents drop children. Cars brake sharply to avoid it and the edge is breaking away." data-place="School gate, Bayt Ras" data-time="4 minutes ago" data-reporter="Lina A. (verified)" data-cat="roads" data-conf="96" data-prio="high" data-dept="roads" data-dup="" data-spam="2" data-icon="road">
+                <span class="q-item__stripe q-item__stripe--high"></span>
+                <span class="q-item__main"><strong>Pothole near school gate in Bayt Ras</strong><span class="q-item__meta"><span class="mono">RN-2025-0431</span><span>Bayt Ras</span><span>4 min ago</span></span></span>
+                <span class="q-item__tags"><span class="ai-tag"><svg class="icon" width="10" height="10" aria-hidden="true" focusable="false"><use href="#i-sparkle"/></svg>Roads · 96%</span><span class="priority priority--high">High</span></span>
+              </button></li>
+              <li><button class="q-item" type="button" aria-pressed="false" data-flag="" data-id="RN-2025-0430" data-title="Traffic signal stuck on red at Al-Hashemi St" data-desc="Signal has shown red in all directions for over ten minutes. Drivers are treating it as a four-way stop and traffic is backing up." data-place="Al-Hashemi St, Downtown" data-time="9 minutes ago" data-reporter="Anonymous" data-cat="roads" data-conf="89" data-prio="critical" data-dept="roads" data-dup="" data-spam="1" data-icon="road">
+                <span class="q-item__stripe q-item__stripe--critical"></span>
+                <span class="q-item__main"><strong>Traffic signal stuck on red at Al-Hashemi St</strong><span class="q-item__meta"><span class="mono">RN-2025-0430</span><span>Central</span><span>9 min ago</span></span></span>
+                <span class="q-item__tags"><span class="ai-tag"><svg class="icon" width="10" height="10" aria-hidden="true" focusable="false"><use href="#i-sparkle"/></svg>Roads · 89%</span><span class="priority priority--critical">Critical</span></span>
+              </button></li>
+              <li><button class="q-item" type="button" aria-pressed="false" data-flag="" data-id="RN-2025-0429" data-title="Storm drain overflowing near Irbid Camp" data-desc="Water is pooling across the crossing and flowing into a ground-floor shop. The grate looks blocked by leaves and plastic." data-place="Near Irbid Camp, Al-Manara" data-time="14 minutes ago" data-reporter="Karim S. (verified)" data-cat="water" data-conf="92" data-prio="high" data-dept="drainage" data-dup="" data-spam="1" data-icon="water">
+                <span class="q-item__stripe q-item__stripe--high"></span>
+                <span class="q-item__main"><strong>Storm drain overflowing near Irbid Camp</strong><span class="q-item__meta"><span class="mono">RN-2025-0429</span><span>Al-Manara</span><span>14 min ago</span></span></span>
+                <span class="q-item__tags"><span class="ai-tag"><svg class="icon" width="10" height="10" aria-hidden="true" focusable="false"><use href="#i-sparkle"/></svg>Drainage · 92%</span><span class="priority priority--high">High</span></span>
+              </button></li>
+              <li><button class="q-item" type="button" aria-pressed="false" data-flag="review" data-id="RN-2025-0428" data-title="Broken glass on the riverside cycle path" data-desc="Scattered glass across about ten metres of the cycle path, right after the footbridge. Two cyclists have already stopped with punctures." data-place="Footpath in Al-Andalus, east Irbid" data-time="21 minutes ago" data-reporter="Anonymous" data-cat="sanitation" data-conf="71" data-prio="medium" data-dept="sanitation" data-dup="" data-spam="4" data-icon="trash">
+                <span class="q-item__stripe q-item__stripe--medium"></span>
+                <span class="q-item__main"><strong>Broken glass on the riverside cycle path</strong><span class="q-item__meta"><span class="mono">RN-2025-0428</span><span>Al-Andalus</span><span>21 min ago</span></span></span>
+                <span class="q-item__tags"><span class="ai-tag ai-tag--low"><svg class="icon" width="10" height="10" aria-hidden="true" focusable="false"><use href="#i-sparkle"/></svg>Sanitation · 71%</span><span class="priority priority--medium">Medium</span></span>
+              </button></li>
+              <li><button class="q-item" type="button" aria-pressed="false" data-flag="duplicate" data-id="RN-2025-0427" data-title="Street lamp flickering on Al-Hashemi St" data-desc="The lamp by the shops on Al-Hashemi St flickers on and off all evening, leaving the steps dark." data-place="Al-Hashemi St, Downtown" data-time="32 minutes ago" data-reporter="Dana M. (verified)" data-cat="light" data-conf="90" data-prio="medium" data-dept="lighting" data-dup="94% match with RN-2025-0409, 40 m away, filed 4 days ago" data-spam="2" data-icon="light">
+                <span class="q-item__stripe q-item__stripe--medium"></span>
+                <span class="q-item__main"><strong>Street lamp flickering on Al-Hashemi St</strong><span class="q-item__meta"><span class="mono">RN-2025-0427</span><span>Central</span><span>32 min ago</span></span></span>
+                <span class="q-item__tags"><span class="ai-tag"><svg class="icon" width="10" height="10" aria-hidden="true" focusable="false"><use href="#i-sparkle"/></svg>Lighting · 90%</span><span class="chip chip--duplicate chip--plain"><svg class="icon" width="10" height="10" aria-hidden="true" focusable="false"><use href="#i-copy"/></svg>&nbsp;Duplicate?</span></span>
+              </button></li>
+              <li><button class="q-item" type="button" aria-pressed="false" data-flag="spam" data-id="RN-2025-0426" data-title="Discount offer posted as a report" data-desc="Cheap roof repairs! Call now for a free quote and 40% off this week only." data-place="No location pinned" data-time="41 minutes ago" data-reporter="Anonymous" data-cat="sanitation" data-conf="38" data-prio="low" data-dept="sanitation" data-dup="" data-spam="88" data-icon="spam">
+                <span class="q-item__stripe q-item__stripe--low"></span>
+                <span class="q-item__main"><strong>Discount offer posted as a report</strong><span class="q-item__meta"><span class="mono">RN-2025-0426</span><span>No location</span><span>41 min ago</span></span></span>
+                <span class="q-item__tags"><span class="chip chip--rejected chip--plain"><svg class="icon" width="10" height="10" aria-hidden="true" focusable="false"><use href="#i-block"/></svg>&nbsp;Spam 88%</span></span>
+              </button></li>
+              <li><button class="q-item" type="button" aria-pressed="false" data-flag="review" data-id="RN-2025-0425" data-title="Fallen branch blocking the bike lane" data-desc="Large branch came down in last night's wind and now blocks the whole bike lane. Riders are forced into the road." data-place="University St cycle lane, Al-Nuzha" data-time="48 minutes ago" data-reporter="Omar T. (verified)" data-cat="parks" data-conf="84" data-prio="medium" data-dept="parks" data-dup="" data-spam="2" data-icon="tree">
+                <span class="q-item__stripe q-item__stripe--medium"></span>
+                <span class="q-item__main"><strong>Fallen branch blocking the bike lane</strong><span class="q-item__meta"><span class="mono">RN-2025-0425</span><span>Al-Nuzha</span><span>48 min ago</span></span></span>
+                <span class="q-item__tags"><span class="ai-tag"><svg class="icon" width="10" height="10" aria-hidden="true" focusable="false"><use href="#i-sparkle"/></svg>Parks · 84%</span><span class="priority priority--medium">Medium</span></span>
+              </button></li>
+              <li><button class="q-item" type="button" aria-pressed="false" data-flag="review" data-id="RN-2025-0424" data-title="Cracked pavement outside the clinic" data-desc="Pavement slabs are lifted about three centimetres at the clinic entrance, a trip hazard for patients using sticks or wheelchairs." data-place="Health Centre Entrance, Bayt Ras" data-time="1 hour ago" data-reporter="Hala B. (verified)" data-cat="sidewalk" data-conf="79" data-prio="medium" data-dept="roads" data-dup="" data-spam="3" data-icon="walk">
+                <span class="q-item__stripe q-item__stripe--medium"></span>
+                <span class="q-item__main"><strong>Cracked pavement outside the clinic</strong><span class="q-item__meta"><span class="mono">RN-2025-0424</span><span>Bayt Ras</span><span>1 hr ago</span></span></span>
+                <span class="q-item__tags"><span class="ai-tag ai-tag--low"><svg class="icon" width="10" height="10" aria-hidden="true" focusable="false"><use href="#i-sparkle"/></svg>Sidewalks · 79%</span><span class="priority priority--medium">Medium</span></span>
+              </button></li>
+            </ul>
+            <div class="empty" id="queue-empty" hidden>
+              <span class="empty__art"><svg class="icon" width="30" height="30" aria-hidden="true" focusable="false"><use href="#i-done"/></svg></span>
+              <h2>Queue clear</h2>
+              <p>Nothing matches this filter. New reports appear here as soon as residents submit them.</p>
+            </div>
+          </section>
+
+          <section class="panel detail" aria-labelledby="detail-title" aria-live="polite" id="detail">
+            <div class="detail__photo" id="d-photo" data-kind="road" aria-hidden="true"><svg class="icon k-road" width="44" height="44" aria-hidden="true" focusable="false"><use href="#i-construction"/></svg><svg class="icon k-water" width="44" height="44" aria-hidden="true" focusable="false"><use href="#i-water-drop"/></svg><svg class="icon k-light" width="40" height="40" aria-hidden="true" focusable="false"><use href="#i-lightbulb"/></svg><svg class="icon k-trash" width="38" height="38" aria-hidden="true" focusable="false"><use href="#i-delete"/></svg><svg class="icon k-tree" width="44" height="44" aria-hidden="true" focusable="false"><use href="#i-park"/></svg><svg class="icon k-walk" width="44" height="44" aria-hidden="true" focusable="false"><use href="#i-walk"/></svg><svg class="icon k-spam" width="44" height="44" aria-hidden="true" focusable="false"><use href="#i-block"/></svg></div>
+            <div class="panel__body detail__body">
+              <div class="detail__head">
+                <p class="mono" id="d-id">RN-2025-0431</p>
+                <span class="chip chip--submitted" id="d-state">Submitted</span>
+              </div>
+              <h2 class="detail__title" id="detail-title">Pothole near school gate in Bayt Ras</h2>
+              <p class="detail__desc" id="d-desc">Wide pothole at the kerb where parents drop children. Cars brake sharply to avoid it and the edge is breaking away.</p>
+              <p class="detail__meta"><span><svg class="icon" width="10" height="10" aria-hidden="true" focusable="false"><use href="#i-pin-drop"/></svg><span id="d-place">School gate, Bayt Ras</span></span><span><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-schedule"/></svg><span id="d-time">4 minutes ago</span></span><span><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-account-circle"/></svg><span id="d-reporter">Lina A. (verified)</span></span></p>
+
+              <div class="ai-check" id="d-ai">
+                <p class="ai-check__title"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-sparkle"/></svg> AI analysis</p>
+                <dl>
+                  <div><dt>Suggested category</dt><dd id="d-ai-cat">Roads &amp; Hazards</dd></div>
+                  <div><dt>Confidence</dt><dd><div class="progress" aria-hidden="true"><span id="d-conf-bar" style="transform:scaleX(.96)"></span></div><span class="num" id="d-conf">96%</span></dd></div>
+                  <div><dt>Suggested priority</dt><dd id="d-ai-prio"><span class="priority priority--high">High</span></dd></div>
+                  <div id="d-dup-row" hidden><dt>Duplicate check</dt><dd class="is-warn" id="d-dup"></dd></div>
+                  <div><dt>Spam score</dt><dd id="d-spam">Low (2%)</dd></div>
+                </dl>
+              </div>
+
+              <form class="decision" id="decision">
+                <div class="form-grid">
+                  <div class="field"><label class="field__label" for="cat-select">Category</label>
+                    <select class="select" id="cat-select"><option value="roads">Roads &amp; Hazards</option><option value="light">Street Lighting</option><option value="sanitation">Sanitation &amp; Debris</option><option value="parks">Parks &amp; Public Trees</option><option value="water">Water Main &amp; Drainage</option><option value="sidewalk">Sidewalks &amp; Signs</option></select></div>
+                  <div class="field"><label class="field__label" for="dept-select">Forward to</label>
+                    <select class="select" id="dept-select"><option value="roads">Roads Department</option><option value="lighting">Lighting Division</option><option value="sanitation">Sanitation Department</option><option value="parks">Parks Department</option><option value="drainage">Drainage &amp; Water Authority</option></select></div>
+                  <div class="field is-full"><span class="field__label" id="prio-label">Priority</span>
+                    <div class="segmented seg-prio" role="group" aria-labelledby="prio-label" id="prio-group">
+                      <button type="button" aria-pressed="false" data-prio="critical">Critical</button>
+                      <button type="button" aria-pressed="true" data-prio="high">High</button>
+                      <button type="button" aria-pressed="false" data-prio="medium">Medium</button>
+                      <button type="button" aria-pressed="false" data-prio="low">Low</button>
+                    </div></div>
+                  <div class="field is-full"><label class="field__label" for="note">Note to the department (optional)</label>
+                    <textarea class="textarea" id="note" rows="2" placeholder="Anything the crew should know before they arrive"></textarea></div>
+                </div>
+                <p class="decision__note" id="override-note" hidden><svg class="icon" width="11" height="11" aria-hidden="true" focusable="false"><use href="#i-info"/></svg>You changed the AI suggestion. The override is logged to improve the model.</p>
+                <div class="decision__actions">
+                  <button class="btn btn--primary" type="submit" id="confirm-btn"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-done"/></svg>Confirm &amp; forward</button>
+                  <button class="btn btn--outline" type="button" id="info-btn"><svg class="icon" width="15" height="15" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Request info</button>
+                  <button class="btn btn--outline" type="button" id="merge-btn"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-merge"/></svg>Merge duplicate</button>
+                  <button class="btn btn--danger" type="button" id="reject-btn"><svg class="icon" width="15" height="15" aria-hidden="true" focusable="false"><use href="#i-block"/></svg>Reject</button>
+                </div>
+                <div class="reject-box" id="reject-box" hidden>
+                  <label class="field__label" for="reject-reason">Reason for rejection (sent to the resident)</label>
+                  <select class="select" id="reject-reason"><option>Spam or advertising</option><option>Outside municipal responsibility</option><option>Not enough information to act</option><option>Test or abusive content</option></select>
+                  <button class="btn btn--danger btn--sm" type="button" id="reject-confirm">Reject report</button>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+  <p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
+
+</body>
+</html>

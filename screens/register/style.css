@@ -1,0 +1,26 @@
+/* Register — screen-specific styles. Shared: ../../shared/base.css, ../../shared/auth.css */
+
+.page-register .auth-stack { max-width: 420px; }
+.page-register .auth-header { min-height: 60px; }
+
+.gateway-badge {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; align-self: center; padding: 6px 12px;
+  border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--surface-2);
+  font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: .3px; color: var(--muted);
+}
+.gateway-badge__icon { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--teal); color: #fff; }
+.gateway-badge__label { font-weight: 600; text-transform: uppercase; color: var(--teal-deep); }
+.gateway-badge__sep { font-size: 16px; line-height: 24px; color: var(--line-strong); }
+
+.register-form { padding-top: 4px; }
+.field--tight { gap: 4px; }
+.field--tight .input-wrap { padding-top: 2px; }
+.field--tight .field__label { margin-bottom: 2px; }
+
+@media (max-width: 380px) {
+  .gateway-badge__sep, .gateway-badge__city { display: none; }
+}
+
+.figma-icon { flex-shrink: 0; }
+.input-wrap--trailing .input { padding-inline-end: 40px; }
+.input-wrap--trailing > img { position: absolute; inset-inline-end: 12px; top: 50%; transform: translateY(-50%); pointer-events: none; }

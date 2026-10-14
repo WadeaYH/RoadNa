@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore the RoadNa JO public, account, resident and administration frontend screens.">
+  <title>RoadNa JO | Screen directory</title>
+  <link rel="stylesheet" href="./shared/base.css">
+  <style>
+    body { background: var(--bg); }
+    main { max-width: 1100px; margin: auto; padding: 56px 24px; }
+    .directory-head { padding-bottom: 32px; border-bottom: 1px solid var(--line); }
+    .eyebrow { margin-bottom: 12px; color: var(--teal-deep); font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+    h1 { font: 700 clamp(28px, 4vw, 40px)/1.15 var(--font-head); letter-spacing: -.025em; }
+    .intro { max-width: 60ch; margin: 14px 0 24px; color: var(--muted); font-size: 15px; line-height: 24px; }
+    .directory-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    section { margin-top: 32px; }
+    .group-head h2 { font: 600 20px/28px var(--font-head); }
+    .group-head p { margin-top: 4px; color: var(--muted); font-size: 13px; line-height: 20px; }
+    ul { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; margin-top: 16px; }
+    li a { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 60px; padding: 16px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--text); font-size: 14px; font-weight: 500; }
+    li a:hover { color: var(--teal-deep); border-color: var(--teal); text-decoration: none; }
+    li a span { color: var(--teal); }
+    .directory-foot { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    @media(max-width:720px) { ul { grid-template-columns: repeat(2,minmax(0,1fr)); } main { padding: 32px 20px; } }
+    @media(max-width:480px) { ul { grid-template-columns: minmax(0,1fr); } }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="directory-head">
+      <p class="eyebrow">RoadNa JO · Frontend preview</p>
+      <h1>Explore the 20 screens</h1>
+      <p class="intro">A municipal reporting portal for residents and operations teams. Browse each screen or follow the preview links through the reporting and account flows.</p>
+      <div class="directory-actions">
+        <a class="btn btn--primary" href="./screens/landing-page/index.html">Open RoadNa JO <span aria-hidden="true">→</span></a>
+        <a class="btn btn--outline" href="./screens/admin-dashboard/index.html">Open admin dashboard</a>
+      </div>
+    </header>
+    <section aria-labelledby="landing-page-group"><header class="group-head"><h2 id="landing-page-group">Public screens</h2><p>Introduction, public reports and incident details.</p></header><ul><li><a href="./screens/landing-page/index.html">Landing page<span aria-hidden="true">↗</span></a></li><li><a href="./screens/public-guest-menu/index.html">Public report map<span aria-hidden="true">↗</span></a></li><li><a href="./screens/report-details/index.html">Report details<span aria-hidden="true">↗</span></a></li></ul></section>
+<section aria-labelledby="login-group"><header class="group-head"><h2 id="login-group">Account screens</h2><p>Sign-in, registration and password recovery states.</p></header><ul><li><a href="./screens/login/index.html">Login<span aria-hidden="true">↗</span></a></li><li><a href="./screens/register/index.html">Register<span aria-hidden="true">↗</span></a></li><li><a href="./screens/forgot-password/index.html">Forgot password<span aria-hidden="true">↗</span></a></li><li><a href="./screens/check-email/index.html">Check email<span aria-hidden="true">↗</span></a></li><li><a href="./screens/reset-password/index.html">Reset password<span aria-hidden="true">↗</span></a></li><li><a href="./screens/password-updated/index.html">Password updated<span aria-hidden="true">↗</span></a></li></ul></section>
+<section aria-labelledby="home-menu-group"><header class="group-head"><h2 id="home-menu-group">Resident screens</h2><p>Reporting, tracking, notifications and account settings.</p></header><ul><li><a href="./screens/home-menu/index.html">Resident dashboard<span aria-hidden="true">↗</span></a></li><li><a href="./screens/create-report/index.html">Create report<span aria-hidden="true">↗</span></a></li><li><a href="./screens/report-submitted/index.html">Report submitted<span aria-hidden="true">↗</span></a></li><li><a href="./screens/my-reports/index.html">My reports<span aria-hidden="true">↗</span></a></li><li><a href="./screens/notifications/index.html">Notifications<span aria-hidden="true">↗</span></a></li><li><a href="./screens/profile/index.html">Profile and settings<span aria-hidden="true">↗</span></a></li></ul></section>
+<section aria-labelledby="admin-dashboard-group"><header class="group-head"><h2 id="admin-dashboard-group">Administration screens</h2><p>Operations, incident review, dispatch, service levels and geographic insights.</p></header><ul><li><a href="./screens/admin-dashboard/index.html">Admin dashboard<span aria-hidden="true">↗</span></a></li><li><a href="./screens/admin-incident-triage/index.html">Incident triage<span aria-hidden="true">↗</span></a></li><li><a href="./screens/admin-dispatch-units/index.html">Dispatch and units<span aria-hidden="true">↗</span></a></li><li><a href="./screens/admin-sla-orders/index.html">SLA and work orders<span aria-hidden="true">↗</span></a></li><li><a href="./screens/admin-heatmap/index.html">Incident heatmap<span aria-hidden="true">↗</span></a></li></ul></section>
+    <p class="directory-foot">Sample data only. Forms and operational actions show preview feedback until the ASP.NET backend is connected.</p>
+  </main>
+</body>
+</html>

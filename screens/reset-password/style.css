@@ -1,0 +1,27 @@
+/* Reset Password — screen-specific styles. Shared: ../../shared/base.css, ../../shared/auth.css */
+
+.auth-header--center { justify-content: center; min-height: 96px; }
+.auth-brand__tag--plain { font-size: 11px; line-height: 14px; font-weight: 500; letter-spacing: 0; text-transform: none; }
+.auth-trust { font-weight: 500; }
+
+.strength { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 8px; }
+.strength span { height: 4px; border-radius: var(--radius-pill); background: var(--surface-3); transform-origin: left center; transition: background-color .3s ease, transform .4s cubic-bezier(.2, .7, .2, 1); }
+.strength[data-level="1"] span:nth-child(-n+1) { background: var(--red); }
+.strength[data-level="2"] span:nth-child(-n+2) { background: var(--amber); }
+.strength[data-level="3"] span:nth-child(-n+3) { background: #65a30d; }
+.strength[data-level="4"] span { background: var(--green); }
+.strength__label { margin-top: 6px; font-size: 12px; line-height: 16px; color: var(--muted); }
+.strength__label strong { font-weight: 600; color: var(--text); }
+
+.requirements { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface-2); }
+.requirements li { display: flex; align-items: center; gap: 8px; font-size: 12px; line-height: 16px; color: var(--muted); transition: color .2s ease; }
+.requirements .icon { color: var(--line-strong); transition: color .2s ease, transform .35s cubic-bezier(.34, 1.56, .64, 1); }
+.requirements li.is-met { color: var(--text); }
+.requirements li.is-met .icon { color: var(--green); transform: scale(1.15); }
+
+@media (max-width: 480px) {
+  .requirements { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .strength span, .requirements .icon { transition: none; }
+}

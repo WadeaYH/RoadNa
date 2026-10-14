@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f9ff">
+  <meta name="description" content="Create a RoadNa JO resident account to report infrastructure issues and track repairs.">
+  <title>Create Account | RoadNa JO</title>
+  <link rel="stylesheet" href="../../shared/base.css">
+  <link rel="stylesheet" href="../../shared/auth.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src="../../shared/ui.js" defer></script>
+  <script src="./script.js" defer></script>
+</head>
+<body class="auth-page page-register">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-account-balance" viewBox="0 0 20 20"><path d="M3 16V9H5V16H3ZM9 16V9H11V16H9ZM0 20V18H20V20H0ZM15 16V9H17V16H15ZM0 7V5L10 0L20 5V7H0Z"/></symbol>
+  <symbol id="i-arrow-forward" viewBox="0 0 14 14"><path d="M10.1458 7.5H0V5.83333H10.1458L5.47917 1.16667L6.66667 0L13.3333 6.66667L6.66667 13.3333L5.47917 12.1667L10.1458 7.5Z"/></symbol>
+  <symbol id="i-info" viewBox="0 0 17 17"><path d="M7.5 12.5H9.16667V7.5H7.5V12.5ZM8.33333 5.83333C8.56944 5.83333 8.76736 5.75347 8.92708 5.59375C9.08681 5.43403 9.16667 5.23611 9.16667 5C9.16667 4.76389 9.08681 4.56597 8.92708 4.40625C8.76736 4.24653 8.56944 4.16667 8.33333 4.16667C8.09722 4.16667 7.89931 4.24653 7.73958 4.40625C7.57986 4.56597 7.5 4.76389 7.5 5C7.5 5.23611 7.57986 5.43403 7.73958 5.59375C7.89931 5.75347 8.09722 5.83333 8.33333 5.83333ZM8.33333 16.6667C7.18056 16.6667 6.09722 16.4479 5.08333 16.0104C4.06944 15.5729 3.1875 14.9792 2.4375 14.2292C1.6875 13.4792 1.09375 12.5972 0.65625 11.5833C0.21875 10.5694 0 9.48611 0 8.33333C0 7.18056 0.21875 6.09722 0.65625 5.08333C1.09375 4.06944 1.6875 3.1875 2.4375 2.4375C3.1875 1.6875 4.06944 1.09375 5.08333 0.65625C6.09722 0.21875 7.18056 0 8.33333 0C9.48611 0 10.5694 0.21875 11.5833 0.65625C12.5972 1.09375 13.4792 1.6875 14.2292 2.4375C14.9792 3.1875 15.5729 4.06944 16.0104 5.08333C16.4479 6.09722 16.6667 7.18056 16.6667 8.33333C16.6667 9.48611 16.4479 10.5694 16.0104 11.5833C15.5729 12.5972 14.9792 13.4792 14.2292 14.2292C13.4792 14.9792 12.5972 15.5729 11.5833 16.0104C10.5694 16.4479 9.48611 16.6667 8.33333 16.6667ZM8.33333 15C10.1944 15 11.7708 14.3542 13.0625 13.0625C14.3542 11.7708 15 10.1944 15 8.33333C15 6.47222 14.3542 4.89583 13.0625 3.60417C11.7708 2.3125 10.1944 1.66667 8.33333 1.66667C6.47222 1.66667 4.89583 2.3125 3.60417 3.60417C2.3125 4.89583 1.66667 6.47222 1.66667 8.33333C1.66667 10.1944 2.3125 11.7708 3.60417 13.0625C4.89583 14.3542 6.47222 15 8.33333 15Z"/></symbol>
+  <symbol id="i-visibility" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></symbol>
+  <symbol id="i-visibility-off" viewBox="0 0 24 24"><path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/></symbol>
+  </svg>
+  <a class="skip-link" href="#full-name">Skip to registration form</a>
+  <header class="auth-header">
+    <a class="auth-brand auth-brand--sm" href="../landing-page/index.html" aria-label="RoadNa JO home">
+      <span class="auth-brand__mark"><img class="figma-icon" src="./assets/icon-0.svg" alt=""></span>
+      <span class="auth-brand__name">RoadNa JO</span>
+    </a>
+    <p class="auth-badge auth-badge--muted"><span class="auth-badge__dot" aria-hidden="true"></span>Municipal Portal Online</p>
+  </header>
+
+  <main class="auth-main" id="main">
+    <div class="auth-stack">
+      <section class="auth-card" aria-labelledby="register-title">
+        <p class="gateway-badge">
+          <span class="gateway-badge__icon"><img class="figma-icon" src="./assets/icon-1.svg" alt=""></span>
+          <span class="gateway-badge__label">Civic Gateway</span>
+          <span class="gateway-badge__sep" aria-hidden="true">•</span>
+          <span class="gateway-badge__city">City of Amman</span>
+        </p>
+
+        <header class="auth-head">
+          <h1 class="auth-title auth-title--lg" id="register-title">Create your account</h1>
+          <p class="auth-lead auth-lead--sm">Join your neighbors to report infrastructure issues and track repairs</p>
+        </header>
+
+        <!-- Frontend preview. ASP.NET will handle real submissions. -->
+        <form class="auth-form register-form" data-next="../login/index.html" data-next-label="Preview login">
+          <div class="field">
+            <label class="field__label" for="full-name">Full name</label>
+            <div class="input-wrap input-wrap--trailing"><input class="input" id="full-name" name="fullName" type="text" placeholder="e.g. Marcus Vance" autocomplete="name" required><img class="figma-icon" src="./assets/icon-2.svg" alt=""></div>
+          </div>
+          <div class="field">
+            <label class="field__label" for="email">Email address</label>
+            <div class="input-wrap input-wrap--trailing"><input class="input" id="email" name="email" type="email" placeholder="name@domain.com" autocomplete="email" spellcheck="false" required><img class="figma-icon" src="./assets/icon-3.svg" alt=""></div>
+          </div>
+          <div class="field field--tight">
+            <label class="field__label" for="password">Password</label>
+            <div class="input-wrap">
+              <input class="input input--pw" id="password" name="password" type="password" placeholder="••••••••••••" autocomplete="new-password" minlength="8" required aria-describedby="password-hint">
+              <button class="pw-toggle" type="button" data-toggle-password="#password" aria-pressed="false" aria-label="Show password">
+                <img class="figma-icon icon-on" src="./assets/icon-4.svg" alt=""><svg class="icon icon-off" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-visibility-off"/></svg>
+              </button>
+            </div>
+            <p class="field__hint" id="password-hint"><img class="figma-icon" src="./assets/icon-5.svg" alt="">Minimum 8 characters</p>
+          </div>
+          <div class="field">
+            <label class="field__label" for="confirm-password">Confirm password</label>
+            <div class="input-wrap">
+              <input class="input input--pw" id="confirm-password" name="confirmPassword" type="password" placeholder="••••••••••••" autocomplete="new-password" data-match="#password" required>
+              <button class="pw-toggle" type="button" data-toggle-password="#confirm-password" aria-pressed="false" aria-label="Show password">
+                <img class="figma-icon icon-on" src="./assets/icon-4.svg" alt=""><svg class="icon icon-off" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-visibility-off"/></svg>
+              </button>
+            </div>
+          </div>
+          <label class="check">
+            <input type="checkbox" name="certify" required>
+            <span>I certify that I am a resident or business operator within the municipal jurisdiction.</span>
+          </label>
+          <button class="btn btn--primary btn--auth" type="submit">Create Account <img class="figma-icon" src="./assets/icon-6.svg" alt=""></button>
+        </form>
+        <p class="flow-preview">Explore the flow: <a href="../login/index.html">Preview Login</a></p>
+
+        <p class="auth-switch">Already have an account?<a href="../login/index.html">Log in</a></p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="auth-footer auth-footer--center">
+    <p>© 2025 RoadNa JO Municipal Services Portal. All rights reserved.</p>
+    <nav aria-label="Legal information">
+      <ul>
+        <li><a href="../help/index.html#privacy">Privacy Policy</a></li>
+        <li><a href="../help/index.html#terms">Terms of Service</a></li>
+        <li><a href="../help/index.html#accessibility">Accessibility</a></li>
+      </ul>
+    </nav>
+  </footer>
+
+</body>
+</html>

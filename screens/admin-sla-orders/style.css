@@ -1,0 +1,62 @@
+/* Admin SLA & Orders — screen-specific styles. Shared: ../../shared/base.css, ../../shared/app.css */
+
+.sla-summary { display: flex; flex-direction: column; gap: 16px; padding: 20px; margin-bottom: 24px; }
+.sla-summary__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 8px 24px; }
+.sla-summary__score { display: flex; align-items: baseline; gap: 10px; }
+.sla-summary__score strong { font-family: var(--font-head); font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -.02em; color: var(--green); }
+.sla-summary__score span { font-size: 13px; color: var(--muted); }
+.stackbar { display: flex; gap: 4px; height: 14px; }
+.stackbar__seg { border-radius: var(--radius-pill); transform-origin: left center; animation: fill-bar .8s cubic-bezier(.2, .7, .2, 1) backwards; }
+.stackbar__seg--ok { background: #059669; }
+.stackbar__seg--risk { background: #f59e0b; animation-delay: .1s; }
+.stackbar__seg--breach { background: #ba1a1a; animation-delay: .2s; }
+@keyframes fill-bar { from { transform: scaleX(0); } }
+.sla-legend { display: flex; flex-wrap: wrap; gap: 8px 28px; font-size: 13px; line-height: 18px; color: var(--muted); }
+.sla-legend li { display: inline-flex; align-items: center; gap: 8px; }
+.sla-legend strong { font-weight: 700; color: var(--text); }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot--ok { background: #059669; }
+.dot--risk { background: #f59e0b; }
+.dot--breach { background: #ba1a1a; }
+
+.sla-cols { margin-top: 0; }
+.orders__search { width: 280px; }
+.toolbar { display: flex; min-width: 0; align-items: center; padding: 12px 20px; border-bottom: 1px solid var(--line); }
+.tabs { display: inline-flex; min-width: 0; gap: 4px; padding: 3px; border-radius: var(--radius-sm); background: var(--surface-3); max-width: 100%; overflow-x: auto; }
+.tab { display: inline-flex; align-items: center; gap: 8px; min-height: 34px; padding: 4px 14px; border: 0; border-radius: 6px; background: transparent; font-size: 13px; line-height: 20px; font-weight: 600; color: var(--muted); white-space: nowrap; transition: background-color .16s ease, color .16s ease, box-shadow .16s ease; }
+.tab:hover { color: var(--text); }
+.tab.is-active { background: var(--surface); color: var(--text); box-shadow: 0 1px 2px rgb(20 24 28 / 10%); }
+.tab__count { padding: 0 7px; border-radius: var(--radius-pill); background: rgb(85 95 109 / 14%); font-size: 11px; line-height: 16px; font-weight: 700; }
+.tab.is-active .tab__count { background: var(--teal); color: #fff; }
+
+.orders { min-width: 880px; }
+.orders td strong { display: block; max-width: 280px; font-size: 13px; line-height: 18px; font-weight: 600; }
+.orders td .mono { color: var(--muted); }
+.orders td .progress { height: 4px; margin-top: 6px; width: 96px; }
+.orders tbody tr.is-hidden { display: none; }
+.orders .cell-action { text-align: end; white-space: nowrap; }
+.orders tr.is-escalated { background: #fff8f8; }
+.sla-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; background: var(--surface-3); font-size: 12px; line-height: 16px; font-weight: 600; color: var(--muted); white-space: nowrap; }
+.sla-badge--breach { background: #fee2e2; color: #991b1b; }
+.sla-badge--risk { background: #fef3c7; color: #92400e; }
+.sla-badge--ok { background: var(--green-wash); color: var(--green-ink); }
+.muted-note { font-size: 12px; line-height: 16px; color: var(--muted); }
+
+.targets { display: flex; flex-direction: column; padding: 8px 20px 16px; }
+.target { display: grid; grid-template-columns: 84px minmax(0, 1fr) 44px; align-items: center; gap: 12px; padding: 12px 0; }
+.target + .target { border-top: 1px solid var(--line); }
+.target__field { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+.target__field .input { width: 76px; height: 36px; text-align: center; font-variant-numeric: tabular-nums; }
+.target__field .input[readonly] { border-color: transparent; background: var(--surface-2); }
+.target strong { font-size: 13px; font-weight: 600; text-align: end; }
+.targets__hint { padding-top: 8px; font-size: 12px; line-height: 16px; color: var(--muted); }
+.timeline .timeline__dot { font-size: 11px; font-weight: 700; }
+
+@media (max-width: 720px) {
+  .orders__search { width: 100%; }
+  .toolbar { padding-inline: 16px; }
+  .sla-summary { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stackbar__seg, .toast { animation: none; }
+}

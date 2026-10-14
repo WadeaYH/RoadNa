@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f9ff">
+  <meta name="description" content="Assign validated incidents to field crews, balance workload and follow units through the day.">
+  <title>Dispatch & Units | RoadNa JO Admin</title>
+  <link rel="stylesheet" href="../../shared/base.css">
+  <link rel="stylesheet" href="../../shared/app.css">
+  <link rel="stylesheet" href="../../shared/vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="../../shared/map.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src="../../shared/ui.js" defer></script>
+  <script src="../../shared/vendor/leaflet/leaflet.js" defer></script>
+  <script src="../../shared/map.js" defer></script>
+  <script src="./script.js" defer></script>
+</head>
+<body class="page-dispatch">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-account-balance" viewBox="0 0 20 20"><path d="M3 16V9H5V16H3ZM9 16V9H11V16H9ZM0 20V18H20V20H0ZM15 16V9H17V16H15ZM0 7V5L10 0L20 5V7H0Z"/></symbol>
+  <symbol id="i-account-circle" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></symbol>
+  <symbol id="i-add-circle" viewBox="0 0 15 15"><path d="M6.75 11.25H8.25V8.25H11.25V6.75H8.25V3.75H6.75V6.75H3.75V8.25H6.75V11.25ZM7.5 15C6.4625 15 5.4875 14.8031 4.575 14.4094C3.6625 14.0156 2.86875 13.4812 2.19375 12.8062C1.51875 12.1312 0.984375 11.3375 0.590625 10.425C0.196875 9.5125 0 8.5375 0 7.5C0 6.4625 0.196875 5.4875 0.590625 4.575C0.984375 3.6625 1.51875 2.86875 2.19375 2.19375C2.86875 1.51875 3.6625 0.984375 4.575 0.590625C5.4875 0.196875 6.4625 0 7.5 0C8.5375 0 9.5125 0.196875 10.425 0.590625C11.3375 0.984375 12.1312 1.51875 12.8062 2.19375C13.4812 2.86875 14.0156 3.6625 14.4094 4.575C14.8031 5.4875 15 6.4625 15 7.5C15 8.5375 14.8031 9.5125 14.4094 10.425C14.0156 11.3375 13.4812 12.1312 12.8062 12.8062C12.1312 13.4812 11.3375 14.0156 10.425 14.4094C9.5125 14.8031 8.5375 15 7.5 15Z"/></symbol>
+  <symbol id="i-assignment-done" viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-2 14l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></symbol>
+  <symbol id="i-construction" viewBox="0 0 16 16"><path d="M13.6667 15.0208L9.10417 10.4583L10.8542 8.70833L15.4167 13.2708L13.6667 15.0208ZM2.16667 15.0208L0.416667 13.2708L6.16667 7.52083L4.75 6.10417L4.16667 6.6875L3.10417 5.625V7.33333L2.52083 7.91667L0 5.39583L0.583333 4.8125H2.29167L1.25 3.77083L4.20833 0.8125C4.48611 0.534722 4.78472 0.333333 5.10417 0.208333C5.42361 0.0833333 5.75 0.0208333 6.08333 0.0208333C6.41667 0.0208333 6.74306 0.0833333 7.0625 0.208333C7.38194 0.333333 7.68056 0.534722 7.95833 0.8125L6.04167 2.72917L7.08333 3.77083L6.5 4.35417L7.91667 5.77083L9.79167 3.89583C9.73611 3.74306 9.69097 3.58333 9.65625 3.41667C9.62153 3.25 9.60417 3.08333 9.60417 2.91667C9.60417 2.09722 9.88542 1.40625 10.4479 0.84375C11.0104 0.28125 11.7014 0 12.5208 0C12.7292 0 12.9271 0.0208333 13.1146 0.0625C13.3021 0.104167 13.4931 0.166667 13.6875 0.25L11.625 2.3125L13.125 3.8125L15.1875 1.75C15.2847 1.94444 15.3507 2.13542 15.3854 2.32292C15.4201 2.51042 15.4375 2.70833 15.4375 2.91667C15.4375 3.73611 15.1562 4.42708 14.5938 4.98958C14.0312 5.55208 13.3403 5.83333 12.5208 5.83333C12.3542 5.83333 12.1875 5.81944 12.0208 5.79167C11.8542 5.76389 11.6944 5.71528 11.5417 5.64583L2.16667 15.0208Z"/></symbol>
+  <symbol id="i-dashboard" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></symbol>
+  <symbol id="i-delete" viewBox="0 0 11 12"><path d="M2 12C1.63333 12 1.31944 11.8694 1.05833 11.6083C0.797222 11.3472 0.666667 11.0333 0.666667 10.6667V2H0V0.666667H3.33333V0H7.33333V0.666667H10.6667V2H10V10.6667C10 11.0333 9.86944 11.3472 9.60833 11.6083C9.34722 11.8694 9.03333 12 8.66667 12H2ZM8.66667 2H2V10.6667H8.66667V2ZM3.33333 9.33333H4.66667V3.33333H3.33333V9.33333ZM6 9.33333H7.33333V3.33333H6V9.33333ZM2 2V10.6667V2Z"/></symbol>
+  <symbol id="i-done" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></symbol>
+  <symbol id="i-find" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></symbol>
+  <symbol id="i-groups" viewBox="0 0 24 24"><path d="M12 12.75c1.63 0 3.07.39 4.24.9 1.08.48 1.76 1.56 1.76 2.73V18H6v-1.61c0-1.18.68-2.26 1.76-2.73 1.17-.52 2.61-.91 4.24-.91zM4 13c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm1.13 1.1c-.37-.06-.74-.1-1.13-.1-.99 0-1.93.21-2.78.58C.48 14.9 0 15.62 0 16.43V18h4.5v-1.61c0-.83.23-1.61.63-2.29zM20 13c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm4 3.43c0-.81-.48-1.53-1.22-1.85-.85-.37-1.79-.58-2.78-.58-.39 0-.76.04-1.13.1.4.68.63 1.46.63 2.29V18H24v-1.57zM12 6c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z"/></symbol>
+  <symbol id="i-hot" viewBox="0 0 24 24"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></symbol>
+  <symbol id="i-hourglass" viewBox="0 0 24 24"><path d="M6 2v6h.01L6 8.01 10 12l-4 4 .01.01H6V22h12v-5.99h-.01L18 16l-4-4 4-3.99-.01-.01H18V2H6zm10 14.5V20H8v-3.5l4-4 4 4zm-4-5l-4-4V4h8v3.5l-4 4z"/></symbol>
+  <symbol id="i-lightbulb" viewBox="0 0 12 15"><path d="M5.625 15C5.2125 15 4.85938 14.8531 4.56563 14.5594C4.27188 14.2656 4.125 13.9125 4.125 13.5H7.125C7.125 13.9125 6.97812 14.2656 6.68437 14.5594C6.39062 14.8531 6.0375 15 5.625 15ZM2.625 12.75V11.25H8.625V12.75H2.625ZM2.8125 10.5C1.95 9.9875 1.26562 9.3 0.759375 8.4375C0.253125 7.575 0 6.6375 0 5.625C0 4.0625 0.546875 2.73438 1.64062 1.64062C2.73438 0.546875 4.0625 0 5.625 0C7.1875 0 8.51562 0.546875 9.60938 1.64062C10.7031 2.73438 11.25 4.0625 11.25 5.625C11.25 6.6375 10.9969 7.575 10.4906 8.4375C9.98438 9.3 9.3 9.9875 8.4375 10.5H2.8125ZM3.2625 9H7.9875C8.55 8.6 8.98438 8.10625 9.29062 7.51875C9.59687 6.93125 9.75 6.3 9.75 5.625C9.75 4.475 9.35 3.5 8.55 2.7C7.75 1.9 6.775 1.5 5.625 1.5C4.475 1.5 3.5 1.9 2.7 2.7C1.9 3.5 1.5 4.475 1.5 5.625C1.5 6.3 1.65313 6.93125 1.95938 7.51875C2.26562 8.10625 2.7 8.6 3.2625 9Z"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></symbol>
+  <symbol id="i-map-fill" viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z"/></symbol>
+  <symbol id="i-navigation" viewBox="0 0 24 24"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></symbol>
+  <symbol id="i-park" viewBox="0 0 24 24"><path d="M17 12h2L12 2 5.05 12H7l-3.9 6h6.92v4h3.96v-4H21z"/></symbol>
+  <symbol id="i-schedule" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5zM19 15l-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25L19 15z"/></symbol>
+  <symbol id="i-trending-up" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></symbol>
+  <symbol id="i-water-drop" viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/></symbol>
+  </svg>
+  <div class="app-shell app-shell--admin">
+    <header class="admin-header">
+    <button class="icon-btn topbar__menu" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="app-sidebar" aria-label="Open navigation menu"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg></button>
+    <a class="admin-header__brand brand" href="../admin-dashboard/index.html" aria-label="RoadNa JO admin console">
+      <span class="brand__mark"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-account-balance"/></svg></span>
+      <span class="brand__name">RoadNa JO</span>
+      <span class="console-badge">Admin Console</span>
+    </a>
+    <span class="topbar__spacer"></span>
+    <label class="topbar__search">
+      <span class="sr-only">Search incidents, work orders and units</span>
+      <svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-find"/></svg>
+      <input type="search" placeholder="Search incidents, work orders, units" autocomplete="off">
+    </label>
+    <a class="icon-btn" href="../admin-incident-triage/index.html" aria-label="12 incidents awaiting triage"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span class="icon-btn__dot" aria-hidden="true"></span></a>
+    <p class="role-chip"><strong>Elena Kovacs</strong>Roads Dept. Manager</p>
+    <span class="avatar avatar--slate" aria-hidden="true">EK</span>
+  </header>
+    <aside class="sidebar" id="app-sidebar" aria-label="Administration navigation">
+    <p class="sidebar__label">Operations</p>
+    <nav aria-label="Main">
+      <ul class="sidebar__nav">
+        <li><a class="nav-item" href="../admin-dashboard/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-dashboard"/></svg>Dashboard</a></li>
+        <li><a class="nav-item" href="../admin-incident-triage/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-assignment-done"/></svg>Incident Triage<span class="nav-item__badge">12</span></a></li>
+        <li><a class="nav-item" href="../admin-dispatch-units/index.html" aria-current="page"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-truck"/></svg>Dispatch &amp; Units</a></li>
+        <li><a class="nav-item" href="../admin-sla-orders/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-hourglass"/></svg>SLA &amp; Orders<span class="nav-item__badge nav-item__badge--soft">5</span></a></li>
+        <li><a class="nav-item" href="../admin-heatmap/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-hot"/></svg>Heatmap</a></li>
+      </ul>
+      <p class="sidebar__label">Platform</p>
+      <ul class="sidebar__nav">
+        <li><a class="nav-item" href="../public-guest-menu/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-map-fill"/></svg>Public Map</a></li>
+        <li><a class="nav-item" href="../home-menu/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-account-circle"/></svg>Resident View</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar__foot">
+      <p class="status-line">All municipal systems operational</p>
+      <a class="nav-item" href="../login/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-logout"/></svg>Log out</a>
+    </div>
+  </aside>
+  <button class="scrim" type="button" aria-label="Close navigation menu" data-sidebar-close></button>
+    <div class="app-main">
+      <main class="app-content app-content--wide" id="main">
+        <header class="page-head">
+          <div class="page-head__text">
+            <p class="eyebrow">Field operations</p>
+            <h1>Dispatch &amp; units</h1>
+            <p>Assign validated incidents to crews, keep workload balanced and follow every unit through the day.</p>
+          </div>
+          <div class="page-head__actions">
+            <label class="auto-assign"><span class="switch"><input type="checkbox" id="auto-assign"><span class="switch__track"></span></span><span><strong>AI auto-assign critical</strong><small>Humans can still override</small></span></label>
+            <button class="btn btn--primary" type="button" data-preview-action="Work-order creation will be available when the service is connected. This is a frontend preview."><svg class="icon" width="15" height="15" aria-hidden="true" focusable="false"><use href="#i-add-circle"/></svg>New work order</button>
+          </div>
+        </header>
+
+        <section class="stats" aria-label="Fleet summary">
+          <article class="stat"><p class="stat__label"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-truck"/></svg>Units on duty</p><p class="stat__value num">6</p><p class="stat__delta stat__delta--flat">of 8 scheduled today</p></article>
+          <article class="stat"><p class="stat__label"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-construction"/></svg>On site</p><p class="stat__value num">3</p><p class="stat__delta stat__delta--flat">1 en route</p></article>
+          <article class="stat"><p class="stat__label"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-groups"/></svg>Available now</p><p class="stat__value num" id="stat-available">1</p><p class="stat__delta stat__delta--flat">1 on break until 1:00 pm</p></article>
+          <article class="stat"><p class="stat__label"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-assignment-done"/></svg>Waiting for a crew</p><p class="stat__value num" id="stat-waiting">5</p><p class="stat__delta stat__delta--down"><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-trending-up"/></svg>1 critical</p></article>
+        </section>
+
+        <div class="dispatch">
+          <section class="panel" aria-labelledby="wait-title">
+            <header class="panel__head"><div><h2 class="panel__title" id="wait-title">Waiting for a crew</h2><p class="panel__sub">Validated by the call centre, ordered by priority</p></div></header>
+            <ul class="tasks" id="tasks">
+              <li class="task" data-prio="critical">
+                <div class="task__top"><span class="priority priority--critical">Critical</span><span class="mono">RN-2025-0430</span></div>
+                <p class="task__title">Traffic signal stuck on red at Al-Hashemi St</p>
+                <p class="task__meta">Roads · Downtown · est. 2 h</p>
+                <p class="task__ai"><svg class="icon" width="12" height="12" aria-hidden="true" focusable="false"><use href="#i-sparkle"/></svg><span>AI suggests <strong>Roads Crew 6</strong>, nearest unit (1.3 km)</span></p>
+                <div class="task__assign"><label class="sr-only" for="u1">Assign to unit</label><select class="select" id="u1" data-ai="rc6"><option value="rc6">Roads Crew 6</option><option value="rc4">Roads Crew 4</option><option value="sc3">Sanitation Unit 3</option></select><button class="btn btn--primary btn--sm" type="button" data-assign>Assign</button></div>
+              </li>
+              <li class="task" data-prio="high">
+                <div class="task__top"><span class="priority priority--high">High</span><span class="mono">RN-2025-0429</span></div>
+                <p class="task__title">Storm drain overflowing near Irbid Camp</p>
+                <p class="task__meta">Drainage · Al-Manara · est. 3 h</p>
+                <p class="task__ai"><svg class="icon" width="12" height="12" aria-hidden="true" focusable="false"><use href="#i-sparkle"/></svg><span>AI suggests <strong>Sanitation Unit 3</strong>, free and 1.1 km away. Drainage Team A is at capacity.</span></p>
+                <div class="task__assign"><label class="sr-only" for="u2">Assign to unit</label><select class="select" id="u2" data-ai="sc3"><option value="sc3">Sanitation Unit 3</option><option value="dta">Drainage Team A (full)</option></select><button class="btn btn--primary btn--sm" type="button" data-assign>Assign</button></div>
+              </li>
+              <li class="task" data-prio="high">
+                <div class="task__top"><span class="priority priority--high">High</span><span class="mono">RN-2025-0431</span></div>
+                <p class="task__title">Pothole near school gate in Bayt Ras</p>
+                <p class="task__meta">Roads · Bayt Ras · est. 2 h</p>
+                <p class="task__ai"><svg class="icon" width="12" height="12" aria-hidden="true" focusable="false"><use href="#i-sparkle"/></svg><span>AI suggests <strong>Roads Crew 4</strong> at 1:30 pm, after the University St repair</span></p>
+                <div class="task__assign"><label class="sr-only" for="u3">Assign to unit</label><select class="select" id="u3" data-ai="rc4"><option value="rc4">Roads Crew 4</option><option value="rc6">Roads Crew 6</option></select><button class="btn btn--primary btn--sm" type="button" data-assign>Assign</button></div>
+              </li>
+              <li class="task" data-prio="medium">
+                <div class="task__top"><span class="priority priority--medium">Medium</span><span class="mono">RN-2025-0425</span></div>
+                <p class="task__title">Fallen branch blocking the bike lane</p>
+                <p class="task__meta">Parks · Al-Nuzha · est. 1 h</p>
+                <p class="task__ai"><svg class="icon" width="12" height="12" aria-hidden="true" focusable="false"><use href="#i-sparkle"/></svg><span>AI suggests <strong>Parks Crew 1</strong>, back from break at 1:00 pm</span></p>
+                <div class="task__assign"><label class="sr-only" for="u4">Assign to unit</label><select class="select" id="u4" data-ai="pc1"><option value="pc1">Parks Crew 1</option><option value="sc3">Sanitation Unit 3</option></select><button class="btn btn--primary btn--sm" type="button" data-assign>Assign</button></div>
+              </li>
+              <li class="task" data-prio="medium">
+                <div class="task__top"><span class="priority priority--medium">Medium</span><span class="mono">RN-2025-0424</span></div>
+                <p class="task__title">Cracked pavement outside the clinic</p>
+                <p class="task__meta">Sidewalks · Bayt Ras · est. 4 h</p>
+                <p class="task__ai"><svg class="icon" width="12" height="12" aria-hidden="true" focusable="false"><use href="#i-sparkle"/></svg><span>AI suggests <strong>Roads Crew 4</strong> tomorrow at 9:00 am</span></p>
+                <div class="task__assign"><label class="sr-only" for="u5">Assign to unit</label><select class="select" id="u5" data-ai="rc4"><option value="rc4">Roads Crew 4</option><option value="rc6">Roads Crew 6</option></select><button class="btn btn--primary btn--sm" type="button" data-assign>Assign</button></div>
+              </li>
+            </ul>
+            <div class="empty" id="tasks-empty" hidden>
+              <span class="empty__art"><svg class="icon" width="30" height="30" aria-hidden="true" focusable="false"><use href="#i-done"/></svg></span>
+              <h2>Every incident has a crew</h2>
+              <p>New validated incidents will appear here for assignment.</p>
+            </div>
+          </section>
+
+          <div class="stack">
+            <section class="panel" aria-labelledby="units-title">
+              <header class="panel__head">
+                <div><h2 class="panel__title" id="units-title">Field units</h2><p class="panel__sub">Tasks queued today against crew capacity</p></div>
+                <div class="segmented" role="group" aria-label="Filter units by status" id="unit-filter">
+                  <button type="button" aria-pressed="true" data-status="all">All</button>
+                  <button type="button" aria-pressed="false" data-status="site">On site</button>
+                  <button type="button" aria-pressed="false" data-status="route">En route</button>
+                  <button type="button" aria-pressed="false" data-status="free">Free</button>
+                </div>
+              </header>
+              <ul class="units" id="units">
+                <li class="unit" data-status="site" data-unit="rc4" data-load="3" data-cap="5">
+                  <div class="unit__head"><span class="avatar avatar--green">R4</span><div><strong>Roads Crew 4</strong><span>Tomas Okafor · 4 members</span></div><span class="chip chip--progress">On site</span></div>
+                  <p class="unit__task"><svg class="icon" width="13" height="13" aria-hidden="true" focusable="false"><use href="#i-construction"/></svg>Pothole at University St <span class="mono">RN-2025-0412</span></p>
+                  <div class="unit__load"><span class="unit__queue">3 of 5 tasks</span><div class="progress"><span style="transform:scaleX(.6)"></span></div></div>
+                </li>
+                <li class="unit" data-status="route" data-unit="rc6" data-load="2" data-cap="5">
+                  <div class="unit__head"><span class="avatar avatar--amber">R6</span><div><strong>Roads Crew 6</strong><span>Marta Silva · 3 members</span></div><span class="chip chip--assigned">En route</span></div>
+                  <p class="unit__task"><svg class="icon" width="13" height="13" aria-hidden="true" focusable="false"><use href="#i-navigation"/></svg>Traffic signal at Al-Hashemi St <span class="mono">RN-2025-0401</span></p>
+                  <div class="unit__load"><span class="unit__queue">2 of 5 tasks</span><div class="progress"><span style="transform:scaleX(.4)"></span></div></div>
+                </li>
+                <li class="unit" data-status="site" data-unit="lc2" data-load="2" data-cap="4">
+                  <div class="unit__head"><span class="avatar">L2</span><div><strong>Lighting Crew 2</strong><span>Noor Haddad · 3 members</span></div><span class="chip chip--progress">On site</span></div>
+                  <p class="unit__task"><svg class="icon" width="13" height="13" aria-hidden="true" focusable="false"><use href="#i-lightbulb"/></svg>Streetlight cluster, Al-Andalus <span class="mono">RN-2025-0377</span></p>
+                  <div class="unit__load"><span class="unit__queue">2 of 4 tasks</span><div class="progress"><span style="transform:scaleX(.5)"></span></div></div>
+                </li>
+                <li class="unit" data-status="site" data-unit="dta" data-load="4" data-cap="4">
+                  <div class="unit__head"><span class="avatar avatar--slate">DA</span><div><strong>Drainage Team A</strong><span>Ibrahim Saleh · 5 members</span></div><span class="chip chip--progress">On site</span></div>
+                  <p class="unit__task"><svg class="icon" width="13" height="13" aria-hidden="true" focusable="false"><use href="#i-water-drop"/></svg>Storm drain cover, Al-Nuzha <span class="mono">RN-2025-0388</span></p>
+                  <div class="unit__load"><span class="unit__queue is-full">4 of 4 tasks · at capacity</span><div class="progress progress--red"><span style="transform:scaleX(1)"></span></div></div>
+                </li>
+                <li class="unit" data-status="free" data-unit="sc3" data-load="1" data-cap="6">
+                  <div class="unit__head"><span class="avatar avatar--green">S3</span><div><strong>Sanitation Unit 3</strong><span>Leila Mansour · 2 members</span></div><span class="chip chip--resolved">Available</span></div>
+                  <p class="unit__task"><svg class="icon" width="13" height="13" aria-hidden="true" focusable="false"><use href="#i-done"/></svg>Ready for the next task, Al-Manara</p>
+                  <div class="unit__load"><span class="unit__queue">1 of 6 tasks</span><div class="progress progress--green"><span style="transform:scaleX(.17)"></span></div></div>
+                </li>
+                <li class="unit" data-status="free" data-unit="pc1" data-load="0" data-cap="4">
+                  <div class="unit__head"><span class="avatar avatar--slate">P1</span><div><strong>Parks Crew 1</strong><span>Daniel Reyes · 4 members</span></div><span class="chip chip--closed">On break</span></div>
+                  <p class="unit__task"><svg class="icon" width="13" height="13" aria-hidden="true" focusable="false"><use href="#i-schedule"/></svg>Back at 1:00 pm, Bayt Ras</p>
+                  <div class="unit__load"><span class="unit__queue">0 of 4 tasks</span><div class="progress progress--green"><span style="transform:scaleX(0)"></span></div></div>
+                </li>
+              </ul>
+            </section>
+
+            <section class="panel" aria-labelledby="sched-title">
+              <header class="panel__head"><div><h2 class="panel__title" id="sched-title">Today's schedule</h2><p class="panel__sub">7:00 am to 5:00 pm · now 9:40 am</p></div>
+                <ul class="legend" aria-label="Legend"><li><span class="legend__swatch legend__swatch--amber"></span>In progress</li><li><span class="legend__swatch legend__swatch--teal"></span>Planned</li><li><span class="legend__swatch legend__swatch--slate"></span>Break</li></ul></header>
+              <div class="panel__body schedule-wrap" tabindex="0" role="region" aria-label="Scrollable crew schedule">
+                <div class="schedule" role="table" aria-label="Unit schedule for today">
+                  <div class="schedule__hours" role="row" aria-hidden="true">
+                    <span style="grid-column:2 / span 4">7:00</span><span style="grid-column:6 / span 4">8:00</span><span style="grid-column:10 / span 4">9:00</span><span style="grid-column:14 / span 4">10:00</span><span style="grid-column:18 / span 4">11:00</span><span style="grid-column:22 / span 4">12:00</span><span style="grid-column:26 / span 4">1:00</span><span style="grid-column:30 / span 4">2:00</span><span style="grid-column:34 / span 4">3:00</span><span style="grid-column:38 / span 4">4:00</span>
+                  </div>
+                  <div class="schedule__row" role="row" style="--schedule-row:2"><span class="schedule__name" role="rowheader">Roads Crew 4</span><span class="block block--progress" role="cell" style="grid-column:4 / span 18">RN-0412</span><span class="block block--planned" role="cell" style="grid-column:28 / span 8">RN-0431</span></div>
+                  <div class="schedule__row" role="row" style="--schedule-row:3"><span class="schedule__name" role="rowheader">Roads Crew 6</span><span class="block block--progress" role="cell" style="grid-column:12 / span 8">RN-0401</span></div>
+                  <div class="schedule__row" role="row" style="--schedule-row:4"><span class="schedule__name" role="rowheader">Lighting Crew 2</span><span class="block block--progress" role="cell" style="grid-column:2 / span 12">RN-0377</span></div>
+                  <div class="schedule__row" role="row" style="--schedule-row:5"><span class="schedule__name" role="rowheader">Drainage Team A</span><span class="block block--late" role="cell" style="grid-column:2 / span 24">RN-0388 · overdue</span></div>
+                  <div class="schedule__row" role="row" style="--schedule-row:6"><span class="schedule__name" role="rowheader">Sanitation Unit 3</span><span class="block block--planned" role="cell" style="grid-column:14 / span 6">RN-0359</span></div>
+                  <div class="schedule__row" role="row" style="--schedule-row:7"><span class="schedule__name" role="rowheader">Parks Crew 1</span><span class="block block--break" role="cell" style="grid-column:22 / span 4">Break</span></div>
+                  <span class="schedule__now" aria-hidden="true"><span>Now</span></span>
+                </div>
+              </div>
+            </section>
+
+            <section class="panel" aria-labelledby="loc-title">
+              <header class="panel__head"><h2 class="panel__title" id="loc-title">Unit locations</h2><a class="link-more" href="../admin-heatmap/index.html">Open heatmap <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg></a></header>
+              <div class="panel__body">
+                <div class="minimap unit-map" role="img" aria-label="Map of Irbid showing the six field units">
+                  <div class="rn-map" data-rn-map="still" data-zoom="14"><span data-pin data-lat="32.5392" data-lng="35.8519" data-tone="amber" data-label="Roads Crew 4, University St"></span><span data-pin data-lat="32.5566" data-lng="35.8545" data-tone="teal" data-label="Roads Crew 6, Al-Hashemi St"></span><span data-pin data-lat="32.556" data-lng="35.8705" data-tone="amber" data-label="Lighting Crew 2, Al-Andalus"></span><span data-pin data-lat="32.559" data-lng="35.8478" data-tone="red" data-label="Drainage Team A, near Irbid Camp"></span><span data-pin data-lat="32.566" data-lng="35.833" data-tone="green" data-label="Sanitation Unit 3, Al Bariha"></span><span data-pin data-lat="32.5317" data-lng="35.8832" data-tone="slate" data-label="Parks Crew 1, King Abdullah II Park"></span></div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
+
+</body>
+</html>

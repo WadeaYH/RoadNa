@@ -1,0 +1,8 @@
+/* Forgot Password — screen-specific styles. Shared: ../../shared/base.css, ../../shared/auth.css */
+
+.forgot-form { gap: 20px; padding-block: 4px 12px; }
+.forgot-form .btn--auth { font-weight: 500; }
+.auth-notice a { color: var(--teal-deep); }
+.auth-notice a[aria-disabled="true"] { cursor: default; }
+.page-forgot .auth-head { gap: 7px; }
+.page-forgot .auth-brand__tag { font-size: 10px; }

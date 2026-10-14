@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f9ff">
+  <meta name="description" content="Track service deadlines, work orders and escalations against SLA targets.">
+  <title>SLA & Work Orders | RoadNa JO Admin</title>
+  <link rel="stylesheet" href="../../shared/base.css">
+  <link rel="stylesheet" href="../../shared/app.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src="../../shared/ui.js" defer></script>
+  <script src="./script.js" defer></script>
+</head>
+<body class="page-sla">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-account-balance" viewBox="0 0 20 20"><path d="M3 16V9H5V16H3ZM9 16V9H11V16H9ZM0 20V18H20V20H0ZM15 16V9H17V16H15ZM0 7V5L10 0L20 5V7H0Z"/></symbol>
+  <symbol id="i-account-circle" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></symbol>
+  <symbol id="i-assignment-done" viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-2 14l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></symbol>
+  <symbol id="i-dashboard" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></symbol>
+  <symbol id="i-done" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></symbol>
+  <symbol id="i-find" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></symbol>
+  <symbol id="i-hot" viewBox="0 0 24 24"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></symbol>
+  <symbol id="i-hourglass" viewBox="0 0 24 24"><path d="M6 2v6h.01L6 8.01 10 12l-4 4 .01.01H6V22h12v-5.99h-.01L18 16l-4-4 4-3.99-.01-.01H18V2H6zm10 14.5V20H8v-3.5l4-4 4 4zm-4-5l-4-4V4h8v3.5l-4 4z"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></symbol>
+  <symbol id="i-map-fill" viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></symbol>
+  </svg>
+  <div class="app-shell app-shell--admin">
+    <header class="admin-header">
+    <button class="icon-btn topbar__menu" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="app-sidebar" aria-label="Open navigation menu"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg></button>
+    <a class="admin-header__brand brand" href="../admin-dashboard/index.html" aria-label="RoadNa JO admin console">
+      <span class="brand__mark"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-account-balance"/></svg></span>
+      <span class="brand__name">RoadNa JO</span>
+      <span class="console-badge">Admin Console</span>
+    </a>
+    <span class="topbar__spacer"></span>
+    <label class="topbar__search">
+      <span class="sr-only">Search incidents, work orders and units</span>
+      <svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-find"/></svg>
+      <input type="search" placeholder="Search incidents, work orders, units" autocomplete="off">
+    </label>
+    <a class="icon-btn" href="../admin-incident-triage/index.html" aria-label="12 incidents awaiting triage"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span class="icon-btn__dot" aria-hidden="true"></span></a>
+    <p class="role-chip"><strong>Elena Kovacs</strong>Roads Dept. Manager</p>
+    <span class="avatar avatar--slate" aria-hidden="true">EK</span>
+  </header>
+    <aside class="sidebar" id="app-sidebar" aria-label="Administration navigation">
+    <p class="sidebar__label">Operations</p>
+    <nav aria-label="Main">
+      <ul class="sidebar__nav">
+        <li><a class="nav-item" href="../admin-dashboard/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-dashboard"/></svg>Dashboard</a></li>
+        <li><a class="nav-item" href="../admin-incident-triage/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-assignment-done"/></svg>Incident Triage<span class="nav-item__badge">12</span></a></li>
+        <li><a class="nav-item" href="../admin-dispatch-units/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-truck"/></svg>Dispatch &amp; Units</a></li>
+        <li><a class="nav-item" href="../admin-sla-orders/index.html" aria-current="page"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-hourglass"/></svg>SLA &amp; Orders<span class="nav-item__badge nav-item__badge--soft">5</span></a></li>
+        <li><a class="nav-item" href="../admin-heatmap/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-hot"/></svg>Heatmap</a></li>
+      </ul>
+      <p class="sidebar__label">Platform</p>
+      <ul class="sidebar__nav">
+        <li><a class="nav-item" href="../public-guest-menu/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-map-fill"/></svg>Public Map</a></li>
+        <li><a class="nav-item" href="../home-menu/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-account-circle"/></svg>Resident View</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar__foot">
+      <p class="status-line">All municipal systems operational</p>
+      <a class="nav-item" href="../login/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-logout"/></svg>Log out</a>
+    </div>
+  </aside>
+  <button class="scrim" type="button" aria-label="Close navigation menu" data-sidebar-close></button>
+    <div class="app-main">
+      <main class="app-content app-content--wide" id="main">
+        <header class="page-head">
+          <div class="page-head__text">
+            <p class="eyebrow">Service levels</p>
+            <h1>SLA &amp; work orders</h1>
+            <p>Every work order carries a deadline set by its priority. Watch what is at risk and escalate before a target is missed.</p>
+          </div>
+          <div class="page-head__actions">
+            <button class="btn btn--outline" type="button" data-preview-action="Excel export will be available when the service is connected. This is a frontend preview."><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-download"/></svg>Export Excel</button>
+            <button class="btn btn--outline" type="button" data-preview-action="PDF export will be available when the service is connected. This is a frontend preview."><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-download"/></svg>Export PDF</button>
+          </div>
+        </header>
+
+        <section class="panel sla-summary" aria-labelledby="sum-title" data-reveal>
+          <div class="sla-summary__head">
+            <div><h2 class="panel__title" id="sum-title">Service-level health</h2><p class="panel__sub">91 open work orders today</p></div>
+            <p class="sla-summary__score"><strong class="num">91.4%</strong><span>compliance · target 90%</span></p>
+          </div>
+          <div class="stackbar" role="img" aria-label="74 on track, 11 at risk, 6 breached">
+            <span class="stackbar__seg stackbar__seg--ok" style="flex:74"></span><span class="stackbar__seg stackbar__seg--risk" style="flex:11"></span><span class="stackbar__seg stackbar__seg--breach" style="flex:6"></span>
+          </div>
+          <ul class="sla-legend">
+            <li><span class="dot dot--ok"></span><strong class="num">74</strong>On track</li>
+            <li><span class="dot dot--risk"></span><strong class="num">11</strong>At risk (under 20% of time left)</li>
+            <li><span class="dot dot--breach"></span><strong class="num">6</strong>Breached</li>
+          </ul>
+        </section>
+
+        <div class="cols cols--main-side sla-cols">
+          <section class="panel" aria-labelledby="orders-title">
+            <header class="panel__head">
+              <h2 class="panel__title" id="orders-title">Work orders</h2>
+              <label class="search-field orders__search"><span class="sr-only">Search work orders</span><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-find"/></svg><input type="search" id="orders-search" placeholder="Search order, incident or unit" autocomplete="off"></label>
+            </header>
+            <div class="toolbar">
+              <div class="tabs" role="group" aria-label="Filter work orders by service level">
+                <button class="tab is-active" type="button" aria-pressed="true" data-filter="all">All <span class="tab__count">8</span></button>
+                <button class="tab" type="button" aria-pressed="false" data-filter="risk">At risk <span class="tab__count">2</span></button>
+                <button class="tab" type="button" aria-pressed="false" data-filter="breach">Breached <span class="tab__count">2</span></button>
+                <button class="tab" type="button" aria-pressed="false" data-filter="done">Completed <span class="tab__count">2</span></button>
+              </div>
+            </div>
+            <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable report table" id="orders-wrap">
+              <table class="table orders" id="orders">
+                <thead><tr><th scope="col">Work order</th><th scope="col">Priority</th><th scope="col">Unit</th><th scope="col">Deadline</th><th scope="col">Time left</th><th scope="col">Status</th><th scope="col"><span class="sr-only">Action</span></th></tr></thead>
+                <tbody>
+                  <tr data-sla="breach">
+                    <td><strong>Collapsed storm drain cover</strong><span class="mono">WO-1188 · RN-2025-0388</span></td>
+                    <td><span class="priority priority--critical">Critical</span></td><td>Drainage Team A</td><td>Today, 8:00 am</td>
+                    <td><span class="sla-badge sla-badge--breach">6 h overdue</span><div class="progress progress--red"><span style="transform:scaleX(1)"></span></div></td>
+                    <td><span class="chip chip--progress">In Progress</span></td>
+                    <td class="cell-action"><button class="btn btn--danger btn--sm" type="button" data-escalate>Escalate</button></td>
+                  </tr>
+                  <tr data-sla="breach">
+                    <td><strong>Streetlight cluster dark in Al-Andalus</strong><span class="mono">WO-1204 · RN-2025-0377</span></td>
+                    <td><span class="priority priority--high">High</span></td><td>Lighting Crew 2</td><td>Today, 5:40 am</td>
+                    <td><span class="sla-badge sla-badge--breach">4 h overdue</span><div class="progress progress--red"><span style="transform:scaleX(1)"></span></div></td>
+                    <td><span class="chip chip--progress">In Progress</span></td>
+                    <td class="cell-action"><button class="btn btn--danger btn--sm" type="button" data-escalate>Escalate</button></td>
+                  </tr>
+                  <tr data-sla="risk">
+                    <td><strong>Traffic signal out at Al-Hashemi St</strong><span class="mono">WO-1219 · RN-2025-0401</span></td>
+                    <td><span class="priority priority--critical">Critical</span></td><td>Roads Crew 6</td><td>Today, 10:32 am</td>
+                    <td><span class="sla-badge sla-badge--risk">52 min left</span><div class="progress progress--amber"><span style="transform:scaleX(.88)"></span></div></td>
+                    <td><span class="chip chip--assigned">En route</span></td>
+                    <td class="cell-action"><button class="btn btn--outline btn--sm" type="button" data-escalate>Escalate</button></td>
+                  </tr>
+                  <tr data-sla="risk">
+                    <td><strong>Storm drain overflowing near Irbid Camp</strong><span class="mono">WO-1233 · RN-2025-0429</span></td>
+                    <td><span class="priority priority--high">High</span></td><td><span class="muted-note">Awaiting assignment</span></td><td>Oct 9, 8:15 am</td>
+                    <td><span class="sla-badge sla-badge--risk">9 h left</span><div class="progress progress--amber"><span style="transform:scaleX(.8)"></span></div></td>
+                    <td><span class="chip chip--validated">Validated</span></td>
+                    <td class="cell-action"><a class="btn btn--outline btn--sm" href="../admin-dispatch-units/index.html">Assign</a></td>
+                  </tr>
+                  <tr data-sla="ok">
+                    <td><strong>Severe asphalt pothole on University St</strong><span class="mono">WO-1221 · RN-2025-0412</span></td>
+                    <td><span class="priority priority--high">High</span></td><td>Roads Crew 4</td><td>Oct 7, 11:40 am</td>
+                    <td><span class="sla-badge">46 h left</span><div class="progress"><span style="transform:scaleX(.36)"></span></div></td>
+                    <td><span class="chip chip--progress">In Progress</span></td>
+                    <td class="cell-action"><button class="btn btn--outline btn--sm" type="button" data-escalate>Escalate</button></td>
+                  </tr>
+                  <tr data-sla="ok">
+                    <td><strong>Fallen branch blocking the bike lane</strong><span class="mono">WO-1230 · RN-2025-0425</span></td>
+                    <td><span class="priority priority--medium">Medium</span></td><td><span class="muted-note">Awaiting assignment</span></td><td>Oct 13, 9:00 am</td>
+                    <td><span class="sla-badge">6 d left</span><div class="progress"><span style="transform:scaleX(.08)"></span></div></td>
+                    <td><span class="chip chip--validated">Validated</span></td>
+                    <td class="cell-action"><a class="btn btn--outline btn--sm" href="../admin-dispatch-units/index.html">Assign</a></td>
+                  </tr>
+                  <tr data-sla="done">
+                    <td><strong>Damaged curb ramp reconstructed</strong><span class="mono">WO-1170 · RN-2025-0371</span></td>
+                    <td><span class="priority priority--medium">Medium</span></td><td>Roads Crew 2</td><td>Oct 3, 4:00 pm</td>
+                    <td><span class="sla-badge sla-badge--ok">Done 9 h early</span><div class="progress progress--green"><span style="transform:scaleX(1)"></span></div></td>
+                    <td><span class="chip chip--resolved">Resolved</span></td>
+                    <td class="cell-action"><span class="muted-note">Rated 5.0</span></td>
+                  </tr>
+                  <tr data-sla="done">
+                    <td><strong>Blocked storm drain by Emaar Irbid Park</strong><span class="mono">WO-1166 · RN-2025-0344</span></td>
+                    <td><span class="priority priority--high">High</span></td><td>Drainage Team A</td><td>Sep 18, 2:30 pm</td>
+                    <td><span class="sla-badge sla-badge--ok">Done 21 h early</span><div class="progress progress--green"><span style="transform:scaleX(1)"></span></div></td>
+                    <td><span class="chip chip--closed">Closed</span></td>
+                    <td class="cell-action"><span class="muted-note">Rated 4.0</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="empty" id="orders-empty" hidden>
+              <span class="empty__art"><svg class="icon" width="30" height="30" aria-hidden="true" focusable="false"><use href="#i-done"/></svg></span>
+              <h2>No work orders here</h2>
+              <p>Nothing matches this view. Switch back to all work orders to see the full list.</p>
+            </div>
+          </section>
+
+          <div class="stack">
+            <section class="panel" aria-labelledby="targets-title">
+              <header class="panel__head">
+                <div><h2 class="panel__title" id="targets-title">SLA targets</h2><p class="panel__sub">Time to resolve, by priority</p></div>
+                <button class="btn btn--outline btn--sm" type="button" id="edit-targets"><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-edit"/></svg><span>Edit</span></button>
+              </header>
+              <form class="targets" id="targets-form">
+                <div class="target"><span class="priority priority--critical">Critical</span><label class="target__field"><span class="sr-only">Critical target in hours</span><input class="input" type="number" min="1" value="4" readonly><span>hours</span></label><strong class="num">88%</strong></div>
+                <div class="target"><span class="priority priority--high">High</span><label class="target__field"><span class="sr-only">High target in hours</span><input class="input" type="number" min="1" value="72" readonly><span>hours</span></label><strong class="num">92%</strong></div>
+                <div class="target"><span class="priority priority--medium">Medium</span><label class="target__field"><span class="sr-only">Medium target in days</span><input class="input" type="number" min="1" value="7" readonly><span>days</span></label><strong class="num">94%</strong></div>
+                <div class="target"><span class="priority priority--low">Low</span><label class="target__field"><span class="sr-only">Low target in days</span><input class="input" type="number" min="1" value="14" readonly><span>days</span></label><strong class="num">97%</strong></div>
+                <p class="targets__hint">Right-hand figures show current compliance for each priority.</p>
+              </form>
+            </section>
+
+            <section class="panel" aria-labelledby="esc-title">
+              <header class="panel__head"><h2 class="panel__title" id="esc-title">Escalation path</h2></header>
+              <ol class="timeline panel__body" aria-label="Escalation levels">
+                <li class="timeline__item is-done"><span class="timeline__dot">1</span><div><p class="timeline__title">Team supervisor</p><p class="timeline__meta">Notified automatically at 80% of the target time</p></div></li>
+                <li class="timeline__item is-current"><span class="timeline__dot">2</span><div><p class="timeline__title">Department manager</p><p class="timeline__meta">Notified at breach. 2 orders are here now</p></div></li>
+                <li class="timeline__item"><span class="timeline__dot">3</span><div><p class="timeline__title">Municipality director</p><p class="timeline__meta">After 24 hours overdue or any Critical breach</p></div></li>
+              </ol>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
+
+</body>
+</html>

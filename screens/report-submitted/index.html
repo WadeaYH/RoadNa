@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f9ff">
+  <meta name="description" content="Your report was received. Track its progress from your RoadNa JO dashboard.">
+  <title>Report Submitted | RoadNa JO</title>
+  <link rel="stylesheet" href="../../shared/base.css">
+  <link rel="stylesheet" href="../../shared/app.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src="../../shared/ui.js" defer></script>
+  <script src="./script.js" defer></script>
+</head>
+<body class="page-submitted">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-account-balance" viewBox="0 0 20 20"><path d="M3 16V9H5V16H3ZM9 16V9H11V16H9ZM0 20V18H20V20H0ZM15 16V9H17V16H15ZM0 7V5L10 0L20 5V7H0Z"/></symbol>
+  <symbol id="i-account-circle" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></symbol>
+  <symbol id="i-add-circle" viewBox="0 0 15 15"><path d="M6.75 11.25H8.25V8.25H11.25V6.75H8.25V3.75H6.75V6.75H3.75V8.25H6.75V11.25ZM7.5 15C6.4625 15 5.4875 14.8031 4.575 14.4094C3.6625 14.0156 2.86875 13.4812 2.19375 12.8062C1.51875 12.1312 0.984375 11.3375 0.590625 10.425C0.196875 9.5125 0 8.5375 0 7.5C0 6.4625 0.196875 5.4875 0.590625 4.575C0.984375 3.6625 1.51875 2.86875 2.19375 2.19375C2.86875 1.51875 3.6625 0.984375 4.575 0.590625C5.4875 0.196875 6.4625 0 7.5 0C8.5375 0 9.5125 0.196875 10.425 0.590625C11.3375 0.984375 12.1312 1.51875 12.8062 2.19375C13.4812 2.86875 14.0156 3.6625 14.4094 4.575C14.8031 5.4875 15 6.4625 15 7.5C15 8.5375 14.8031 9.5125 14.4094 10.425C14.0156 11.3375 13.4812 12.1312 12.8062 12.8062C12.1312 13.4812 11.3375 14.0156 10.425 14.4094C9.5125 14.8031 8.5375 15 7.5 15Z"/></symbol>
+  <symbol id="i-arrow-forward" viewBox="0 0 14 14"><path d="M10.1458 7.5H0V5.83333H10.1458L5.47917 1.16667L6.66667 0L13.3333 6.66667L6.66667 13.3333L5.47917 12.1667L10.1458 7.5Z"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 14 14"><path d="M5.73333 9.73333L10.4333 5.03333L9.5 4.1L5.73333 7.86667L3.83333 5.96667L2.9 6.9L5.73333 9.73333ZM6.66667 13.3333C5.74444 13.3333 4.87778 13.1583 4.06667 12.8083C3.25556 12.4583 2.55 11.9833 1.95 11.3833C1.35 10.7833 0.875 10.0778 0.525 9.26667C0.175 8.45555 0 7.58889 0 6.66667C0 5.74444 0.175 4.87778 0.525 4.06667C0.875 3.25556 1.35 2.55 1.95 1.95C2.55 1.35 3.25556 0.875 4.06667 0.525C4.87778 0.175 5.74444 0 6.66667 0C7.58889 0 8.45555 0.175 9.26667 0.525C10.0778 0.875 10.7833 1.35 11.3833 1.95C11.9833 2.55 12.4583 3.25556 12.8083 4.06667C13.1583 4.87778 13.3333 5.74444 13.3333 6.66667C13.3333 7.58889 13.1583 8.45555 12.8083 9.26667C12.4583 10.0778 11.9833 10.7833 11.3833 11.3833C10.7833 11.9833 10.0778 12.4583 9.26667 12.8083C8.45555 13.1583 7.58889 13.3333 6.66667 13.3333ZM6.66667 12C8.15556 12 9.41667 11.4833 10.45 10.45C11.4833 9.41667 12 8.15556 12 6.66667C12 5.17778 11.4833 3.91667 10.45 2.88333C9.41667 1.85 8.15556 1.33333 6.66667 1.33333C5.17778 1.33333 3.91667 1.85 2.88333 2.88333C1.85 3.91667 1.33333 5.17778 1.33333 6.66667C1.33333 8.15556 1.85 9.41667 2.88333 10.45C3.91667 11.4833 5.17778 12 6.66667 12Z"/></symbol>
+  <symbol id="i-check-circle-fill" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></symbol>
+  <symbol id="i-construction" viewBox="0 0 16 16"><path d="M13.6667 15.0208L9.10417 10.4583L10.8542 8.70833L15.4167 13.2708L13.6667 15.0208ZM2.16667 15.0208L0.416667 13.2708L6.16667 7.52083L4.75 6.10417L4.16667 6.6875L3.10417 5.625V7.33333L2.52083 7.91667L0 5.39583L0.583333 4.8125H2.29167L1.25 3.77083L4.20833 0.8125C4.48611 0.534722 4.78472 0.333333 5.10417 0.208333C5.42361 0.0833333 5.75 0.0208333 6.08333 0.0208333C6.41667 0.0208333 6.74306 0.0833333 7.0625 0.208333C7.38194 0.333333 7.68056 0.534722 7.95833 0.8125L6.04167 2.72917L7.08333 3.77083L6.5 4.35417L7.91667 5.77083L9.79167 3.89583C9.73611 3.74306 9.69097 3.58333 9.65625 3.41667C9.62153 3.25 9.60417 3.08333 9.60417 2.91667C9.60417 2.09722 9.88542 1.40625 10.4479 0.84375C11.0104 0.28125 11.7014 0 12.5208 0C12.7292 0 12.9271 0.0208333 13.1146 0.0625C13.3021 0.104167 13.4931 0.166667 13.6875 0.25L11.625 2.3125L13.125 3.8125L15.1875 1.75C15.2847 1.94444 15.3507 2.13542 15.3854 2.32292C15.4201 2.51042 15.4375 2.70833 15.4375 2.91667C15.4375 3.73611 15.1562 4.42708 14.5938 4.98958C14.0312 5.55208 13.3403 5.83333 12.5208 5.83333C12.3542 5.83333 12.1875 5.81944 12.0208 5.79167C11.8542 5.76389 11.6944 5.71528 11.5417 5.64583L2.16667 15.0208Z"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></symbol>
+  <symbol id="i-dashboard" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></symbol>
+  <symbol id="i-delete" viewBox="0 0 11 12"><path d="M2 12C1.63333 12 1.31944 11.8694 1.05833 11.6083C0.797222 11.3472 0.666667 11.0333 0.666667 10.6667V2H0V0.666667H3.33333V0H7.33333V0.666667H10.6667V2H10V10.6667C10 11.0333 9.86944 11.3472 9.60833 11.6083C9.34722 11.8694 9.03333 12 8.66667 12H2ZM8.66667 2H2V10.6667H8.66667V2ZM3.33333 9.33333H4.66667V3.33333H3.33333V9.33333ZM6 9.33333H7.33333V3.33333H6V9.33333ZM2 2V10.6667V2Z"/></symbol>
+  <symbol id="i-find" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></symbol>
+  <symbol id="i-lightbulb" viewBox="0 0 12 15"><path d="M5.625 15C5.2125 15 4.85938 14.8531 4.56563 14.5594C4.27188 14.2656 4.125 13.9125 4.125 13.5H7.125C7.125 13.9125 6.97812 14.2656 6.68437 14.5594C6.39062 14.8531 6.0375 15 5.625 15ZM2.625 12.75V11.25H8.625V12.75H2.625ZM2.8125 10.5C1.95 9.9875 1.26562 9.3 0.759375 8.4375C0.253125 7.575 0 6.6375 0 5.625C0 4.0625 0.546875 2.73438 1.64062 1.64062C2.73438 0.546875 4.0625 0 5.625 0C7.1875 0 8.51562 0.546875 9.60938 1.64062C10.7031 2.73438 11.25 4.0625 11.25 5.625C11.25 6.6375 10.9969 7.575 10.4906 8.4375C9.98438 9.3 9.3 9.9875 8.4375 10.5H2.8125ZM3.2625 9H7.9875C8.55 8.6 8.98438 8.10625 9.29062 7.51875C9.59687 6.93125 9.75 6.3 9.75 5.625C9.75 4.475 9.35 3.5 8.55 2.7C7.75 1.9 6.775 1.5 5.625 1.5C4.475 1.5 3.5 1.9 2.7 2.7C1.9 3.5 1.5 4.475 1.5 5.625C1.5 6.3 1.65313 6.93125 1.95938 7.51875C2.26562 8.10625 2.7 8.6 3.2625 9Z"/></symbol>
+  <symbol id="i-list-alt" viewBox="0 0 24 24"><path d="M19 5v14H5V5h14m1.1-2H3.9c-.5 0-.9.4-.9.9v16.2c0 .4.4.9.9.9h16.2c.4 0 .9-.5.9-.9V3.9c0-.5-.5-.9-.9-.9zM11 7h6v2h-6V7zm0 4h6v2h-6v-2zm0 4h6v2h-6v-2zM7 7h2v2H7V7zm0 4h2v2H7v-2zm0 4h2v2H7v-2z"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></symbol>
+  <symbol id="i-map-fill" viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z"/></symbol>
+  </svg>
+  <div class="app-shell" inert aria-hidden="true">
+    <aside class="sidebar" id="app-sidebar" aria-label="Resident navigation">
+    <a class="sidebar__brand brand" href="../home-menu/index.html" aria-label="RoadNa JO home">
+      <span class="brand__mark"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-account-balance"/></svg></span>
+      <span class="brand__text">
+        <span class="brand__name">RoadNa JO</span>
+        <span class="brand__tag">Resident Portal</span>
+      </span>
+    </a>
+    <a class="btn btn--primary btn--block sidebar__cta" href="../create-report/index.html"><svg class="icon" width="15" height="15" aria-hidden="true" focusable="false"><use href="#i-add-circle"/></svg>Report an Issue</a>
+    <nav aria-label="Main">
+      <ul class="sidebar__nav">
+        <li><a class="nav-item" href="../home-menu/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-dashboard"/></svg>Home</a></li>
+        <li><a class="nav-item" href="../my-reports/index.html" aria-current="page"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-list-alt"/></svg>My Reports<span class="nav-item__badge nav-item__badge--soft">7</span></a></li>
+        <li><a class="nav-item" href="../notifications/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg>Notifications<span class="nav-item__badge">3</span></a></li>
+        <li><a class="nav-item" href="../profile/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-account-circle"/></svg>Profile</a></li>
+      </ul>
+      <p class="sidebar__label">Community</p>
+      <ul class="sidebar__nav">
+        <li><a class="nav-item" href="../public-guest-menu/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-map-fill"/></svg>Explore Map</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar__foot">
+      <div class="sidebar__user">
+        <span class="avatar">MV</span>
+        <span class="sidebar__user-text"><span class="sidebar__user-name">Marcus Vance</span><span class="sidebar__user-meta">Resident · Downtown</span></span>
+      </div>
+      <a class="nav-item" href="../login/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-logout"/></svg>Log out</a>
+    </div>
+  </aside>
+  <button class="scrim" type="button" aria-label="Close navigation menu" data-sidebar-close></button>
+    <div class="app-main">
+      <header class="app-topbar">
+    <button class="icon-btn topbar__menu" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="app-sidebar" aria-label="Open navigation menu"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg></button>
+    <a class="topbar__brand brand" href="../home-menu/index.html" aria-label="RoadNa JO home">
+      <span class="brand__mark" style="width:32px;height:32px"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-account-balance"/></svg></span>
+      <span class="brand__name" style="font-size:18px;line-height:24px">RoadNa JO</span>
+    </a>
+    <p class="topbar__crumb">Resident <span aria-hidden="true">/</span> <strong>My Reports</strong></p>
+    <span class="topbar__spacer"></span>
+    <label class="topbar__search">
+      <span class="sr-only">Search reports</span>
+      <svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-find"/></svg>
+      <input type="search" placeholder="Search reports, streets, IDs" autocomplete="off">
+    </label>
+    <a class="icon-btn" href="../notifications/index.html" aria-label="Notifications, 3 unread"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span class="icon-btn__dot" aria-hidden="true"></span></a>
+    <a class="user-chip" href="../profile/index.html"><span class="avatar">MV</span><span>Marcus Vance</span></a>
+  </header>
+      <div class="app-content">
+        <header class="page-head">
+          <div class="page-head__text"><p class="eyebrow">Your history</p><h1>My Reports</h1><p>Every report you have filed, with live status.</p></div>
+        </header>
+        <section class="panel">
+          <ul class="rows bg-rows">
+            <li class="bg-row"><span class="thumb thumb--road"><svg class="icon" width="26" height="26" aria-hidden="true" focusable="false"><use href="#i-construction"/></svg></span><div><strong>Severe asphalt pothole on University St</strong><span>RN-2025-0412 · Roads &amp; Hazards</span></div><span class="chip chip--progress">In Progress</span></li>
+            <li class="bg-row"><span class="thumb thumb--light"><svg class="icon" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-lightbulb"/></svg></span><div><strong>Flickering street lamp on Al-Hashemi St</strong><span>RN-2025-0409 · Street Lighting</span></div><span class="chip chip--assigned">Assigned</span></li>
+            <li class="bg-row"><span class="thumb thumb--park"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-delete"/></svg></span><div><strong>Overflowing park trash receptacle</strong><span>RN-2025-0398 · Sanitation &amp; Parks</span></div><span class="chip chip--submitted">Submitted</span></li>
+            <li class="bg-row"><span class="thumb thumb--ramp"><svg class="icon" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-check-circle"/></svg></span><div><strong>Damaged curb ramp reconstructed</strong><span>RN-2025-0371 · Roads &amp; Hazards</span></div><span class="chip chip--resolved">Resolved</span></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="submitted-modal">
+    <div class="modal__dialog submitted" role="dialog" aria-modal="true" aria-labelledby="submitted-title" aria-describedby="submitted-desc">
+      <span class="success-mark" aria-hidden="true"><svg class="icon" width="36" height="36" aria-hidden="true" focusable="false"><use href="#i-check-circle-fill"/></svg></span>
+      <h1 class="submitted__title" id="submitted-title" tabindex="-1">Report submitted</h1>
+      <p class="submitted__desc" id="submitted-desc">Thank you, Marcus. Your report is with the call centre now, and you will be notified at every status change.</p>
+
+      <p class="flow-preview">Preview state · no report has been submitted.</p>
+      <div class="ref-card">
+        <div>
+          <p class="ref-card__label">Reference number</p>
+          <p class="ref-card__id mono" id="ref-id">RN-2025-0431</p>
+        </div>
+        <button class="btn btn--outline btn--sm" type="button" id="copy-btn" data-copy="#ref-id"><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-copy"/></svg><span>Copy</span></button>
+      </div>
+
+      <ol class="next-steps" aria-label="What happens next">
+        <li><span class="next-steps__dot">1</span><div><strong>AI check</strong><span>Category, priority and duplicates are checked in seconds.</span></div></li>
+        <li><span class="next-steps__dot">2</span><div><strong>Moderator review</strong><span>Typically within 4 hours. We may contact you for details.</span></div></li>
+        <li><span class="next-steps__dot">3</span><div><strong>Crew assigned</strong><span>You will see the team and expected repair window.</span></div></li>
+      </ol>
+
+      <div class="submitted__actions">
+        <a class="btn btn--primary btn--lg" href="../report-details/index.html" id="primary-action">Track this report <svg class="icon" width="12" height="12" aria-hidden="true" focusable="false"><use href="#i-arrow-forward"/></svg></a>
+        <a class="btn btn--outline btn--lg" href="../home-menu/index.html">Back to Home</a>
+      </div>
+      <p class="sr-only" id="copy-status" role="status" aria-live="polite"></p>
+    </div>
+  </div>
+
+</body>
+</html>
