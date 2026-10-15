@@ -1,0 +1,754 @@
+[
+  {
+    "screen": "admin-community",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Community proposals"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "admin-dashboard",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Operations overview"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "admin-heatmap",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Report heatmap"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 15,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "admin-incident-triage",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Review and assign"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "admin-ops-map",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Operations map"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 5,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "admin-sla-orders",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "SLA & work orders"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "check-email",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Check your email"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "city-world",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "community",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Community votes"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "create-report",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Report an issue"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "forgot-password",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Reset your password"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "help",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Help & policies"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "home-menu",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Good morning, Marcus"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "landing-page",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Every city has a story."
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "login",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Log in to RoadNa."
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "my-reports",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "My reports"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "notifications",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Notifications"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "password-updated",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Password updated"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "profile",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Marcus Vance"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "public-guest-menu",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Public civic reports"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 16,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "register",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "A better citystarts with you."
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "report-details",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Severe asphalt pothole on University St"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "report-submitted",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "My Reports"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "reset-password",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Create a new password"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "supervisor-review",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Check completed work"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "team-task",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "Deep pothole in the right lane"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "team-tasks",
+    "width": 1280,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 1280,
+    "h1": [
+      "My tasks"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "admin-community",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Community proposals"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "admin-dashboard",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Operations overview"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "admin-heatmap",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Report heatmap"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 4,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "admin-incident-triage",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Review and assign"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "admin-ops-map",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Operations map"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "admin-sla-orders",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "SLA & work orders"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "check-email",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Check your email"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "city-world",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "community",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Community votes"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "create-report",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Report an issue"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "forgot-password",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Reset your password"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "help",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Help & policies"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "home-menu",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Good morning, Marcus"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "landing-page",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Every city has a story."
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "login",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Log in to RoadNa."
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "my-reports",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "My reports"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "notifications",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Notifications"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "password-updated",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Password updated"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "profile",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Marcus Vance"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "public-guest-menu",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Public civic reports"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "register",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "A better citystarts with you."
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "report-details",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Severe asphalt pothole on University St"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "report-submitted",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "My Reports"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "reset-password",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Create a new password"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "supervisor-review",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Check completed work"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "team-task",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "Deep pothole in the right lane"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  },
+  {
+    "screen": "team-tasks",
+    "width": 375,
+    "status": 200,
+    "errors": [],
+    "scrollWidth": 375,
+    "h1": [
+      "My tasks"
+    ],
+    "brokenImages": [],
+    "externalImagesPending": 0,
+    "duplicateIds": [],
+    "missingSymbols": []
+  }
+]

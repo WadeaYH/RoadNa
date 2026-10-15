@@ -1,82 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f7f9ff">
-  <title>Log In | RoadNa JO</title>
-  <link rel="stylesheet" href="../../shared/base.css">
-  <link rel="stylesheet" href="./style.css">
-  <script src="../../shared/ui.js" defer></script>
-  <script src="./script.js" defer></script>
-</head>
-<body>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f4f6f5"><meta name="description" content="Log in to RoadNa JO to follow reports, access municipal services or manage your team."><title>Log in | RoadNa JO</title><link rel="icon" type="image/svg+xml" href="../../shared/logo.svg"><link rel="stylesheet" href="../../shared/base.css"><link rel="stylesheet" href="../../shared/account.css"><link rel="stylesheet" href="./style.css"><script src="../../shared/ui.js" defer></script><script src="../../shared/account.js" defer></script><script src="./script.js" defer></script></head>
+<body class="account-page login-page">
   <a class="skip-link" href="#email">Skip to login</a>
-  <header class="trust-bar">
-    <div class="bar-content">
-      <p class="trust-label"><span class="status-dot" aria-hidden="true"></span>Official Municipal Service Platform</p>
-      <p class="security-label"><img src="./assets/lock.svg" alt="">Secure Civic Gateway</p>
-    </div>
-  </header>
-  <main class="login-main">
-    <a class="login-back" href="../landing-page/index.html">← Back to RoadNa JO</a>
-    <section class="login-card" aria-labelledby="login-heading">
-      <div class="brand">
-        <div class="brand-emblem"><img src="./assets/municipal.svg" alt=""></div>
-        <div class="brand-name"><span>RoadNa JO</span><span class="portal-badge">Portal</span></div>
-        <p class="brand-description">Municipal Infrastructure &amp; Governance</p>
-      </div>
-      <div class="welcome">
-        <h1 id="login-heading">Welcome back</h1>
-        <p>Enter your credentials to access your civic account</p>
-      </div>
-      <!-- Frontend preview. ASP.NET will handle real submissions. -->
-      <form class="login-form" aria-labelledby="login-heading" data-next="../home-menu/index.html" data-next-staff="../admin-dashboard/index.html">
-        <div class="field">
-          <label for="email">Email address</label>
-          <input id="email" name="email" type="email" placeholder="name@domain.com" autocomplete="username" spellcheck="false" autocapitalize="none" required>
-        </div>
-        <div class="field password-field">
-          <div class="password-label">
-            <label for="password">Password</label>
-            <a class="forgot-link" href="../forgot-password/index.html">Forgot password?</a>
-          </div>
-          <input id="password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required>
-        </div>
-        <fieldset class="account-type">
-          <legend>Sign in as</legend>
-          <label><input type="radio" name="account" value="resident" checked><span>Resident</span></label>
-          <label><input type="radio" name="account" value="staff"><span>Municipal staff</span></label>
-        </fieldset>
-        <button class="login-button" type="submit">
-          <span>Log In</span>
-          <img src="./assets/arrow-right.svg" alt="">
-        </button>
-      </form>
-        <div class="demo-access" role="group" aria-labelledby="demo-title">
-          <p class="demo-access__title" id="demo-title">No account needed in this preview</p>
-          <div class="demo-access__actions">
-            <a class="demo-access__btn" href="../home-menu/index.html">Continue as resident</a>
-            <a class="demo-access__btn" href="../admin-dashboard/index.html">Continue as municipal staff</a>
-          </div>
-        </div>
-      <div class="register-footer">
-        <p>Don't have an account? <a href="../register/index.html">Create one</a></p>
-      </div>
+  <header class="account-header"><a class="brand" href="../landing-page/index.html" aria-label="RoadNa JO home"><span class="brand__name"><svg class="r-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4V20M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></svg>oadNa<span class="logo-jo">JO</span></span></a><a class="account-back" href="../landing-page/index.html"><span aria-hidden="true">←</span> Back to the city</a></header>
+  <main class="account-main login-main" id="main">
+    <div class="account-layout">
+      <aside class="account-context" aria-labelledby="services-title">
+        <p class="context-label">RoadNa JO · Municipal services</p>
+        <h2 id="services-title">Greater Irbid<br>Municipality</h2>
+        <p class="context-intro">Your connection to local services and a better neighbourhood.</p>
+        <ul class="context-services"><li><span aria-hidden="true">01</span>Report a local issue</li><li><span aria-hidden="true">02</span>Follow repair progress</li><li><span aria-hidden="true">03</span>Take part in community decisions</li></ul>
+        <div class="context-help"><p>Need assistance?</p><a href="../help/index.html">Help &amp; support <span aria-hidden="true">↗</span></a></div>
+      </aside>
+    <section class="account-panel login-card" aria-labelledby="login-heading">
+      <header class="account-heading login-heading"><p class="account-kicker">Account access</p><h1 id="login-heading">Log in</h1><p class="account-lead">Access your reports and municipal services.</p></header>
+      <form class="account-form login-form" data-account-form data-next="../home-menu/index.html" data-next-staff="../admin-dashboard/index.html">
+        <p class="account-summary" data-error-summary role="alert" hidden></p>
+        <div class="field"><label for="email">Email address</label><input class="input" id="email" name="email" type="email" autocomplete="username" spellcheck="false" autocapitalize="none" required aria-describedby="email-error"><p class="account-error" id="email-error" hidden></p></div>
+        <div class="field"><div class="field-label-row"><label for="password">Password</label><a class="login-forgot" href="../forgot-password/index.html">Forgot password?</a></div><div class="input-wrap"><input class="input input--pw" id="password" name="password" type="password" autocomplete="current-password" required aria-describedby="password-error"><button class="pw-toggle" type="button" data-toggle-password="#password" aria-pressed="false" aria-label="Show password">Show</button></div><p class="account-error" id="password-error" hidden></p></div>
+        <fieldset class="account-type"><legend>Sign in as</legend><label><input type="radio" name="account" value="resident" checked><span>Resident</span></label><label><input type="radio" name="account" value="staff"><span>Municipal staff</span></label></fieldset>
+        <button class="account-submit" type="submit" disabled>Log In <span aria-hidden="true">→</span></button>
+      <noscript><p class="account-preview">Enable JavaScript to use this frontend preview. No account details will be sent.</p></noscript></form>
+      <p class="account-switch">Don't have an account? <a href="../register/index.html">Create an account</a></p>
+      <details class="demo-access"><summary>Explore the frontend preview</summary><p>No account needed. Nothing is saved.</p><div class="demo-access__actions"><a href="../home-menu/index.html">Resident</a><a href="../admin-dashboard/index.html">Municipal staff</a><a href="../team-tasks/index.html">Field team</a><a href="../supervisor-review/index.html">Supervisor</a></div></details>
     </section>
-  </main>
-  <footer class="site-footer">
-    <div class="bar-content">
-      <p>© 2025 RoadNa JO Municipal Services Portal. All rights reserved.</p>
-      <nav class="legal-links" aria-label="Legal information">
-        <a href="../help/index.html#privacy">Privacy Policy</a>
-        <span aria-hidden="true">•</span>
-        <a href="../help/index.html#terms">Terms of Service</a>
-        <span aria-hidden="true">•</span>
-        <a href="../help/index.html#accessibility">Accessibility</a>
-      </nav>
     </div>
-  </footer>
-</body>
-</html>
-
+  </main>
+  <footer class="account-footer"><p>RoadNa JO · Greater Irbid Municipality</p><nav aria-label="Legal information"><a href="../help/index.html#privacy">Privacy</a><a href="../help/index.html#terms">Terms</a><a href="../help/index.html#accessibility">Accessibility</a></nav></footer>
+</body></html>

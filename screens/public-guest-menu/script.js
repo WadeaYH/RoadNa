@@ -15,9 +15,9 @@ const sortButton = document.querySelector("#sort-btn");
 const guestMap = window.RoadNaMap?.create(document.querySelector("#guest-map"), { zoom: 14, wheel: true, label: "Map of reported issues in Irbid. Use the arrow keys to pan and plus or minus to zoom." });
 const PIN_DATA = {
   "pin-progress": { lat: 32.5392, lng: 35.852, tone: "amber", icon: "i-construction", label: "In progress: Severe asphalt pothole on University St" },
-  "pin-assigned": { lat: 32.5566, lng: 35.8548, tone: "teal", icon: "i-lightbulb", label: "Assigned: Flickering street lamp, Downtown" },
-  "pin-submitted": { lat: 32.5386, lng: 35.8411, tone: "slate", icon: "i-delete", label: "Submitted: Overflowing trash bin in Emaar Irbid Park" },
-  "pin-resolved": { lat: 32.5569, lng: 35.8506, tone: "green", icon: "i-check-circle", label: "Resolved: Curb ramp rebuilt on Al-Hashemi St" },
+  "pin-assigned": { lat: 32.5566, lng: 35.8548, tone: "amber", icon: "i-lightbulb", label: "In progress: Flickering street lamp, Downtown" },
+  "pin-submitted": { lat: 32.5386, lng: 35.8411, tone: "slate", icon: "i-delete", label: "Received: Overflowing trash bin in Emaar Irbid Park" },
+  "pin-resolved": { lat: 32.5569, lng: 35.8506, tone: "green", icon: "i-check-circle", label: "Fixed: Curb ramp rebuilt on Al-Hashemi St" },
 };
 const markers = Object.fromEntries(Object.entries(PIN_DATA).map(([id, data]) => [id, window.RoadNaMap?.pin(guestMap, data)]));
 const pinNode = (id) => markers[id]?.getElement();
@@ -25,7 +25,7 @@ const allPoints = Object.values(PIN_DATA).map((p) => [p.lat, p.lng]);
 const resetView = () => window.RoadNaMap?.fit(guestMap, allPoints, 60, 15);
 resetView();
 
-const STATUS_LABEL = { submitted: "Submitted", assigned: "Assigned", progress: "In Progress", resolved: "Resolved" };
+const STATUS_LABEL = { submitted: "Received", progress: "In progress", resolved: "Fixed" };
 let activeStatus = "all";
 
 // Dismissible guest notice

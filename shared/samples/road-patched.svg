@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-label="Sample photo: the pothole filled with fresh asphalt">
+  <rect width="320" height="200" fill="#4a5258"/>
+  <path d="M0 150H320" stroke="#e9e2cf" stroke-width="5" stroke-dasharray="26 18"/>
+  <path d="M66 70h176l8 54H58z" fill="#24292d"/>
+  <path d="M66 70h176l8 54H58z" fill="none" stroke="#1a1e21" stroke-width="3"/>
+  <path d="M80 84h150M76 98h158M72 112h166" stroke="#2f363b" stroke-width="2"/>
+  <rect x="8" y="176" width="112" height="18" rx="4" fill="#000" opacity=".45"/>
+  <text x="14" y="189" font-family="Arial, sans-serif" font-size="11" fill="#fff">Sample photo</text>
+</svg>

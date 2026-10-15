@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-label="Sample photo: a pothole in asphalt">
+  <rect width="320" height="200" fill="#4a5258"/>
+  <path d="M0 150H320" stroke="#e9e2cf" stroke-width="5" stroke-dasharray="26 18"/>
+  <ellipse cx="150" cy="96" rx="78" ry="40" fill="#2b3135"/>
+  <ellipse cx="146" cy="92" rx="62" ry="29" fill="#1d2226"/>
+  <path d="M84 92l-18-10M216 88l20-12M120 130l-10 16M190 128l12 14" stroke="#33393d" stroke-width="3" stroke-linecap="round"/>
+  <ellipse cx="160" cy="98" rx="26" ry="9" fill="#6d8a9b" opacity=".55"/>
+  <rect x="8" y="176" width="112" height="18" rx="4" fill="#000" opacity=".45"/>
+  <text x="14" y="189" font-family="Arial, sans-serif" font-size="11" fill="#fff">Sample photo</text>
+</svg>

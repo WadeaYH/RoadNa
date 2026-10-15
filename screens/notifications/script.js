@@ -7,17 +7,12 @@ const notes = [...document.querySelectorAll(".note")];
 const list = document.querySelector("#list");
 const empty = document.querySelector("#empty");
 const unreadCount = document.querySelector("#count-unread");
-const sidebarBadge = document.querySelector('.nav-item[href$="notifications/index.html"] .nav-item__badge');
 const bellDot = document.querySelector(".icon-btn__dot");
 let filter = "all";
 
 const syncCounts = () => {
   const unread = notes.filter((n) => n.classList.contains("is-unread")).length;
   unreadCount.textContent = String(unread);
-  if (sidebarBadge) {
-    sidebarBadge.textContent = String(unread);
-    sidebarBadge.hidden = unread === 0;
-  }
   if (bellDot) bellDot.hidden = unread === 0;
 };
 
@@ -61,6 +56,7 @@ notes.forEach((note) => {
     if (!note.classList.contains("is-unread")) return;
     note.classList.remove("is-unread");
     syncCounts();
+    apply();
   });
 });
 

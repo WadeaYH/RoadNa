@@ -1,0 +1,52 @@
+/* Operations map and 3D operations view: shared pieces (status tiles, detail card, attention list, time bar). */
+.ops-stats { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-bottom: 16px; }
+.ops-stat { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 56px; padding: 8px 14px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); text-align: start; font-size: 13px; line-height: 16px; color: var(--muted); transition: border-color .16s ease, background-color .16s ease, opacity .16s ease; }
+.ops-stat strong { font: 700 22px/1 var(--font-head); color: var(--text); font-variant-numeric: tabular-nums; }
+.ops-stat:hover { border-color: var(--line-strong); }
+.ops-stat[aria-pressed="false"] { opacity: .55; background: var(--surface-2); }
+.ops-stat[aria-pressed="true"] { border-color: var(--line-strong); box-shadow: var(--shadow-sm); }
+.ops-stat:focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; }
+.ops-stat__dot { flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--dot, #64748b); }
+.ops-stat--slate { --dot: #64748b; }
+.ops-stat--red { --dot: var(--red); }
+.ops-stat--amber { --dot: var(--amber); }
+.ops-stat--teal { --dot: var(--teal); }
+.ops-stat--green { --dot: #059669; }
+.ops-card__hint { margin-top: 6px; font-size: 14px; line-height: 20px; color: var(--muted); }
+.ops-card .chip { margin-bottom: 8px; }
+.ops-card__title { font-size: 18px; line-height: 24px; }
+.ops-card__id { margin-top: 2px; font-size: 12px; color: var(--muted); }
+.ops-card__facts { display: flex; flex-direction: column; margin: 12px 0 0; }
+.ops-card__facts > div { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 8px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 14px; line-height: 20px; }
+.ops-card__facts dt { color: var(--muted); }
+.ops-card__facts dd { margin: 0; font-weight: 600; }
+.ops-card__actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.attn { display: flex; flex-direction: column; }
+.attn li + li { border-top: 1px solid var(--line); }
+.attn__item { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; width: 100%; padding: 12px 20px; background: transparent; border: 0; text-align: start; transition: background-color .16s ease; }
+.attn__item:hover { background: var(--surface-2); }
+.attn__item:focus-visible { outline: 3px solid var(--teal); outline-offset: -3px; }
+.attn__item strong { font-size: 14px; line-height: 20px; font-weight: 600; }
+.attn__meta { font-size: 12px; line-height: 16px; color: var(--muted); }
+.attn__empty { padding: 16px 20px; font-size: 14px; color: var(--muted); }
+.ops-time { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding: 10px 14px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); }
+.ops-time__range { flex: 1; min-width: 120px; accent-color: var(--teal); }
+.ops-time__label { min-width: 170px; font: 600 14px/20px var(--font-body); font-variant-numeric: tabular-nums; color: var(--text); text-align: end; }
+#time-live[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: #fff; }
+.rn-marker.ops-waiting .rn-dot { position: relative; }
+.rn-marker.ops-waiting .rn-dot::after { content: ""; position: absolute; inset: -3px; border-radius: 50%; border: 2px solid var(--red); opacity: 0; }
+@keyframes ops-ping { from { transform: scale(1); opacity: .8; } to { transform: scale(2.6); opacity: 0; } }
+@media (prefers-reduced-motion: no-preference) {
+  .rn-marker.ops-waiting .rn-dot::after { animation: ops-ping 1.8s ease-out infinite; }
+}
+
+/* Crew section in the detail card */
+.ops-crew { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+.ops-crew__title { font: 700 14px/20px var(--font-head); }
+.ops-crew__head { display: flex; align-items: center; gap: 12px; }
+.ops-crew__vehicle { flex: none; width: 104px; height: 46px; }
+.ops-crew__who { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; min-width: 0; }
+.ops-crew__who strong { font-size: 15px; line-height: 20px; font-weight: 700; }
+.ops-crew__who span:not(.chip) { font-size: 12.5px; line-height: 17px; color: var(--muted); }
+.ops-crew .ops-card__facts { margin-top: 0; }
+.ops-crew__none { margin-top: 12px; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--surface-2); font-size: 14px; line-height: 20px; color: var(--muted); }

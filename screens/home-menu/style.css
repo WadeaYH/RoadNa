@@ -1,23 +1,7 @@
 /* Home — screen-specific styles. Shared: ../../shared/base.css, ../../shared/app.css */
 
-.home-cols { margin-top: 24px; }
 
-.report-row { display: flex; gap: 16px; padding: 18px 20px; transition: background-color .16s ease; }
-.report-row:hover { background: #fafcff; }
-.report-row__body { display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 0; }
-.report-row__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-.report-row__title { font-family: var(--font-head); font-size: 16px; line-height: 22px; font-weight: 700; color: var(--text); }
-.report-row__title:hover { color: var(--teal-deep); }
-.report-row__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-size: 12px; line-height: 16px; color: var(--muted); }
-.report-row__meta span + span::before { content: "·"; margin-inline-end: 12px; color: var(--line-strong); }
-.report-row .mini-steps { margin-top: 4px; }
 
-.fixes li { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 14px 20px; }
-.fixes li + li { border-top: 1px solid var(--line); }
-.fixes__icon { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--green-wash); color: var(--green); }
-.fixes strong { display: block; font-size: 14px; line-height: 20px; font-weight: 600; }
-.fixes div span { display: block; font-size: 12px; line-height: 16px; color: var(--muted); }
-.fixes__votes { padding: 2px 10px; border-radius: var(--radius-pill); background: var(--surface-2); font-size: 12px; line-height: 16px; font-weight: 600; color: var(--muted); white-space: nowrap; }
 
 .nearby { display: flex; flex-direction: column; gap: 4px; }
 .nearby__list { margin-top: 8px; }
@@ -34,9 +18,7 @@
 .vote-btn:active { transform: scale(.96); }
 .vote-btn[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: #fff; }
 
-@media (max-width: 560px) {
-  .report-row { flex-direction: column; gap: 12px; padding-inline: 16px; }
-  .report-row__top { flex-direction: column; gap: 8px; }
-  .fixes li { grid-template-columns: 28px minmax(0, 1fr); }
-  .fixes__votes { grid-column: 2; justify-self: start; }
+
+@media (max-width: 760px) {
+  .vote-btn { min-height: 44px; padding-inline: 16px; }
 }

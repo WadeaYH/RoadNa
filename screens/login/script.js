@@ -9,9 +9,7 @@ loginForm.addEventListener("submit", (event) => {
   const staff = loginForm.elements.account.value === "staff";
   window.location.assign(staff ? loginForm.dataset.nextStaff : loginForm.dataset.next);
 });
-if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  document.querySelector(".login-card").animate(
-    [{ opacity: 0, transform: "translateY(10px)" }, { opacity: 1, transform: "translateY(0)" }],
-    { duration: 380, easing: "cubic-bezier(0.2, 0.7, 0.2, 1)" },
-  );
-}
+// The form stays visible from the first paint, including on slow connections.
+document.querySelectorAll("[data-toggle-password]").forEach((button) => {
+  button.addEventListener("click", () => { button.textContent = button.getAttribute("aria-pressed") === "true" ? "Hide" : "Show"; });
+});

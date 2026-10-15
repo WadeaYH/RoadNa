@@ -115,7 +115,7 @@ export async function mountStory() {
 
   const report = $('#story-report'), reportStatus = $('#report-status');
   const reportLines = [...report.querySelectorAll('.report__lines li')], track = [...report.querySelectorAll('.report__track li')];
-  const STEPS = [['Submitted', 0.455], ['Assigned', 0.575], ['In progress', 0.65], ['Resolved', 0.722]];
+  const STEPS = [['Received', 0.455], ['In progress', 0.575], ['Fixed', 0.722]];
   const rail = [...document.querySelectorAll('#story-rail a')], railFill = $('#story-rail-fill');
   const labelsNav = $('#story-labels'), labelLinks = [...labelsNav.querySelectorAll('.story-label')];
 

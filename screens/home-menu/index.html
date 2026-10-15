@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#f7f9ff">
-  <meta name="description" content="Your RoadNa JO dashboard: active reports, live updates and issues near you.">
+  <meta name="description" content="Your reports, what is happening to them, and fixes near you.">
   <title>Home | RoadNa JO</title>
   <link rel="stylesheet" href="../../shared/base.css">
   <link rel="stylesheet" href="../../shared/app.css">
+  <link rel="stylesheet" href="../../shared/resident.css">
   <link rel="stylesheet" href="../../shared/vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="../../shared/map.css">
   <link rel="stylesheet" href="./style.css">
@@ -18,7 +19,7 @@
 </head>
 <body class="page-home">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <symbol id="i-account-balance" viewBox="0 0 20 20"><path d="M3 16V9H5V16H3ZM9 16V9H11V16H9ZM0 20V18H20V20H0ZM15 16V9H17V16H15ZM0 7V5L10 0L20 5V7H0Z"/></symbol>
+  <symbol id="i-account-balance" viewBox="0 0 24 24"><path d="M7 4V20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><path d="M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></symbol>
   <symbol id="i-account-circle" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></symbol>
   <symbol id="i-add-circle" viewBox="0 0 15 15"><path d="M6.75 11.25H8.25V8.25H11.25V6.75H8.25V3.75H6.75V6.75H3.75V8.25H6.75V11.25ZM7.5 15C6.4625 15 5.4875 14.8031 4.575 14.4094C3.6625 14.0156 2.86875 13.4812 2.19375 12.8062C1.51875 12.1312 0.984375 11.3375 0.590625 10.425C0.196875 9.5125 0 8.5375 0 7.5C0 6.4625 0.196875 5.4875 0.590625 4.575C0.984375 3.6625 1.51875 2.86875 2.19375 2.19375C2.86875 1.51875 3.6625 0.984375 4.575 0.590625C5.4875 0.196875 6.4625 0 7.5 0C8.5375 0 9.5125 0.196875 10.425 0.590625C11.3375 0.984375 12.1312 1.51875 12.8062 2.19375C13.4812 2.86875 14.0156 3.6625 14.4094 4.575C14.8031 5.4875 15 6.4625 15 7.5C15 8.5375 14.8031 9.5125 14.4094 10.425C14.0156 11.3375 13.4812 12.1312 12.8062 12.8062C12.1312 13.4812 11.3375 14.0156 10.425 14.4094C9.5125 14.8031 8.5375 15 7.5 15Z"/></symbol>
   <symbol id="i-arrow-upward" viewBox="0 0 10 10"><path d="M4.375 10V2.39062L0.875 5.89062L0 5L5 0L10 5L9.125 5.89062L5.625 2.39062V10H4.375Z"/></symbol>
@@ -41,193 +42,150 @@
   <symbol id="i-thumb-up" viewBox="0 0 14 14"><path d="M10.6667 13.3333H3.33333V4.66667L8 0L8.83333 0.833333C8.91111 0.911111 8.975 1.01667 9.025 1.15C9.075 1.28333 9.1 1.41111 9.1 1.53333V1.76667L8.36667 4.66667H12.6667C13.0222 4.66667 13.3333 4.8 13.6 5.06667C13.8667 5.33333 14 5.64444 14 6V7.33333C14 7.41111 13.9889 7.49444 13.9667 7.58333C13.9444 7.67222 13.9222 7.75556 13.9 7.83333L11.9 12.5333C11.8 12.7556 11.6333 12.9444 11.4 13.1C11.1667 13.2556 10.9222 13.3333 10.6667 13.3333ZM4.66667 12H10.6667L12.6667 7.33333V6H6.66667L7.56667 2.33333L4.66667 5.23333V12ZM4.66667 5.23333V6V7.33333V12V5.23333ZM3.33333 4.66667V6H1.33333V12H3.33333V13.3333H0V4.66667H3.33333Z"/></symbol>
   <symbol id="i-trending-down" viewBox="0 0 24 24"><path d="M16 18l2.29-2.29-4.88-4.88-4 4L2 7.41 3.41 6l6 6 4-4 6.3 6.29L22 12v6z"/></symbol>
   <symbol id="i-trending-up" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 3.5 21 11V20.5H14.5V14.5H9.5V20.5H3Z"/></symbol>
   </svg>
-  <div class="app-shell">
-    <aside class="sidebar" id="app-sidebar" aria-label="Resident navigation">
-    <a class="sidebar__brand brand" href="../home-menu/index.html" aria-label="RoadNa JO home">
-      <span class="brand__mark"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-account-balance"/></svg></span>
-      <span class="brand__text">
-        <span class="brand__name">RoadNa JO</span>
-        <span class="brand__tag">Resident Portal</span>
-      </span>
-    </a>
-    <a class="btn btn--primary btn--block sidebar__cta" href="../create-report/index.html"><svg class="icon" width="15" height="15" aria-hidden="true" focusable="false"><use href="#i-add-circle"/></svg>Report an Issue</a>
-    <nav aria-label="Main">
-      <ul class="sidebar__nav">
-        <li><a class="nav-item" href="../home-menu/index.html" aria-current="page"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-dashboard"/></svg>Home</a></li>
-        <li><a class="nav-item" href="../my-reports/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-list-alt"/></svg>My Reports<span class="nav-item__badge nav-item__badge--soft">7</span></a></li>
-        <li><a class="nav-item" href="../notifications/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg>Notifications<span class="nav-item__badge">3</span></a></li>
-        <li><a class="nav-item" href="../profile/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-account-circle"/></svg>Profile</a></li>
-      </ul>
-      <p class="sidebar__label">Community</p>
-      <ul class="sidebar__nav">
-        <li><a class="nav-item" href="../public-guest-menu/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-map-fill"/></svg>Explore Map</a></li>
-      </ul>
-    </nav>
-    <div class="sidebar__foot">
-      <div class="sidebar__user">
-        <span class="avatar">MV</span>
-        <span class="sidebar__user-text"><span class="sidebar__user-name">Marcus Vance</span><span class="sidebar__user-meta">Resident · Downtown</span></span>
-      </div>
-      <a class="nav-item" href="../login/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-logout"/></svg>Log out</a>
-    </div>
-  </aside>
-  <button class="scrim" type="button" aria-label="Close navigation menu" data-sidebar-close></button>
+  <div class="res-shell">
+    <header class="res-top">
+      <a class="brand" href="../home-menu/index.html" aria-label="RoadNa JO home">
+        <span class="brand__name"><svg class="r-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4V20M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></svg>oadNa<span class="logo-jo">JO</span></span>
+      </a>
+      <nav class="res-nav" aria-label="Main">
+        <a href="../home-menu/index.html" aria-current="page">Home</a>
+        <a href="../my-reports/index.html">My reports</a>
+        <a href="../public-guest-menu/index.html">Map</a>
+        <a href="../community/index.html">Community</a>
+      </nav>
+      <span class="res-top__spacer"></span>
+      <a class="btn btn--primary" href="../create-report/index.html"><svg class="icon" width="15" height="15" aria-hidden="true" focusable="false"><use href="#i-add-circle"/></svg>Report an Issue</a>
+      <a class="icon-btn" href="../notifications/index.html" aria-label="Notifications, 3 unread"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span class="icon-btn__dot" aria-hidden="true"></span></a>
+      <a class="user-chip" href="../profile/index.html" aria-label="Your profile"><span class="avatar">MV</span><span>Marcus</span></a>
+    </header>
     <div class="app-main">
-      <header class="app-topbar">
-    <button class="icon-btn topbar__menu" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="app-sidebar" aria-label="Open navigation menu"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg></button>
-    <a class="topbar__brand brand" href="../home-menu/index.html" aria-label="RoadNa JO home">
-      <span class="brand__mark" style="width:32px;height:32px"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-account-balance"/></svg></span>
-      <span class="brand__name" style="font-size:18px;line-height:24px">RoadNa JO</span>
-    </a>
-    <p class="topbar__crumb">Resident <span aria-hidden="true">/</span> <strong>Home</strong></p>
-    <span class="topbar__spacer"></span>
-    <label class="topbar__search">
-      <span class="sr-only">Search reports</span>
-      <svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-find"/></svg>
-      <input type="search" placeholder="Search reports, streets, IDs" autocomplete="off">
-    </label>
-    <a class="icon-btn" href="../notifications/index.html" aria-label="Notifications, 3 unread"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span class="icon-btn__dot" aria-hidden="true"></span></a>
-    <a class="user-chip" href="../profile/index.html"><span class="avatar">MV</span><span>Marcus Vance</span></a>
-  </header>
       <main class="app-content" id="main">
-        <header class="page-head">
-          <div class="page-head__text">
-            <p class="eyebrow">Tuesday, 6 October</p>
-            <h1>Good morning, Marcus</h1>
-            <p>Three of your reports are moving. The repair crew for the University St pothole is on site today.</p>
-          </div>
-          <div class="page-head__actions">
-            <a class="btn btn--outline" href="../my-reports/index.html">View all reports</a>
-            <a class="btn btn--primary" href="../create-report/index.html"><svg class="icon" width="15" height="15" aria-hidden="true" focusable="false"><use href="#i-add-circle"/></svg>Report an Issue</a>
-          </div>
+        <header class="home-hello">
+          <h1>Good morning, Marcus</h1>
+          <p>A repair crew is on site today for your pothole report on University St.</p>
         </header>
 
-        <section class="stats" aria-label="Your activity">
-          <article class="stat" data-reveal>
-            <p class="stat__label"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-list-alt"/></svg>Open reports</p>
-            <p class="stat__value">3</p>
-            <p class="stat__delta"><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-trending-up"/></svg>1 new this week</p>
-          </article>
-          <article class="stat" data-reveal data-reveal-delay="70">
-            <p class="stat__label"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-check-circle-fill"/></svg>Resolved this year</p>
-            <p class="stat__value">11</p>
-            <p class="stat__delta"><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-trending-up"/></svg>Latest: curb ramp, 3 days ago</p>
-          </article>
-          <article class="stat" data-reveal data-reveal-delay="140">
-            <p class="stat__label"><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-thumb-up"/></svg>Community votes</p>
-            <p class="stat__value">187</p>
-            <p class="stat__delta"><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-trending-up"/></svg>23 this week</p>
-          </article>
-          <article class="stat" data-reveal data-reveal-delay="210">
-            <p class="stat__label"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-schedule"/></svg>Average fix time</p>
-            <p class="stat__value">3.2 days</p>
-            <p class="stat__delta"><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-trending-down"/></svg>0.6 days faster than the city</p>
-          </article>
+        <section class="home-cta" aria-label="Report a problem">
+          <div>
+            <h2>See something broken?</h2>
+            <p>Add a photo and a pin. It takes about a minute.</p>
+          </div>
+          <a class="btn btn--lg" href="../create-report/index.html"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-add-circle"/></svg>Report an Issue</a>
         </section>
 
-        <div class="cols cols--main-side home-cols">
-          <div class="stack">
-            <section class="panel" aria-labelledby="active-title" data-reveal>
-              <header class="panel__head">
-                <div><h2 class="panel__title" id="active-title">Your active reports</h2><p class="panel__sub">Progress follows the four-phase civic timeline.</p></div>
-                <a class="link-more" href="../my-reports/index.html">See all <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg></a>
-              </header>
-              <ul class="rows">
-                <li class="report-row">
-                  <span class="thumb thumb--road" aria-hidden="true"><svg class="icon" width="26" height="26" aria-hidden="true" focusable="false"><use href="#i-construction"/></svg></span>
-                  <div class="report-row__body">
-                    <div class="report-row__top">
-                      <a class="report-row__title" href="../report-details/index.html">Severe asphalt pothole on University St</a>
-                      <span class="chip chip--progress">In Progress</span>
-                    </div>
-                    <p class="report-row__meta"><span class="mono">RN-2025-0412</span><span>Roads &amp; Hazards</span><span>Submitted Oct 3</span></p>
-                    <ol class="mini-steps" aria-label="Progress: step 3 of 4, in progress">
-                      <li class="is-done">Submitted</li><li class="is-done">Assigned</li><li class="is-current">In progress</li><li>Resolved</li>
-                    </ol>
-                  </div>
-                </li>
-                <li class="report-row">
-                  <span class="thumb thumb--light" aria-hidden="true"><svg class="icon" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-lightbulb"/></svg></span>
-                  <div class="report-row__body">
-                    <div class="report-row__top">
-                      <a class="report-row__title" href="../report-details/index.html">Flickering street lamp on Al-Hashemi St</a>
-                      <span class="chip chip--assigned">Assigned</span>
-                    </div>
-                    <p class="report-row__meta"><span class="mono">RN-2025-0409</span><span>Street Lighting</span><span>Submitted Oct 2</span></p>
-                    <ol class="mini-steps" aria-label="Progress: step 2 of 4, assigned">
-                      <li class="is-done">Submitted</li><li class="is-current">Assigned</li><li>In progress</li><li>Resolved</li>
-                    </ol>
-                  </div>
-                </li>
-                <li class="report-row">
-                  <span class="thumb thumb--park" aria-hidden="true"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-delete"/></svg></span>
-                  <div class="report-row__body">
-                    <div class="report-row__top">
-                      <a class="report-row__title" href="../report-details/index.html">Overflowing park trash receptacle</a>
-                      <span class="chip chip--submitted">Submitted</span>
-                    </div>
-                    <p class="report-row__meta"><span class="mono">RN-2025-0398</span><span>Sanitation &amp; Parks</span><span>Submitted yesterday</span></p>
-                    <ol class="mini-steps" aria-label="Progress: step 1 of 4, submitted">
-                      <li class="is-current">Submitted</li><li>Assigned</li><li>In progress</li><li>Resolved</li>
-                    </ol>
-                  </div>
-                </li>
-              </ul>
-            </section>
-
-            <section class="panel" aria-labelledby="fixes-title" data-reveal>
-              <header class="panel__head">
-                <div><h2 class="panel__title" id="fixes-title">Fixed in your district this week</h2><p class="panel__sub">Verified with a completion photo.</p></div>
-              </header>
-              <ul class="fixes">
-                <li><span class="fixes__icon"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-check-circle-fill"/></svg></span><div><strong>Damaged curb ramp reconstructed</strong><span>Al-Hashemi St, Downtown · 3 days ago</span></div><span class="fixes__votes">56 votes</span></li>
-                <li><span class="fixes__icon"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-check-circle-fill"/></svg></span><div><strong>Damaged speed limit sign replaced</strong><span>Emaar Irbid Park · Yesterday</span></div><span class="fixes__votes">42 votes</span></li>
-                <li><span class="fixes__icon"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-check-circle-fill"/></svg></span><div><strong>Blocked storm drain cleared</strong><span>Irbid Camp · 2 days ago</span></div><span class="fixes__votes">31 votes</span></li>
-              </ul>
-            </section>
+        <section class="home-section" aria-labelledby="mine-title">
+          <div class="home-section__head">
+            <h2 id="mine-title">Your reports</h2>
+            <a class="link-more" href="../my-reports/index.html">See all <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg></a>
           </div>
-
-          <div class="stack">
-            <section class="panel" aria-labelledby="updates-title" data-reveal>
-              <header class="panel__head">
-                <h2 class="panel__title" id="updates-title">Latest updates</h2>
-                <a class="link-more" href="../notifications/index.html">All <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg></a>
-              </header>
-              <ul class="feed">
-                <li class="feed__item"><span class="feed__icon feed__icon--amber"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-construction"/></svg></span><p class="feed__text"><strong>Crew on site</strong> at University St for RN-2025-0412<time class="feed__time">25 min ago</time></p></li>
-                <li class="feed__item"><span class="feed__icon"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-groups"/></svg></span><p class="feed__text"><strong>Lighting Crew 2</strong> was assigned to RN-2025-0409<time class="feed__time">2 hrs ago</time></p></li>
-                <li class="feed__item"><span class="feed__icon feed__icon--green"><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-thumb-up"/></svg></span><p class="feed__text"><strong>5 neighbours</strong> upvoted your pothole report<time class="feed__time">4 hrs ago</time></p></li>
-                <li class="feed__item"><span class="feed__icon feed__icon--slate"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-done"/></svg></span><p class="feed__text"><strong>Validated</strong> by the call centre: RN-2025-0398<time class="feed__time">Yesterday</time></p></li>
-              </ul>
-            </section>
-
-            <section class="panel" aria-labelledby="nearby-title" data-reveal>
-              <header class="panel__head">
-                <div><h2 class="panel__title" id="nearby-title">Near you</h2><p class="panel__sub">Downtown · within 1 km</p></div>
-                <a class="link-more" href="../public-guest-menu/index.html">Map <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg></a>
-              </header>
-              <div class="panel__body nearby">
-                <div class="minimap" role="img" aria-label="Map of Downtown Irbid with your home area and three nearby issues">
-                  <div class="rn-map" data-rn-map="still" data-zoom="15"><span data-pin data-lat="32.551" data-lng="35.85" data-tone="slate" data-label="Your home area"></span><span data-pin data-lat="32.5565" data-lng="35.852" data-tone="teal" data-label="Broken traffic signal, Al-Hashemi St"></span><span data-pin data-lat="32.5585" data-lng="35.8478" data-tone="amber" data-label="Overflowing storm drain near Irbid Camp"></span><span data-pin data-lat="32.5569" data-lng="35.8505" data-tone="green" data-label="Resolved: curb ramp on Al-Hashemi St"></span></div>
-                </div>
-                <ul class="rows nearby__list">
-                  <li class="nearby__item">
-                    <div><strong>Broken traffic signal</strong><span>Al-Hashemi St · 650 m</span></div>
-                    <button class="vote-btn" type="button" aria-pressed="false" data-votes="34" aria-label="Upvote broken traffic signal"><svg class="icon" width="10" height="10" aria-hidden="true" focusable="false"><use href="#i-arrow-upward"/></svg><span>34</span></button>
-                  </li>
-                  <li class="nearby__item">
-                    <div><strong>Overflowing storm drain</strong><span>Irbid Camp · 900 m</span></div>
-                    <button class="vote-btn" type="button" aria-pressed="false" data-votes="12" aria-label="Upvote overflowing storm drain"><svg class="icon" width="10" height="10" aria-hidden="true" focusable="false"><use href="#i-arrow-upward"/></svg><span>12</span></button>
-                  </li>
-                </ul>
+          <ul class="rcards">
+            <li class="rcard" data-reveal>
+              <div class="rcard__art rcard__art--road" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-construction"/></svg></div>
+              <div class="rcard__body">
+                <span class="chip chip--progress">In progress</span>
+                <h3 class="rcard__title"><a href="../report-details/index.html">Severe asphalt pothole on University St</a></h3>
+                <p class="rcard__update">A crew is on site and expects to finish this afternoon.</p>
+                <ol class="steps3" aria-label="Progress: step 2 of 3, in progress">
+                  <li class="is-done">Received</li><li class="is-current">In progress</li><li>Fixed</li>
+                </ol>
+                <p class="rcard__meta">Reported Oct 3 · 42 neighbours voted</p>
               </div>
-            </section>
+            </li>
+            <li class="rcard" data-reveal data-reveal-delay="70">
+              <div class="rcard__art rcard__art--light" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-lightbulb"/></svg></div>
+              <div class="rcard__body">
+                <span class="chip chip--progress">In progress</span>
+                <h3 class="rcard__title"><a href="../report-details/index.html">Flickering street lamp on Al-Hashemi St</a></h3>
+                <p class="rcard__update">A lighting team has taken this on. A visit is planned for tomorrow morning.</p>
+                <ol class="steps3" aria-label="Progress: step 2 of 3, in progress">
+                  <li class="is-done">Received</li><li class="is-current">In progress</li><li>Fixed</li>
+                </ol>
+                <p class="rcard__meta">Reported Oct 2 · 29 neighbours voted</p>
+              </div>
+            </li>
+            <li class="rcard" data-reveal data-reveal-delay="140">
+              <div class="rcard__art rcard__art--park" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-delete"/></svg></div>
+              <div class="rcard__body">
+                <span class="chip chip--submitted">Received</span>
+                <h3 class="rcard__title"><a href="../report-details/index.html">Overflowing park trash receptacle</a></h3>
+                <p class="rcard__update">We have your report. We will tell you when work starts.</p>
+                <ol class="steps3" aria-label="Progress: step 1 of 3, received">
+                  <li class="is-current">Received</li><li>In progress</li><li>Fixed</li>
+                </ol>
+                <p class="rcard__meta">Reported yesterday</p>
+              </div>
+            </li>
+          </ul>
+          <p class="thanks">You have reported 18 issues and 11 are fixed. Thank you for helping Irbid.</p>
+        </section>
+
+        <section class="home-section" aria-labelledby="fixes-title">
+          <div class="home-section__head">
+            <h2 id="fixes-title">Fixed near you this week</h2>
           </div>
+          <ul class="fixed-strip">
+            <li class="fixed-card"><span class="chip chip--resolved">Fixed</span><strong>Damaged curb ramp rebuilt</strong><span>Al-Hashemi St, Downtown · 3 days ago</span></li>
+            <li class="fixed-card"><span class="chip chip--resolved">Fixed</span><strong>Damaged speed limit sign replaced</strong><span>Emaar Irbid Park · Yesterday</span></li>
+            <li class="fixed-card"><span class="chip chip--resolved">Fixed</span><strong>Blocked storm drain cleared</strong><span>Irbid Camp · 2 days ago</span></li>
+          </ul>
+        </section>
+
+        <section class="vote-teaser" aria-labelledby="vote-teaser-title">
+          <div>
+            <p class="vote-teaser__tag">Your say</p>
+            <h2 id="vote-teaser-title">Plant shade trees along University St?</h2>
+            <p>2 community votes are open. Voting on this one closes Oct 31.</p>
+          </div>
+          <a class="btn btn--outline btn--lg" href="../community/index.html">Vote now</a>
+        </section>
+
+        <div class="home-pair">
+          <section class="panel" aria-labelledby="updates-title" data-reveal>
+            <header class="panel__head">
+              <h2 class="panel__title" id="updates-title">What is new</h2>
+              <a class="link-more" href="../notifications/index.html">All <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg></a>
+            </header>
+            <ul class="feed">
+              <li class="feed__item"><span class="feed__icon feed__icon--amber"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-construction"/></svg></span><p class="feed__text"><strong>Work started</strong> on the pothole at University St<time class="feed__time">25 min ago</time></p></li>
+              <li class="feed__item"><span class="feed__icon"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-groups"/></svg></span><p class="feed__text"><strong>A team took on</strong> the street lamp on Al-Hashemi St<time class="feed__time">2 hrs ago</time></p></li>
+              <li class="feed__item"><span class="feed__icon feed__icon--green"><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-thumb-up"/></svg></span><p class="feed__text"><strong>5 neighbours</strong> voted for your pothole report<time class="feed__time">4 hrs ago</time></p></li>
+            </ul>
+          </section>
+
+          <section class="panel" aria-labelledby="nearby-title" data-reveal>
+            <header class="panel__head">
+              <div><h2 class="panel__title" id="nearby-title">Near you</h2><p class="panel__sub">Downtown · within 1 km</p></div>
+              <a class="link-more" href="../public-guest-menu/index.html">Map <svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg></a>
+            </header>
+            <div class="panel__body nearby">
+              <div class="minimap" role="img" aria-label="Map of Downtown Irbid with your home area and three nearby issues">
+                <div class="rn-map" data-rn-map="still" data-zoom="15"><span data-pin data-lat="32.551" data-lng="35.85" data-tone="slate" data-label="Your home area"></span><span data-pin data-lat="32.5565" data-lng="35.852" data-tone="teal" data-label="Broken traffic signal, Al-Hashemi St"></span><span data-pin data-lat="32.5585" data-lng="35.8478" data-tone="amber" data-label="Overflowing storm drain near Irbid Camp"></span><span data-pin data-lat="32.5569" data-lng="35.8505" data-tone="green" data-label="Fixed: curb ramp on Al-Hashemi St"></span></div>
+              </div>
+              <ul class="rows nearby__list">
+                <li class="nearby__item">
+                  <div><strong>Broken traffic signal</strong><span>Al-Hashemi St · 650 m</span></div>
+                  <button class="vote-btn" type="button" aria-pressed="false" data-votes="34" aria-label="Upvote broken traffic signal"><svg class="icon" width="10" height="10" aria-hidden="true" focusable="false"><use href="#i-arrow-upward"/></svg><span>34</span></button>
+                </li>
+                <li class="nearby__item">
+                  <div><strong>Overflowing storm drain</strong><span>Irbid Camp · 900 m</span></div>
+                  <button class="vote-btn" type="button" aria-pressed="false" data-votes="12" aria-label="Upvote overflowing storm drain"><svg class="icon" width="10" height="10" aria-hidden="true" focusable="false"><use href="#i-arrow-upward"/></svg><span>12</span></button>
+                </li>
+              </ul>
+            </div>
+          </section>
         </div>
       </main>
     </div>
   </div>
 
+  <nav class="res-tabs" aria-label="Main">
+    <a class="res-tab" href="../home-menu/index.html" aria-current="page"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-home"/></svg>Home</a>
+    <a class="res-tab" href="../public-guest-menu/index.html"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-map-fill"/></svg>Map</a>
+    <a class="res-tab res-tab--report" href="../create-report/index.html"><span class="res-tab__disc"><svg class="icon" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-add-circle"/></svg></span>Report</a>
+    <a class="res-tab" href="../my-reports/index.html"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-list-alt"/></svg>Reports</a>
+    <a class="res-tab" href="../profile/index.html"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-account-circle"/></svg>Me</a>
+  </nav>
 </body>
 </html>

@@ -48,3 +48,7 @@
 @media (prefers-reduced-motion: reduce) {
   .note { animation: none; }
 }
+
+@media (max-width: 760px) {
+  .tab { min-height: 44px; }
+}

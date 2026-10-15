@@ -90,3 +90,47 @@
 @media (prefers-reduced-motion: reduce) {
   .toast { animation: none; }
 }
+
+/* Review and assign: team choice, teams board, result line */
+.teams { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; border: 0; min-width: 0; }
+.teams legend { padding: 0; margin-bottom: 6px; }
+.teams__list { display: flex; flex-direction: column; gap: 6px; }
+.team-opt { position: relative; display: flex; }
+.team-opt input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.team-opt input:disabled { cursor: not-allowed; }
+.team-opt > span { display: flex; flex-direction: column; flex: 1; gap: 2px; padding: 10px 14px 10px 42px; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface); position: relative; transition: border-color .16s ease, background-color .16s ease; }
+.team-opt > span::before { content: ""; position: absolute; inset-inline-start: 14px; top: 50%; width: 16px; height: 16px; margin-top: -8px; border: 2px solid var(--line-strong); border-radius: 50%; background: var(--surface); }
+.team-opt strong { font-size: 14px; line-height: 20px; font-weight: 600; }
+.team-opt small { font-size: 12px; line-height: 16px; color: var(--muted); }
+.team-opt input:disabled + span { background: var(--surface-2); color: var(--muted); }
+.team-opt input:checked + span { border-color: var(--teal); background: var(--teal-wash); }
+.team-opt input:checked + span::before { border-color: var(--teal); background: var(--teal); box-shadow: inset 0 0 0 3px var(--teal-wash); }
+.team-opt input:focus-visible + span { outline: 3px solid var(--teal); outline-offset: 2px; }
+.teams__note { padding: 10px 12px; border: 1px solid var(--amber-line); border-radius: var(--radius-sm); background: var(--amber-wash); color: var(--amber-ink); font-size: 13px; line-height: 18px; }
+.teams__note[hidden] { display: none; }
+.d-result { padding: 12px 14px; border: 1px solid var(--teal-line); border-radius: var(--radius-sm); background: var(--teal-wash); color: var(--teal-ink); font-size: 14px; line-height: 20px; }
+.d-result[hidden], .decision[hidden] { display: none; }
+.confirm-btn:disabled, #confirm-btn:disabled { opacity: .6; cursor: not-allowed; }
+
+.teams-board { padding: 16px 20px 20px; border-top: 1px solid var(--line); }
+.teams-board h3 { font: 700 15px/22px var(--font-head); }
+.teams-board__sub { margin-top: 2px; font-size: 13px; line-height: 18px; color: var(--muted); }
+.teams-board ul { display: flex; flex-direction: column; margin-top: 10px; }
+.team-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; }
+.team-row + .team-row { border-top: 1px solid var(--line); }
+.team-row__name { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.team-row__name strong { font-size: 14px; line-height: 20px; font-weight: 600; }
+.team-row__name small { font-size: 12px; line-height: 16px; color: var(--muted); }
+@media (max-width: 760px) { .teams-board { padding-inline: 16px; } }
+
+@media (max-width: 760px) {
+  .pill-btn { min-height: 44px; }
+}
+
+/* A row that newly appears slides in; a team whose state just changed flashes */
+@media (prefers-reduced-motion: no-preference) {
+  .queue__list li.slide-in { animation: row-slide .5s var(--ease-out); }
+  .team-row.flash { animation: team-flash 1.6s ease-out; }
+}
+@keyframes row-slide { from { opacity: 0; transform: translateX(-16px); background: var(--teal-wash); } }
+@keyframes team-flash { 0% { background: var(--amber-wash); } 100% { background: transparent; } }

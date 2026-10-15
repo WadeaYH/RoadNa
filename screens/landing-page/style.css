@@ -29,7 +29,7 @@
 .chapter__text { margin-top: 16px; max-width: 36ch; font-size: 16px; line-height: 1.6; color: var(--story-muted); }
 .chapter__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 26px; }
 .chapter__actions .btn { white-space: nowrap; }
-.chapter__link { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 600; color: inherit; text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; }
+.chapter__link { display: inline-flex; align-items: center; min-height: 44px; font-size: 14px; font-weight: 600; color: inherit; text-decoration: none; }
 .chapter__hint { margin-top: 16px; font-size: 13px; color: var(--story-muted); }
 
 /* --- Directed scroll story ------------------------------------------------------------------- */
@@ -80,7 +80,7 @@
 .report__tick { position: relative; flex: none; width: 20px; height: 20px; border-radius: 50%; border: 2px solid #c9d6d2; transition: background .3s, border-color .3s; }
 .report__lines li.is-done .report__tick { background: #087f80; border-color: #087f80; }
 .report__lines li.is-done .report__tick::after { content: ''; position: absolute; left: 6px; top: 2.5px; width: 5px; height: 9px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
-.report__track { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 14px; }
+.report__track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 14px; }
 .report__track li { position: relative; padding-top: 10px; font-size: 10px; font-weight: 600; color: #7c898c; }
 .report__track li::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 4px; border-radius: 4px; background: #dbe4e1; transition: background .4s; }
 .report__track li.is-done { color: #075f60; }
@@ -146,16 +146,7 @@
 /* Explore: CityWorld promotion and plain destinations */
 .explore { padding-block: 72px 40px; background: #fffdf8; border-top: 1px solid var(--line); scroll-margin-top: var(--header-h); }
 .explore:focus { outline: none; }
-.explore__world { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; padding: clamp(16px, 2vw, 22px); border-radius: 28px; background: linear-gradient(135deg, #e8f6f2, #f6f2e8); border: 1px solid rgb(8 127 128 / 14%); color: var(--text); text-decoration: none; transition: transform .35s var(--ease-spring), box-shadow .35s; }
-.explore__world:hover { text-decoration: none; transform: translateY(-3px); box-shadow: 0 30px 60px -36px rgb(16 40 34 / 45%); }
-.explore__media { border-radius: 20px; overflow: hidden; aspect-ratio: 4 / 3; background: #e3eee8; }
-.explore__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease-out); }
-.explore__world:hover .explore__media img { transform: scale(1.04); }
-.explore__copy { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding-right: clamp(0px, 2vw, 24px); }
-.explore__copy strong { font: 700 clamp(28px, 3vw, 44px)/1.06 var(--font-head); letter-spacing: -.04em; text-wrap: balance; }
-.explore__copy > span:not(.t-eyebrow):not(.btn) { font-size: 16px; line-height: 1.6; color: var(--muted); max-width: 42ch; }
-.explore__copy .btn { margin-top: 6px; }
-.explore .city-locations__head { margin-top: 64px; }
+.explore .city-locations__head { margin-top: 0; }
 .city-locations__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; }
 .city-locations__head h2 { font: 700 clamp(25px, 2.5vw, 34px)/1.2 var(--font-head); margin-top: 10px; letter-spacing: -.035em; }
 .city-locations__head > p { font-size: 13px; color: var(--muted); max-width: 28ch; }
@@ -213,7 +204,6 @@
   .story.is-ready .story__copy { top: 58px; }
   .story.is-scrolly .story__stage::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: linear-gradient(90deg, #087f80 calc(var(--p, 0) * 100%), transparent 0); z-index: 6; }
   .explore { padding-block: 44px 28px; }
-  .explore__world { grid-template-columns: 1fr; }
   .city-locations__head { display: block; }
   .city-locations__head > p { margin-top: 12px; max-width: none; }
   .city-destinations { grid-template-columns: 1fr; }
@@ -222,4 +212,17 @@
 @media (max-width: 899px) and (max-height: 700px) { .story.is-ready .chapter__text { display: none; } }
 @media (prefers-reduced-motion: reduce) {
   .page-story *, .page-story *::before, .page-story *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+/* Sections after the story: three-step statuses, scroll progress and scroll-in animation */
+.page-landing .mini-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.scroll-progress { position: absolute; inset-inline: 0; bottom: -1px; height: 3px; pointer-events: none; }
+.scroll-progress span { display: block; height: 100%; background: linear-gradient(90deg, var(--teal), #3fb8a9); transform: scaleX(var(--scroll, 0)); transform-origin: left; }
+[dir="rtl"] .scroll-progress span { transform-origin: right; }
+.page-landing .reveal-hide { opacity: 0; transform: translateY(32px) scale(.985); }
+.page-landing .reveal-hide.is-visible { opacity: 1; transform: none; }
+.page-landing [data-reveal] { transition: opacity .7s cubic-bezier(.2, .7, .2, 1), transform .9s cubic-bezier(.2, .7, .2, 1); }
+.page-landing .how, .page-landing .recent { padding-block: clamp(56px, 7vw, 88px); }
+@media (prefers-reduced-motion: reduce) {
+  .page-landing .reveal-hide { opacity: 1; transform: none; }
 }

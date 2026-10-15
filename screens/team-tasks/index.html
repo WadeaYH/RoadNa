@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f9ff">
+  <meta name="description" content="Field team task list: assigned repair jobs, jobs sent back for rework and jobs waiting for the supervisor's check.">
+  <title>My Tasks | RoadNa JO Field Team</title>
+  <link rel="icon" type="image/svg+xml" href="../../shared/logo.svg">
+  <link rel="stylesheet" href="../../shared/base.css">
+  <link rel="stylesheet" href="../../shared/app.css">
+  <link rel="stylesheet" href="../../shared/team.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src="../../shared/ui.js" defer></script>
+  <script src="../../shared/sample-work.js" defer></script>
+  <script src="./script.js" defer></script>
+</head>
+<body class="page-team">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-account-balance" viewBox="0 0 24 24"><path d="M7 4V20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><path d="M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></symbol>
+  <symbol id="i-place" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></symbol>
+  <symbol id="i-schedule" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></symbol>
+  <symbol id="i-swap-vert" viewBox="0 0 11 14"><path d="M2.66667 7.33333V2.55L0.95 4.26667L0 3.33333L3.33333 0L6.66667 3.33333L5.71667 4.26667L4 2.55V7.33333H2.66667ZM7.33333 13.3333L4 10L4.95 9.06667L6.66667 10.7833V6H8V10.7833L9.71667 9.06667L10.6667 10L7.33333 13.3333Z"/></symbol>
+  <symbol id="i-construction" viewBox="0 0 16 16"><path d="M13.6667 15.0208L9.10417 10.4583L10.8542 8.70833L15.4167 13.2708L13.6667 15.0208ZM2.16667 15.0208L0.416667 13.2708L6.16667 7.52083L4.75 6.10417L4.16667 6.6875L3.10417 5.625V7.33333L2.52083 7.91667L0 5.39583L0.583333 4.8125H2.29167L1.25 3.77083L4.20833 0.8125C4.48611 0.534722 4.78472 0.333333 5.10417 0.208333C5.42361 0.0833333 5.75 0.0208333 6.08333 0.0208333C6.41667 0.0208333 6.74306 0.0833333 7.0625 0.208333C7.38194 0.333333 7.68056 0.534722 7.95833 0.8125L6.04167 2.72917L7.08333 3.77083L6.5 4.35417L7.91667 5.77083L9.79167 3.89583C9.73611 3.74306 9.69097 3.58333 9.65625 3.41667C9.62153 3.25 9.60417 3.08333 9.60417 2.91667C9.60417 2.09722 9.88542 1.40625 10.4479 0.84375C11.0104 0.28125 11.7014 0 12.5208 0C12.7292 0 12.9271 0.0208333 13.1146 0.0625C13.3021 0.104167 13.4931 0.166667 13.6875 0.25L11.625 2.3125L13.125 3.8125L15.1875 1.75C15.2847 1.94444 15.3507 2.13542 15.3854 2.32292C15.4201 2.51042 15.4375 2.70833 15.4375 2.91667C15.4375 3.73611 15.1562 4.42708 14.5938 4.98958C14.0312 5.55208 13.3403 5.83333 12.5208 5.83333C12.3542 5.83333 12.1875 5.81944 12.0208 5.79167C11.8542 5.76389 11.6944 5.71528 11.5417 5.64583L2.16667 15.0208Z"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.8 22 20.6H2Zm-1.1 5.7v6.4h2.2V8.5Zm1.1 7.6a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6Z"/></symbol>
+  <symbol id="i-hourglass" viewBox="0 0 24 24"><path d="M6 2v6h.01L6 8.01 10 12l-4 4 .01.01H6V22h12v-5.99h-.01L18 16l-4-4 4-3.99-.01-.01H18V2H6zm10 14.5V20H8v-3.5l4-4 4 4zm-4-5l-4-4V4h8v3.5l-4 4z"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 14 14"><path d="M5.73333 9.73333L10.4333 5.03333L9.5 4.1L5.73333 7.86667L3.83333 5.96667L2.9 6.9L5.73333 9.73333ZM6.66667 13.3333C5.74444 13.3333 4.87778 13.1583 4.06667 12.8083C3.25556 12.4583 2.55 11.9833 1.95 11.3833C1.35 10.7833 0.875 10.0778 0.525 9.26667C0.175 8.45555 0 7.58889 0 6.66667C0 5.74444 0.175 4.87778 0.525 4.06667C0.875 3.25556 1.35 2.55 1.95 1.95C2.55 1.35 3.25556 0.875 4.06667 0.525C4.87778 0.175 5.74444 0 6.66667 0C7.58889 0 8.45555 0.175 9.26667 0.525C10.0778 0.875 10.7833 1.35 11.3833 1.95C11.9833 2.55 12.4583 3.25556 12.8083 4.06667C13.1583 4.87778 13.3333 5.74444 13.3333 6.66667C13.3333 7.58889 13.1583 8.45555 12.8083 9.26667C12.4583 10.0778 11.9833 10.7833 11.3833 11.3833C10.7833 11.9833 10.0778 12.4583 9.26667 12.8083C8.45555 13.1583 7.58889 13.3333 6.66667 13.3333ZM6.66667 12C8.15556 12 9.41667 11.4833 10.45 10.45C11.4833 9.41667 12 8.15556 12 6.66667C12 5.17778 11.4833 3.91667 10.45 2.88333C9.41667 1.85 8.15556 1.33333 6.66667 1.33333C5.17778 1.33333 3.91667 1.85 2.88333 2.88333C1.85 3.91667 1.33333 5.17778 1.33333 6.66667C1.33333 8.15556 1.85 9.41667 2.88333 10.45C3.91667 11.4833 5.17778 12 6.66667 12Z"/></symbol>
+  </svg>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="team-bar">
+    <a class="brand team-bar__brand" href="./index.html" aria-label="RoadNa JO field team, my tasks">
+      <span class="brand__name"><svg class="r-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4V20M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></svg>oadNa<span class="logo-jo">JO</span></span>
+      <span class="console-badge">Field team</span>
+    </a>
+    <span class="team-bar__spacer"></span>
+    <a class="team-role" id="role-switch" href="?as=member"><svg class="icon" width="15" height="15" aria-hidden="true" focusable="false"><use href="#i-swap-vert"/></svg><span>Preview: <strong id="role-name">Team leader</strong></span></a>
+    <a class="icon-btn" href="../login/index.html" aria-label="Log out"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-logout"/></svg></a>
+  </header>
+
+  <main class="team-main" id="main">
+    <header class="team-head">
+      <p class="eyebrow" id="team-org">Roads Team 4 · Greater Irbid Municipality</p>
+      <h1>My tasks</h1>
+      <p id="team-who">Omar Haddad, team leader</p>
+    </header>
+
+    <ul class="team-summary" id="summary" aria-label="Task summary"></ul>
+
+    <section class="task-group" aria-labelledby="todo-title">
+      <h2 id="todo-title">To do</h2>
+      <ul class="task-list" id="todo"></ul>
+    </section>
+    <section class="task-group" aria-labelledby="checking-title">
+      <h2 id="checking-title">Waiting for the supervisor</h2>
+      <p class="task-group__sub" id="checking-sub"></p>
+      <ul class="task-list" id="checking"></ul>
+    </section>
+    <section class="task-group" aria-labelledby="done-title">
+      <h2 id="done-title">Approved recently</h2>
+      <ul class="task-list" id="done"></ul>
+    </section>
+
+    <p class="team-note">Preview: these are sample tasks for Roads Team 4. Nothing you do here is saved or sent.</p>
+  </main>
+</body>
+</html>

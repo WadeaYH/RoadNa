@@ -1,0 +1,56 @@
+{
+  "account": {
+    "canvases": 0,
+    "graphics": 0
+  },
+  "map": {
+    "initial": 14,
+    "after": 14,
+    "crewVisibility": [
+      {
+        "name": "Roads Crew 4",
+        "dept": "Roads Department",
+        "scale": 1,
+        "targetScale": 1
+      },
+      {
+        "name": "Roads Crew 6",
+        "dept": "Roads Department",
+        "scale": 1,
+        "targetScale": 1
+      },
+      {
+        "name": "Lighting Crew 2",
+        "dept": "Lighting Division",
+        "scale": 0,
+        "targetScale": 0
+      },
+      {
+        "name": "Sanitation Crew 1",
+        "dept": "Sanitation Department",
+        "scale": 0,
+        "targetScale": 0
+      },
+      {
+        "name": "Parks Crew 1",
+        "dept": "Parks Department",
+        "scale": 0,
+        "targetScale": 0
+      },
+      {
+        "name": "Drainage Crew 3",
+        "dept": "Drainage & Water Authority",
+        "scale": 0,
+        "targetScale": 0
+      }
+    ],
+    "fixed": true,
+    "focus": "ops-stat ops-stat--slate",
+    "link": "http://127.0.0.1:4174/screens/admin-ops-map/index.html?view=ops&role=supervisor&mode=live&t=370",
+    "brand": "../admin-dashboard/index.html",
+    "visibleDirectory": [
+      "g-municipal"
+    ]
+  },
+  "errors": []
+}

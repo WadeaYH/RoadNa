@@ -5,10 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#f6f4ec">
   <meta name="description" content="RoadNa CityWorld: a living miniature city where every building is a RoadNa JO page. Explore, cause a pothole, and watch residents report it and crews fix it.">
-  <link rel="icon" type="image/svg+xml" href="../landing-page/assets/icon-17.svg">
+  <link rel="icon" type="image/svg+xml" href="../../shared/logo.svg">
   <title>RoadNa CityWorld | Explore the city</title>
   <link rel="stylesheet" href="../../shared/base.css">
+  <link rel="stylesheet" href="../../shared/ops.css">
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./ops.css">
+  <script src="../../shared/ops-data.js" defer></script>
   <script type="module" src="./script.js"></script>
 </head>
 <body class="cw">
@@ -23,6 +26,7 @@
     <symbol id="i-auto" viewBox="0 0 24 24"><path d="M12 4a8 8 0 0 1 7.4 5H22l-3.5 4-3.5-4h2.2A5.9 5.9 0 0 0 6.2 10.9l-2-.4A8 8 0 0 1 12 4Zm7.8 9.5A8 8 0 0 1 4.6 15H2l3.5-4L9 15H6.8a5.9 5.9 0 0 0 11-1.9Z"/></symbol>
     <symbol id="i-plus" viewBox="0 0 24 24"><path d="M11 4h2v7h7v2h-7v7h-2v-7H4v-2h7Z"/></symbol>
     <symbol id="i-minus" viewBox="0 0 24 24"><path d="M4 11h16v2H4Z"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6.7 8.3 5.3 5.3 5.3-5.3 1.4 1.4L12 16.4 5.3 9.7Z"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5 19.5 12 7 19.5Z"/></symbol>
     <symbol id="i-pause" viewBox="0 0 24 24"><path d="M6 4.5h4v15H6Zm8 0h4v15h-4Z"/></symbol>
     <symbol id="i-fast" viewBox="0 0 24 24"><path d="M3 5.5 12 12l-9 6.5Zm9 0L21 12l-9 6.5Z"/></symbol>
@@ -69,8 +73,7 @@
 
     <header class="cw-top">
       <a class="cw-brand" href="../landing-page/index.html" aria-label="RoadNa JO home">
-        <span class="cw-brand__mark"><svg class="icon" width="18" height="18" aria-hidden="true"><use href="#i-brand"/></svg></span>
-        <span class="cw-brand__text"><strong>RoadNa JO</strong><small>CityWorld</small></span>
+        <span class="cw-brand__text"><strong><svg class="r-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4V20M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></svg>oadNa<span class="logo-jo">JO</span></strong><small>CityWorld</small></span>
       </a>
       <section class="cw-stats" id="cw-stats" aria-label="City status" hidden>
         <div class="cw-stat cw-stat--mood" data-mood="happy"><span class="cw-stat__icon" aria-hidden="true"><svg class="cw-face" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" class="cw-face__disc"/><circle cx="8.8" cy="10" r="1.3"/><circle cx="15.2" cy="10" r="1.3"/><path class="cw-face__mouth" d="M8 14.2c1.1 1.6 2.4 2.3 4 2.3s2.9-.7 4-2.3" fill="none" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="cw-stat__body"><span class="cw-stat__label">Residents</span><span class="cw-stat__value" id="cw-mood">Delighted</span></span><span class="cw-meter" aria-hidden="true"><span id="cw-mood-bar"></span></span></div>
@@ -232,8 +235,8 @@
       <div class="cw-group__head"><h2 id="g-municipal">Municipal District</h2><button type="button" class="cw-group__fly" data-district="municipal">Show on map</button></div>
       <ul>
         <li><a href="../admin-dashboard/index.html" data-place="hall"><span class="cw-group__icon" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-columns"/></svg></span><span><strong>City Hall</strong><small>Admin dashboard</small></span></a></li>
-        <li><a href="../admin-incident-triage/index.html" data-place="triage"><span class="cw-group__icon" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-alert"/></svg></span><span><strong>Triage Centre</strong><small>Incident triage</small></span></a></li>
-        <li><a href="../admin-dispatch-units/index.html" data-place="depot"><span class="cw-group__icon" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-truck"/></svg></span><span><strong>Crew Depot</strong><small>Dispatch and units</small></span></a></li>
+        <li><a href="../admin-incident-triage/index.html" data-place="triage"><span class="cw-group__icon" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-alert"/></svg></span><span><strong>Review Centre</strong><small>Review and assign</small></span></a></li>
+        <li><a href="../admin-ops-map/index.html" data-place="depot"><span class="cw-group__icon" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-truck"/></svg></span><span><strong>Crew Depot</strong><small>Operations map</small></span></a></li>
         <li><a href="../admin-sla-orders/index.html" data-place="clock"><span class="cw-group__icon" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-clock"/></svg></span><span><strong>Clock Tower</strong><small>SLA and work orders</small></span></a></li>
         <li><a href="../admin-heatmap/index.html" data-place="observatory"><span class="cw-group__icon" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-heat"/></svg></span><span><strong>Data Observatory</strong><small>Incident heatmap</small></span></a></li>
       </ul>
@@ -249,13 +252,13 @@
         <li><a href="../password-updated/index.html" data-place="vault"><span class="cw-group__icon" aria-hidden="true"><svg class="icon" width="16" height="16"><use href="#i-shield"/></svg></span><span><strong>Secure Vault</strong><small>Password updated</small></span></a></li>
       </ul>
     </section>
-    <p class="cw-directory__foot"><a href="../../index.html">All 20 screens as a list</a> · Resident and admin buildings open frontend previews with sample data.</p>
+    <p class="cw-directory__foot"><a href="../../index.html">Open the screen directory</a> · Resident and admin buildings open frontend previews with sample data.</p>
   </nav>
 
   <dialog class="cw-help" id="cw-help" aria-labelledby="cw-help-title">
     <div class="cw-help__head"><h2 id="cw-help-title">How CityWorld works</h2><form method="dialog"><button class="cw-btn cw-btn--icon" aria-label="Close"><svg class="icon" width="18" height="18" aria-hidden="true"><use href="#i-close"/></svg></button></form></div>
     <ol class="cw-help__steps">
-      <li><span>1</span><div><h3>Every building is a page</h3><p>Four districts hold all twenty RoadNa JO screens. Click a building, read its card and enter. Double-click enters straight away.</p></div></li>
+      <li><span>1</span><div><h3>Every building is a page</h3><p>Four districts link to RoadNa JO services. Click a building, read its card and enter. Double-click enters straight away.</p></div></li>
       <li><span>2</span><div><h3>Problems change the city</h3><p>Potholes make cars stop and swerve; enough of them and traffic backs up. Broken lights, full bins and blocked drains also wear on residents.</p></div></li>
       <li><span>3</span><div><h3>Residents report, crews fix</h3><p>Every report appears in the Reports list on the left. Each crew has one kind of vehicle: Roads (asphalt patch truck), Lighting (bucket truck), Sanitation (compactor) and Drainage (jetter tanker). Open a report and send a crew with the right vehicle, or leave Auto-assign on. Turn RoadNa off to see how slowly problems surface without it.</p></div></li>
       <li><span>4</span><div><h3>Keep people happy</h3><p>Open reports and slow traffic lower resident mood. Let it fall too far and a protest gathers outside City Hall.</p></div></li>

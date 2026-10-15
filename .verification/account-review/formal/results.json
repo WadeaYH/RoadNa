@@ -1,0 +1,113 @@
+{
+  "checks": [
+    {
+      "screen": "login",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "canvases": 0,
+      "animations": 0,
+      "graphics": [],
+      "brokenImages": []
+    },
+    {
+      "screen": "register",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "canvases": 0,
+      "animations": 0,
+      "graphics": [],
+      "brokenImages": []
+    },
+    {
+      "screen": "login",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "canvases": 0,
+      "animations": 0,
+      "graphics": [],
+      "brokenImages": []
+    },
+    {
+      "screen": "register",
+      "width": 1280,
+      "scrollWidth": 1280,
+      "canvases": 0,
+      "animations": 0,
+      "graphics": [],
+      "brokenImages": []
+    },
+    {
+      "screen": "login",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "canvases": 0,
+      "animations": 0,
+      "graphics": [],
+      "brokenImages": []
+    },
+    {
+      "screen": "register",
+      "width": 1024,
+      "scrollWidth": 1024,
+      "canvases": 0,
+      "animations": 0,
+      "graphics": [],
+      "brokenImages": []
+    },
+    {
+      "screen": "login",
+      "width": 768,
+      "scrollWidth": 768,
+      "canvases": 0,
+      "animations": 0,
+      "graphics": [],
+      "brokenImages": []
+    },
+    {
+      "screen": "register",
+      "width": 768,
+      "scrollWidth": 768,
+      "canvases": 0,
+      "animations": 0,
+      "graphics": [],
+      "brokenImages": []
+    },
+    {
+      "screen": "login",
+      "width": 375,
+      "scrollWidth": 375,
+      "canvases": 0,
+      "animations": 0,
+      "graphics": [],
+      "brokenImages": []
+    },
+    {
+      "screen": "register",
+      "width": 375,
+      "scrollWidth": 375,
+      "canvases": 0,
+      "animations": 0,
+      "graphics": [],
+      "brokenImages": []
+    },
+    {
+      "screen": "login",
+      "width": 320,
+      "scrollWidth": 320,
+      "canvases": 0,
+      "animations": 0,
+      "graphics": [],
+      "brokenImages": []
+    },
+    {
+      "screen": "register",
+      "width": 320,
+      "scrollWidth": 320,
+      "canvases": 0,
+      "animations": 0,
+      "graphics": [],
+      "brokenImages": []
+    }
+  ],
+  "errors": []
+}

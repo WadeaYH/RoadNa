@@ -94,7 +94,8 @@ h1, h2, h3, h4, h5, p, ul, ol, figure, dl, dd { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 img, svg { display: block; max-width: 100%; }
 a { color: var(--teal); text-decoration: none; }
-a[href]:hover { text-decoration: underline; text-underline-offset: 3px; }
+/* Links never underline on hover; plain text links darken instead (buttons and cards style themselves). */
+a[href]:not([class]):hover { color: var(--teal-deep); }
 button, input, select, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; }
 :focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
@@ -322,3 +323,8 @@ button { cursor: pointer; }
 
 .preview-dialog__actions { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 12px; }
 .preview-dialog__actions [hidden] { display: none; }
+
+/* Logo: the wordmark is an R built from a road (the glyph) followed by "oadNa". The glyph is sized in em,
+   so it matches the cap height and stem weight of whatever type it sits in. */
+.r-glyph { display: inline-block; flex: none; width: .88em; height: .88em; margin-inline: -.17em -.1em; vertical-align: -.085em; overflow: visible; }
+.logo-jo { margin-inline-start: .18em; font-size: .46em; font-weight: 600; letter-spacing: .08em; vertical-align: .72em; color: var(--teal); }

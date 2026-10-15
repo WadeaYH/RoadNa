@@ -274,3 +274,18 @@
 /* A keyboard-accessible close control inside the mobile navigation dialog. */
 .sidebar__close { display: none; align-self: flex-end; flex-shrink: 0; font-size: 24px; line-height: 1; }
 @media (max-width: 1024px) { .sidebar__close { display: inline-grid; } }
+
+/* AI suggestion box (team task page, supervisor check) */
+.ai-box { display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; border: 1px dashed var(--teal-line); border-radius: var(--radius-sm); background: #f6fdfc; font-size: 14px; line-height: 20px; }
+.ai-box__label { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--teal-deep); text-transform: uppercase; letter-spacing: .05em; }
+.ai-box__facts { display: flex; flex-wrap: wrap; gap: 6px 24px; }
+.ai-box__facts dt { font-size: 12px; color: var(--muted); }
+.ai-box__facts dd { margin: 0; font-weight: 700; }
+
+/* Phone: keep icon buttons from shrinking and make small controls easy to tap */
+@media (max-width: 760px) {
+  .icon-btn { flex: none; }
+  .admin-header { gap: 8px; }
+  .segmented button { min-height: 44px; }
+  .link-more { min-height: 44px; }
+}

@@ -8,13 +8,14 @@
   <title>Report Submitted | RoadNa JO</title>
   <link rel="stylesheet" href="../../shared/base.css">
   <link rel="stylesheet" href="../../shared/app.css">
+  <link rel="stylesheet" href="../../shared/resident.css">
   <link rel="stylesheet" href="./style.css">
   <script src="../../shared/ui.js" defer></script>
   <script src="./script.js" defer></script>
 </head>
 <body class="page-submitted">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <symbol id="i-account-balance" viewBox="0 0 20 20"><path d="M3 16V9H5V16H3ZM9 16V9H11V16H9ZM0 20V18H20V20H0ZM15 16V9H17V16H15ZM0 7V5L10 0L20 5V7H0Z"/></symbol>
+  <symbol id="i-account-balance" viewBox="0 0 24 24"><path d="M7 4V20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><path d="M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></symbol>
   <symbol id="i-account-circle" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></symbol>
   <symbol id="i-add-circle" viewBox="0 0 15 15"><path d="M6.75 11.25H8.25V8.25H11.25V6.75H8.25V3.75H6.75V6.75H3.75V8.25H6.75V11.25ZM7.5 15C6.4625 15 5.4875 14.8031 4.575 14.4094C3.6625 14.0156 2.86875 13.4812 2.19375 12.8062C1.51875 12.1312 0.984375 11.3375 0.590625 10.425C0.196875 9.5125 0 8.5375 0 7.5C0 6.4625 0.196875 5.4875 0.590625 4.575C0.984375 3.6625 1.51875 2.86875 2.19375 2.19375C2.86875 1.51875 3.6625 0.984375 4.575 0.590625C5.4875 0.196875 6.4625 0 7.5 0C8.5375 0 9.5125 0.196875 10.425 0.590625C11.3375 0.984375 12.1312 1.51875 12.8062 2.19375C13.4812 2.86875 14.0156 3.6625 14.4094 4.575C14.8031 5.4875 15 6.4625 15 7.5C15 8.5375 14.8031 9.5125 14.4094 10.425C14.0156 11.3375 13.4812 12.1312 12.8062 12.8062C12.1312 13.4812 11.3375 14.0156 10.425 14.4094C9.5125 14.8031 8.5375 15 7.5 15Z"/></symbol>
   <symbol id="i-arrow-forward" viewBox="0 0 14 14"><path d="M10.1458 7.5H0V5.83333H10.1458L5.47917 1.16667L6.66667 0L13.3333 6.66667L6.66667 13.3333L5.47917 12.1667L10.1458 7.5Z"/></symbol>
@@ -31,65 +32,35 @@
   <symbol id="i-logout" viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></symbol>
   <symbol id="i-map-fill" viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></symbol>
   <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 3.5 21 11V20.5H14.5V14.5H9.5V20.5H3Z"/></symbol>
   </svg>
-  <div class="app-shell" inert aria-hidden="true">
-    <aside class="sidebar" id="app-sidebar" aria-label="Resident navigation">
-    <a class="sidebar__brand brand" href="../home-menu/index.html" aria-label="RoadNa JO home">
-      <span class="brand__mark"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-account-balance"/></svg></span>
-      <span class="brand__text">
-        <span class="brand__name">RoadNa JO</span>
-        <span class="brand__tag">Resident Portal</span>
-      </span>
-    </a>
-    <a class="btn btn--primary btn--block sidebar__cta" href="../create-report/index.html"><svg class="icon" width="15" height="15" aria-hidden="true" focusable="false"><use href="#i-add-circle"/></svg>Report an Issue</a>
-    <nav aria-label="Main">
-      <ul class="sidebar__nav">
-        <li><a class="nav-item" href="../home-menu/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-dashboard"/></svg>Home</a></li>
-        <li><a class="nav-item" href="../my-reports/index.html" aria-current="page"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-list-alt"/></svg>My Reports<span class="nav-item__badge nav-item__badge--soft">7</span></a></li>
-        <li><a class="nav-item" href="../notifications/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg>Notifications<span class="nav-item__badge">3</span></a></li>
-        <li><a class="nav-item" href="../profile/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-account-circle"/></svg>Profile</a></li>
-      </ul>
-      <p class="sidebar__label">Community</p>
-      <ul class="sidebar__nav">
-        <li><a class="nav-item" href="../public-guest-menu/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-map-fill"/></svg>Explore Map</a></li>
-      </ul>
-    </nav>
-    <div class="sidebar__foot">
-      <div class="sidebar__user">
-        <span class="avatar">MV</span>
-        <span class="sidebar__user-text"><span class="sidebar__user-name">Marcus Vance</span><span class="sidebar__user-meta">Resident · Downtown</span></span>
-      </div>
-      <a class="nav-item" href="../login/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-logout"/></svg>Log out</a>
-    </div>
-  </aside>
-  <button class="scrim" type="button" aria-label="Close navigation menu" data-sidebar-close></button>
+  <div class="res-shell" inert aria-hidden="true">
+    <header class="res-top">
+      <a class="brand" href="../home-menu/index.html" aria-label="RoadNa JO home">
+        <span class="brand__name"><svg class="r-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4V20M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></svg>oadNa<span class="logo-jo">JO</span></span>
+      </a>
+      <nav class="res-nav" aria-label="Main">
+        <a href="../home-menu/index.html">Home</a>
+        <a href="../my-reports/index.html" aria-current="page">My reports</a>
+        <a href="../public-guest-menu/index.html">Map</a>
+        <a href="../community/index.html">Community</a>
+      </nav>
+      <span class="res-top__spacer"></span>
+      <a class="btn btn--primary" href="../create-report/index.html"><svg class="icon" width="15" height="15" aria-hidden="true" focusable="false"><use href="#i-add-circle"/></svg>Report an Issue</a>
+      <a class="icon-btn" href="../notifications/index.html" aria-label="Notifications, 3 unread"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span class="icon-btn__dot" aria-hidden="true"></span></a>
+      <a class="user-chip" href="../profile/index.html" aria-label="Your profile"><span class="avatar">MV</span><span>Marcus</span></a>
+    </header>
     <div class="app-main">
-      <header class="app-topbar">
-    <button class="icon-btn topbar__menu" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="app-sidebar" aria-label="Open navigation menu"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg></button>
-    <a class="topbar__brand brand" href="../home-menu/index.html" aria-label="RoadNa JO home">
-      <span class="brand__mark" style="width:32px;height:32px"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-account-balance"/></svg></span>
-      <span class="brand__name" style="font-size:18px;line-height:24px">RoadNa JO</span>
-    </a>
-    <p class="topbar__crumb">Resident <span aria-hidden="true">/</span> <strong>My Reports</strong></p>
-    <span class="topbar__spacer"></span>
-    <label class="topbar__search">
-      <span class="sr-only">Search reports</span>
-      <svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-find"/></svg>
-      <input type="search" placeholder="Search reports, streets, IDs" autocomplete="off">
-    </label>
-    <a class="icon-btn" href="../notifications/index.html" aria-label="Notifications, 3 unread"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span class="icon-btn__dot" aria-hidden="true"></span></a>
-    <a class="user-chip" href="../profile/index.html"><span class="avatar">MV</span><span>Marcus Vance</span></a>
-  </header>
       <div class="app-content">
         <header class="page-head">
           <div class="page-head__text"><p class="eyebrow">Your history</p><h1>My Reports</h1><p>Every report you have filed, with live status.</p></div>
         </header>
         <section class="panel">
           <ul class="rows bg-rows">
-            <li class="bg-row"><span class="thumb thumb--road"><svg class="icon" width="26" height="26" aria-hidden="true" focusable="false"><use href="#i-construction"/></svg></span><div><strong>Severe asphalt pothole on University St</strong><span>RN-2025-0412 · Roads &amp; Hazards</span></div><span class="chip chip--progress">In Progress</span></li>
-            <li class="bg-row"><span class="thumb thumb--light"><svg class="icon" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-lightbulb"/></svg></span><div><strong>Flickering street lamp on Al-Hashemi St</strong><span>RN-2025-0409 · Street Lighting</span></div><span class="chip chip--assigned">Assigned</span></li>
-            <li class="bg-row"><span class="thumb thumb--park"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-delete"/></svg></span><div><strong>Overflowing park trash receptacle</strong><span>RN-2025-0398 · Sanitation &amp; Parks</span></div><span class="chip chip--submitted">Submitted</span></li>
-            <li class="bg-row"><span class="thumb thumb--ramp"><svg class="icon" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-check-circle"/></svg></span><div><strong>Damaged curb ramp reconstructed</strong><span>RN-2025-0371 · Roads &amp; Hazards</span></div><span class="chip chip--resolved">Resolved</span></li>
+            <li class="bg-row"><span class="thumb thumb--road"><svg class="icon" width="26" height="26" aria-hidden="true" focusable="false"><use href="#i-construction"/></svg></span><div><strong>Severe asphalt pothole on University St</strong><span>RN-2025-0412 · Roads &amp; Hazards</span></div><span class="chip chip--progress">In progress</span></li>
+            <li class="bg-row"><span class="thumb thumb--light"><svg class="icon" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-lightbulb"/></svg></span><div><strong>Flickering street lamp on Al-Hashemi St</strong><span>RN-2025-0409 · Street Lighting</span></div><span class="chip chip--progress">In progress</span></li>
+            <li class="bg-row"><span class="thumb thumb--park"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-delete"/></svg></span><div><strong>Overflowing park trash receptacle</strong><span>RN-2025-0398 · Sanitation &amp; Parks</span></div><span class="chip chip--submitted">Received</span></li>
+            <li class="bg-row"><span class="thumb thumb--ramp"><svg class="icon" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-check-circle"/></svg></span><div><strong>Damaged curb ramp reconstructed</strong><span>RN-2025-0371 · Roads &amp; Hazards</span></div><span class="chip chip--resolved">Fixed</span></li>
           </ul>
         </section>
       </div>
@@ -98,9 +69,12 @@
 
   <div class="modal" id="submitted-modal">
     <div class="modal__dialog submitted" role="dialog" aria-modal="true" aria-labelledby="submitted-title" aria-describedby="submitted-desc">
-      <span class="success-mark" aria-hidden="true"><svg class="icon" width="36" height="36" aria-hidden="true" focusable="false"><use href="#i-check-circle-fill"/></svg></span>
-      <h1 class="submitted__title" id="submitted-title" tabindex="-1">Report submitted</h1>
-      <p class="submitted__desc" id="submitted-desc">Thank you, Marcus. Your report is with the call centre now, and you will be notified at every status change.</p>
+      <span class="success-mark" aria-hidden="true">
+        <svg viewBox="0 0 52 52" width="52" height="52" fill="none" focusable="false"><circle class="sm-circle" cx="26" cy="26" r="23" stroke="currentColor" stroke-width="3"/><path class="sm-check" d="M15 27l8 8 15-17" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <i class="sm-dot" style="--a:0deg"></i><i class="sm-dot sm-dot--amber" style="--a:60deg"></i><i class="sm-dot" style="--a:120deg"></i><i class="sm-dot sm-dot--amber" style="--a:180deg"></i><i class="sm-dot" style="--a:240deg"></i><i class="sm-dot sm-dot--amber" style="--a:300deg"></i>
+      </span>
+      <h2 class="submitted__title" id="submitted-title" tabindex="-1">Report submitted</h2>
+      <p class="submitted__desc" id="submitted-desc">Thank you, Marcus. We have your report and will tell you at every step.</p>
 
       <p class="flow-preview">Preview state · no report has been submitted.</p>
       <div class="ref-card">
@@ -112,9 +86,9 @@
       </div>
 
       <ol class="next-steps" aria-label="What happens next">
-        <li><span class="next-steps__dot">1</span><div><strong>AI check</strong><span>Category, priority and duplicates are checked in seconds.</span></div></li>
-        <li><span class="next-steps__dot">2</span><div><strong>Moderator review</strong><span>Typically within 4 hours. We may contact you for details.</span></div></li>
-        <li><span class="next-steps__dot">3</span><div><strong>Crew assigned</strong><span>You will see the team and expected repair window.</span></div></li>
+        <li><span class="next-steps__dot">1</span><div><strong>We check it</strong><span>We confirm the type of problem and how urgent it is, usually within a few hours.</span></div></li>
+        <li><span class="next-steps__dot">2</span><div><strong>A team takes it on</strong><span>The municipality gives it to a maintenance team. You will see In progress.</span></div></li>
+        <li><span class="next-steps__dot">3</span><div><strong>It gets fixed</strong><span>You will get a message and photos when the work is done.</span></div></li>
       </ol>
 
       <div class="submitted__actions">
@@ -125,5 +99,12 @@
     </div>
   </div>
 
+  <nav class="res-tabs" aria-label="Main" inert aria-hidden="true">
+    <a class="res-tab" href="../home-menu/index.html"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-home"/></svg>Home</a>
+    <a class="res-tab" href="../public-guest-menu/index.html"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-map-fill"/></svg>Map</a>
+    <a class="res-tab res-tab--report" href="../create-report/index.html"><span class="res-tab__disc"><svg class="icon" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-add-circle"/></svg></span>Report</a>
+    <a class="res-tab" href="../my-reports/index.html" aria-current="page"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-list-alt"/></svg>Reports</a>
+    <a class="res-tab" href="../profile/index.html"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-account-circle"/></svg>Me</a>
+  </nav>
 </body>
 </html>

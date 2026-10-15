@@ -1,0 +1,19 @@
+/* Community votes (resident) — screen-specific styles. Shared: base.css, app.css, resident.css, community.css */
+
+.page-community .app-content { max-width: 760px; }
+.page-community .page-head { margin-bottom: 16px; }
+.toolbar { margin-bottom: 16px; }
+.tabs { display: inline-flex; gap: 6px; }
+.tab {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 4px 16px; border: 1px solid var(--line); border-radius: var(--radius-pill);
+  background: var(--surface); font-size: 15px; line-height: 20px; font-weight: 600; color: var(--muted);
+  transition: background-color .16s ease, color .16s ease, border-color .16s ease;
+}
+.tab:hover { color: var(--text); border-color: var(--line-strong); }
+.tab.is-active { background: var(--teal-deep); border-color: var(--teal-deep); color: var(--on-brand); }
+.tab__count { font-size: 13px; line-height: 16px; font-weight: 700; opacity: .75; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .props .prop:not([hidden]) { animation: list-in .4s var(--ease-out) backwards; }
+}
+@keyframes list-in { from { opacity: 0; transform: translateY(10px); } }

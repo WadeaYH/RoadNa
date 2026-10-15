@@ -1,52 +1,69 @@
 "use strict";
 
-// Presentation only. Everything here is UI feedback on the form: the AI panel shows sample
-// suggestions per category, previews use temporary in-memory object URLs, and the map pin is
-// a visual marker. ASP.NET and the AI service will supply real values and save the report.
+// Presentation only. The form is a four-step wizard; the category is suggested from the
+// description with a simple keyword match (the real AI service will replace it), previews use
+// temporary in-memory object URLs, and the map pin is a visual marker. ASP.NET will save the report.
 const form = document.querySelector("#report-form");
 const stepper = document.querySelector("#stepper");
+const steps = [...form.querySelectorAll(".wiz-step")];
 const description = document.querySelector("#description");
 const charCount = document.querySelector("#char-count");
 const address = document.querySelector("#address");
 const photos = document.querySelector("#photos");
 const dropzone = document.querySelector("#dropzone");
 const previews = document.querySelector("#previews");
-const pickMap = window.RoadNaMap?.create(document.querySelector("#pick-map"), { zoom: 15, label: "Map of Irbid. Click to drop the report pin, or use Drop pin at map centre." });
-let pin = null;
 const coords = document.querySelector("#coords");
 const locate = document.querySelector("#locate-btn");
-const aiPanel = document.querySelector(".ai-panel");
-const state = { category: false, details: false, photo: false, location: false };
+const catNote = document.querySelector("#cat-note");
+const radios = [...form.querySelectorAll('input[name="category"]')];
 const urls = new Map();
+let pickMap = null;
+let pin = null;
+let current = 0;
+let categoryPickedByUser = false;
 
-const mark = (key, done) => {
-  state[key] = done;
-  stepper.querySelector(`[data-step="${key}"]`).classList.toggle("is-done", done);
+// Steps
+const mapReady = () => {
+  if (pickMap || !window.RoadNaMap) return;
+  pickMap = window.RoadNaMap.create(document.querySelector("#pick-map"), { zoom: 15, label: "Map of Irbid. Click to drop the report pin, or use Drop pin at map centre." });
+  pickMap?.on("click", (event) => placePin(event.latlng));
 };
 
-// Step 1: category + sample AI suggestion
-const PRIORITY = { high: "High", medium: "Medium", low: "Low", critical: "Critical" };
-form.querySelectorAll('input[name="category"]').forEach((radio) => {
-  radio.addEventListener("change", () => {
-    const { label, priority, dept, conf } = radio.dataset;
-    document.querySelector("#ai-category").textContent = label;
-    document.querySelector("#ai-priority").innerHTML = `<span class="priority priority--${priority}">${PRIORITY[priority]}</span>`;
-    document.querySelector("#ai-dept").textContent = dept;
-    document.querySelector("#ai-conf").textContent = `${conf}% match`;
-    document.querySelector("#ai-bar").style.transform = `scaleX(${Number(conf) / 100})`;
-    document.querySelector("#ai-state").textContent = "Suggested";
-    aiPanel.classList.add("is-live");
-    mark("category", true);
+const stepNames = ["Photo", "Place", "Details", "Send"];
+const stepLabel = document.querySelector("#step-label");
+const show = (index) => {
+  current = index;
+  stepLabel.textContent = `Step ${index + 1} of ${steps.length} · ${stepNames[index]}`;
+  steps.forEach((step, i) => { step.hidden = i !== index; });
+  stepper.querySelectorAll(".stepper__item").forEach((item, i) => {
+    item.classList.toggle("is-current", i === index);
+    item.classList.toggle("is-done", i < index);
+  });
+  if (steps[index].dataset.step === "place") { mapReady(); window.setTimeout(() => pickMap?.invalidateSize(), 60); }
+  if (steps[index].dataset.step === "send") fillSummary();
+  const heading = steps[index].querySelector("h2");
+  heading.setAttribute("tabindex", "-1");
+  heading.focus({ preventScroll: true });
+  window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+};
+
+const stepIsValid = () => {
+  const fields = [...steps[current].querySelectorAll("input[required], textarea[required]")];
+  const radioGroupMissing = steps[current].querySelector('input[name="category"]') && !radios.some((r) => r.checked);
+  const bad = fields.find((field) => field.type !== "radio" && !field.checkValidity());
+  if (bad) { bad.reportValidity(); return false; }
+  if (radioGroupMissing) { radios[0].setCustomValidity("Choose the type of problem."); radios[0].reportValidity(); radios[0].setCustomValidity(""); return false; }
+  return true;
+};
+
+form.querySelectorAll("[data-wiz]").forEach((button) => {
+  button.addEventListener("click", () => {
+    if (button.dataset.wiz === "back") { show(Math.max(0, current - 1)); return; }
+    if (stepIsValid()) show(Math.min(steps.length - 1, current + 1));
   });
 });
 
-// Step 2: description counter
-description.addEventListener("input", () => {
-  charCount.textContent = String(description.value.length);
-  mark("details", description.value.trim().length >= 10);
-});
-
-// Step 3: photo previews (object URLs live only in this tab)
+// Photos (object URLs live only in this tab)
 const renderPreviews = () => {
   previews.innerHTML = "";
   urls.forEach((url, name) => {
@@ -68,7 +85,6 @@ const renderPreviews = () => {
     previews.append(item);
   });
   previews.hidden = urls.size === 0;
-  mark("photo", urls.size > 0);
 };
 const addFiles = (files) => {
   let rejected = false;
@@ -89,14 +105,18 @@ photos.addEventListener("change", () => { addFiles(photos.files); photos.value =
 ["dragleave", "drop"].forEach((type) => dropzone.addEventListener(type, (e) => { e.preventDefault(); dropzone.classList.remove("is-over"); }));
 dropzone.addEventListener("drop", (e) => addFiles(e.dataTransfer.files));
 
-// Step 4: location pin on the real map. Coordinates are shown; no address lookup is made.
+// Place: pin on the real map. Coordinates are shown; no address lookup is made.
 const fmt = new Intl.NumberFormat("en", { minimumFractionDigits: 5, maximumFractionDigits: 5 });
+let generatedAddress = null;
+address.addEventListener("input", () => { generatedAddress = null; });
 const showPin = (latlng) => {
   coords.lastChild.textContent = `Pinned at ${fmt.format(latlng.lat)}° N, ${fmt.format(latlng.lng)}° E. Drag the pin to adjust.`;
-  if (!address.value.trim()) address.value = `Pinned on map (${latlng.lat.toFixed(4)}, ${latlng.lng.toFixed(4)})`;
-  mark("location", address.value.trim().length > 0);
+  if (!address.value.trim() || address.value === generatedAddress) {
+    generatedAddress = `Pinned on map (${latlng.lat.toFixed(4)}, ${latlng.lng.toFixed(4)})`;
+    address.value = generatedAddress;
+  }
 };
-const placePin = (latlng) => {
+function placePin(latlng) {
   if (!pickMap) return;
   if (!pin) {
     pin = window.RoadNaMap.pin(pickMap, { lat: latlng.lat, lng: latlng.lng, tone: "amber", icon: "i-place", label: "Report location. Drag to adjust." });
@@ -106,10 +126,42 @@ const placePin = (latlng) => {
     pin.setLatLng(latlng);
   }
   showPin(latlng);
+}
+locate.addEventListener("click", () => { mapReady(); if (pickMap) placePin(pickMap.getCenter()); });
+
+// Details: description counter + a suggested category the resident can change
+const KEYWORDS = [
+  ["roads", /pothole|asphalt|crack|sinkhole|road|lane|crosswalk/i],
+  ["light", /lamp|light|signal|dark|flicker|traffic light/i],
+  ["sanitation", /trash|rubbish|garbage|bin|litter|dump|waste/i],
+  ["parks", /tree|branch|park|garden|bench|playground/i],
+  ["water", /drain|water|leak|flood|sewer|manhole/i],
+  ["sidewalk", /sidewalk|pavement|curb|kerb|sign/i],
+];
+description.addEventListener("input", () => {
+  charCount.textContent = String(description.value.length);
+  if (categoryPickedByUser) return;
+  const match = KEYWORDS.find(([, pattern]) => pattern.test(description.value));
+  const radio = match && radios.find((r) => r.value === match[0]);
+  if (radio) {
+    radio.checked = true;
+    catNote.textContent = `We picked "${radio.dataset.label}" from your description. Change it if that is not right.`;
+    catNote.hidden = false;
+  }
+});
+radios.forEach((radio) => radio.addEventListener("change", (event) => {
+  if (event.isTrusted) { categoryPickedByUser = true; catNote.hidden = true; }
+}));
+
+// Send: summary of what the resident entered
+const fillSummary = () => {
+  const chosen = radios.find((r) => r.checked);
+  document.querySelector("#sum-photos").textContent = urls.size ? `${urls.size} photo${urls.size > 1 ? "s" : ""}` : "None";
+  document.querySelector("#sum-place").textContent = address.value.trim() || "-";
+  document.querySelector("#sum-type").textContent = chosen ? chosen.dataset.label : "-";
+  const text = description.value.trim();
+  document.querySelector("#sum-desc").textContent = text.length > 140 ? `${text.slice(0, 140)}...` : text || "-";
 };
-pickMap?.on("click", (event) => placePin(event.latlng));
-locate.addEventListener("click", () => { if (pickMap) placePin(pickMap.getCenter()); });
-address.addEventListener("input", () => mark("location", Boolean(pin) && address.value.trim().length > 0));
 
 // Entrance
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {

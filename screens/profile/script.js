@@ -1,7 +1,7 @@
 "use strict";
 
 // Presentation only. Forms show a confirmation toast and nothing is saved or sent;
-// ASP.NET will persist profile, password and session changes.
+// ASP.NET will persist profile and password changes.
 const toast = document.querySelector("#toast");
 let toastTimer = null;
 const showToast = (message) => {
@@ -42,44 +42,12 @@ avatarInput.addEventListener("change", () => {
 
 window.addEventListener("pagehide", () => { if (avatarUrl) URL.revokeObjectURL(avatarUrl); });
 
-// Sign out of another session (visual only)
-document.querySelectorAll("[data-signout]").forEach((button) => {
-  button.addEventListener("click", () => {
-    window.RoadNaUI.preview("Device sign-out will be available when the service is connected. The sample session remains unchanged.");
-  });
-});
-
-// Language + right-to-left preview
+// Language: Arabic previews the right-to-left layout; the English sample copy stays English.
 const langButtons = [...document.querySelectorAll("[data-lang]")];
-const rtl = document.querySelector("#rtl-toggle");
-const setDirection = (isRtl) => {
-  document.documentElement.dir = isRtl ? "rtl" : "ltr";
-  rtl.checked = isRtl;
-};
 langButtons.forEach((button) => {
   button.addEventListener("click", () => {
     langButtons.forEach((b) => b.setAttribute("aria-pressed", String(b === button)));
-    const arabic = button.dataset.lang === "ar";
-    // English sample copy remains English; this control previews layout direction only.
     document.documentElement.lang = "en";
-    setDirection(arabic);
+    document.documentElement.dir = button.dataset.lang === "ar" ? "rtl" : "ltr";
   });
 });
-rtl.addEventListener("change", () => setDirection(rtl.checked));
-
-// Highlight the section being read
-const links = [...document.querySelectorAll(".section-nav a")];
-const sections = links.map((a) => document.querySelector(a.getAttribute("href")));
-if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      links.forEach((a) => {
-        const on = a.getAttribute("href") === `#${entry.target.id}`;
-        a.classList.toggle("is-active", on);
-        if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
-      });
-    });
-  }, { rootMargin: "-20% 0px -65% 0px" });
-  sections.forEach((s) => s && observer.observe(s));
-}

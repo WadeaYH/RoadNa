@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#f7f9ff">
-  <meta name="description" content="Review incoming reports, confirm or correct the AI category and priority, merge duplicates and forward work to departments.">
-  <title>Incident Triage | RoadNa JO Admin</title>
+  <meta name="description" content="Review new resident reports, confirm type and priority, and assign a maintenance team. Reports wait in a list when no team is free.">
+  <title>Review and Assign | RoadNa JO Admin</title>
   <link rel="stylesheet" href="../../shared/base.css">
   <link rel="stylesheet" href="../../shared/app.css">
   <link rel="stylesheet" href="./style.css">
@@ -14,7 +14,7 @@
 </head>
 <body class="page-triage">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <symbol id="i-account-balance" viewBox="0 0 20 20"><path d="M3 16V9H5V16H3ZM9 16V9H11V16H9ZM0 20V18H20V20H0ZM15 16V9H17V16H15ZM0 7V5L10 0L20 5V7H0Z"/></symbol>
+  <symbol id="i-account-balance" viewBox="0 0 24 24"><path d="M7 4V20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><path d="M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></symbol>
   <symbol id="i-account-circle" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></symbol>
   <symbol id="i-assignment-done" viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-2 14l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></symbol>
   <symbol id="i-bell" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></symbol>
@@ -44,13 +44,14 @@
   <symbol id="i-tune" viewBox="0 0 24 24"><path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"/></symbol>
   <symbol id="i-walk" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></symbol>
   <symbol id="i-water-drop" viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/></symbol>
+    <symbol id="i-check-circle" viewBox="0 0 14 14"><path d="M5.73333 9.73333L10.4333 5.03333L9.5 4.1L5.73333 7.86667L3.83333 5.96667L2.9 6.9L5.73333 9.73333ZM6.66667 13.3333C5.74444 13.3333 4.87778 13.1583 4.06667 12.8083C3.25556 12.4583 2.55 11.9833 1.95 11.3833C1.35 10.7833 0.875 10.0778 0.525 9.26667C0.175 8.45555 0 7.58889 0 6.66667C0 5.74444 0.175 4.87778 0.525 4.06667C0.875 3.25556 1.35 2.55 1.95 1.95C2.55 1.35 3.25556 0.875 4.06667 0.525C4.87778 0.175 5.74444 0 6.66667 0C7.58889 0 8.45555 0.175 9.26667 0.525C10.0778 0.875 10.7833 1.35 11.3833 1.95C11.9833 2.55 12.4583 3.25556 12.8083 4.06667C13.1583 4.87778 13.3333 5.74444 13.3333 6.66667C13.3333 7.58889 13.1583 8.45555 12.8083 9.26667C12.4583 10.0778 11.9833 10.7833 11.3833 11.3833C10.7833 11.9833 10.0778 12.4583 9.26667 12.8083C8.45555 13.1583 7.58889 13.3333 6.66667 13.3333ZM6.66667 12C8.15556 12 9.41667 11.4833 10.45 10.45C11.4833 9.41667 12 8.15556 12 6.66667C12 5.17778 11.4833 3.91667 10.45 2.88333C9.41667 1.85 8.15556 1.33333 6.66667 1.33333C5.17778 1.33333 3.91667 1.85 2.88333 2.88333C1.85 3.91667 1.33333 5.17778 1.33333 6.66667C1.33333 8.15556 1.85 9.41667 2.88333 10.45C3.91667 11.4833 5.17778 12 6.66667 12Z"/></symbol>
+    <symbol id="i-list-alt" viewBox="0 0 24 24"><path d="M19 5v14H5V5h14m1.1-2H3.9c-.5 0-.9.4-.9.9v16.2c0 .4.4.9.9.9h16.2c.4 0 .9-.5.9-.9V3.9c0-.5-.5-.9-.9-.9zM11 7h6v2h-6V7zm0 4h6v2h-6v-2zm0 4h6v2h-6v-2zM7 7h2v2H7V7zm0 4h2v2H7v-2zm0 4h2v2H7v-2z"/></symbol>
   </svg>
   <div class="app-shell app-shell--admin">
     <header class="admin-header">
     <button class="icon-btn topbar__menu" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="app-sidebar" aria-label="Open navigation menu"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg></button>
     <a class="admin-header__brand brand" href="../admin-dashboard/index.html" aria-label="RoadNa JO admin console">
-      <span class="brand__mark"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-account-balance"/></svg></span>
-      <span class="brand__name">RoadNa JO</span>
+      <span class="brand__name"><svg class="r-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4V20M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></svg>oadNa<span class="logo-jo">JO</span></span>
       <span class="console-badge">Admin Console</span>
     </a>
     <span class="topbar__spacer"></span>
@@ -59,22 +60,25 @@
       <svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-find"/></svg>
       <input type="search" placeholder="Search incidents, work orders, units" autocomplete="off">
     </label>
-    <a class="icon-btn" href="../admin-incident-triage/index.html" aria-label="12 incidents awaiting triage"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span class="icon-btn__dot" aria-hidden="true"></span></a>
-    <p class="role-chip"><strong>Elena Kovacs</strong>Roads Dept. Manager</p>
-    <span class="avatar avatar--slate" aria-hidden="true">EK</span>
+    <a class="icon-btn" href="../admin-incident-triage/index.html" aria-label="8 reports to review"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span class="icon-btn__dot" aria-hidden="true"></span></a>
+    <p class="role-chip"><strong>Eng. Rana Al-Khatib</strong>Roads Supervisor</p>
+    <span class="avatar avatar--slate" aria-hidden="true">RK</span>
   </header>
     <aside class="sidebar" id="app-sidebar" aria-label="Administration navigation">
     <p class="sidebar__label">Operations</p>
     <nav aria-label="Main">
       <ul class="sidebar__nav">
         <li><a class="nav-item" href="../admin-dashboard/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-dashboard"/></svg>Dashboard</a></li>
-        <li><a class="nav-item" href="../admin-incident-triage/index.html" aria-current="page"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-assignment-done"/></svg>Incident Triage<span class="nav-item__badge">12</span></a></li>
-        <li><a class="nav-item" href="../admin-dispatch-units/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-truck"/></svg>Dispatch &amp; Units</a></li>
+        <li><a class="nav-item" href="../admin-ops-map/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-map-fill"/></svg>Operations map</a></li>
+        <li><a class="nav-item" href="../admin-incident-triage/index.html" aria-current="page"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-assignment-done"/></svg>Review &amp; Assign<span class="nav-item__badge">8</span></a></li>
+        <li><a class="nav-item" href="../supervisor-review/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-check-circle"/></svg>Check Work<span class="nav-item__badge">2</span></a></li>
+        <li><a class="nav-item" href="../admin-community/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-list-alt"/></svg>Community votes</a></li>
         <li><a class="nav-item" href="../admin-sla-orders/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-hourglass"/></svg>SLA &amp; Orders<span class="nav-item__badge nav-item__badge--soft">5</span></a></li>
         <li><a class="nav-item" href="../admin-heatmap/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-hot"/></svg>Heatmap</a></li>
       </ul>
       <p class="sidebar__label">Platform</p>
       <ul class="sidebar__nav">
+        <li><a class="nav-item" href="../city-world/index.html?view=ops&amp;role=supervisor"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-dashboard"/></svg>City view (3D)</a></li>
         <li><a class="nav-item" href="../public-guest-menu/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-map-fill"/></svg>Public Map</a></li>
         <li><a class="nav-item" href="../home-menu/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-account-circle"/></svg>Resident View</a></li>
       </ul>
@@ -89,33 +93,27 @@
       <main class="app-content app-content--wide" id="main">
         <header class="page-head">
           <div class="page-head__text">
-            <p class="eyebrow">Call-centre workspace</p>
-            <h1>Incident triage</h1>
-            <p>Confirm or correct what the AI suggested, merge duplicates, reject spam and forward each report to the right department.</p>
+            <p class="eyebrow">Municipal review</p>
+            <h1>Review and assign</h1>
+            <p>Check each new report, confirm its type and priority, then give it to a maintenance team. If no team is free, it waits in the list.</p>
           </div>
-          <div class="page-head__actions">
-            <button class="btn btn--outline" type="button" data-preview-action="Queue settings will be available when the service is connected. This is a frontend preview."><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-tune"/></svg>Queue settings</button>
-          </div>
-        </header>
+          </header>
 
         <section class="stats triage-stats" aria-label="Queue summary">
-          <article class="stat"><p class="stat__label"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-assignment-done"/></svg>Awaiting review</p><p class="stat__value num" id="stat-waiting">12</p><p class="stat__delta stat__delta--flat">8 shown on this page</p></article>
-          <article class="stat"><p class="stat__label"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-schedule"/></svg>Median wait</p><p class="stat__value num">38 min</p><p class="stat__delta"><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-trending-down"/></svg>11 min faster than yesterday</p></article>
-          <article class="stat"><p class="stat__label"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-sparkle"/></svg>AI agreement</p><p class="stat__value num">93.6%</p><p class="stat__delta"><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-trending-up"/></svg>Moderators accepted the suggestion</p></article>
-          <article class="stat"><p class="stat__label"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-copy"/></svg>Duplicates flagged</p><p class="stat__value num">4</p><p class="stat__delta stat__delta--flat">2 need a decision</p></article>
+          <article class="stat"><p class="stat__label"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-assignment-done"/></svg>To review</p><p class="stat__value num" id="stat-review">8</p><p class="stat__delta stat__delta--flat">New reports from residents</p></article>
+          <article class="stat"><p class="stat__label"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-hourglass"/></svg>Waiting for a team</p><p class="stat__value num" id="stat-waiting">0</p><p class="stat__delta stat__delta--flat">Reviewed, no team free yet</p></article>
+          <article class="stat"><p class="stat__label"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-truck"/></svg>Assigned today</p><p class="stat__value num" id="stat-assigned">5</p><p class="stat__delta stat__delta--flat">Residents now see In progress</p></article>
         </section>
 
         <div class="triage">
           <section class="panel queue" aria-labelledby="queue-title">
             <header class="panel__head">
-              <h2 class="panel__title" id="queue-title">Incoming queue</h2>
+              <h2 class="panel__title" id="queue-title">Reports</h2>
               <label class="search-field queue__search"><span class="sr-only">Search the queue</span><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-find"/></svg><input type="search" id="queue-search" placeholder="Search title, ID, district" autocomplete="off"></label>
             </header>
-            <div class="queue__filters" role="group" aria-label="Filter the queue">
-              <button class="pill-btn is-active" type="button" aria-pressed="true" data-flag="all">All <span>8</span></button>
-              <button class="pill-btn" type="button" aria-pressed="false" data-flag="review">Needs review <span>3</span></button>
-              <button class="pill-btn" type="button" aria-pressed="false" data-flag="duplicate">Duplicates <span>1</span></button>
-              <button class="pill-btn" type="button" aria-pressed="false" data-flag="spam">Spam <span>1</span></button>
+            <div class="queue__filters" role="group" aria-label="Show reports">
+              <button class="pill-btn is-active" type="button" aria-pressed="true" data-tab="review">To review <span id="n-review">8</span></button>
+              <button class="pill-btn" type="button" aria-pressed="false" data-tab="waiting">Waiting for a team <span id="n-waiting">0</span></button>
             </div>
             <ul class="queue__list" id="queue-list" role="list">
               <li><button class="q-item is-selected" type="button" aria-pressed="true" data-flag="" data-id="RN-2025-0431" data-title="Pothole near school gate in Bayt Ras" data-desc="Wide pothole at the kerb where parents drop children. Cars brake sharply to avoid it and the edge is breaking away." data-place="School gate, Bayt Ras" data-time="4 minutes ago" data-reporter="Lina A. (verified)" data-cat="roads" data-conf="96" data-prio="high" data-dept="roads" data-dup="" data-spam="2" data-icon="road">
@@ -161,9 +159,14 @@
             </ul>
             <div class="empty" id="queue-empty" hidden>
               <span class="empty__art"><svg class="icon" width="30" height="30" aria-hidden="true" focusable="false"><use href="#i-done"/></svg></span>
-              <h2>Queue clear</h2>
-              <p>Nothing matches this filter. New reports appear here as soon as residents submit them.</p>
+              <h2 id="empty-title">Nothing here</h2>
+              <p id="empty-text">New reports appear here as soon as residents submit them.</p>
             </div>
+            <section class="teams-board" aria-labelledby="teams-title">
+              <h3 id="teams-title">Teams</h3>
+              <p class="teams-board__sub">A team is free again when its finished work has been checked. Use Mark free to preview that.</p>
+              <ul id="teams-list"></ul>
+            </section>
           </section>
 
           <section class="panel detail" aria-labelledby="detail-title" aria-live="polite" id="detail">
@@ -171,14 +174,14 @@
             <div class="panel__body detail__body">
               <div class="detail__head">
                 <p class="mono" id="d-id">RN-2025-0431</p>
-                <span class="chip chip--submitted" id="d-state">Submitted</span>
+                <span class="chip chip--submitted" id="d-state">To review</span>
               </div>
               <h2 class="detail__title" id="detail-title">Pothole near school gate in Bayt Ras</h2>
               <p class="detail__desc" id="d-desc">Wide pothole at the kerb where parents drop children. Cars brake sharply to avoid it and the edge is breaking away.</p>
               <p class="detail__meta"><span><svg class="icon" width="10" height="10" aria-hidden="true" focusable="false"><use href="#i-pin-drop"/></svg><span id="d-place">School gate, Bayt Ras</span></span><span><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-schedule"/></svg><span id="d-time">4 minutes ago</span></span><span><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-account-circle"/></svg><span id="d-reporter">Lina A. (verified)</span></span></p>
 
               <div class="ai-check" id="d-ai">
-                <p class="ai-check__title"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-sparkle"/></svg> AI analysis</p>
+                <p class="ai-check__title"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-sparkle"/></svg> AI analysis (advice only)</p>
                 <dl>
                   <div><dt>Suggested category</dt><dd id="d-ai-cat">Roads &amp; Hazards</dd></div>
                   <div><dt>Confidence</dt><dd><div class="progress" aria-hidden="true"><span id="d-conf-bar" style="transform:scaleX(.96)"></span></div><span class="num" id="d-conf">96%</span></dd></div>
@@ -188,11 +191,13 @@
                 </dl>
               </div>
 
+              <p class="d-result" id="d-result" hidden></p>
+
               <form class="decision" id="decision">
                 <div class="form-grid">
                   <div class="field"><label class="field__label" for="cat-select">Category</label>
                     <select class="select" id="cat-select"><option value="roads">Roads &amp; Hazards</option><option value="light">Street Lighting</option><option value="sanitation">Sanitation &amp; Debris</option><option value="parks">Parks &amp; Public Trees</option><option value="water">Water Main &amp; Drainage</option><option value="sidewalk">Sidewalks &amp; Signs</option></select></div>
-                  <div class="field"><label class="field__label" for="dept-select">Forward to</label>
+                  <div class="field"><label class="field__label" for="dept-select">Department</label>
                     <select class="select" id="dept-select"><option value="roads">Roads Department</option><option value="lighting">Lighting Division</option><option value="sanitation">Sanitation Department</option><option value="parks">Parks Department</option><option value="drainage">Drainage &amp; Water Authority</option></select></div>
                   <div class="field is-full"><span class="field__label" id="prio-label">Priority</span>
                     <div class="segmented seg-prio" role="group" aria-labelledby="prio-label" id="prio-group">
@@ -201,22 +206,21 @@
                       <button type="button" aria-pressed="false" data-prio="medium">Medium</button>
                       <button type="button" aria-pressed="false" data-prio="low">Low</button>
                     </div></div>
-                  <div class="field is-full"><label class="field__label" for="note">Note to the department (optional)</label>
+                  <fieldset class="field is-full teams" id="teams"><legend class="field__label">Maintenance team</legend><div class="teams__list" id="team-options"></div><p class="teams__note" id="team-note" hidden></p></fieldset>
+                  <div class="field is-full"><label class="field__label" for="note">Note to the team (optional)</label>
                     <textarea class="textarea" id="note" rows="2" placeholder="Anything the crew should know before they arrive"></textarea></div>
                 </div>
                 <p class="decision__note" id="override-note" hidden><svg class="icon" width="11" height="11" aria-hidden="true" focusable="false"><use href="#i-info"/></svg>You changed the AI suggestion. The override is logged to improve the model.</p>
                 <div class="decision__actions">
-                  <button class="btn btn--primary" type="submit" id="confirm-btn"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-done"/></svg>Confirm &amp; forward</button>
-                  <button class="btn btn--outline" type="button" id="info-btn"><svg class="icon" width="15" height="15" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>Request info</button>
-                  <button class="btn btn--outline" type="button" id="merge-btn"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-merge"/></svg>Merge duplicate</button>
+                  <button class="btn btn--primary" type="submit" id="confirm-btn">Confirm &amp; assign team</button>
                   <button class="btn btn--danger" type="button" id="reject-btn"><svg class="icon" width="15" height="15" aria-hidden="true" focusable="false"><use href="#i-block"/></svg>Reject</button>
                 </div>
                 <div class="reject-box" id="reject-box" hidden>
-                  <label class="field__label" for="reject-reason">Reason for rejection (sent to the resident)</label>
-                  <select class="select" id="reject-reason"><option>Spam or advertising</option><option>Outside municipal responsibility</option><option>Not enough information to act</option><option>Test or abusive content</option></select>
+                  <label class="field__label" for="reject-reason">Reason (the resident sees this)</label>
+                  <select class="select" id="reject-reason"><option>Duplicate of an earlier report</option><option>Spam or advertising</option><option>Outside municipal responsibility</option><option>Not enough information to act</option></select>
                   <button class="btn btn--danger btn--sm" type="button" id="reject-confirm">Reject report</button>
                 </div>
-              </form>
+                </form>
             </div>
           </section>
         </div>

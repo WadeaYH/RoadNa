@@ -4,17 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#f7f9ff">
-  <meta name="description" content="Every report you have filed with RoadNa JO and its current status.">
+  <meta name="description" content="Your reports and what is happening with each one.">
   <title>My Reports | RoadNa JO</title>
   <link rel="stylesheet" href="../../shared/base.css">
   <link rel="stylesheet" href="../../shared/app.css">
+  <link rel="stylesheet" href="../../shared/resident.css">
   <link rel="stylesheet" href="./style.css">
   <script src="../../shared/ui.js" defer></script>
   <script src="./script.js" defer></script>
 </head>
 <body class="page-my-reports">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <symbol id="i-account-balance" viewBox="0 0 20 20"><path d="M3 16V9H5V16H3ZM9 16V9H11V16H9ZM0 20V18H20V20H0ZM15 16V9H17V16H15ZM0 7V5L10 0L20 5V7H0Z"/></symbol>
+  <symbol id="i-account-balance" viewBox="0 0 24 24"><path d="M7 4V20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><path d="M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></symbol>
   <symbol id="i-account-circle" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></symbol>
   <symbol id="i-add-circle" viewBox="0 0 15 15"><path d="M6.75 11.25H8.25V8.25H11.25V6.75H8.25V3.75H6.75V6.75H3.75V8.25H6.75V11.25ZM7.5 15C6.4625 15 5.4875 14.8031 4.575 14.4094C3.6625 14.0156 2.86875 13.4812 2.19375 12.8062C1.51875 12.1312 0.984375 11.3375 0.590625 10.425C0.196875 9.5125 0 8.5375 0 7.5C0 6.4625 0.196875 5.4875 0.590625 4.575C0.984375 3.6625 1.51875 2.86875 2.19375 2.19375C2.86875 1.51875 3.6625 0.984375 4.575 0.590625C5.4875 0.196875 6.4625 0 7.5 0C8.5375 0 9.5125 0.196875 10.425 0.590625C11.3375 0.984375 12.1312 1.51875 12.8062 2.19375C13.4812 2.86875 14.0156 3.6625 14.4094 4.575C14.8031 5.4875 15 6.4625 15 7.5C15 8.5375 14.8031 9.5125 14.4094 10.425C14.0156 11.3375 13.4812 12.1312 12.8062 12.8062C12.1312 13.4812 11.3375 14.0156 10.425 14.4094C9.5125 14.8031 8.5375 15 7.5 15Z"/></symbol>
   <symbol id="i-bell" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></symbol>
@@ -33,176 +34,149 @@
   <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></symbol>
   <symbol id="i-walk" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></symbol>
   <symbol id="i-water-drop" viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 3.5 21 11V20.5H14.5V14.5H9.5V20.5H3Z"/></symbol>
   </svg>
-  <div class="app-shell">
-    <aside class="sidebar" id="app-sidebar" aria-label="Resident navigation">
-    <a class="sidebar__brand brand" href="../home-menu/index.html" aria-label="RoadNa JO home">
-      <span class="brand__mark"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-account-balance"/></svg></span>
-      <span class="brand__text">
-        <span class="brand__name">RoadNa JO</span>
-        <span class="brand__tag">Resident Portal</span>
-      </span>
-    </a>
-    <a class="btn btn--primary btn--block sidebar__cta" href="../create-report/index.html"><svg class="icon" width="15" height="15" aria-hidden="true" focusable="false"><use href="#i-add-circle"/></svg>Report an Issue</a>
-    <nav aria-label="Main">
-      <ul class="sidebar__nav">
-        <li><a class="nav-item" href="../home-menu/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-dashboard"/></svg>Home</a></li>
-        <li><a class="nav-item" href="../my-reports/index.html" aria-current="page"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-list-alt"/></svg>My Reports<span class="nav-item__badge nav-item__badge--soft">7</span></a></li>
-        <li><a class="nav-item" href="../notifications/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg>Notifications<span class="nav-item__badge">3</span></a></li>
-        <li><a class="nav-item" href="../profile/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-account-circle"/></svg>Profile</a></li>
-      </ul>
-      <p class="sidebar__label">Community</p>
-      <ul class="sidebar__nav">
-        <li><a class="nav-item" href="../public-guest-menu/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-map-fill"/></svg>Explore Map</a></li>
-      </ul>
-    </nav>
-    <div class="sidebar__foot">
-      <div class="sidebar__user">
-        <span class="avatar">MV</span>
-        <span class="sidebar__user-text"><span class="sidebar__user-name">Marcus Vance</span><span class="sidebar__user-meta">Resident · Downtown</span></span>
-      </div>
-      <a class="nav-item" href="../login/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-logout"/></svg>Log out</a>
-    </div>
-  </aside>
-  <button class="scrim" type="button" aria-label="Close navigation menu" data-sidebar-close></button>
+  <div class="res-shell">
+    <header class="res-top">
+      <a class="brand" href="../home-menu/index.html" aria-label="RoadNa JO home">
+        <span class="brand__name"><svg class="r-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4V20M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></svg>oadNa<span class="logo-jo">JO</span></span>
+      </a>
+      <nav class="res-nav" aria-label="Main">
+        <a href="../home-menu/index.html">Home</a>
+        <a href="../my-reports/index.html" aria-current="page">My reports</a>
+        <a href="../public-guest-menu/index.html">Map</a>
+        <a href="../community/index.html">Community</a>
+      </nav>
+      <span class="res-top__spacer"></span>
+      <a class="btn btn--primary" href="../create-report/index.html"><svg class="icon" width="15" height="15" aria-hidden="true" focusable="false"><use href="#i-add-circle"/></svg>Report an Issue</a>
+      <a class="icon-btn" href="../notifications/index.html" aria-label="Notifications, 3 unread"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span class="icon-btn__dot" aria-hidden="true"></span></a>
+      <a class="user-chip" href="../profile/index.html" aria-label="Your profile"><span class="avatar">MV</span><span>Marcus</span></a>
+    </header>
     <div class="app-main">
-      <header class="app-topbar">
-    <button class="icon-btn topbar__menu" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="app-sidebar" aria-label="Open navigation menu"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg></button>
-    <a class="topbar__brand brand" href="../home-menu/index.html" aria-label="RoadNa JO home">
-      <span class="brand__mark" style="width:32px;height:32px"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-account-balance"/></svg></span>
-      <span class="brand__name" style="font-size:18px;line-height:24px">RoadNa JO</span>
-    </a>
-    <p class="topbar__crumb">Resident <span aria-hidden="true">/</span> <strong>My Reports</strong></p>
-    <span class="topbar__spacer"></span>
-    <label class="topbar__search">
-      <span class="sr-only">Search reports</span>
-      <svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-find"/></svg>
-      <input type="search" placeholder="Search reports, streets, IDs" autocomplete="off">
-    </label>
-    <a class="icon-btn" href="../notifications/index.html" aria-label="Notifications, 3 unread"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span class="icon-btn__dot" aria-hidden="true"></span></a>
-    <a class="user-chip" href="../profile/index.html"><span class="avatar">MV</span><span>Marcus Vance</span></a>
-  </header>
       <main class="app-content" id="main">
         <header class="page-head">
           <div class="page-head__text">
-            <p class="eyebrow">Your history</p>
-            <h1>My Reports</h1>
-            <p>Every report you have filed, with live status. Select a report to see its full timeline.</p>
-          </div>
-          <div class="page-head__actions">
-            <a class="btn btn--primary" href="../create-report/index.html"><svg class="icon" width="15" height="15" aria-hidden="true" focusable="false"><use href="#i-add-circle"/></svg>Report an Issue</a>
+            <h1>My reports</h1>
+            <p>Tap a report to see what is happening with it.</p>
           </div>
         </header>
 
-        <section class="panel" aria-label="Report list">
-          <div class="toolbar">
-            <div class="tabs" role="group" aria-label="Filter reports by state">
-              <button class="tab is-active" type="button" aria-pressed="true" data-filter="all">All <span class="tab__count">7</span></button>
-              <button class="tab" type="button" aria-pressed="false" data-filter="open">Open <span class="tab__count">3</span></button>
-              <button class="tab" type="button" aria-pressed="false" data-filter="resolved">Resolved <span class="tab__count">2</span></button>
-              <button class="tab" type="button" aria-pressed="false" data-filter="closed">Closed <span class="tab__count">2</span></button>
-            </div>
-            <div class="toolbar__right">
-              <label class="search-field">
-                <span class="sr-only">Search my reports</span>
-                <svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-find"/></svg>
-                <input type="search" id="search" placeholder="Search title or ID" autocomplete="off">
-              </label>
-              <label>
-                <span class="sr-only">Sort reports</span>
-                <select class="select" id="sort">
-                  <option value="recent">Recently updated</option>
-                  <option value="votes">Most voted</option>
-                  <option value="oldest">Oldest first</option>
-                </select>
-              </label>
-            </div>
+        <div class="toolbar">
+          <div class="tabs" role="group" aria-label="Filter reports">
+            <button class="tab is-active" type="button" aria-pressed="true" data-filter="all">All <span class="tab__count">7</span></button>
+            <button class="tab" type="button" aria-pressed="false" data-filter="open">Open <span class="tab__count">3</span></button>
+            <button class="tab" type="button" aria-pressed="false" data-filter="fixed">Fixed <span class="tab__count">3</span></button>
+            <button class="tab" type="button" aria-pressed="false" data-filter="rejected">Rejected <span class="tab__count">1</span></button>
           </div>
-
-          <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable report table">
-            <table class="table reports-table" id="reports-table">
-              <thead>
-                <tr><th scope="col">Report</th><th scope="col">Category</th><th scope="col">Status</th><th scope="col">Votes</th><th scope="col">Updated</th><th scope="col"><span class="sr-only">Actions</span></th></tr>
-              </thead>
-              <tbody>
-                <tr data-group="open" data-votes="42" data-age="1">
-                  <td data-label="Report"><div class="cell-report"><span class="thumb thumb--road" aria-hidden="true"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-construction"/></svg></span><div><a href="../report-details/index.html">Severe asphalt pothole on University St</a><span class="mono">RN-2025-0412</span></div></div></td>
-                  <td data-label="Category"><span class="tag">Roads &amp; Hazards</span></td>
-                  <td data-label="Status"><span class="chip chip--progress">In Progress</span></td>
-                  <td data-label="Votes" class="num">42</td>
-                  <td data-label="Updated">25 min ago</td>
-                  <td class="cell-action"><a class="icon-btn" href="../report-details/index.html" aria-label="Open report RN-2025-0412"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg></a></td>
-                </tr>
-                <tr data-group="open" data-votes="29" data-age="2">
-                  <td data-label="Report"><div class="cell-report"><span class="thumb thumb--light" aria-hidden="true"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-lightbulb"/></svg></span><div><a href="../report-details/index.html">Flickering street lamp on Al-Hashemi St</a><span class="mono">RN-2025-0409</span></div></div></td>
-                  <td data-label="Category"><span class="tag">Street Lighting</span></td>
-                  <td data-label="Status"><span class="chip chip--assigned">Assigned</span></td>
-                  <td data-label="Votes" class="num">29</td>
-                  <td data-label="Updated">2 hrs ago</td>
-                  <td class="cell-action"><a class="icon-btn" href="../report-details/index.html" aria-label="Open report RN-2025-0409"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg></a></td>
-                </tr>
-                <tr data-group="open" data-votes="18" data-age="3">
-                  <td data-label="Report"><div class="cell-report"><span class="thumb thumb--park" aria-hidden="true"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-delete"/></svg></span><div><a href="../report-details/index.html">Overflowing park trash receptacle</a><span class="mono">RN-2025-0398</span></div></div></td>
-                  <td data-label="Category"><span class="tag">Sanitation &amp; Parks</span></td>
-                  <td data-label="Status"><span class="chip chip--submitted">Submitted</span></td>
-                  <td data-label="Votes" class="num">18</td>
-                  <td data-label="Updated">Yesterday</td>
-                  <td class="cell-action"><a class="icon-btn" href="../report-details/index.html" aria-label="Open report RN-2025-0398"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg></a></td>
-                </tr>
-                <tr data-group="resolved" data-votes="56" data-age="4">
-                  <td data-label="Report"><div class="cell-report"><span class="thumb thumb--ramp" aria-hidden="true"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-check-circle"/></svg></span><div><a href="../report-details/index.html">Damaged curb ramp reconstructed</a><span class="mono">RN-2025-0371</span></div></div></td>
-                  <td data-label="Category"><span class="tag">Roads &amp; Hazards</span></td>
-                  <td data-label="Status"><span class="chip chip--resolved">Resolved</span><a class="rate-link" href="../report-details/index.html#rate">Rate the fix</a></td>
-                  <td data-label="Votes" class="num">56</td>
-                  <td data-label="Updated">3 days ago</td>
-                  <td class="cell-action"><a class="icon-btn" href="../report-details/index.html" aria-label="Open report RN-2025-0371"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg></a></td>
-                </tr>
-                <tr data-group="resolved" data-votes="22" data-age="12">
-                  <td data-label="Report"><div class="cell-report"><span class="thumb thumb--walk" aria-hidden="true"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-walk"/></svg></span><div><a href="../report-details/index.html">Cracked sidewalk slab near bus stop</a><span class="mono">RN-2025-0302</span></div></div></td>
-                  <td data-label="Category"><span class="tag">Sidewalks &amp; Signs</span></td>
-                  <td data-label="Status"><span class="chip chip--resolved">Resolved</span><a class="rate-link" href="../report-details/index.html#rate">Rate the fix</a></td>
-                  <td data-label="Votes" class="num">22</td>
-                  <td data-label="Updated">Sep 24</td>
-                  <td class="cell-action"><a class="icon-btn" href="../report-details/index.html" aria-label="Open report RN-2025-0302"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg></a></td>
-                </tr>
-                <tr data-group="closed" data-votes="31" data-age="16">
-                  <td data-label="Report"><div class="cell-report"><span class="thumb thumb--drain" aria-hidden="true"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-water-drop"/></svg></span><div><a href="../report-details/index.html">Blocked storm drain by Emaar Irbid Park</a><span class="mono">RN-2025-0344</span></div></div></td>
-                  <td data-label="Category"><span class="tag">Water &amp; Drainage</span></td>
-                  <td data-label="Status"><span class="chip chip--closed">Closed</span><span class="rated" aria-label="Rated 4 out of 5"><svg class="icon" width="12" height="12" aria-hidden="true" focusable="false"><use href="#i-star"/></svg>4.0</span></td>
-                  <td data-label="Votes" class="num">31</td>
-                  <td data-label="Updated">Sep 18</td>
-                  <td class="cell-action"><a class="icon-btn" href="../report-details/index.html" aria-label="Open report RN-2025-0344"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg></a></td>
-                </tr>
-                <tr data-group="closed" data-votes="9" data-age="30">
-                  <td data-label="Report"><div class="cell-report"><span class="thumb thumb--road" aria-hidden="true"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-construction"/></svg></span><div><a href="../report-details/index.html">Faded crosswalk markings</a><span class="mono">RN-2025-0288</span></div></div></td>
-                  <td data-label="Category"><span class="tag">Roads &amp; Hazards</span></td>
-                  <td data-label="Status"><span class="chip chip--duplicate">Duplicate</span><span class="merged">Merged into RN-2025-0261</span></td>
-                  <td data-label="Votes" class="num">9</td>
-                  <td data-label="Updated">Sep 2</td>
-                  <td class="cell-action"><a class="icon-btn" href="../report-details/index.html" aria-label="Open report RN-2025-0288"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg></a></td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="toolbar__right">
+            <label class="search-field">
+              <span class="sr-only">Search my reports</span>
+              <svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-find"/></svg>
+              <input type="search" id="search" placeholder="Search my reports" autocomplete="off">
+            </label>
+            <label>
+              <span class="sr-only">Sort reports</span>
+              <select class="select" id="sort">
+                <option value="recent">Recently updated</option>
+                <option value="votes">Most voted</option>
+                <option value="oldest">Oldest first</option>
+              </select>
+            </label>
           </div>
+        </div>
 
-          <div class="empty" id="empty" hidden>
-            <span class="empty__art"><svg class="icon" width="30" height="30" aria-hidden="true" focusable="false"><use href="#i-find"/></svg></span>
-            <h2>No reports match</h2>
-            <p>Try a different search or switch back to all reports. Spotted something new on your street?</p>
-            <a class="btn btn--primary" href="../create-report/index.html">Report an Issue</a>
-          </div>
-
-          <footer class="panel__foot">
-            <p id="count-text">Showing 7 of 18 reports</p>
-            <div class="pager" role="group" aria-label="Pagination">
-              <button class="btn btn--outline btn--sm" type="button" disabled><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-chevron-left"/></svg>Previous</button>
-              <button class="btn btn--outline btn--sm" type="button" disabled data-preview-action="Additional report pages will be available when the service is connected. This is a frontend preview.">Next<svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg></button>
+        <ul class="rcards rcards--list" id="list">
+          <li class="rcard rcard--row" data-group="open" data-votes="42" data-age="1">
+            <div class="rcard__art rcard__art--road" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-construction"/></svg></div>
+            <div class="rcard__body">
+              <span class="chip chip--progress">In progress</span>
+              <h2 class="rcard__title"><a href="../report-details/index.html">Severe asphalt pothole on University St</a></h2>
+              <p class="rcard__update">A crew is on site and expects to finish this afternoon.</p>
+              <ol class="steps3" aria-label="Progress: step 2 of 3, in progress"><li class="is-done">Received</li><li class="is-current">In progress</li><li>Fixed</li></ol>
+              <p class="rcard__meta">Updated 25 min ago · 42 neighbours voted · <span class="mono">RN-2025-0412</span></p>
             </div>
-          </footer>
-        </section>
+          </li>
+          <li class="rcard rcard--row" data-group="open" data-votes="29" data-age="2">
+            <div class="rcard__art rcard__art--light" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-lightbulb"/></svg></div>
+            <div class="rcard__body">
+              <span class="chip chip--progress">In progress</span>
+              <h2 class="rcard__title"><a href="../report-details/index.html">Flickering street lamp on Al-Hashemi St</a></h2>
+              <p class="rcard__update">A lighting team has taken this on. A visit is planned for tomorrow morning.</p>
+              <ol class="steps3" aria-label="Progress: step 2 of 3, in progress"><li class="is-done">Received</li><li class="is-current">In progress</li><li>Fixed</li></ol>
+              <p class="rcard__meta">Updated 2 hrs ago · 29 neighbours voted · <span class="mono">RN-2025-0409</span></p>
+            </div>
+          </li>
+          <li class="rcard rcard--row" data-group="open" data-votes="18" data-age="3">
+            <div class="rcard__art rcard__art--park" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-delete"/></svg></div>
+            <div class="rcard__body">
+              <span class="chip chip--submitted">Received</span>
+              <h2 class="rcard__title"><a href="../report-details/index.html">Overflowing park trash receptacle</a></h2>
+              <p class="rcard__update">We have your report. We will tell you when work starts.</p>
+              <ol class="steps3" aria-label="Progress: step 1 of 3, received"><li class="is-current">Received</li><li>In progress</li><li>Fixed</li></ol>
+              <p class="rcard__meta">Updated yesterday · 18 neighbours voted · <span class="mono">RN-2025-0398</span></p>
+            </div>
+          </li>
+          <li class="rcard rcard--row" data-group="fixed" data-votes="56" data-age="4">
+            <div class="rcard__art rcard__art--ramp" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-check-circle"/></svg></div>
+            <div class="rcard__body">
+              <span class="chip chip--resolved">Fixed</span>
+              <h2 class="rcard__title"><a href="../report-details/index.html">Damaged curb ramp rebuilt</a></h2>
+              <p class="rcard__update">Repaired 3 days ago. Does it look right to you?</p>
+              <p class="rcard__rate"><a class="rate-link" href="../report-details/index.html#rate">Rate the fix</a></p>
+              <p class="rcard__meta">Updated 3 days ago · 56 neighbours voted · <span class="mono">RN-2025-0371</span></p>
+            </div>
+          </li>
+          <li class="rcard rcard--row" data-group="fixed" data-votes="22" data-age="12">
+            <div class="rcard__art rcard__art--walk" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-walk"/></svg></div>
+            <div class="rcard__body">
+              <span class="chip chip--resolved">Fixed</span>
+              <h2 class="rcard__title"><a href="../report-details/index.html">Cracked sidewalk slab near bus stop</a></h2>
+              <p class="rcard__update">Repaired on Sep 24. Does it look right to you?</p>
+              <p class="rcard__rate"><a class="rate-link" href="../report-details/index.html#rate">Rate the fix</a></p>
+              <p class="rcard__meta">Updated Sep 24 · 22 neighbours voted · <span class="mono">RN-2025-0302</span></p>
+            </div>
+          </li>
+          <li class="rcard rcard--row" data-group="fixed" data-votes="31" data-age="16">
+            <div class="rcard__art rcard__art--drain" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-water-drop"/></svg></div>
+            <div class="rcard__body">
+              <span class="chip chip--resolved">Fixed</span>
+              <h2 class="rcard__title"><a href="../report-details/index.html">Blocked storm drain by Emaar Irbid Park</a></h2>
+              <p class="rcard__update">Cleared and checked. <span class="rated" aria-label="You rated it 4 out of 5"><svg class="icon" width="12" height="12" aria-hidden="true" focusable="false"><use href="#i-star"/></svg>You rated it 4 out of 5</span></p>
+              <p class="rcard__meta">Updated Sep 18 · 31 neighbours voted · <span class="mono">RN-2025-0344</span></p>
+            </div>
+          </li>
+          <li class="rcard rcard--row" data-group="rejected" data-votes="9" data-age="30">
+            <div class="rcard__art rcard__art--road" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-construction"/></svg></div>
+            <div class="rcard__body">
+              <span class="chip chip--rejected">Rejected</span>
+              <h2 class="rcard__title"><a href="../report-details/index.html">Faded crosswalk markings</a></h2>
+              <p class="rcard__update">Reason: this was merged with an earlier report of the same problem, so it is handled there.</p>
+              <p class="rcard__meta">Updated Sep 2 · 9 neighbours voted · <span class="mono">RN-2025-0288</span></p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="empty" id="empty" hidden>
+          <span class="empty__art"><svg class="icon" width="30" height="30" aria-hidden="true" focusable="false"><use href="#i-find"/></svg></span>
+          <h2>No reports match</h2>
+          <p>Try a different search or switch back to all reports. Spotted something new on your street?</p>
+          <a class="btn btn--primary" href="../create-report/index.html">Report an Issue</a>
+        </div>
+
+        <footer class="list-foot">
+          <p id="count-text">Showing 7 of your 18 reports</p>
+          <button class="btn btn--outline btn--sm" type="button" data-preview-action="Older reports will load when the service is connected. This is a frontend preview.">Show older reports</button>
+        </footer>
       </main>
     </div>
   </div>
 
+  <nav class="res-tabs" aria-label="Main">
+    <a class="res-tab" href="../home-menu/index.html"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-home"/></svg>Home</a>
+    <a class="res-tab" href="../public-guest-menu/index.html"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-map-fill"/></svg>Map</a>
+    <a class="res-tab res-tab--report" href="../create-report/index.html"><span class="res-tab__disc"><svg class="icon" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-add-circle"/></svg></span>Report</a>
+    <a class="res-tab" href="../my-reports/index.html" aria-current="page"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-list-alt"/></svg>Reports</a>
+    <a class="res-tab" href="../profile/index.html"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-account-circle"/></svg>Me</a>
+  </nav>
 </body>
 </html>

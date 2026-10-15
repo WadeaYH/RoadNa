@@ -8,6 +8,7 @@
   <title>Report an Issue | RoadNa JO</title>
   <link rel="stylesheet" href="../../shared/base.css">
   <link rel="stylesheet" href="../../shared/app.css">
+  <link rel="stylesheet" href="../../shared/resident.css">
   <link rel="stylesheet" href="../../shared/vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="../../shared/map.css">
   <link rel="stylesheet" href="./style.css">
@@ -18,7 +19,7 @@
 </head>
 <body class="page-create">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <symbol id="i-account-balance" viewBox="0 0 20 20"><path d="M3 16V9H5V16H3ZM9 16V9H11V16H9ZM0 20V18H20V20H0ZM15 16V9H17V16H15ZM0 7V5L10 0L20 5V7H0Z"/></symbol>
+  <symbol id="i-account-balance" viewBox="0 0 24 24"><path d="M7 4V20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><path d="M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></symbol>
   <symbol id="i-account-circle" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></symbol>
   <symbol id="i-add-circle" viewBox="0 0 15 15"><path d="M6.75 11.25H8.25V8.25H11.25V6.75H8.25V3.75H6.75V6.75H3.75V8.25H6.75V11.25ZM7.5 15C6.4625 15 5.4875 14.8031 4.575 14.4094C3.6625 14.0156 2.86875 13.4812 2.19375 12.8062C1.51875 12.1312 0.984375 11.3375 0.590625 10.425C0.196875 9.5125 0 8.5375 0 7.5C0 6.4625 0.196875 5.4875 0.590625 4.575C0.984375 3.6625 1.51875 2.86875 2.19375 2.19375C2.86875 1.51875 3.6625 0.984375 4.575 0.590625C5.4875 0.196875 6.4625 0 7.5 0C8.5375 0 9.5125 0.196875 10.425 0.590625C11.3375 0.984375 12.1312 1.51875 12.8062 2.19375C13.4812 2.86875 14.0156 3.6625 14.4094 4.575C14.8031 5.4875 15 6.4625 15 7.5C15 8.5375 14.8031 9.5125 14.4094 10.425C14.0156 11.3375 13.4812 12.1312 12.8062 12.8062C12.1312 13.4812 11.3375 14.0156 10.425 14.4094C9.5125 14.8031 8.5375 15 7.5 15Z"/></symbol>
   <symbol id="i-bell" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></symbol>
@@ -40,191 +41,160 @@
   <symbol id="i-upload-cloud" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></symbol>
   <symbol id="i-walk" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></symbol>
   <symbol id="i-water-drop" viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 3.5 21 11V20.5H14.5V14.5H9.5V20.5H3Z"/></symbol>
   </svg>
-  <div class="app-shell">
-    <aside class="sidebar" id="app-sidebar" aria-label="Resident navigation">
-    <a class="sidebar__brand brand" href="../home-menu/index.html" aria-label="RoadNa JO home">
-      <span class="brand__mark"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-account-balance"/></svg></span>
-      <span class="brand__text">
-        <span class="brand__name">RoadNa JO</span>
-        <span class="brand__tag">Resident Portal</span>
-      </span>
-    </a>
-    <a class="btn btn--primary btn--block sidebar__cta" href="../create-report/index.html"><svg class="icon" width="15" height="15" aria-hidden="true" focusable="false"><use href="#i-add-circle"/></svg>Report an Issue</a>
-    <nav aria-label="Main">
-      <ul class="sidebar__nav">
-        <li><a class="nav-item" href="../home-menu/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-dashboard"/></svg>Home</a></li>
-        <li><a class="nav-item" href="../my-reports/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-list-alt"/></svg>My Reports<span class="nav-item__badge nav-item__badge--soft">7</span></a></li>
-        <li><a class="nav-item" href="../notifications/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg>Notifications<span class="nav-item__badge">3</span></a></li>
-        <li><a class="nav-item" href="../profile/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-account-circle"/></svg>Profile</a></li>
-      </ul>
-      <p class="sidebar__label">Community</p>
-      <ul class="sidebar__nav">
-        <li><a class="nav-item" href="../public-guest-menu/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-map-fill"/></svg>Explore Map</a></li>
-      </ul>
-    </nav>
-    <div class="sidebar__foot">
-      <div class="sidebar__user">
-        <span class="avatar">MV</span>
-        <span class="sidebar__user-text"><span class="sidebar__user-name">Marcus Vance</span><span class="sidebar__user-meta">Resident · Downtown</span></span>
-      </div>
-      <a class="nav-item" href="../login/index.html"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-logout"/></svg>Log out</a>
-    </div>
-  </aside>
-  <button class="scrim" type="button" aria-label="Close navigation menu" data-sidebar-close></button>
+  <div class="res-shell">
+    <header class="res-top">
+      <a class="brand" href="../home-menu/index.html" aria-label="RoadNa JO home">
+        <span class="brand__name"><svg class="r-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4V20M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></svg>oadNa<span class="logo-jo">JO</span></span>
+      </a>
+      <nav class="res-nav" aria-label="Main">
+        <a href="../home-menu/index.html">Home</a>
+        <a href="../my-reports/index.html">My reports</a>
+        <a href="../public-guest-menu/index.html">Map</a>
+        <a href="../community/index.html">Community</a>
+      </nav>
+      <span class="res-top__spacer"></span>
+      <a class="btn btn--primary" href="../create-report/index.html" aria-current="page"><svg class="icon" width="15" height="15" aria-hidden="true" focusable="false"><use href="#i-add-circle"/></svg>Report an Issue</a>
+      <a class="icon-btn" href="../notifications/index.html" aria-label="Notifications, 3 unread"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span class="icon-btn__dot" aria-hidden="true"></span></a>
+      <a class="user-chip" href="../profile/index.html" aria-label="Your profile"><span class="avatar">MV</span><span>Marcus</span></a>
+    </header>
     <div class="app-main">
-      <header class="app-topbar">
-    <button class="icon-btn topbar__menu" type="button" data-sidebar-toggle aria-expanded="false" aria-controls="app-sidebar" aria-label="Open navigation menu"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg></button>
-    <a class="topbar__brand brand" href="../home-menu/index.html" aria-label="RoadNa JO home">
-      <span class="brand__mark" style="width:32px;height:32px"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-account-balance"/></svg></span>
-      <span class="brand__name" style="font-size:18px;line-height:24px">RoadNa JO</span>
-    </a>
-    <p class="topbar__crumb">Resident <span aria-hidden="true">/</span> <strong>Report an Issue</strong></p>
-    <span class="topbar__spacer"></span>
-    <label class="topbar__search">
-      <span class="sr-only">Search reports</span>
-      <svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-find"/></svg>
-      <input type="search" placeholder="Search reports, streets, IDs" autocomplete="off">
-    </label>
-    <a class="icon-btn" href="../notifications/index.html" aria-label="Notifications, 3 unread"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span class="icon-btn__dot" aria-hidden="true"></span></a>
-    <a class="user-chip" href="../profile/index.html"><span class="avatar">MV</span><span>Marcus Vance</span></a>
-  </header>
       <main class="app-content" id="main">
         <header class="page-head">
           <div class="page-head__text">
-            <p class="eyebrow">New report</p>
             <h1>Report an issue</h1>
-            <p>Four quick steps, about three minutes. An AI assistant suggests a category and priority, and a municipal moderator confirms every report.</p>
+            <p>It takes about a minute. We will keep you posted.</p>
           </div>
         </header>
 
         <ol class="stepper" id="stepper" aria-label="Report progress">
-          <li class="stepper__item" data-step="category"><span class="stepper__dot">1</span>Category</li>
-          <li class="stepper__item" data-step="details"><span class="stepper__dot">2</span>Details</li>
-          <li class="stepper__item" data-step="photo"><span class="stepper__dot">3</span>Photo</li>
-          <li class="stepper__item" data-step="location"><span class="stepper__dot">4</span>Location</li>
+          <li class="stepper__item is-current" data-step="photo"><span class="stepper__dot">1</span>Photo</li>
+          <li class="stepper__item" data-step="place"><span class="stepper__dot">2</span>Place</li>
+          <li class="stepper__item" data-step="details"><span class="stepper__dot">3</span>Details</li>
+          <li class="stepper__item" data-step="send"><span class="stepper__dot">4</span>Send</li>
         </ol>
+        <p class="step-label" id="step-label" aria-hidden="true">Step 1 of 4 · Photo</p>
 
         <!-- Frontend preview. ASP.NET will handle real submissions. -->
-        <form class="cols cols--main-side report-form" id="report-form" data-next="../report-submitted/index.html" data-next-label="Preview report submitted">
-          <div class="stack">
+        <form class="report-form" id="report-form" data-next="../report-submitted/index.html" data-next-label="Preview report submitted" novalidate>
 
-            <section class="panel form-section" id="section-category" aria-labelledby="cat-title" data-reveal>
-              <header class="form-section__head">
-                <span class="form-section__num">1</span>
-                <div><h2 class="panel__title" id="cat-title">What kind of problem is it?</h2><p class="panel__sub">Pick the closest match. You can change it later.</p></div>
-              </header>
-              <fieldset class="cat-grid">
-                <legend class="sr-only">Issue category</legend>
-                <label class="cat-tile">
-                  <input type="radio" name="category" value="roads" required data-label="Roads &amp; Hazards" data-priority="high" data-dept="Roads Department" data-conf="94">
-                  <span class="cat-tile__icon"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-construction"/></svg></span><span class="cat-tile__name">Roadways &amp; Potholes</span><span class="cat-tile__hint">Potholes, cracks, sinkholes</span>
-                </label>
-                <label class="cat-tile">
-                  <input type="radio" name="category" value="light" data-label="Street Lighting" data-priority="medium" data-dept="Lighting Division" data-conf="91">
-                  <span class="cat-tile__icon"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-lightbulb"/></svg></span><span class="cat-tile__name">Streetlights &amp; Signals</span><span class="cat-tile__hint">Dark, flickering or broken</span>
-                </label>
-                <label class="cat-tile">
-                  <input type="radio" name="category" value="sanitation" data-label="Sanitation &amp; Debris" data-priority="medium" data-dept="Sanitation Department" data-conf="88">
-                  <span class="cat-tile__icon"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-delete"/></svg></span><span class="cat-tile__name">Sanitation &amp; Debris</span><span class="cat-tile__hint">Overflowing bins, dumping</span>
-                </label>
-                <label class="cat-tile">
-                  <input type="radio" name="category" value="parks" data-label="Parks &amp; Public Trees" data-priority="low" data-dept="Parks Department" data-conf="86">
-                  <span class="cat-tile__icon"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-park"/></svg></span><span class="cat-tile__name">Parks &amp; Public Trees</span><span class="cat-tile__hint">Fallen branches, damage</span>
-                </label>
-                <label class="cat-tile">
-                  <input type="radio" name="category" value="water" data-label="Water Main &amp; Drainage" data-priority="high" data-dept="Drainage &amp; Water Authority" data-conf="92">
-                  <span class="cat-tile__icon"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-water-drop"/></svg></span><span class="cat-tile__name">Water Main &amp; Drainage</span><span class="cat-tile__hint">Blocked drains, leaks</span>
-                </label>
-                <label class="cat-tile">
-                  <input type="radio" name="category" value="sidewalk" data-label="Sidewalks &amp; Signs" data-priority="medium" data-dept="Roads Department" data-conf="85">
-                  <span class="cat-tile__icon"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-walk"/></svg></span><span class="cat-tile__name">Sidewalks &amp; Signs</span><span class="cat-tile__hint">Broken paving, fallen signs</span>
-                </label>
-              </fieldset>
-            </section>
+          <section class="panel form-section wiz-step" data-step="photo" aria-labelledby="photo-title">
+            <header class="form-section__head">
+              <div><h2 class="panel__title" id="photo-title">Add a photo</h2><p class="panel__sub">A clear photo helps the team find and fix it. You can skip this step.</p></div>
+            </header>
+            <label class="dropzone" id="dropzone" for="photos">
+              <svg class="icon" width="32" height="32" aria-hidden="true" focusable="false"><use href="#i-upload-cloud"/></svg>
+              <strong>Tap to add photos or <span class="dropzone__link">browse</span></strong>
+              <span>Up to 3 photos, JPG or PNG, 10 MB each</span>
+            </label>
+            <input class="sr-only" type="file" id="photos" name="photos" accept="image/png,image/jpeg" multiple>
+            <ul class="previews" id="previews" aria-label="Selected photos" hidden></ul>
+            <div class="wiz-actions">
+              <a class="btn btn--ghost" href="../home-menu/index.html">Cancel</a>
+              <button class="btn btn--primary btn--lg" type="button" data-wiz="next">Next</button>
+            </div>
+          </section>
 
-            <section class="panel form-section" id="section-details" aria-labelledby="desc-title" data-reveal>
-              <header class="form-section__head">
-                <span class="form-section__num">2</span>
-                <div><h2 class="panel__title" id="desc-title">Describe what you see</h2><p class="panel__sub">A sentence or two is enough. Mention anything that makes it dangerous.</p></div>
-              </header>
-              <div class="field">
-                <label class="field__label" for="description">Description</label>
-                <textarea class="textarea" id="description" name="description" rows="5" maxlength="500" minlength="10" required placeholder="e.g. Deep pothole in the eastbound lane right before the pedestrian crossing. Cars swerve into the bike lane to avoid it."></textarea>
-                <p class="field__hint"><span id="char-count">0</span> / 500 characters</p>
-              </div>
-              <fieldset class="flags">
-                <legend class="field__label">Does it affect any of these?</legend>
-                <label class="flag"><input type="checkbox" name="flags" value="traffic"><span>Blocks traffic</span></label>
-                <label class="flag"><input type="checkbox" name="flags" value="pedestrians"><span>Risk to pedestrians</span></label>
-                <label class="flag"><input type="checkbox" name="flags" value="school"><span>Near a school</span></label>
-                <label class="flag"><input type="checkbox" name="flags" value="night"><span>Worse at night</span></label>
-              </fieldset>
-            </section>
+          <section class="panel form-section wiz-step" data-step="place" aria-labelledby="loc-title" hidden>
+            <header class="form-section__head">
+              <div><h2 class="panel__title" id="loc-title">Where is it?</h2><p class="panel__sub">Tap the map to drop a pin, then drag it to the exact spot.</p></div>
+            </header>
+            <div class="map-picker" id="map-picker">
+              <div class="rn-map map-picker__map" id="pick-map"></div>
+              <button class="btn btn--outline btn--sm map-picker__locate" type="button" id="locate-btn"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-gps"/></svg>Drop pin at map centre</button>
+            </div>
+            <div class="field">
+              <label class="field__label" for="address">Street or landmark</label>
+              <input class="input" id="address" name="address" type="text" placeholder="e.g. University St, Al-Nuzha" autocomplete="street-address" required>
+              <p class="field__hint" id="coords"><svg class="icon" width="11" height="11" aria-hidden="true" focusable="false"><use href="#i-info"/></svg>No pin placed yet</p>
+            </div>
+            <div class="wiz-actions">
+              <button class="btn btn--ghost" type="button" data-wiz="back">Back</button>
+              <button class="btn btn--primary btn--lg" type="button" data-wiz="next">Next</button>
+            </div>
+          </section>
 
-            <section class="panel form-section" id="section-photo" aria-labelledby="photo-title" data-reveal>
-              <header class="form-section__head">
-                <span class="form-section__num">3</span>
-                <div><h2 class="panel__title" id="photo-title">Add a photo</h2><p class="panel__sub">A clear photo helps the AI and the crew. Up to 3 images.</p></div>
-              </header>
-              <label class="dropzone" id="dropzone" for="photos">
-                <svg class="icon" width="32" height="32" aria-hidden="true" focusable="false"><use href="#i-upload-cloud"/></svg>
-                <strong>Drag photos here or <span class="dropzone__link">browse</span></strong>
-                <span>JPG or PNG, up to 10 MB each</span>
+          <section class="panel form-section wiz-step" data-step="details" aria-labelledby="desc-title" hidden>
+            <header class="form-section__head">
+              <div><h2 class="panel__title" id="desc-title">What is wrong?</h2><p class="panel__sub">A sentence or two is enough. Mention anything that makes it dangerous.</p></div>
+            </header>
+            <div class="field">
+              <label class="field__label" for="description">Description</label>
+              <textarea class="textarea" id="description" name="description" rows="4" maxlength="500" minlength="10" required placeholder="e.g. Deep pothole in the eastbound lane before the pedestrian crossing. Cars swerve into the bike lane to avoid it."></textarea>
+              <p class="field__hint"><span id="char-count">0</span> / 500 characters</p>
+            </div>
+            <fieldset class="flags">
+              <legend class="field__label">Does it affect any of these?</legend>
+              <label class="flag"><input type="checkbox" name="flags" value="traffic"><span>Blocks traffic</span></label>
+              <label class="flag"><input type="checkbox" name="flags" value="pedestrians"><span>Risk to pedestrians</span></label>
+              <label class="flag"><input type="checkbox" name="flags" value="school"><span>Near a school</span></label>
+              <label class="flag"><input type="checkbox" name="flags" value="night"><span>Worse at night</span></label>
+            </fieldset>
+            <fieldset class="cat-grid">
+              <legend class="field__label cat-legend">Type of problem</legend>
+              <label class="cat-tile">
+                <input type="radio" name="category" value="roads" required data-label="Roads &amp; Potholes">
+                <span class="cat-tile__icon"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-construction"/></svg></span><span class="cat-tile__name">Roads &amp; Potholes</span><span class="cat-tile__hint">Potholes, cracks, sinkholes</span>
               </label>
-              <input class="sr-only" type="file" id="photos" name="photos" accept="image/png,image/jpeg" multiple>
-              <ul class="previews" id="previews" aria-label="Selected photos" hidden></ul>
-            </section>
+              <label class="cat-tile">
+                <input type="radio" name="category" value="light" data-label="Lights &amp; Signals">
+                <span class="cat-tile__icon"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-lightbulb"/></svg></span><span class="cat-tile__name">Lights &amp; Signals</span><span class="cat-tile__hint">Dark, flickering or broken</span>
+              </label>
+              <label class="cat-tile">
+                <input type="radio" name="category" value="sanitation" data-label="Rubbish &amp; Debris">
+                <span class="cat-tile__icon"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-delete"/></svg></span><span class="cat-tile__name">Rubbish &amp; Debris</span><span class="cat-tile__hint">Overflowing bins, dumping</span>
+              </label>
+              <label class="cat-tile">
+                <input type="radio" name="category" value="parks" data-label="Parks &amp; Trees">
+                <span class="cat-tile__icon"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-park"/></svg></span><span class="cat-tile__name">Parks &amp; Trees</span><span class="cat-tile__hint">Fallen branches, damage</span>
+              </label>
+              <label class="cat-tile">
+                <input type="radio" name="category" value="water" data-label="Water &amp; Drains">
+                <span class="cat-tile__icon"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-water-drop"/></svg></span><span class="cat-tile__name">Water &amp; Drains</span><span class="cat-tile__hint">Blocked drains, leaks</span>
+              </label>
+              <label class="cat-tile">
+                <input type="radio" name="category" value="sidewalk" data-label="Sidewalks &amp; Signs">
+                <span class="cat-tile__icon"><svg class="icon" width="20" height="20" aria-hidden="true" focusable="false"><use href="#i-walk"/></svg></span><span class="cat-tile__name">Sidewalks &amp; Signs</span><span class="cat-tile__hint">Broken paving, fallen signs</span>
+              </label>
+            </fieldset>
+            <p class="cat-note" id="cat-note" hidden></p>
+            <div class="wiz-actions">
+              <button class="btn btn--ghost" type="button" data-wiz="back">Back</button>
+              <button class="btn btn--primary btn--lg" type="button" data-wiz="next">Next</button>
+            </div>
+          </section>
 
-            <section class="panel form-section" id="section-location" aria-labelledby="loc-title" data-reveal>
-              <header class="form-section__head">
-                <span class="form-section__num">4</span>
-                <div><h2 class="panel__title" id="loc-title">Pin the location</h2><p class="panel__sub">Tap the map to drop a pin, then drag it to the exact spot.</p></div>
-              </header>
-              <div class="map-picker" id="map-picker">
-                <div class="rn-map map-picker__map" id="pick-map"></div>
-                <button class="btn btn--outline btn--sm map-picker__locate" type="button" id="locate-btn"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-gps"/></svg>Drop pin at map centre</button>
-              </div>
-              <div class="field">
-                <label class="field__label" for="address">Street address or landmark</label>
-                <input class="input" id="address" name="address" type="text" placeholder="e.g. University St, Al-Nuzha" autocomplete="street-address" required>
-                <p class="field__hint" id="coords"><svg class="icon" width="11" height="11" aria-hidden="true" focusable="false"><use href="#i-info"/></svg>No pin placed yet</p>
-              </div>
-            </section>
-          </div>
-
-          <aside class="stack side-sticky" aria-label="Report summary">
-            <section class="panel ai-panel" aria-labelledby="ai-title" data-reveal>
-              <header class="panel__head">
-                <h2 class="panel__title" id="ai-title"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-sparkle"/></svg> AI suggestion</h2>
-                <span class="ai-tag" id="ai-state">Waiting for a category</span>
-              </header>
-              <dl class="ai-list" id="ai-list">
-                <div><dt>Category</dt><dd id="ai-category">Not chosen yet</dd></div>
-                <div><dt>Priority</dt><dd id="ai-priority"><span class="priority priority--low">Pending</span></dd></div>
-                <div><dt>Responsible team</dt><dd id="ai-dept">To be suggested</dd></div>
-                <div><dt>Confidence</dt><dd><div class="progress" aria-hidden="true"><span id="ai-bar" style="transform:scaleX(0)"></span></div><span id="ai-conf" class="num">–</span></dd></div>
-              </dl>
-              <p class="ai-note">Always advisory. A moderator confirms or corrects the category and priority before the report is forwarded.</p>
-            </section>
-
-            <section class="panel" aria-labelledby="submit-title" data-reveal>
-              <div class="panel__body submit-box">
-                <h2 class="panel__title" id="submit-title">Ready to send?</h2>
-                <label class="anon">
-                  <span class="switch"><input type="checkbox" name="anonymous" id="anonymous"><span class="switch__track"></span></span>
-                  <span><strong>Submit anonymously</strong><span class="anon__hint">Your name is hidden from the public map. Staff can still follow up through the app.</span></span>
-                </label>
-                <button class="btn btn--primary btn--lg btn--block" type="submit">Submit report <svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-send"/></svg></button>
-                <a class="btn btn--ghost btn--block" href="../home-menu/index.html">Cancel</a>
-              </div>
-            </section>
-          </aside>
+          <section class="panel form-section wiz-step" data-step="send" aria-labelledby="send-title" hidden>
+            <header class="form-section__head">
+              <div><h2 class="panel__title" id="send-title">Check and send</h2><p class="panel__sub">Make sure this looks right. You can go back to change anything.</p></div>
+            </header>
+            <dl class="summary" id="summary">
+              <div><dt>Photos</dt><dd id="sum-photos">None</dd></div>
+              <div><dt>Place</dt><dd id="sum-place">-</dd></div>
+              <div><dt>Type</dt><dd id="sum-type">-</dd></div>
+              <div><dt>What is wrong</dt><dd id="sum-desc">-</dd></div>
+            </dl>
+            <label class="anon">
+              <span class="switch"><input type="checkbox" name="anonymous" id="anonymous"><span class="switch__track"></span></span>
+              <span><strong>Submit anonymously</strong><span class="anon__hint">Your name is hidden from the public map. The municipality can still reach you through the app.</span></span>
+            </label>
+            <div class="wiz-actions">
+              <button class="btn btn--ghost" type="button" data-wiz="back">Back</button>
+              <button class="btn btn--primary btn--lg" type="submit">Send report <svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-send"/></svg></button>
+            </div>
+          </section>
         </form>
-        <p class="flow-preview">Explore the flow: <a href="../report-submitted/index.html">Preview Report Submitted</a></p>
       </main>
     </div>
   </div>
 
+  <nav class="res-tabs" aria-label="Main">
+    <a class="res-tab" href="../home-menu/index.html"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-home"/></svg>Home</a>
+    <a class="res-tab" href="../public-guest-menu/index.html"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-map-fill"/></svg>Map</a>
+    <a class="res-tab res-tab--report" href="../create-report/index.html" aria-current="page"><span class="res-tab__disc"><svg class="icon" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-add-circle"/></svg></span>Report</a>
+    <a class="res-tab" href="../my-reports/index.html"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-list-alt"/></svg>Reports</a>
+    <a class="res-tab" href="../profile/index.html"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-account-circle"/></svg>Me</a>
+  </nav>
 </body>
 </html>

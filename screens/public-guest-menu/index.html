@@ -38,9 +38,8 @@
   <a class="skip-link" href="#reports">Skip to report list</a>
   <header class="guest-header">
     <a class="guest-brand" href="../landing-page/index.html" aria-label="RoadNa JO home">
-      <span class="guest-brand__mark"><svg class="icon" width="18" height="18" aria-hidden="true" focusable="false"><use href="#i-location-city"/></svg></span>
       <span class="guest-brand__text">
-        <span class="guest-brand__row"><span class="guest-brand__name">RoadNa JO</span><span class="guest-brand__badge">Public View</span></span>
+        <span class="guest-brand__row"><span class="guest-brand__name"><svg class="r-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4V20M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></svg>oadNa<span class="logo-jo">JO</span></span><span class="guest-brand__badge">Public View</span></span>
         <span class="guest-brand__tag">Municipal Infrastructure Portal</span>
       </span>
     </a>
@@ -79,10 +78,9 @@
 
         <div class="status-pills" role="group" aria-label="Filter by status">
           <button class="pill pill--all is-active" type="button" data-status="all" aria-pressed="true">All <span class="pill__count">4</span></button>
-          <button class="pill pill--submitted" type="button" data-status="submitted" aria-pressed="false">Submitted</button>
-          <button class="pill pill--assigned" type="button" data-status="assigned" aria-pressed="false">Assigned</button>
-          <button class="pill pill--progress" type="button" data-status="progress" aria-pressed="false">In Progress</button>
-          <button class="pill pill--resolved" type="button" data-status="resolved" aria-pressed="false">Resolved</button>
+          <button class="pill pill--submitted" type="button" data-status="submitted" aria-pressed="false">Received</button>
+          <button class="pill pill--progress" type="button" data-status="progress" aria-pressed="false">In progress</button>
+          <button class="pill pill--resolved" type="button" data-status="resolved" aria-pressed="false">Fixed</button>
         </div>
 
         <div class="panel__sort-row">
@@ -97,7 +95,7 @@
             <div class="report-card__main">
               <span class="thumb thumb--road" aria-hidden="true"><svg class="icon" width="26" height="26" aria-hidden="true" focusable="false"><use href="#i-construction"/></svg></span>
               <div class="report-card__body">
-                <div class="report-card__row"><span class="chip chip--progress">In Progress</span><span class="report-card__time">2 hrs ago</span></div>
+                <div class="report-card__row"><span class="chip chip--progress">In progress</span><span class="report-card__time">2 hrs ago</span></div>
                 <h2><a href="../report-details/index.html">Severe asphalt pothole on University St</a></h2>
                 <p class="report-card__place"><svg class="icon" width="9" height="9" aria-hidden="true" focusable="false"><use href="#i-pin-drop"/></svg>University St, Al-Nuzha</p>
               </div>
@@ -106,11 +104,11 @@
           </article>
         </li>
         <li>
-          <article class="report-card" data-status="assigned" data-pin="pin-assigned" data-category="Street Lighting" data-votes="29" data-age="5">
+          <article class="report-card" data-status="progress" data-pin="pin-assigned" data-category="Street Lighting" data-votes="29" data-age="5">
             <div class="report-card__main">
               <span class="thumb thumb--light" aria-hidden="true"><svg class="icon" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-lightbulb"/></svg></span>
               <div class="report-card__body">
-                <div class="report-card__row"><span class="chip chip--assigned">Assigned</span><span class="report-card__time">5 hrs ago</span></div>
+                <div class="report-card__row"><span class="chip chip--progress">In progress</span><span class="report-card__time">5 hrs ago</span></div>
                 <h2><a href="../report-details/index.html">Flickering street lamp on Al-Hashemi St</a></h2>
                 <p class="report-card__place"><svg class="icon" width="9" height="9" aria-hidden="true" focusable="false"><use href="#i-pin-drop"/></svg>Al-Hashemi St, Downtown</p>
               </div>
@@ -123,7 +121,7 @@
             <div class="report-card__main">
               <span class="thumb thumb--park" aria-hidden="true"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-delete"/></svg></span>
               <div class="report-card__body">
-                <div class="report-card__row"><span class="chip chip--submitted">Submitted</span><span class="report-card__time">Yesterday</span></div>
+                <div class="report-card__row"><span class="chip chip--submitted">Received</span><span class="report-card__time">Yesterday</span></div>
                 <h2><a href="../report-details/index.html">Overflowing park trash receptacle</a></h2>
                 <p class="report-card__place"><svg class="icon" width="9" height="9" aria-hidden="true" focusable="false"><use href="#i-pin-drop"/></svg>King Abdullah II Park, west gate</p>
               </div>
@@ -136,7 +134,7 @@
             <div class="report-card__main">
               <span class="thumb thumb--ramp" aria-hidden="true"><svg class="icon" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-check-circle"/></svg></span>
               <div class="report-card__body">
-                <div class="report-card__row"><span class="chip chip--resolved">Resolved</span><span class="report-card__time">3 days ago</span></div>
+                <div class="report-card__row"><span class="chip chip--resolved">Fixed</span><span class="report-card__time">3 days ago</span></div>
                 <h2><a href="../report-details/index.html">Damaged curb ramp reconstructed</a></h2>
                 <p class="report-card__place"><svg class="icon" width="9" height="9" aria-hidden="true" focusable="false"><use href="#i-pin-drop"/></svg>Al-Hashemi St, Downtown</p>
               </div>
@@ -156,10 +154,9 @@
       <div class="map-legend" role="group" aria-label="Report status legend">
         <p>Report Status Legend</p>
         <ul>
-          <li><span class="dot dot--submitted"></span>Submitted</li>
-          <li><span class="dot dot--assigned"></span>Assigned</li>
-          <li><span class="dot dot--progress"></span>In Progress</li>
-          <li><span class="dot dot--resolved"></span>Resolved</li>
+          <li><span class="dot dot--submitted"></span>Received</li>
+          <li><span class="dot dot--progress"></span>In progress</li>
+          <li><span class="dot dot--resolved"></span>Fixed</li>
         </ul>
       </div>
 

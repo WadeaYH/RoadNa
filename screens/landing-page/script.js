@@ -23,3 +23,15 @@ document.querySelectorAll('[data-info]').forEach((link) => link.addEventListener
   event.preventDefault();
   document.getElementById('city-info').showModal();
 }));
+
+// Scroll progress bar under the header: fills as the page is read.
+const progress = document.getElementById('scroll-progress');
+let progressFrame = 0;
+const updateProgress = () => {
+  progressFrame = 0;
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  progress.style.setProperty('--scroll', max > 0 ? Math.min(1, window.scrollY / max).toFixed(4) : '0');
+};
+window.addEventListener('scroll', () => { if (!progressFrame) progressFrame = requestAnimationFrame(updateProgress); }, { passive: true });
+window.addEventListener('resize', updateProgress);
+updateProgress();

@@ -28,7 +28,7 @@
 .guest-banner[hidden] { display: none; }
 .guest-banner p { display: flex; align-items: center; gap: 10px; }
 .guest-banner .icon { color: var(--teal-deep); }
-.guest-banner a { font-size: 12px; font-weight: 600; letter-spacing: .2px; color: var(--teal-deep); text-decoration: underline; text-underline-offset: 2px; }
+.guest-banner a { font-size: 12px; font-weight: 700; letter-spacing: .2px; color: var(--teal-deep); text-decoration: none; }
 .guest-banner__close { display: grid; place-items: center; flex: none; width: 32px; height: 32px; padding: 0; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--muted); }
 .guest-banner__close:hover { background: rgb(0 0 0 / 6%); color: var(--text); }
 
@@ -210,3 +210,8 @@
 
 /* Real map (shared/map.js) */
 .map-legend, .map-zoom { z-index: 1; }
+
+@media (max-width: 760px) {
+  .pill { min-height: 40px; padding-block: 6px; }
+  .guest-banner__close { width: 44px; height: 44px; }
+}

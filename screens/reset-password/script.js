@@ -24,6 +24,7 @@ const update = () => {
   const level = value ? Math.max(1, met) : 0;
   meter.dataset.level = String(level);
   meterText.textContent = LABELS[level];
+  input.setCustomValidity(value && met < Object.keys(rules).length ? "Use at least 8 characters with upper and lower case letters, a number and a symbol." : "");
 };
 input.addEventListener("input", update);
 update();

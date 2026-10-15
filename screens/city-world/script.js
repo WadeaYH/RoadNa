@@ -3,6 +3,37 @@
 const $ = (s, root = document) => root.querySelector(s);
 const app = $('#cw-app'), canvas = $('#cw-canvas'), layer = $('#cw-layer');
 const directory = $('#cw-directory'), dirButton = $('#cw-open-directory'), help = $('#cw-help');
+const opsMode = new URLSearchParams(location.search).get('view') === 'ops';
+const canOpenPlace = (place) => !opsMode || place?.district.id === 'municipal';
+if (opsMode) {
+  app.classList.add('is-ops');
+  const home = $('.cw-brand');
+  home.href = '../admin-dashboard/index.html';
+  home.setAttribute('aria-label', 'RoadNa JO operations dashboard');
+  $('.cw-brand__text small').textContent = 'Operations';
+  $('#cw-open-directory').lastChild.textContent = ' Staff pages';
+  const dashboard = $('.cw-top__actions a');
+  dashboard.href = '../admin-dashboard/index.html';
+  dashboard.textContent = 'Dashboard';
+  directory.querySelectorAll('.cw-group').forEach((group) => { group.hidden = group.getAttribute('aria-labelledby') !== 'g-municipal'; });
+  directory.querySelectorAll('[data-place="depot"]').forEach((a) => { a.href = `../admin-ops-map/index.html${location.search}`; });
+  $('#cw-directory-title').textContent = 'Operations directory';
+  $('.cw-directory__lede').textContent = 'Municipal buildings open staff operations screens.';
+  $('.cw-directory__foot').hidden = true;
+  $('#cw-open-help').setAttribute('aria-label', 'How the operations city works');
+  $('#cw-help-title').textContent = 'Your operations city';
+  const instructions = [
+    ['Start with your department', 'Supervisors start with their department. Managers and super admins can view the municipality. These role choices are frontend previews.'],
+    ['Open a report', 'Choose a report pin or Needs attention item to see its status, assigned crew, vehicle, team leader, members and supervisor.'],
+    ['Follow work through the day', 'Use the time slider for a sample of earlier work, or Live for the simulated current view. The 2D map link keeps your role and selected time.'],
+    ['Watch your area', 'Use Headquarters, Neighbourhood health and the area cards to spot waiting reports and overdue work. Staff pages opens municipal screens only.'],
+  ];
+  document.querySelectorAll('.cw-help__steps li').forEach((item, i) => {
+    item.querySelector('h3').textContent = instructions[i][0];
+    item.querySelector('p').textContent = instructions[i][1];
+  });
+  $('.cw-help__keys p').textContent = 'Q / E rotate · + / − zoom · arrow keys move · R reset · D staff pages · Esc close';
+}
 const motionQuery = matchMedia('(prefers-reduced-motion: reduce)');
 const svg = (id, size = 16) => `<svg class="icon" width="${size}" height="${size}" aria-hidden="true"><use href="#i-${id}"/></svg>`;
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -18,7 +49,7 @@ function openDirectory() {
   dirReturn = document.activeElement;
   directory.classList.add('is-open'); dirButton.setAttribute('aria-expanded', 'true');
   app.inert = true;
-  setTimeout(() => directory.querySelector('a')?.focus({ preventScroll: true }), 60);
+  setTimeout(() => directory.querySelector(opsMode ? '.cw-group[aria-labelledby="g-municipal"] a' : 'a')?.focus({ preventScroll: true }), 60);
   window.dispatchEvent(new CustomEvent('cw:directory', { detail: true }));
 }
 function closeDirectory() {
@@ -29,6 +60,11 @@ function closeDirectory() {
   window.dispatchEvent(new CustomEvent('cw:directory', { detail: false }));
 }
 dirButton.addEventListener('click', () => (directory.classList.contains('is-open') ? closeDirectory() : openDirectory()));
+$('.skip-link[href="#cw-directory"]').addEventListener('click', (event) => {
+  if (document.body.classList.contains('cw-fallback')) return;
+  event.preventDefault();
+  openDirectory();
+});
 $('#cw-close-directory').addEventListener('click', closeDirectory);
 directory.addEventListener('keydown', (e) => { if (e.key === 'Escape') { e.stopPropagation(); closeDirectory(); } });
 $('#cw-open-help').addEventListener('click', () => help.showModal());
@@ -60,6 +96,7 @@ async function boot() {
   const overlay = createOverlay(layer, engine);
   const baseTraffic = engine.quality === 'low' ? 12 : 18;
   const sim = createSim(engine, { clock: 8 * 60 + 30, baseTraffic });
+  if (opsMode) { sim.setAuto(false); sim.setRoadNa(false); sim.state.spawnTimer = 1e9; }
   traffic.spawnTraffic(baseTraffic);
   // A few parked cars make the public car park feel used.
   for (const [i, x] of [[0, 10.5], [1, 14.7]]) { const car = traffic.create(i ? 'suv' : 'sedan', { mode: 'parked' }); if (car) { car.x = x; car.z = 6.95; car.y = 0.245; car.h = i ? Math.PI / 2 : -Math.PI / 2; } }
@@ -88,6 +125,7 @@ async function boot() {
   let directoryOpen = false;
   function sideShift() { if (isPhone()) return 0; if (directoryOpen) return -0.13; return panelOpen() ? 0.1 : 0; }
   function overview() {
+    if (window.__cwOpsOverview) return window.__cwOpsOverview(isPhone(), sideShift());
     const fov = isPhone() ? 36 : 30;
     const r = isPhone() ? 28 : engine.size.w < 1000 ? 35 : 36;
     return { target: { x: 0.5, y: 0, z: 1.2 }, dist: rig.fit(r, fov), az: Math.PI / 4, el: 0.86, fov, sx: sideShift(), sy: isPhone() ? 0.04 : 0.035 };
@@ -141,6 +179,7 @@ async function boot() {
   const card = $('#cw-card');
   const tint = (place, k) => { const m = Array.isArray(place.mesh.material) ? place.mesh.material[0] : place.mesh.material; m.emissive.set(place.district.color); m.emissiveIntensity = k; };
   function setHover(place) {
+    if (!canOpenPlace(place)) place = null;
     if (hovered === place) return;
     if (hovered && hovered !== selected) tint(hovered, 0);
     hovered = place;
@@ -166,7 +205,11 @@ async function boot() {
   const band = (label) => `<div class="cw-card__band"><span>${esc(label)}</span><button class="cw-card__close" type="button" aria-label="Close card">${svg('close', 16)}</button></div>`;
 
   // Buildings
+  const destinationFor = (place) => opsMode && place.id === 'depot'
+    ? window.__cwOps?.mapHref() ?? `../admin-ops-map/index.html${location.search}`
+    : placeHref(place);
   function select(place, { fly = true } = {}) {
+    if (place && !canOpenPlace(place)) return;
     clearSelection();
     if (!place) { card.hidden = true; return; }
     selected = place;
@@ -178,10 +221,13 @@ async function boot() {
         <div class="cw-card__title"><span class="cw-card__badge">${svg(PLACE_ICON[place.id], 22)}</span><div><h2 id="cw-card-title">${esc(place.name)}</h2><p class="cw-card__page">Opens the <b>${esc(place.page)}</b> screen</p></div></div>
         <p class="cw-card__desc">${esc(place.desc)}</p>
         <p class="cw-card__live" id="cw-card-live"></p>
-        <div class="cw-card__actions"><a class="cw-card__go" href="${placeHref(place)}">Enter ${esc(place.name)} ${svg('arrow', 18)}</a></div>
+        <div class="cw-card__actions"><a class="cw-card__go" href="${destinationFor(place)}">Enter ${esc(place.name)} ${svg('arrow', 18)}</a></div>
         <p class="cw-card__note">${noteFor(place)}</p>
       </div>`);
-    card.querySelector('.cw-card__go').addEventListener('click', (e) => { if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button > 0) return; e.preventDefault(); enter(place); });
+    const go = card.querySelector('.cw-card__go');
+    const updateDestination = () => { go.href = destinationFor(place); };
+    go.addEventListener('auxclick', updateDestination);
+    go.addEventListener('click', (e) => { updateDestination(); if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button > 0) return; e.preventDefault(); enter(place); });
     updateCardLive();
   }
   function noteFor(place) {
@@ -207,7 +253,8 @@ async function boot() {
       default: return ['Open for visitors', ''];
     }
   }
-  function enter(place, href = placeHref(place)) {
+  function enter(place, href = destinationFor(place)) {
+    if (!canOpenPlace(place)) return;
     if (leaving) return;
     leaving = true;
     closeDirectory();
@@ -231,6 +278,7 @@ async function boot() {
   };
   function selectIssue(issue) {
     if (!issues.list.includes(issue)) return;
+    if (window.__cwOps?.onIssue(issue)) return; // operations view: its own card
     clearSelection();
     selectedIssue = issue; markIssue(issue);
     userMoved = true; rig.focus({ x: issue.x, y: 0, z: issue.z }, isPhone() ? 44 : 34); rig.set(focusShift());
@@ -451,9 +499,20 @@ async function boot() {
         m.status = issue.status; m.el.dataset.status = issue.status;
         m.el.querySelector('button').setAttribute('aria-label', `${issue.info.label} on ${issue.street}: ${STATUS_LABEL[issue.status]}. Open details.`);
         m.el.querySelector('button').title = `${issue.info.label} · ${STATUS_LABEL[issue.status]}`;
-        if (issue.status === 'fixed') { m.el.classList.add('is-leaving'); setTimeout(() => { overlay.remove(m.it); markers.delete(issue.id); }, 1500); }
+        if (issue.status === 'fixed' && !issue.ops) { m.el.classList.add('is-leaving'); setTimeout(() => { overlay.remove(m.it); markers.delete(issue.id); }, 1500); }
       }
       m.el.style.setProperty('--p', issue.progress.toFixed(3));
+      // Operations view: the pin shows the operations status (to review, waiting, in progress, to check, fixed).
+      if (issue.ops) {
+        if (m.ops !== issue.ops.status) {
+          m.ops = issue.ops.status; m.el.dataset.ops = issue.ops.status;
+          const b = m.el.querySelector('button');
+          b.setAttribute('aria-label', `${issue.code}: ${issue.ops.title}, ${issue.ops.label}. Open details.`);
+          b.title = `${issue.ops.title} · ${issue.ops.label}`;
+        }
+        m.it.hidden = issue.ops.hidden;
+        m.el.classList.toggle('is-selected', issue.ops.selected);
+      }
     }
     for (const [id, m] of markers) if (!live.has(id)) { overlay.remove(m.it); markers.delete(id); }
     if (selectedIssue && !issues.list.includes(selectedIssue)) closeCard();
@@ -464,6 +523,7 @@ async function boot() {
   const cursor = $('#cw-cursor');
   const toolButtons = [...document.querySelectorAll('[data-tool]')];
   function setTool(t) {
+    if (opsMode && t !== 'explore') return;
     tool = t;
     toolButtons.forEach((b) => { const on = b.dataset.tool === t; b.setAttribute('aria-pressed', String(on)); b.classList.toggle('is-active', on); });
     canvas.classList.toggle('is-placing', t !== 'explore');
@@ -487,6 +547,7 @@ async function boot() {
     cursor.style.left = `${e.clientX - r.left}px`; cursor.style.top = `${e.clientY - r.top}px`;
   }
   function place(e) {
+    if (opsMode) return;
     const p = engine.groundPoint(e.clientX, e.clientY);
     const issue = p && sim.addIssueAt(tool, p.x, p.z);
     if (!issue) { cursor.animate([{ transform: 'translate(14px,14px)' }, { transform: 'translate(8px,14px)' }, { transform: 'translate(20px,14px)' }, { transform: 'translate(14px,14px)' }], { duration: 260 }); return; }
@@ -544,6 +605,7 @@ async function boot() {
   document.querySelectorAll('[data-district]').forEach((b) => b.addEventListener('click', () => showDistrict(b.dataset.district)));
 
   function showDistrict(id) {
+    if (opsMode && id !== 'municipal') return;
     closeDirectory();
     const d = DISTRICTS[id], [x, z] = DCENTER[id];
     clearSelection();
@@ -552,17 +614,21 @@ async function boot() {
     openCard(d.color, `${band('District')}
       <div class="cw-card__body"><div class="cw-card__title"><span class="cw-card__badge">${svg(d.icon, 22)}</span><div><h2 id="cw-card-title">${esc(d.name)}</h2><p class="cw-card__page">${items.length} buildings</p></div></div>
       <p class="cw-card__desc">${esc(d.blurb)}</p>
-      <div class="cw-card__list">${items.map((p) => `<a href="${placeHref(p)}" data-place="${p.id}"><span>${esc(p.name)}</span><small>${esc(p.page)}</small></a>`).join('')}</div></div>`);
+      <div class="cw-card__list">${items.map((p) => `<a href="${destinationFor(p)}" data-place="${p.id}"><span>${esc(p.name)}</span><small>${esc(p.page)}</small></a>`).join('')}</div></div>`);
     card.querySelectorAll('[data-place]').forEach(wirePlaceLink);
   }
   // Directory and card links highlight their building and use the same enter transition.
   function wirePlaceLink(a) {
     const place = world.places.find((p) => p.id === a.dataset.place); if (!place) return;
+    if (!canOpenPlace(place)) return;
+    const updateDestination = () => { a.href = destinationFor(place); };
+    updateDestination();
     a.addEventListener('mouseenter', () => setHover(place));
     a.addEventListener('mouseleave', () => setHover(null));
     a.addEventListener('focus', () => { setHover(place); rig.focus({ x: place.center.x, y: 0, z: place.center.z }); userMoved = true; });
     a.addEventListener('blur', () => setHover(null));
-    a.addEventListener('click', (e) => { if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button > 0) return; e.preventDefault(); enter(place, a.getAttribute('href')); });
+    a.addEventListener('auxclick', updateDestination);
+    a.addEventListener('click', (e) => { updateDestination(); if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button > 0) return; e.preventDefault(); enter(place, a.getAttribute('href')); });
   }
   directory.querySelectorAll('[data-place]').forEach(wirePlaceLink);
 
@@ -572,7 +638,7 @@ async function boot() {
     if (directory.contains(e.target) || e.metaKey || e.ctrlKey || e.altKey) return;
     const onButton = e.target.closest?.('button, a');
     const k = e.key;
-    if (/^[1-5]$/.test(k)) { setTool(['explore', 'pothole', 'light', 'trash', 'drain'][Number(k) - 1]); return; }
+    if (/^[1-5]$/.test(k)) { if (!opsMode) setTool(['explore', 'pothole', 'light', 'trash', 'drain'][Number(k) - 1]); return; }
     if (k === ' ' && !onButton) { e.preventDefault(); setSpeed(sim.state.paused ? 1 : 0); return; }
     if (k === 'q' || k === 'Q') { rig.rotate(-1); userMoved = true; }
     else if (k === 'e' || k === 'E') { rig.rotate(1); userMoved = true; }
@@ -580,8 +646,8 @@ async function boot() {
     else if (k === '-' || k === '_') { rig.zoom(1.22); userMoved = true; }
     else if (k === 'r' || k === 'R') { userMoved = false; closeCard(); resetView(); }
     else if (k === 'd' || k === 'D') openDirectory();
-    else if (k === 'l' || k === 'L') setTab('reports', true);
-    else if (k === 'c' || k === 'C') setTab('crews', true);
+    else if (!opsMode && (k === 'l' || k === 'L')) setTab('reports', true);
+    else if (!opsMode && (k === 'c' || k === 'C')) setTab('crews', true);
     else if (k === 'h' || k === 'H') togglePhoto();
     else if (k.startsWith('Arrow') && !onButton) { e.preventDefault(); const stepPx = 46; rig.pan(k === 'ArrowLeft' ? stepPx : k === 'ArrowRight' ? -stepPx : 0, k === 'ArrowUp' ? stepPx : k === 'ArrowDown' ? -stepPx : 0); userMoved = true; followCrew = null; }
   });
@@ -764,6 +830,7 @@ async function boot() {
   setTimeout(reveal, motionOK ? 1900 : 0);
   // Seed a little activity so the city has a story from the first minute.
   setTimeout(() => {
+    if (opsMode) return; // the operations view brings its own reports
     const lane = world.net.byId.get('C>S');
     const first = sim.addIssue('pothole', lane ? { lane, s: lane.length * 0.55 } : null);
     if (first) first.reportDelay = 2.5;
@@ -784,6 +851,11 @@ async function boot() {
   const fromHash = () => { const p = world.places.find((x) => x.id === decodeURIComponent(location.hash.slice(1))); if (p) select(p); };
   window.addEventListener('hashchange', fromHash);
   if (location.hash) setTimeout(fromHash, motionOK ? 2600 : 0);
+
+  // Operations view: the same reports, teams and clock as the 2D operations map (?view=ops).
+  if (opsMode) {
+    import('./ops.js').then((m) => m.mountOps({ engine, sim, world, rig, overlay })).catch((e) => console.warn('Operations view failed:', e));
+  }
 
   // Read-only diagnostics for verification.
   window.RoadNaCityWorld = {

@@ -36,8 +36,9 @@ for (const file of files) {
     : ext === ".js" ? [...source.matchAll(/(?:from\s*|import\s*\()(["'])(\.[^"']+)\1/g)].map(m => m[2]) : [];
   for (const ref of references) {
     if (/^(?:https?:|data:|mailto:|tel:|#)/.test(ref)) continue;
-    const [destination, hash] = ref.split("#");
-    const target = path.resolve(path.dirname(file), destination);
+    const [address, hash] = ref.split("#");
+    const destination = address.split("?")[0];
+    const target = destination ? path.resolve(path.dirname(file), destination) : file;
     try {
       const stat = await fs.stat(target);
       if (!stat.size) problems.push(target + ": empty asset");

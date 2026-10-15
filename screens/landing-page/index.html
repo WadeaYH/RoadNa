@@ -4,17 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#fafaf6">
-  <link rel="icon" type="image/svg+xml" href="./assets/icon-17.svg">
+  <link rel="icon" type="image/svg+xml" href="../../shared/logo.svg">
   <meta name="description" content="RoadNa JO connects residents with municipal public works. Report potholes, streetlights, drainage and other infrastructure problems and track every fix.">
   <title>RoadNa JO | See it. Report it. Get it fixed.</title>
   <link rel="stylesheet" href="../../shared/base.css">
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./extras.css">
   <script src="../../shared/ui.js" defer></script>
   <script type="module" src="./script.js"></script>
+  <script src="./extras.js" defer></script>
 </head>
 <body class="page-landing page-story">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <symbol id="i-account-balance" viewBox="0 0 20 20"><path d="M3 16V9H5V16H3ZM9 16V9H11V16H9ZM0 20V18H20V20H0ZM15 16V9H17V16H15ZM0 7V5L10 0L20 5V7H0Z"/></symbol>
+  <symbol id="i-account-balance" viewBox="0 0 24 24"><path d="M7 4V20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><path d="M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></symbol>
   <symbol id="i-add-circle" viewBox="0 0 15 15"><path d="M6.75 11.25H8.25V8.25H11.25V6.75H8.25V3.75H6.75V6.75H3.75V8.25H6.75V11.25ZM7.5 15C6.4625 15 5.4875 14.8031 4.575 14.4094C3.6625 14.0156 2.86875 13.4812 2.19375 12.8062C1.51875 12.1312 0.984375 11.3375 0.590625 10.425C0.196875 9.5125 0 8.5375 0 7.5C0 6.4625 0.196875 5.4875 0.590625 4.575C0.984375 3.6625 1.51875 2.86875 2.19375 2.19375C2.86875 1.51875 3.6625 0.984375 4.575 0.590625C5.4875 0.196875 6.4625 0 7.5 0C8.5375 0 9.5125 0.196875 10.425 0.590625C11.3375 0.984375 12.1312 1.51875 12.8062 2.19375C13.4812 2.86875 14.0156 3.6625 14.4094 4.575C14.8031 5.4875 15 6.4625 15 7.5C15 8.5375 14.8031 9.5125 14.4094 10.425C14.0156 11.3375 13.4812 12.1312 12.8062 12.8062C12.1312 13.4812 11.3375 14.0156 10.425 14.4094C9.5125 14.8031 8.5375 15 7.5 15Z"/></symbol>
   <symbol id="i-alt-route" viewBox="0 0 20 22"><path d="M8.66667 21.6667V16.25C8.66667 15.2389 8.5132 14.4896 8.20625 14.0021C7.89931 13.5146 7.49306 13.0361 6.9875 12.5667L8.53125 11.0229C8.74792 11.2215 8.95555 11.4337 9.15417 11.6594C9.35278 11.8851 9.55139 12.1243 9.75 12.3771C10.0028 12.034 10.2601 11.7316 10.5219 11.4698C10.7837 11.208 11.05 10.9507 11.3208 10.6979C12.0069 10.066 12.6299 9.33472 13.1896 8.50417C13.7493 7.67361 14.0472 6.22014 14.0833 4.14375L12.3771 5.85L10.8333 4.33333L15.1667 0L19.5 4.33333L17.9833 5.85L16.25 4.14375C16.2139 6.72569 15.8167 8.56285 15.0583 9.65521C14.3 10.7476 13.5417 11.6368 12.7833 12.3229C12.2056 12.8465 11.7361 13.3566 11.375 13.8531C11.0139 14.3497 10.8333 15.1486 10.8333 16.25V21.6667H8.66667ZM3.46667 6.68958C3.39444 6.32847 3.34479 5.93125 3.31771 5.49792C3.29062 5.06458 3.26806 4.61319 3.25 4.14375L1.51667 5.85L0 4.33333L4.33333 0L8.66667 4.33333L7.12292 5.85L5.41667 4.17083C5.41667 4.55 5.43472 4.9066 5.47083 5.24062C5.50694 5.57465 5.54306 5.88611 5.57917 6.175L3.46667 6.68958ZM5.79583 11.4563C5.43472 11.0771 5.08715 10.6347 4.75313 10.1292C4.4191 9.62361 4.12569 9.00069 3.87292 8.26042L5.95833 7.74583C6.13889 8.23333 6.34653 8.64861 6.58125 8.99167C6.81597 9.33472 7.06875 9.64167 7.33958 9.9125L5.79583 11.4563Z"/></symbol>
   <symbol id="i-apartment" viewBox="0 0 14 12"><path d="M0 12V0H6.66667V2.66667H13.3333V12H0ZM1.33333 10.6667H2.66667V9.33333H1.33333V10.6667ZM1.33333 8H2.66667V6.66667H1.33333V8ZM1.33333 5.33333H2.66667V4H1.33333V5.33333ZM1.33333 2.66667H2.66667V1.33333H1.33333V2.66667ZM4 10.6667H5.33333V9.33333H4V10.6667ZM4 8H5.33333V6.66667H4V8ZM4 5.33333H5.33333V4H4V5.33333ZM4 2.66667H5.33333V1.33333H4V2.66667ZM6.66667 10.6667H12V4H6.66667V5.33333H8V6.66667H6.66667V8H8V9.33333H6.66667V10.6667ZM9.33333 6.66667V5.33333H10.6667V6.66667H9.33333ZM9.33333 9.33333V8H10.6667V9.33333H9.33333Z"/></symbol>
@@ -37,19 +39,19 @@
   <header class="site-header">
     <div class="container site-header__inner">
       <a class="brand" href="../landing-page/index.html" aria-label="RoadNa JO home">
-        <span class="brand__mark"><img class="figma-icon" src="./assets/icon-17.svg" alt=""></span>
         <span class="brand__text">
-          <span class="brand__name">RoadNa JO</span>
+          <span class="brand__name"><svg class="r-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4V20M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></svg>oadNa<span class="logo-jo">JO</span></span>
           <span class="brand__tag">Municipal Portal</span>
         </span>
       </a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Toggle navigation menu"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg></button>
-      <nav class="site-nav" id="site-menu" aria-label="Primary"><a href="../city-world/index.html">CityWorld</a><a href="../public-guest-menu/index.html">Public Reports</a><a href="#how-it-works">How It Works</a></nav>
+      <nav class="site-nav" id="site-menu" aria-label="Primary"><a href="../public-guest-menu/index.html">Public Reports</a><a href="#how-it-works">How It Works</a></nav>
       <div class="site-actions">
         <a class="btn btn--ghost" href="../login/index.html">Log In</a>
         <a class="btn btn--primary" href="../create-report/index.html"><img class="figma-icon" src="./assets/icon-19.svg" alt="">Report an Issue</a>
       </div>
     </div>
+    <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress"></span></div>
   </header>
   <main id="main">
     <section class="story" id="story" aria-label="The RoadNa story, from a pothole to a repaired street">
@@ -70,7 +72,7 @@
             <h1 class="chapter__title" data-split>Every city has a story.</h1>
             <p class="chapter__text" data-split>Every street, every neighbourhood, every voice matters.</p>
             <div class="chapter__actions">
-              <a class="btn btn--primary btn--lg" href="../city-world/index.html">Enter CityWorld <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#i-arrow-forward"/></svg></a>
+              <a class="btn btn--primary btn--lg" href="../create-report/index.html">Report an Issue <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#i-arrow-forward"/></svg></a>
               <a class="chapter__link" href="#explore" data-skip>Skip the story</a>
             </div>
           </article>
@@ -92,9 +94,9 @@
           <article class="chapter" data-chapter="4" id="chapter-5">
             <p class="chapter__eyebrow"><span>05</span>A city we care for</p>
             <h2 class="chapter__title" data-split>Together, we make our city better.</h2>
-            <p class="chapter__text" data-split>Explore RoadNa JO. Every building in this city opens a part of the platform.</p>
+            <p class="chapter__text" data-split>Report a problem, follow every step, and see it fixed.</p>
             <div class="chapter__actions">
-              <a class="btn btn--primary btn--lg" href="../city-world/index.html">Enter CityWorld <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#i-arrow-forward"/></svg></a>
+              <a class="btn btn--primary btn--lg" href="../create-report/index.html">Report an Issue <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#i-arrow-forward"/></svg></a>
               <a class="btn btn--ghost" href="../public-guest-menu/index.html">Public reports</a>
             </div>
             <p class="chapter__hint">Or choose a landmark in the city.</p>
@@ -102,7 +104,7 @@
         </div>
 
         <aside class="report" id="story-report" aria-hidden="true">
-          <header class="report__head"><span class="report__app"><img src="./assets/icon-17.svg" alt="" width="18" height="18">RoadNa JO</span><span class="report__status" id="report-status" data-step="0">Submitted</span></header>
+          <header class="report__head"><span class="report__app"><svg class="r-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4V20M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></svg>oadNa<span class="logo-jo">JO</span></span><span class="report__status" id="report-status" data-step="0">Received</span></header>
           <div class="report__photo"><svg viewBox="0 0 220 96" preserveAspectRatio="xMidYMid slice"><rect width="220" height="96" fill="#3d474c"/><path d="M0 70h220" stroke="#efe9d8" stroke-width="3" stroke-dasharray="16 12"/><path d="M58 40c-6-14 22-24 52-21 26 3 50 6 58 18 8 13-2 27-26 30-24 3-52-2-68-8-8-3-12-10-16-19z" fill="#1d2428"/><path d="M76 42c-3-9 15-15 34-13 18 2 33 5 38 13 4 8-2 16-18 18-17 2-36-1-46-6-5-2-7-7-8-12z" fill="#11171a"/><circle cx="196" cy="18" r="10" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M190 18h12M196 12v12" stroke="#fff" stroke-width="2.5"/></svg><span>Photo</span></div>
           <ol class="report__lines">
             <li data-at="0.455"><span class="report__tick"></span>Photo attached</li>
@@ -110,7 +112,7 @@
             <li data-at="0.495"><span class="report__tick"></span>Pothole · road damage</li>
             <li data-at="0.52"><span class="report__tick"></span>Sent to the municipality</li>
           </ol>
-          <ol class="report__track" aria-hidden="true"><li>Submitted</li><li>Assigned</li><li>In progress</li><li>Resolved</li></ol>
+          <ol class="report__track" aria-hidden="true"><li>Received</li><li>In progress</li><li>Fixed</li></ol>
           <small>Sample report · an illustration of the flow</small>
         </aside>
 
@@ -139,25 +141,17 @@
 
     <section class="explore" id="explore" tabindex="-1" aria-labelledby="explore-title">
       <div class="container">
-        <a class="explore__world" href="../city-world/index.html">
-          <span class="explore__media"><img src="./assets/city/cityworld-overview.jpg" alt="" width="1200" height="900" loading="lazy"></span>
-          <span class="explore__copy">
-            <span class="t-eyebrow">New · RoadNa CityWorld</span>
-            <strong id="explore-title">A living city where every building is a page.</strong>
-            <span>Walk the four districts, open any of the twenty screens, drop a pothole and watch residents report it and crews fix it.</span>
-            <span class="btn btn--primary">Enter CityWorld <svg class="icon" width="16" height="16" aria-hidden="true"><use href="#i-arrow-forward"/></svg></span>
-          </span>
-        </a>
-        <header class="city-locations__head"><div><p class="t-eyebrow">Your city, your way</p><h2>Where would you like to go?</h2></div><p>The same landmarks, as plain links.</p></header>
+        
+        <header class="city-locations__head" data-reveal><div><p class="t-eyebrow">Get started</p><h2 id="explore-title">Where would you like to go?</h2></div><p>Report a problem, follow it, or see what is happening near you.</p></header>
         <nav class="city-destinations" aria-label="Choose a RoadNa location">
-          <a class="city-destination" href="../create-report/index.html"><span class="city-destination__icon"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-add-circle"/></svg></span><span><strong>Report an Issue</strong><small>Pin a problem on the map in four steps.</small></span><span class="city-destination__arrow" aria-hidden="true">↗</span></a>
-          <a class="city-destination" href="../public-guest-menu/index.html"><span class="city-destination__icon"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-map"/></svg></span><span><strong>Explore Reports</strong><small>See issues around the community.</small></span><span class="city-destination__arrow" aria-hidden="true">↗</span></a>
-          <a class="city-destination" href="../home-menu/index.html"><span class="city-destination__icon"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-apartment"/></svg></span><span><strong>Resident Area</strong><small>Your dashboard, reports and updates.</small></span><span class="city-destination__arrow" aria-hidden="true">↗</span></a>
-          <a class="city-destination" href="../admin-dashboard/index.html"><span class="city-destination__icon"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-account-balance"/></svg></span><span><strong>Municipality</strong><small>The operations dashboard for staff.</small></span><span class="city-destination__arrow" aria-hidden="true">↗</span></a>
-          <a class="city-destination" href="../report-details/index.html"><span class="city-destination__icon"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-campaign"/></svg></span><span><strong>Community Report</strong><small>Follow an example pothole report.</small></span><span class="city-destination__arrow" aria-hidden="true">↗</span></a>
-          <a class="city-destination" href="#how-it-works" data-info><span class="city-destination__icon"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-build"/></svg></span><span><strong>How RoadNa Works</strong><small>From spotting a problem to the fix.</small></span><span class="city-destination__arrow" aria-hidden="true">↗</span></a>
+          <a class="city-destination" data-reveal data-reveal-delay="0" href="../create-report/index.html"><span class="city-destination__icon"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-add-circle"/></svg></span><span><strong>Report an Issue</strong><small>Pin a problem on the map in four steps.</small></span><span class="city-destination__arrow" aria-hidden="true">↗</span></a>
+          <a class="city-destination" data-reveal data-reveal-delay="70" href="../public-guest-menu/index.html"><span class="city-destination__icon"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-map"/></svg></span><span><strong>Explore Reports</strong><small>See issues around the community.</small></span><span class="city-destination__arrow" aria-hidden="true">↗</span></a>
+          <a class="city-destination" data-reveal data-reveal-delay="140" href="../home-menu/index.html"><span class="city-destination__icon"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-apartment"/></svg></span><span><strong>Resident Area</strong><small>Your dashboard, reports and updates.</small></span><span class="city-destination__arrow" aria-hidden="true">↗</span></a>
+          <a class="city-destination" data-reveal data-reveal-delay="0" href="../admin-dashboard/index.html"><span class="city-destination__icon"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-account-balance"/></svg></span><span><strong>Municipality</strong><small>The operations dashboard for staff.</small></span><span class="city-destination__arrow" aria-hidden="true">↗</span></a>
+          <a class="city-destination" data-reveal data-reveal-delay="70" href="../report-details/index.html"><span class="city-destination__icon"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-campaign"/></svg></span><span><strong>Example Report</strong><small>Follow one report from start to finish.</small></span><span class="city-destination__arrow" aria-hidden="true">↗</span></a>
+          <a class="city-destination" data-reveal data-reveal-delay="140" href="#how-it-works" data-info><span class="city-destination__icon"><svg class="icon" width="22" height="22" aria-hidden="true"><use href="#i-build"/></svg></span><span><strong>How RoadNa Works</strong><small>From spotting a problem to the fix.</small></span><span class="city-destination__arrow" aria-hidden="true">↗</span></a>
         </nav>
-        <details class="story-transcript" id="story-transcript"><summary>The city story in words</summary><ol><li><strong>Every city has a story.</strong> Every street, every neighbourhood, every voice matters.</li><li><strong>One small problem can affect an entire community.</strong> A teal car stops safely before a pothole on Al-Zaytoun Avenue, and the cars behind it queue up.</li><li><strong>See it. Report it.</strong> A neighbour photographs the pothole. A sample report attaches the photo, pins the location, names the category and sends it to the municipality.</li><li><strong>Get it fixed.</strong> A crew van leaves the depot, the road is patched and the report moves from Assigned to Resolved. Traffic flows again.</li><li><strong>Together, we make our city better.</strong> Explore RoadNa JO through the city landmarks, CityWorld, or the links above.</li></ol></details>
+        <details class="story-transcript" id="story-transcript" data-reveal><summary>The city story in words</summary><ol><li><strong>Every city has a story.</strong> Every street, every neighbourhood, every voice matters.</li><li><strong>One small problem can affect an entire community.</strong> A teal car stops safely before a pothole on Al-Zaytoun Avenue, and the cars behind it queue up.</li><li><strong>See it. Report it.</strong> A neighbour photographs the pothole. A sample report attaches the photo, pins the location, names the category and sends it to the municipality.</li><li><strong>Get it fixed.</strong> A crew van leaves the depot, the road is patched and the report moves from Assigned to Resolved. Traffic flows again.</li><li><strong>Together, we make our city better.</strong> Explore RoadNa JO through the city landmarks, CityWorld, or the links above.</li></ol></details>
       </div>
     </section>
 
@@ -175,30 +169,114 @@
             <li class="step" data-reveal>
               <span class="step__num" aria-hidden="true">01</span>
               <span class="step__icon"><img class="figma-icon" src="./assets/icon-0.svg" alt=""></span>
-              <div><p class="step__kicker">Step 01</p><h3 class="t-h3">Report in Seconds</h3><p>Add a photo, choose the category, and mark the location. Explore the designed flow in this frontend preview.</p></div>
+              <div><p class="step__kicker">Step 01</p><h3 class="t-h3">Report in Seconds</h3><p>Take a photo, pin the place on the map and pick a category. That is all it takes.</p></div>
             </li>
             <li class="step" data-reveal data-reveal-delay="90">
               <span class="step__num" aria-hidden="true">02</span>
               <span class="step__icon"><img class="figma-icon" src="./assets/icon-1.svg" alt=""></span>
-              <div><p class="step__kicker">Step 02</p><h3 class="t-h3">Vote on What Matters</h3><p>Explore community reports and see how shared concerns can help teams understand what needs attention.</p></div>
+              <div><p class="step__kicker">Step 02</p><h3 class="t-h3">Sent to the Right Team</h3><p>RoadNa suggests the category and priority, and your municipality sends a maintenance team.</p></div>
             </li>
             <li class="step" data-reveal data-reveal-delay="180">
               <span class="step__num" aria-hidden="true">03</span>
               <span class="step__icon"><img class="figma-icon" src="./assets/icon-2.svg" alt=""></span>
-              <div><p class="step__kicker">Step 03</p><h3 class="t-h3">Track to Resolution</h3><p>Follow the sample civic timeline from Submitted and Assigned through to a completed repair.</p></div>
+              <div><p class="step__kicker">Step 03</p><h3 class="t-h3">Follow It Until It Is Fixed</h3><p>See every update. A supervisor checks the before and after photos before a report is marked Fixed.</p></div>
             </li>
           </ol>
         </div>
 
         <div class="lifecycle-bar" data-reveal>
-          <h3 class="lifecycle-bar__title">Standard Resolution Lifecycle</h3>
+          <h3 class="lifecycle-bar__title">What you will see</h3>
           <ol class="lifecycle">
-            <li><span class="lifecycle__num lifecycle__num--1">1</span><span><strong>Submitted</strong><small>Automated routing</small></span></li>
-            <li><span class="lifecycle__num lifecycle__num--2">2</span><span><strong>Assigned</strong><small>Assigned to team</small></span></li>
-            <li><span class="lifecycle__num lifecycle__num--3">3</span><span><strong>In Progress</strong><small>Crew on site</small></span></li>
-            <li><span class="lifecycle__num lifecycle__num--4">4</span><span><strong>Resolved</strong><small>Photo confirmed</small></span></li>
+            <li><span class="lifecycle__num lifecycle__num--1">1</span><span><strong>Received</strong><small>Photo, place and category</small></span></li>
+            <li><span class="lifecycle__num lifecycle__num--3">2</span><span><strong>In Progress</strong><small>A team is on it</small></span></li>
+            <li><span class="lifecycle__num lifecycle__num--4">3</span><span><strong>Fixed</strong><small>Checked by a supervisor</small></span></li>
           </ol>
         </div>
+      </div>
+    </section>
+
+    <section class="impact" id="impact" aria-labelledby="impact-title">
+      <div class="container">
+        <header class="impact__head" data-reveal>
+          <p class="t-eyebrow">Sample figures</p>
+          <h2 class="t-h1" id="impact-title">Streets are getting fixed</h2>
+          <p class="impact__sub">A preview of the numbers every resident will be able to see for their own municipality.</p>
+        </header>
+        <ul class="impact__stats">
+          <li class="impact__stat" data-reveal>
+            <p class="impact__num"><span data-count="1284">1,284</span></p>
+            <p class="impact__label">Reports fixed this year</p>
+          </li>
+          <li class="impact__stat" data-reveal data-reveal-delay="80">
+            <p class="impact__num"><span data-count="3.2" data-decimals="1">3.2</span> <small>days</small></p>
+            <p class="impact__label">Average time to fix</p>
+          </li>
+          <li class="impact__stat" data-reveal data-reveal-delay="160">
+            <p class="impact__num"><span data-count="92">92</span><small>%</small></p>
+            <p class="impact__label">Of fixes rated 4 stars or more</p>
+          </li>
+          <li class="impact__stat" data-reveal data-reveal-delay="240">
+            <p class="impact__num"><span data-count="18400">18,400</span></p>
+            <p class="impact__label">Neighbours who voted</p>
+          </li>
+        </ul>
+      </div>
+      <div class="ticker" role="region" aria-label="Recently fixed, sample activity">
+        <ul class="ticker__track">
+          <li><span class="chip chip--bordered chip--resolved">Fixed</span>Damaged curb ramp · Al-Hashemi St · 3 days ago</li>
+          <li><span class="chip chip--bordered chip--resolved">Fixed</span>Blocked storm drain · Irbid Camp · 2 days ago</li>
+          <li><span class="chip chip--bordered chip--resolved">Fixed</span>Speed limit sign replaced · Emaar Irbid Park · Yesterday</li>
+          <li><span class="chip chip--bordered chip--resolved">Fixed</span>Cracked sidewalk slab · Yarmouk University · 4 days ago</li>
+          <li><span class="chip chip--bordered chip--resolved">Fixed</span>Street lamp replaced · Bayt Ras · 5 days ago</li>
+          <li aria-hidden="true"><span class="chip chip--bordered chip--resolved">Fixed</span>Damaged curb ramp · Al-Hashemi St · 3 days ago</li>
+          <li aria-hidden="true"><span class="chip chip--bordered chip--resolved">Fixed</span>Blocked storm drain · Irbid Camp · 2 days ago</li>
+          <li aria-hidden="true"><span class="chip chip--bordered chip--resolved">Fixed</span>Speed limit sign replaced · Emaar Irbid Park · Yesterday</li>
+          <li aria-hidden="true"><span class="chip chip--bordered chip--resolved">Fixed</span>Cracked sidewalk slab · Yarmouk University · 4 days ago</li>
+          <li aria-hidden="true"><span class="chip chip--bordered chip--resolved">Fixed</span>Street lamp replaced · Bayt Ras · 5 days ago</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="ba" id="before-after" aria-labelledby="ba-title">
+      <div class="container ba__grid">
+        <header class="ba__copy" data-reveal>
+          <p class="t-eyebrow">Proof of every fix</p>
+          <h2 class="t-h1" id="ba-title">See the difference</h2>
+          <p class="ba__sub">The maintenance team uploads before and after photos, and a supervisor checks them before a report is marked Fixed. Drag the line to compare.</p>
+          <ul class="ba__points">
+            <li>Photos taken at the same spot</li>
+            <li>Checked by a supervisor</li>
+            <li>You are told when it is fixed</li>
+          </ul>
+        </header>
+        <figure class="ba__frame" id="ba" data-reveal style="--pos: 50%">
+          <svg class="ba__img" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Before: a deep pothole in the road next to a pedestrian crossing">
+            <rect width="640" height="360" fill="#4b4f55"/>
+            <g opacity=".5" fill="#5d6269"><circle cx="70" cy="60" r="3"/><circle cx="210" cy="300" r="4"/><circle cx="480" cy="90" r="3"/><circle cx="560" cy="270" r="4"/><circle cx="330" cy="40" r="2"/><circle cx="130" cy="210" r="3"/></g>
+            <path d="M0 250H640" stroke="#e9e5d2" stroke-width="10" stroke-dasharray="46 30" opacity=".85"/>
+            <g fill="#e9e5d2" opacity=".9"><rect x="500" y="0" width="22" height="360"/><rect x="540" y="0" width="22" height="360"/><rect x="580" y="0" width="22" height="360"/></g>
+            <path d="M150 200c-12-40 38-76 96-70 52 5 110 12 140 44 28 30 10 78-36 94-52 18-116 6-160-14-26-12-34-34-40-54z" fill="#24272b"/>
+            <path d="M170 204c-6-26 30-52 78-48 46 4 96 10 120 36 20 22 6 56-28 68-44 14-96 4-132-12-20-9-32-26-38-44z" fill="#15171a"/>
+            <path d="M120 160l40 30M410 140l-50 26M300 300l10-40M440 250l46 18" stroke="#2f3338" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div class="ba__after">
+            <svg class="ba__img" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" role="img" aria-label="After: the road surface repaired with a fresh smooth patch">
+              <rect width="640" height="360" fill="#4b4f55"/>
+              <g opacity=".5" fill="#5d6269"><circle cx="70" cy="60" r="3"/><circle cx="210" cy="300" r="4"/><circle cx="480" cy="90" r="3"/><circle cx="560" cy="270" r="4"/><circle cx="330" cy="40" r="2"/><circle cx="130" cy="210" r="3"/></g>
+              <path d="M0 250H640" stroke="#e9e5d2" stroke-width="10" stroke-dasharray="46 30" opacity=".85"/>
+              <g fill="#e9e5d2" opacity=".9"><rect x="500" y="0" width="22" height="360"/><rect x="540" y="0" width="22" height="360"/><rect x="580" y="0" width="22" height="360"/></g>
+              <path d="M150 200c-12-40 38-76 96-70 52 5 110 12 140 44 28 30 10 78-36 94-52 18-116 6-160-14-26-12-34-34-40-54z" fill="#3a3d42"/>
+              <path d="M166 202c-8-30 34-58 82-54 46 4 100 12 124 38 20 22 6 52-28 66-44 14-96 4-132-12-20-9-34-22-46-38z" fill="#2e3136"/>
+              <path d="M190 214c40 16 100 26 150 12" stroke="#4b4f55" stroke-width="2" fill="none" opacity=".6"/>
+            </svg>
+          </div>
+          <span class="ba__tag ba__tag--before">Before</span>
+          <span class="ba__tag ba__tag--after">After</span>
+          <span class="ba__handle" aria-hidden="true"><i></i></span>
+          <label class="sr-only" for="ba-range">Compare before and after</label>
+          <input class="ba__range" id="ba-range" type="range" min="0" max="100" value="50">
+          <figcaption class="ba__cap">Illustration. Real fixes show the crew's own photos.</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -206,31 +284,72 @@
       <div class="container">
         <header class="recent__head" data-reveal>
           <div>
-            <p class="t-eyebrow">Live Activity Stream</p>
+            <p class="t-eyebrow">Sample activity</p>
             <h2 class="t-h1" id="recent-title">Recent Community Reports</h2>
           </div>
           <p class="recent__sub">Example reports showing how a community can follow infrastructure problems.</p>
         </header>
         <div class="recent__grid">
           <a class="mini-report mini-report--feature" href="../public-guest-menu/index.html" data-reveal>
-            <div class="mini-report__top"><span class="chip chip--bordered chip--progress">In Progress</span><span class="t-caption">5 hours ago</span></div>
+            <div class="mini-report__top"><span class="chip chip--bordered chip--progress">In progress</span><span class="t-caption">5 hours ago</span></div>
             <h3>Severe asphalt pothole</h3>
-            <p>Deep rim-damaging asphalt crater in eastbound lane right before pedestrian curb ramp. Crew 4 is scheduled on site this afternoon.</p>
-            <ol class="mini-steps mini-report__steps" aria-label="Progress: step 3 of 4"><li class="is-done">Submitted</li><li class="is-done">Assigned</li><li class="is-current">In progress</li><li>Resolved</li></ol>
-            <div class="mini-report__foot"><span><img class="figma-icon" src="./assets/icon-3.svg" alt="">University St</span><span class="is-strong"><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-thumb-up-filled"/></svg>68 upvotes</span></div>
+            <p>Deep rim-damaging asphalt crater in eastbound lane right before pedestrian curb ramp. A roads team is scheduled for this afternoon.</p>
+            <ol class="mini-steps mini-report__steps" aria-label="Progress: step 2 of 3"><li class="is-done">Received</li><li class="is-current">In progress</li><li>Fixed</li></ol>
+            <div class="mini-report__foot"><span><img class="figma-icon" src="./assets/icon-3.svg" alt="">University St</span><span class="is-strong"><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-thumb-up-filled"/></svg>68 following</span></div>
           </a>
           <a class="mini-report" href="../public-guest-menu/index.html" data-reveal data-reveal-delay="90">
-            <div class="mini-report__top"><span class="chip chip--bordered chip--assigned">Assigned</span><span class="t-caption">2 hours ago</span></div>
+            <div class="mini-report__top"><span class="chip chip--bordered chip--submitted">Received</span><span class="t-caption">2 hours ago</span></div>
             <h3>Broken streetlight assembly #402</h3>
             <p>Pedestrian pathway luminaire is cycling on and off repeatedly, leaving walkway dim at night.</p>
             <div class="mini-report__foot"><span><svg class="icon" width="9" height="9" aria-hidden="true" focusable="false"><use href="#i-pin-drop"/></svg>King Abdullah II Park</span><span><img class="figma-icon" src="./assets/icon-4.svg" alt="">14</span></div>
           </a>
           <a class="mini-report" href="../public-guest-menu/index.html" data-reveal data-reveal-delay="180">
-            <div class="mini-report__top"><span class="chip chip--bordered chip--resolved">Resolved</span><span class="t-caption">Yesterday</span></div>
+            <div class="mini-report__top"><span class="chip chip--bordered chip--resolved">Fixed</span><span class="t-caption">Yesterday</span></div>
             <h3>Damaged speed limit sign replaced</h3>
-            <p>Sign post straightened and standard 40 km/h sign re-installed with reflective backing by city crew #4.</p>
+            <p>Sign post straightened and standard 40 km/h sign re-installed with reflective backing by the roads team.</p>
             <div class="mini-report__foot"><span><svg class="icon" width="9" height="9" aria-hidden="true" focusable="false"><use href="#i-pin-drop"/></svg>Emaar Irbid Park</span><span><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-thumb-up"/></svg>42</span></div>
           </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="voices" id="voices" aria-labelledby="voices-title">
+      <div class="container">
+        <header class="voices__head" data-reveal>
+          <p class="t-eyebrow">Your city, your say</p>
+          <h2 class="t-h1" id="voices-title">Neighbours report. Neighbours decide.</h2>
+        </header>
+        <div class="voices__grid">
+          <ul class="quotes">
+            <li class="quote" data-reveal>
+              <p>I sent a photo of the lamp on my way to work. Two days later it was fixed, and I got a message.</p>
+              <p class="quote__who"><span class="qav" aria-hidden="true">LH</span>Layla, Al-Hashemi St <small>Sample quote</small></p>
+            </li>
+            <li class="quote" data-reveal data-reveal-delay="90">
+              <p>Seeing the before and after photos made me trust the process. Nothing just disappears.</p>
+              <p class="quote__who"><span class="qav qav--amber" aria-hidden="true">OK</span>Omar, University St <small>Sample quote</small></p>
+            </li>
+            <li class="quote" data-reveal data-reveal-delay="180">
+              <p>My whole street voted for the drain on our corner. It moved up the list quickly.</p>
+              <p class="quote__who"><span class="qav qav--green" aria-hidden="true">RS</span>Rana, Irbid Camp <small>Sample quote</small></p>
+            </li>
+          </ul>
+
+          <form class="proposal" id="proposal" data-reveal data-reveal-delay="120">
+            <p class="proposal__tag"><svg class="icon" width="14" height="14" aria-hidden="true" focusable="false"><use href="#i-thumb-up"/></svg>Community vote · sample</p>
+            <h3>Plant shade trees along University St?</h3>
+            <p class="proposal__text">The municipality is asking residents what to do with the empty strip next to the pavement.</p>
+            <fieldset class="proposal__options">
+              <legend class="sr-only">Your choice</legend>
+              <label><input type="radio" name="vote" value="trees" required><span>Yes, plant shade trees</span></label>
+              <label><input type="radio" name="vote" value="lights"><span>Better lighting first</span></label>
+              <label><input type="radio" name="vote" value="later"><span>Not now</span></label>
+            </fieldset>
+            <div class="proposal__foot">
+              <button class="btn btn--primary" type="submit">Cast my vote</button>
+              <p class="proposal__meta" id="proposal-meta">Closes Oct 31 · results appear after voting closes</p>
+            </div>
+          </form>
         </div>
       </div>
     </section>
@@ -239,26 +358,29 @@
       <div class="container cta__inner" data-reveal>
         <span class="cta__icon"><img class="figma-icon" src="./assets/icon-6.svg" alt=""></span>
         <div class="cta__copy">
-          <h2 class="t-h1" id="cta-title">Ready to make your neighborhood better?</h2>
+          <h2 class="t-h1" id="cta-title">Ready to make your neighbourhood better?</h2>
           <p class="cta__sub">Connect what you see on the street with the teams that can help.</p>
         </div>
-        <a class="btn btn--primary btn--lg" href="../register/index.html">Get Started Free <img class="figma-icon" src="./assets/icon-7.svg" alt=""></a>
+        <a class="btn btn--primary btn--lg" href="../register/index.html">Create an Account <img class="figma-icon" src="./assets/icon-7.svg" alt=""></a>
       </div>
     </section>
 
   </main>
+  <a class="guide" id="guide" href="../create-report/index.html" aria-label="Report an issue" hidden>
+    <span class="guide__bubble" id="guide-bubble" role="status">Ready? Tap to report an issue.</span>
+    <span class="guide__pin" aria-hidden="true"><svg class="icon" width="26" height="26" focusable="false"><use href="#i-pin-drop"/></svg></span>
+  </a>
   <footer class="site-footer" id="about">
     <div class="container">
       <div class="site-footer__grid">
         <div class="site-footer__brand">
           <a class="brand" href="../landing-page/index.html" aria-label="RoadNa JO home">
-            <span class="brand__mark"><img class="figma-icon" src="./assets/icon-8.svg" alt=""></span>
-            <span class="brand__name">RoadNa JO</span>
+            <span class="brand__name"><svg class="r-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4V20M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></svg>oadNa<span class="logo-jo">JO</span></span>
           </a>
           <p class="site-footer__blurb">A frontend preview of a direct line between residents and municipal public works.</p>
-          <p class="status-line">Interactive city · Sample report data</p>
+          <p class="status-line">Frontend preview · Sample data</p>
         </div>
-        <nav aria-label="Issue categories">
+        <nav aria-label="Issue categories" data-reveal>
           <h2>Issue Categories</h2>
           <ul>
             <li><a href="../public-guest-menu/index.html">Roadways &amp; Potholes</a></li>
@@ -268,17 +390,17 @@
             <li><a href="../public-guest-menu/index.html">Water Main &amp; Drainage</a></li>
           </ul>
         </nav>
-        <nav aria-label="Civic resources">
+        <nav aria-label="Civic resources" data-reveal>
           <h2>Civic Resources</h2>
           <ul>
-            <li><a href="../city-world/index.html">CityWorld explorer</a></li><li><a href="../../index.html">All screens</a></li><li><a href="./original.html">Original Landing Page</a></li>
-            <li><a href="../public-guest-menu/index.html">Ward Boundaries Map</a></li>
+            <li><a href="../../index.html">All preview screens</a></li>
+            <li><a href="../public-guest-menu/index.html">Public Reports Map</a></li>
             <li><a href="../help/index.html#council">City Council Calendars</a></li>
             <li><a href="../help/index.html#emergency">Emergency Contacts</a></li>
             <li><a href="../help/index.html#audit">Annual Infrastructure Audit</a></li>
           </ul>
         </nav>
-        <nav aria-label="Transparency and legal">
+        <nav aria-label="Transparency and legal" data-reveal>
           <h2>Transparency</h2>
           <ul>
             <li><a href="../help/index.html#privacy">Privacy Policy</a></li>
@@ -290,8 +412,8 @@
         </nav>
       </div>
       <div class="site-footer__bottom">
-        <p>© 2025 RoadNa JO Municipal Platform. All municipal disclosures and citizen records archived under standard open public records protocol.</p>
-        <p class="site-footer__ssl"><img class="figma-icon" src="./assets/icon-9.svg" alt="">Municipal Encrypted SSL</p>
+        <p>© 2026 RoadNa JO. A frontend preview for Jordanian municipalities.</p>
+        
       </div>
     </div>
   </footer>
