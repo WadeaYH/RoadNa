@@ -37,6 +37,41 @@
 .cw-ops .ops-stat { min-height: 48px; padding: 6px 10px; }
 .cw-ops .ops-stat strong { font-size: 19px; }
 
+/* A compact summary leaves the city visible. Detailed figures stay in the existing panel. */
+.cw-app.is-ops .cw-top { grid-template-columns: auto minmax(0, 1fr) auto; }
+.cw-app.is-ops .cw-top > .cw-brand { grid-column: 1; grid-row: 1; }
+.cw-app.is-ops .cw-top > .cw-top__actions { grid-column: 3; grid-row: 1; }
+.cw-ops-overview { grid-column: 2; grid-row: 1; justify-self: center; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) auto; width: min(590px, 100%); min-height: 60px; padding: 5px; border-radius: 14px; }
+.cw-ops-overview__metric { display: flex; flex-direction: column; justify-content: center; gap: 3px; min-width: 0; padding: 4px 14px; }
+.cw-ops-overview__metric + .cw-ops-overview__metric { border-left: 1px solid var(--cw-line); }
+.cw-ops-overview__metric strong { font: 700 23px/26px var(--font-head); font-variant-numeric: tabular-nums; }
+.cw-ops-overview__metric span { font-size: 11px; line-height: 15px; color: var(--cw-muted); }
+.cw-ops-overview__metric.is-alert strong { color: #ba1a1a; }
+.cw-ops-overview__metric.is-busy strong { color: #a15b0c; }
+.cw-ops-overview__more { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 48px; padding: 4px 12px; border: 0; border-radius: 10px; background: #e5f1ec; color: var(--cw-teal-deep); cursor: pointer; }
+.cw-ops-overview__more span { font-size: 10px; line-height: 14px; font-weight: 600; }
+.cw-ops-overview__more:hover, .cw-ops-overview__more[aria-expanded="true"] { background: #cde6dd; }
+.cw-ops-overview__more:focus-visible { outline: 3px solid var(--cw-teal); outline-offset: 2px; }
+.cw-ops-insights { flex: none; border: 1px solid var(--cw-line-strong); border-radius: 12px; background: #fff; scroll-margin-top: 8px; }
+.cw-ops-insights > summary { padding: 12px; min-height: 44px; font-size: 13px; line-height: 20px; font-weight: 700; cursor: pointer; color: var(--cw-teal-deep); }
+.cw-ops-insights > summary:focus-visible { outline: 3px solid var(--cw-teal); outline-offset: -3px; border-radius: 11px; }
+.cw-ops-insights__body { display: flex; flex-direction: column; gap: 14px; padding: 0 12px 14px; }
+.cw-ops-insights__scope, .cw-ops-insights__note { font-size: 11px; line-height: 17px; color: var(--cw-muted); }
+.cw-ops-insights__metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; }
+.cw-ops-insights__metrics > div { padding-bottom: 10px; border-bottom: 1px solid var(--cw-line); }
+.cw-ops-insights__metrics dt { font-size: 11px; line-height: 18px; color: var(--cw-muted); }
+.cw-ops-insights__metrics dd { margin: 3px 0 0; font: 700 22px/27px var(--font-head); font-variant-numeric: tabular-nums; }
+.cw-ops-insights__workload { display: grid; gap: 12px; }
+.cw-ops-insights__workload li[hidden], .cw-ops-insights__note[hidden] { display: none; }
+.cw-ops-insights__department { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 11px; line-height: 17px; }
+.cw-ops-insights__department strong { font-variant-numeric: tabular-nums; }
+.cw-ops-insights__track { height: 5px; margin-top: 6px; border-radius: 3px; background: #e8efea; overflow: hidden; }
+.cw-ops-insights__track span { display: block; height: 100%; border-radius: inherit; background: var(--cw-teal); }
+.cw-ops-insights__crews { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+.cw-ops-insights__crews > div { display: flex; justify-content: space-between; gap: 8px; font-size: 12px; line-height: 20px; }
+.cw-ops-insights__crews dt { color: var(--cw-muted); }
+.cw-ops-insights__crews dd { margin: 0; font-weight: 700; font-variant-numeric: tabular-nums; }
+
 /* City pins coloured by operations status (the pin icon still shows the kind of problem) */
 .cw-app.is-ops .cw-marker[data-ops="review"] { --mc: #64748b; }
 .cw-app.is-ops .cw-marker[data-ops="waiting"] { --mc: #ba1a1a; }
@@ -100,6 +135,7 @@
 /* Neighbourhood health: one sign in the Resident Quarter, details in the panel */
 .cw-ops-health-sign { pointer-events: auto; position: absolute; left: 0; top: 0; display: inline-flex; align-items: center; gap: 8px; min-height: 0; margin: -16px 0 0 -90px; padding: 6px 12px; border: 1px solid #e0862f; border-radius: 999px; background: #fbecd9; color: #7a3a07; font-size: 12px; line-height: 16px; font-weight: 700; white-space: nowrap; box-shadow: var(--cw-shadow); cursor: pointer; }
 .cw-ops-health-sign strong { font: 700 14px/18px var(--font-head); color: var(--cw-ink); }
+.cw-ops-health-sign[hidden] { display: none; }
 .cw-ops-health-sign:focus-visible { outline: 3px solid var(--cw-teal); outline-offset: 2px; }
 .cw-ops__section { display: flex; flex-direction: column; gap: 8px; }
 .cw-ops-health__list { display: flex; flex-direction: column; gap: 6px; }
@@ -157,4 +193,28 @@
 .cw-app.is-wall .cw-ops-pop { display: none; }
 @media (max-width: 760px) {
   .cw-ops-pop { top: auto; left: var(--cw-gap); right: var(--cw-gap); bottom: var(--cw-gap); width: auto; max-height: 62dvh; z-index: 9; }
+}
+
+@media (max-width: 1100px) {
+  .cw-app.is-ops .cw-top { grid-template-columns: auto 1fr; }
+  .cw-app.is-ops .cw-top > .cw-top__actions { grid-column: 2; }
+  .cw-ops-overview { grid-column: 1 / -1; grid-row: 2; width: min(590px, 100%); justify-self: end; }
+  .cw-panel.cw-ops { top: 150px; }
+  .cw-ops-pop { top: 150px; max-height: calc(100% - 150px - 110px); }
+}
+@media (max-width: 760px) {
+  .cw-panel.cw-ops { top: auto; }
+  .cw-panel.cw-ops.is-min { top: auto; bottom: var(--cw-gap); }
+  .cw-ops.is-min .cw-ops__min .icon { transform: rotate(180deg); }
+  .cw-app.is-ops .cw-brand__text { display: flex; }
+  .cw-app.is-ops .cw-brand__text strong { font-size: 13px; }
+  .cw-app.is-ops .cw-brand__text small { font-size: 9px; }
+  .cw-ops-pop { top: auto; max-height: 62dvh; }
+  .cw-ops-overview { width: 100%; min-height: 60px; }
+  .cw-ops-overview__metric { padding-inline: 8px; }
+  .cw-ops-overview__metric strong { font-size: 21px; }
+  .cw-ops-overview__metric span { font-size: 10px; line-height: 13px; }
+  .cw-ops-overview__more { width: 40px; padding-inline: 8px; }
+  .cw-ops-overview__more > span { display: none; }
+  .cw-app.is-ops .cw-cam { top: 150px; bottom: auto; }
 }

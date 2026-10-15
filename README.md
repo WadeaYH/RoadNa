@@ -103,6 +103,8 @@ JavaScript does not use local storage, session storage, authentication logic or 
 
 The landing page tells the RoadNa story as a scroll-directed film inside a 3D miniature city, from a pothole to a repaired street. [CityWorld](screens/city-world/index.html) is a full-window city where every building opens one of the screens, with a live sandbox: potholes slow traffic, open reports anger residents, and crews fix problems. Both use the shared engine in `shared/cityworld/` (Three.js r180, vendored, MIT). There is no build step, CDN, storage or API.
 
+In the staff-only operations view, a compact statistics strip shows open reports, unassigned reports older than two hours and available crews. **Statistics** opens a breakdown in the existing panel: visible and verified-fixed counts, average dispatch/repair durations, department workload bars and crew phases. The figures are derived from the shared operations snapshot, selected department, shown statuses and simulated clock through `shared/ops-metrics.js`. Returning crews count as unavailable; incomplete timing records are excluded. The two-hour queue warning is a preview threshold, not an SLA. Charts use ordinary HTML and CSS. Area-card counts and repair durations use the same calculations. The normal sandbox is unchanged.
+
 Full notes, file map, tuning values, verification tips and open decisions: [CITYWORLD-HANDOFF.md](CITYWORLD-HANDOFF.md). Rollback to Codex's v1: [checkpoints/pre-cityworld-v2-2026-10-11/](checkpoints/pre-cityworld-v2-2026-10-11/RESTORE.md). The pre-CityWorld landing page is still at [original.html](screens/landing-page/original.html).
 
 ## ASP.NET integration

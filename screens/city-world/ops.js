@@ -4,6 +4,7 @@
 // a real crew van that drives the streets to its job, works there, and drives back to the depot.
 // Without ?view=ops CityWorld stays the public sandbox. Everything here is sample data.
 import * as THREE from '../../shared/cityworld/three.js';
+import { summarizeOperations, isQueueDelayed } from '../../shared/ops-metrics.js';
 
 const Ops = window.RoadNaOps;
 const { STATUS, ROLES, REPORTS, TEAMS, HOTSPOTS, NOW, fmtTime, DEPARTMENTS, AREAS } = Ops;
@@ -271,6 +272,11 @@ export function mountOps({ engine, sim, rig, world, overlay }) {
   minBtn.type = 'button';
   minBtn.setAttribute('aria-expanded', 'true');
   minBtn.setAttribute('aria-label', 'Minimise the operations panel');
+  const setPanelMinimized = (minimized) => {
+    panel.classList.toggle('is-min', minimized);
+    minBtn.setAttribute('aria-expanded', String(!minimized));
+    minBtn.setAttribute('aria-label', minimized ? 'Expand the operations panel' : 'Minimise the operations panel');
+  };
   minBtn.append(svgUse('chevron-down', 16));
   head.append(titleWrap, link2d, minBtn);
   const body = el('div', 'cw-ops__body');
@@ -308,6 +314,71 @@ export function mountOps({ engine, sim, rig, world, overlay }) {
 
   const statsList = el('ul', 'ops-stats');
   statsList.setAttribute('aria-label', 'Show in the city');
+  // A small overview stays visible without opening another dashboard over the city.
+  const overview = el('section', 'cw-ops-overview');
+  overview.setAttribute('aria-label', 'Operations statistics');
+  const overviewValues = new Map();
+  for (const [key, label, description] of [
+    ['open', 'Open reports', 'Visible reports awaiting review, assignment, repair or verification.'],
+    ['delayed', 'Unassigned >2h', 'Visible reports still in review or waiting for a team, more than two hours after submission. This is a sample queue warning, not an SLA.'],
+    ['crews', 'Crews available', 'Free crews out of all crews in the selected department. Crews driving back are still unavailable.']
+  ]) {
+    const metric = el('div', 'cw-ops-overview__metric');
+    metric.title = description;
+    const value = el('strong'); value.dataset.metric = key;
+    metric.append(value, el('span', '', label)); overview.append(metric);
+    overviewValues.set(key, value);
+  }
+  const statisticsButton = el('button', 'cw-ops-overview__more');
+  statisticsButton.type = 'button';
+  statisticsButton.setAttribute('aria-label', 'Show detailed statistics');
+  statisticsButton.setAttribute('aria-controls', 'ops-insights');
+  statisticsButton.setAttribute('aria-expanded', 'false');
+  statisticsButton.append(svgUse('chart', 18), el('span', '', 'Statistics'));
+  overview.append(statisticsButton);
+  document.querySelector('.cw-top').insertBefore(overview, document.querySelector('.cw-top__actions'));
+
+  const insights = el('details', 'cw-ops-insights'); insights.id = 'ops-insights';
+  const insightsSummary = el('summary', '', 'Statistics');
+  const insightsBody = el('div', 'cw-ops-insights__body');
+  const insightsScope = el('p', 'cw-ops-insights__scope');
+  const insightsMetrics = el('dl', 'cw-ops-insights__metrics');
+  const insightValues = new Map();
+  for (const [key, label] of [['total', 'Visible reports'], ['fixed', 'Verified fixed'], ['dispatch', 'Avg dispatch'], ['repair', 'Avg repair']]) {
+    const row = el('div'); const value = el('dd'); value.dataset.insight = key;
+    row.append(el('dt', '', label), value); insightsMetrics.append(row); insightValues.set(key, value);
+  }
+  const timingNote = el('p', 'cw-ops-insights__note');
+  const workloadHeading = el('h3', 'cw-ops__h3', 'Open reports by department');
+  const workload = el('ul', 'cw-ops-insights__workload');
+  const workloadEmpty = el('p', 'cw-ops-insights__note', 'No open reports in the selected status layers.');
+  const workloadRows = new Map();
+  for (const department of DEPARTMENTS) {
+    const row = el('li'); const text = el('div', 'cw-ops-insights__department'); const value = el('strong');
+    const track = el('div', 'cw-ops-insights__track'); track.setAttribute('aria-hidden', 'true');
+    const bar = el('span'); track.append(bar);
+    text.append(el('span', '', department), value); row.append(text, track); workload.append(row);
+    workloadRows.set(department, { row, value, bar });
+  }
+  const crewHeading = el('h3', 'cw-ops__h3', 'Crew availability');
+  const crewBreakdown = el('dl', 'cw-ops-insights__crews'); const crewValues = new Map();
+  for (const [key, label] of [['free', 'Available'], ['route', 'On the way'], ['site', 'Working'], ['returning', 'Returning']]) {
+    const row = el('div'); const value = el('dd'); row.append(el('dt', '', label), value); crewBreakdown.append(row); crewValues.set(key, value);
+  }
+  insightsBody.append(insightsScope, insightsMetrics, timingNote, workloadHeading, workload, workloadEmpty, crewHeading, crewBreakdown,
+    el('p', 'cw-ops-insights__note', 'Report figures follow the shown status layers. Crew figures follow the department. The two-hour warning applies to unassigned reports and is not an SLA.'));
+  insights.append(insightsSummary, insightsBody);
+  insights.addEventListener('toggle', () => statisticsButton.setAttribute('aria-expanded', String(insights.open)));
+  statisticsButton.addEventListener('click', () => {
+    const open = !insights.open;
+    insights.open = open;
+    statisticsButton.setAttribute('aria-expanded', String(open));
+    if (open) {
+      setPanelMinimized(false);
+      insightsSummary.focus({ preventScroll: true });
+      insights.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'instant' : 'smooth' });
+    }
+  });
   const layerRow = el('div', 'cw-ops__layers');
   const heatLabel = el('label', 'layer');
   const heatToggle = el('input');
@@ -343,16 +414,14 @@ export function mountOps({ engine, sim, rig, world, overlay }) {
   const attention = el('ul', 'attn');
   const sandbox = el('a', 'cw-ops__sandbox', 'Open the sandbox city (training)');
   sandbox.href = 'index.html';
-  body.append(roleBox, blurb, deptLabel, timeBox, statsList, layerRow, attnHead, attention, teamsHead, teamsList, sandbox);
+  body.append(roleBox, blurb, deptLabel, timeBox, insights, statsList, layerRow, attnHead, attention, teamsHead, teamsList, sandbox);
   panel.append(head, body);
   app.append(panel);
 
   minBtn.addEventListener('click', () => {
-    const min = !panel.classList.contains('is-min');
-    panel.classList.toggle('is-min', min);
-    minBtn.setAttribute('aria-expanded', String(!min));
+    setPanelMinimized(!panel.classList.contains('is-min'));
   });
-  if (innerWidth < 760) { panel.classList.add('is-min'); minBtn.setAttribute('aria-expanded', 'false'); }
+  if (innerWidth < 760) setPanelMinimized(true);
 
   // --- Panel contents ---------------------------------------------------------------------------
   const statButtons = new Map();
@@ -363,6 +432,7 @@ export function mountOps({ engine, sim, rig, world, overlay }) {
       if (!statButtons.has(key)) {
         const li = el('li');
         const btn = el('button', `ops-stat ops-stat--${info.tone}`);
+        btn.dataset.status = key;
         const value = el('strong');
         btn.type = 'button';
         btn.append(el('span', 'ops-stat__dot'), value, el('span', '', info.label));
@@ -514,18 +584,38 @@ export function mountOps({ engine, sim, rig, world, overlay }) {
   // Areas of the miniature city. Each report belongs to the area its pin sits in.
   const AREA_FOCUS = { nw: { x: -12, z: -8.5 }, ne: { x: 12.5, z: -8.5 }, sw: { x: -12, z: 8.5 }, se: { x: 12.5, z: 8.5 } };
   const areaOf = (issue) => (issue.z < 0 ? 'n' : 's') + (issue.x < 0 ? 'w' : 'e');
-  const firstAt = (r) => r.events[0][0];
-  const doneAt = (r) => r.events.find(([, s]) => s === 'check' || s === 'fixed')?.[0];
-  const isOverdue = (r, st) => (st === 'review' || st === 'waiting') && clock.min - firstAt(r) > 120;
+  const isOverdue = (r, st) => isQueueDelayed(r, st, clock.min);
   const areaStats = (key) => {
-    const list = REPORTS.filter((r) => inDept(r) && issueOf.get(r.id) && areaOf(issueOf.get(r.id)) === key && snap.reports.get(r.id));
-    const open = list.filter((r) => !['check', 'fixed'].includes(snap.reports.get(r.id))).length;
-    const overdue = list.filter((r) => isOverdue(r, snap.reports.get(r.id))).length;
-    const fixes = list.map((r) => { const d = doneAt(r); return d != null && d <= clock.min && d > firstAt(r) ? d - firstAt(r) : null; }).filter((x) => x != null);
-    const avg = fixes.length ? Math.round(fixes.reduce((s, x) => s + x, 0) / fixes.length) : null;
-    return { open, overdue, avg };
+    const reports = REPORTS.filter((r) => issueOf.get(r.id) && areaOf(issueOf.get(r.id)) === key);
+    const metrics = summarizeOperations({ reports, teams: [], snapshot: snap, minute: clock.min, department: dept, statuses: visible });
+    return { open: metrics.open, overdue: metrics.delayed, avg: metrics.avgRepair };
   };
   const fmtDur = (m) => (m == null ? '-' : m >= 60 ? `${Math.floor(m / 60)} h ${String(m % 60).padStart(2, '0')}` : `${m} min`);
+
+  function renderInsights() {
+    const metrics = summarizeOperations({ reports: REPORTS, teams: TEAMS, snapshot: snap, minute: clock.min, department: dept, statuses: visible });
+    overviewValues.get('open').textContent = String(metrics.open);
+    overviewValues.get('delayed').textContent = String(metrics.delayed);
+    overviewValues.get('delayed').parentElement.classList.toggle('is-alert', metrics.delayed > 0);
+    overviewValues.get('crews').textContent = `${metrics.crews.free}/${metrics.crews.total}`;
+    overviewValues.get('crews').parentElement.classList.toggle('is-busy', metrics.crews.total > 0 && metrics.crews.free === 0);
+    insightsScope.textContent = `${dept === 'all' ? 'All departments' : dept} · ${visible.size} of ${Object.keys(STATUS).length} status layers · ${fmtTime(clock.min)} · Sample data`;
+    overview.title = insightsScope.textContent;
+    insightValues.get('total').textContent = String(metrics.total);
+    insightValues.get('fixed').textContent = String(metrics.counts.fixed);
+    insightValues.get('dispatch').textContent = fmtDur(metrics.avgDispatch);
+    insightValues.get('repair').textContent = fmtDur(metrics.avgRepair);
+    timingNote.textContent = `Dispatch: submission to first dispatch (${metrics.dispatchSamples} timed report${metrics.dispatchSamples === 1 ? '' : 's'}). Repair: dispatch to work complete (${metrics.repairSamples} timed repair${metrics.repairSamples === 1 ? '' : 's'}). Missing timestamps are excluded.`;
+    for (const [department, { row, value, bar }] of workloadRows) {
+      row.hidden = dept !== 'all' && dept !== department;
+      const count = metrics.workload.get(department) || 0;
+      value.textContent = String(count);
+      row.setAttribute('aria-label', `${department}: ${count} open reports`);
+      bar.style.width = `${metrics.open ? count / metrics.open * 100 : 0}%`;
+    }
+    workloadEmpty.hidden = metrics.open > 0;
+    for (const [phase, value] of crewValues) value.textContent = String(metrics.crews[phase]);
+  }
 
   // Area cards: a strip along the bottom of the screen, never on top of the pins.
   const areaStrip = el('section', 'cw-ops-areas');
@@ -566,8 +656,7 @@ export function mountOps({ engine, sim, rig, world, overlay }) {
   votesLink.href = '../admin-community/index.html';
   healthSection.append(healthHead, healthNote, healthList, votesLink);
   healthSign.addEventListener('click', () => {
-    panel.classList.remove('is-min');
-    minBtn.setAttribute('aria-expanded', 'true');
+    setPanelMinimized(false);
     healthHead.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
     healthHead.focus({ preventScroll: true });
   });
@@ -580,18 +669,20 @@ export function mountOps({ engine, sim, rig, world, overlay }) {
   body.insertBefore(healthSection, teamsHead);
 
   function renderManager() {
+    renderInsights();
     const on = mgrToggle.checked;
     areaStrip.hidden = !on;
     healthItem.hidden = !on;
+    healthSign.hidden = !on;
     for (const [key, { card, area }] of areaCards) {
       const s = areaStats(key);
       card.textContent = '';
-      card.append(el('span', 'cw-ops-area__name', area.name), el('span', 'cw-ops-area__row', `${s.open} open · ${s.overdue} overdue`), el('span', 'cw-ops-area__row', `Avg fix ${fmtDur(s.avg)} · ★ ${area.rating.toFixed(1)}`));
+      card.append(el('span', 'cw-ops-area__name', area.name), el('span', 'cw-ops-area__row', `${s.open} open · ${s.overdue} overdue`), el('span', 'cw-ops-area__row', `Avg repair ${fmtDur(s.avg)} · ★ ${area.rating.toFixed(1)}`));
       card.classList.toggle('is-alert', s.overdue > 0);
-      card.setAttribute('aria-label', `${area.name}: ${s.open} open reports, ${s.overdue} overdue, average fix time ${fmtDur(s.avg)}, resident rating ${area.rating} out of 5. Show this area.`);
+      card.setAttribute('aria-label', `${area.name}: ${s.open} open reports, ${s.overdue} unassigned for more than two hours, average repair time ${fmtDur(s.avg)}, resident rating ${area.rating} out of 5. Show this area.`);
     }
     const count = (sts) => REPORTS.filter((r) => inDept(r) && sts.includes(snap.reports.get(r.id))).length;
-    const free = TEAMS.filter((t) => teamInDept(t) && !snap.teams.get(t.name).task).length;
+    const free = TEAMS.filter((t) => teamInDept(t) && snap.teams.get(t.name).phase === 'free').length;
     const overdue = REPORTS.filter((r) => inDept(r) && isOverdue(r, snap.reports.get(r.id))).length;
     hqList.textContent = '';
     for (const [screen, title, text, alert] of [

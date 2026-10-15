@@ -45,7 +45,7 @@
       }
     ],
     "fixed": true,
-    "focus": "ops-stat ops-stat--slate",
+    "focus": "review",
     "link": "http://127.0.0.1:4174/screens/admin-ops-map/index.html?view=ops&role=supervisor&mode=live&t=370",
     "brand": "../admin-dashboard/index.html",
     "visibleDirectory": [
