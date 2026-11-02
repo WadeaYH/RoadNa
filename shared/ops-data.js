@@ -210,9 +210,9 @@
       const handled = team && ["progress", "check", "fixed"].includes(status);
       if (status === "waiting" && report.note) addRow(dl, "Why it waits", report.note);
       const actions = el("div", "ops-card__actions");
-      if (status === "review") actions.append(role !== "supervisor" ? link("../admin-incident-triage/index.html", "Review & assign") : link("../admin-incident-triage/index.html", "See in Review & Assign", false));
-      else if (status === "waiting") actions.append(link("../admin-incident-triage/index.html", "Open the waiting list"));
-      else if (status === "check") actions.append(link("../supervisor-review/index.html", "Check this work"));
+      if (status === "review") actions.append(role !== "supervisor" ? link("../../admin/review-assign/review-assign.html", "Review & assign") : link("../../admin/review-assign/review-assign.html", "See in Review & Assign", false));
+      else if (status === "waiting") actions.append(link("../../admin/review-assign/review-assign.html", "Open the waiting list"));
+      else if (status === "check") actions.append(link("../../admin/check-work/check-work.html", "Check this work"));
       body.append(el("span", `chip ${info.chip}`, info.label), h, el("p", "mono ops-card__id", report.id), dl);
       if (handled) body.append(crewBlock(team, snap.teams.get(team.name), status === "progress" ? "Crew handling it" : "Crew that did the work"));
       else body.append(el("p", "ops-crew__none", status === "waiting" ? `No crew yet: every ${report.dept} team is busy.` : "No crew yet: the report is waiting for review and assignment."));

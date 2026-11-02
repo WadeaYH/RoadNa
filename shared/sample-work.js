@@ -3,13 +3,13 @@
 // Sample work orders shared by the field-team and supervisor previews. Nothing is saved:
 // each page starts from this data, and changes last only until the page is reloaded.
 (() => {
-  const photo = (name) => `../../shared/samples/${name}.svg`;
+  const photo = (name) => `../../../shared/samples/${name}.svg`;
   window.RoadNaWork = {
     municipality: "Greater Irbid Municipality",
     department: "Roads Department",
     supervisor: { name: "Eng. Rana Al-Khatib", initials: "RK" },
     team: {
-      name: "Roads Team 4",
+      name: "Roads Crew 4",
       vehicle: "Asphalt patch truck · 24-61873",
       leader: { name: "Omar Haddad", initials: "OH" },
       member: { name: "Khaled Al-Momani", initials: "KM" },
@@ -39,7 +39,7 @@
         before: [], after: [], notes: [],
         history: [{ at: "8:12 am", by: "System", text: "Report RN-2026-0412 received with a photo and pin." },
           { at: "8:14 am", by: "System", text: "Suggested category Roads & potholes, priority High (AI suggestion, simulated)." },
-          { at: "8:40 am", by: "Eng. Rana Al-Khatib", text: "Accepted the report and assigned Roads Team 4." }],
+          { at: "8:40 am", by: "Eng. Rana Al-Khatib", text: "Accepted the report and assigned Roads Crew 4." }],
       },
       {
         id: "WO-2026-0121", report: "RN-2026-0419", title: "Broken road edge by the bus stop", category: "Roads & potholes",
@@ -49,7 +49,7 @@
         before: [{ src: photo("road-crack"), by: "Khaled Al-Momani", at: "9:05 am", sample: true }], after: [],
         notes: [{ by: "Khaled Al-Momani", at: "9:07 am", text: "About 2 m of edge is loose. Cones placed." }],
         history: [{ at: "Yesterday 4:30 pm", by: "System", text: "Report RN-2026-0419 received." },
-          { at: "Yesterday 5:10 pm", by: "Eng. Rana Al-Khatib", text: "Accepted and assigned Roads Team 4." },
+          { at: "Yesterday 5:10 pm", by: "Eng. Rana Al-Khatib", text: "Accepted and assigned Roads Crew 4." },
           { at: "8:41 am", by: "Omar Haddad", text: "On the way." }, { at: "8:58 am", by: "Omar Haddad", text: "Arrived on site." },
           { at: "9:02 am", by: "Omar Haddad", text: "Started work." }],
       },
@@ -91,6 +91,19 @@
         notes: [{ by: "Omar Haddad", at: "9:12 am", text: "Hole cleaned, filled and rolled." }],
         history: [{ at: "4 days ago", by: "System", text: "Report RN-2026-0371 received." },
           { at: "Today 9:15 am", by: "Omar Haddad", text: "Submitted the work for checking." }],
+      },
+      {
+        // Reopened by the resident after it was approved: it comes back here to be checked again.
+        id: "WO-2026-0079", report: "RN-2026-0302", title: "Cracked sidewalk slab near bus stop", category: "Roads & potholes",
+        priority: "Normal", status: "checking", place: "Al-Nuzha bus stop", area: "Al-Nuzha",
+        lat: 32.5421, lng: 35.8559, due: "In 2 days", received: "3 weeks ago", submitted: "Sep 24 (approved), reopened today",
+        reopened: { by: "Lina Obeidat", at: "Today, 8:05 am", reason: "The new slab is already tilting at the bus stop end. People still trip on it." },
+        citizen: { text: "A tilted slab next to the bus stop trips people getting off the bus.", photo: photo("road-crack") },
+        before: [{ src: photo("road-crack"), by: "Khaled Al-Momani", at: "Sep 24", sample: true }],
+        after: [{ src: photo("road-sealed"), by: "Omar Haddad", at: "Sep 24", sample: true }],
+        notes: [{ by: "Omar Haddad", at: "Sep 24", text: "Slab replaced and levelled." }],
+        history: [{ at: "Sep 24", by: "Eng. Rana Al-Khatib", text: "Approved. Report closed and archived." },
+          { at: "Today 8:05 am", by: "Lina Obeidat (resident)", text: "Reopened the report." }],
       },
       {
         id: "WO-2026-0088", report: "RN-2026-0360", title: "Curb ramp rebuilt", category: "Roads & potholes",

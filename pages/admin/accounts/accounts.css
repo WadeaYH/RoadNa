@@ -1,0 +1,34 @@
+/* Accounts and teams (super admin). Builds on shared/app.css panels, tables and form controls. */
+.acc-views { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; margin-bottom: 20px; font-size: 14px; }
+.acc-views__label { width: 100%; font-size: 13px; color: var(--muted); }
+.acc-views a { font-weight: 600; }
+.acc-tabs { margin-bottom: 16px; }
+.acc-tabs .num { margin-inline-start: 4px; color: var(--muted); }
+.acc-search { width: min(100%, 280px); }
+.acc-table td { vertical-align: middle; }
+.acc-table td strong { display: block; }
+.acc-table td small { color: var(--muted); font-size: 12px; }
+.acc-table .select { height: 36px; min-width: 150px; }
+.acc-empty { padding: 20px; color: var(--muted); }
+.acc-add { display: flex; flex-direction: column; gap: 12px; padding: 20px; border-top: 1px solid var(--line); }
+.acc-add__title { font: 700 15px/22px var(--font-head); }
+.acc-add__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.acc-add__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.acc-add__note { font-size: 13px; color: var(--muted); }
+.field__error { color: var(--red-ink); font-size: 13px; }
+.acc-teams { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; padding: 20px; }
+.acc-team { display: flex; flex-direction: column; gap: 8px; padding: 16px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); }
+.acc-team h3 { font: 700 15px/22px var(--font-head); }
+.acc-team dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 13px; }
+.acc-team dt { color: var(--muted); }
+.acc-row--off td:not(:last-child) { opacity: .55; }
+@media (max-width: 900px) { .acc-add__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .acc-add__grid { grid-template-columns: 1fr; } .acc-search { width: 100%; } }
+
+/* Teams: members can move between teams */
+.acc-team__members { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+.acc-team__members li { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13px; }
+.acc-team__members .select { width: auto; max-width: 150px; height: 32px; font-size: 12px; }
+.acc-team--new { border-color: var(--teal-line); background: var(--teal-wash); }
+.acc-add__grid--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 560px) { .acc-add__grid--two { grid-template-columns: 1fr; } }

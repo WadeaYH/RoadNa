@@ -1,0 +1,24 @@
+/* Home — screen-specific styles. Shared: ../../../shared/base.css, ../../../shared/app.css */
+
+
+
+
+.nearby { display: flex; flex-direction: column; gap: 4px; }
+.nearby__list { margin-top: 8px; }
+.nearby__item { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; }
+.nearby__item strong { display: block; font-size: 14px; line-height: 20px; font-weight: 600; }
+.nearby__item span { font-size: 12px; line-height: 16px; color: var(--muted); }
+
+.vote-btn {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 32px; padding: 4px 12px; border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill); background: var(--surface); font-size: 12px; line-height: 16px; font-weight: 700; color: var(--muted);
+  transition: background-color .16s ease, border-color .16s ease, color .16s ease, transform .16s ease;
+}
+.vote-btn:hover { border-color: var(--teal); color: var(--teal-deep); }
+.vote-btn:active { transform: scale(.96); }
+.vote-btn[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: #fff; }
+
+
+@media (max-width: 760px) {
+  .vote-btn { min-height: 44px; padding-inline: 16px; }
+}

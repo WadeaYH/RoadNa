@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node tools/serve.mjs",
-    "check": "node tools/check.mjs"
+    "check": "node tools/check.mjs",
+    "share": "node -e \"process.env.SHARE=1;import('./tools/serve.mjs')\""
   }
 }

@@ -1,15 +1,15 @@
 /* Real map (Leaflet + OpenStreetMap) shared by every 2D map screen. */
 .rn-map { position: relative; z-index: 0; isolation: isolate; width: 100%; height: 100%; min-height: 160px; background: #e9ece6; font: inherit; }
 .rn-map:focus-visible { outline: 3px solid var(--teal); outline-offset: -3px; }
-.rn-map .leaflet-control-attribution { padding: 1px 6px; font-size: 10px; line-height: 16px; background: rgb(255 255 255 / 86%); color: var(--muted); }
+.rn-map .leaflet-control-attribution { padding: 1px 6px; font-size: 12px; line-height: 16px; background: rgb(255 255 255 / 86%); color: var(--muted); }
 .rn-map .leaflet-control-attribution a { color: var(--teal-deep); }
 
 .rn-marker { background: none; border: 0; }
 .rn-marker:focus-visible { outline: none; }
 .rn-marker:focus-visible .rn-pin, .rn-marker:focus-visible .rn-dot { box-shadow: 0 0 0 3px #fff, 0 0 0 6px var(--teal); }
-.rn-pin { display: grid; place-items: center; width: 36px; height: 36px; border: 3px solid #fff; border-radius: 50%; color: #fff; box-shadow: 0 4px 10px rgb(24 28 32 / 28%); transition: transform .2s cubic-bezier(.2, .7, .2, 1), box-shadow .2s ease; }
-.rn-marker:hover .rn-pin, .rn-marker.is-active .rn-pin { transform: scale(1.18); box-shadow: 0 0 0 5px rgb(255 255 255 / 75%), 0 8px 16px rgb(24 28 32 / 22%); }
-.rn-dot { display: block; width: 18px; height: 18px; border: 3px solid #fff; border-radius: 50%; box-shadow: 0 2px 6px rgb(24 28 32 / 30%); }
+.rn-pin { display: grid; place-items: center; width: 36px; height: 36px; border: 3px solid #fff; border-radius: 50%; color: #fff; box-shadow: 0 4px 10px rgb(8 40 42 / 28%); transition: transform .2s cubic-bezier(.2, .7, .2, 1), box-shadow .2s ease; }
+.rn-marker:hover .rn-pin, .rn-marker.is-active .rn-pin { transform: scale(1.18); box-shadow: 0 0 0 5px rgb(255 255 255 / 75%), 0 8px 16px rgb(8 40 42 / 22%); }
+.rn-dot { display: block; width: 18px; height: 18px; border: 3px solid #fff; border-radius: 50%; box-shadow: 0 2px 6px rgb(8 40 42 / 30%); }
 .rn-pin--slate, .rn-dot--slate { background: #64748b; }
 .rn-pin--teal, .rn-dot--teal { background: var(--teal); }
 .rn-pin--amber, .rn-dot--amber { background: var(--amber); }

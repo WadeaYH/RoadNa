@@ -1,0 +1,7 @@
+body { display: grid; place-items: center; min-height: 100dvh; padding: 24px; background: radial-gradient(120% 60% at 85% -12%, #dff3f0 0%, rgb(223 243 240 / 0%) 62%), #f2f9f8; }
+.nf { width: min(100%, 480px); padding: 36px 32px; border: 1px solid var(--line); border-radius: 22px; background: var(--surface); box-shadow: var(--shadow-lift); text-align: center; }
+.nf .brand__name { display: inline-block; margin-bottom: 18px; }
+.nf__code { font: 700 64px/1 var(--font-head); letter-spacing: -.04em; color: var(--teal-deep); }
+.nf h1 { margin-top: 10px; font: 700 24px/30px var(--font-head); letter-spacing: -.02em; }
+.nf p { margin-top: 8px; color: var(--muted); }
+.nf__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 22px; }

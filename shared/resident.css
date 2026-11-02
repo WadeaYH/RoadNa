@@ -1,13 +1,14 @@
 /* RoadNa JO — resident shell: slim top bar on desktop, bottom tab bar on phones.
    Staff screens keep the sidebar console in app.css. Loaded after app.css on resident screens only. */
 
-.res-shell { min-height: 100vh; min-height: 100dvh; background: #f2f9f8; }
+/* A faint teal glow at the top keeps the canvas from feeling flat. */
+.res-shell { min-height: 100vh; min-height: 100dvh; background: radial-gradient(120% 60% at 85% -12%, #dff3f0 0%, rgb(223 243 240 / 0%) 62%), #f2f9f8; }
 .res-shell .app-main { min-height: calc(100vh - var(--header-h)); }
 .res-shell .app-content { max-width: 1080px; padding: 32px 32px 48px; }
 
 /* ---------- Top bar ---------- */
 .res-top {
-  position: sticky; top: 0; z-index: 40; display: flex; align-items: center; gap: 8px;
+  position: sticky; top: 0; z-index: var(--z-sticky); display: flex; align-items: center; gap: 8px;
   min-height: var(--header-h); padding: 8px 32px; background: var(--surface); border-bottom: 1px solid var(--line);
 }
 .res-top .brand { margin-inline-end: 16px; color: inherit; }
@@ -32,9 +33,9 @@
   .res-top .user-chip { padding: 4px; }
   .res-shell .app-content { padding: 20px 16px 104px; }
   .res-tabs {
-    position: fixed; inset-inline: 0; bottom: 0; z-index: 70; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: end;
+    position: fixed; inset-inline: 0; bottom: 0; z-index: var(--z-dock); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: end;
     padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); background: var(--surface); border-top: 1px solid var(--line);
-    box-shadow: 0 -6px 20px rgb(20 24 28 / 6%);
+    box-shadow: 0 -6px 20px rgb(8 40 42 / 6%);
   }
   .res-tab {
     position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 56px;
@@ -151,3 +152,5 @@
 @keyframes res-in { from { opacity: 0; transform: translateY(12px); } }
 @keyframes step-fill { from { transform: scaleX(0); } }
 @keyframes step-breathe { 50% { opacity: .55; } }
+
+.rcard__meta .mono { display: block; margin-top: 2px; white-space: nowrap; }

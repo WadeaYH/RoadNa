@@ -1,0 +1,187 @@
+"use strict";
+
+// The RoadNa JO data model, written once. The ER diagram, the schema diagram, the table list and the
+// SQL script are all drawn from this file, so they cannot disagree. Types are SQL Server types (ASP.NET).
+// Flags: pk, fk, uq (unique), null (optional), now (defaults to the current time), def1 / def0 (default 1 / 0).
+(() => {
+  const c = (name, type, flags = "", vals = "") => ({ name, type, flags: flags ? flags.split(" ") : [], vals: vals ? vals.split(",") : [] });
+  const t = (name, group, desc, ...cols) => ({ name, group, desc, cols });
+  const NOW = "DATETIME2";
+
+  const GROUPS = {
+    org: { label: "People and teams", note: "Who works where" },
+    reports: { label: "Resident reports", note: "From the photo to Fixed" },
+    work: { label: "Field work", note: "Orders, photos, checks" },
+    community: { label: "Community votes", note: "Proposals and decisions" },
+    messages: { label: "Messages", note: "What residents and staff are told" },
+  };
+
+  const TABLES = [
+    t("municipality", "org", "A municipality on the platform. Every report and every person belongs to one.",
+      c("id", "INT", "pk"), c("name", "NVARCHAR(120)"), c("name_ar", "NVARCHAR(120)", "null"), c("created_at", NOW, "now")),
+    t("department", "org", "A part of the municipality that fixes one kind of problem, such as Roads or Lighting.",
+      c("id", "INT", "pk"), c("municipality_id", "INT", "fk"), c("name", "NVARCHAR(120)"), c("handles", "NVARCHAR(200)")),
+    t("area", "org", "A district, used to place reports and to see where problems cluster.",
+      c("id", "INT", "pk"), c("municipality_id", "INT", "fk"), c("name", "NVARCHAR(80)"), c("center_lat", "DECIMAL(9,6)"), c("center_lng", "DECIMAL(9,6)")),
+    t("category", "org", "A type of problem. It suggests the department that should fix it.",
+      c("id", "INT", "pk"), c("department_id", "INT", "fk"), c("name", "NVARCHAR(80)"), c("keywords", "NVARCHAR(400)", "null")),
+    t("app_user", "org", "Every account: residents and staff. Each person has exactly one role.",
+      c("id", "INT", "pk"), c("municipality_id", "INT", "fk"), c("email", "NVARCHAR(200)", "uq"), c("password_hash", "NVARCHAR(200)"),
+      c("full_name", "NVARCHAR(120)"), c("phone", "NVARCHAR(30)", "null"),
+      c("role", "NVARCHAR(20)", "", "resident,reviewer,team_member,team_leader,supervisor,manager,admin"),
+      c("department_id", "INT", "fk null"), c("is_active", "BIT", "def1"), c("created_at", NOW, "now"), c("last_login_at", NOW, "null")),
+    t("team", "org", "A maintenance crew with one leader, one supervisor and a vehicle.",
+      c("id", "INT", "pk"), c("department_id", "INT", "fk"), c("leader_id", "INT", "fk"), c("supervisor_id", "INT", "fk"),
+      c("name", "NVARCHAR(80)"), c("vehicle_type", "NVARCHAR(30)", "null"), c("vehicle_plate", "NVARCHAR(20)", "null"),
+      c("status", "NVARCHAR(10)", "", "free,busy")),
+    t("team_member", "org", "Who belongs to a team. A person works in at most one team.",
+      c("team_id", "INT", "pk fk"), c("user_id", "INT", "pk fk uq")),
+
+    t("report", "reports", "A problem a resident reported. The stage is the staff view; the resident only sees Received, In progress, Fixed or Rejected.",
+      c("id", "INT", "pk"), c("reference", "NVARCHAR(20)", "uq"), c("municipality_id", "INT", "fk"), c("resident_id", "INT", "fk"),
+      c("category_id", "INT", "fk"), c("area_id", "INT", "fk null"), c("title", "NVARCHAR(160)"), c("description", "NVARCHAR(2000)"),
+      c("address", "NVARCHAR(200)", "null"), c("lat", "DECIMAL(9,6)"), c("lng", "DECIMAL(9,6)"),
+      c("priority", "NVARCHAR(10)", "", "low,medium,high,critical"),
+      c("stage", "NVARCHAR(12)", "", "review,waiting,assigned,in_progress,checking,closed,rejected"),
+      c("ai_priority", "NVARCHAR(10)", "null"), c("ai_summary", "NVARCHAR(500)", "null"),
+      c("duplicate_of_id", "INT", "fk null"), c("reviewed_by_id", "INT", "fk null"), c("reviewed_at", NOW, "null"),
+      c("rejection_reason", "NVARCHAR(300)", "null"), c("created_at", NOW, "now"), c("closed_at", NOW, "null")),
+    t("report_photo", "reports", "A photo the resident attached to the report.",
+      c("id", "INT", "pk"), c("report_id", "INT", "fk"), c("url", "NVARCHAR(300)"), c("created_at", NOW, "now")),
+    t("report_event", "reports", "The history of a report: received, reviewed, assigned, closed.",
+      c("id", "INT", "pk"), c("report_id", "INT", "fk"), c("actor_id", "INT", "fk null"), c("event_type", "NVARCHAR(30)"),
+      c("note", "NVARCHAR(300)", "null"), c("created_at", NOW, "now")),
+    t("comment", "reports", "A comment under a report, from a neighbour or the municipality.",
+      c("id", "INT", "pk"), c("report_id", "INT", "fk"), c("user_id", "INT", "fk"), c("body", "NVARCHAR(1000)"), c("created_at", NOW, "now")),
+    t("report_vote", "reports", "A neighbour's upvote. The key allows one vote per account per report.",
+      c("report_id", "INT", "pk fk"), c("user_id", "INT", "pk fk"), c("created_at", NOW, "now")),
+    t("report_follow", "reports", "A resident following a report to get its updates.",
+      c("report_id", "INT", "pk fk"), c("user_id", "INT", "pk fk"), c("created_at", NOW, "now")),
+    t("rating", "reports", "How the resident rates a repair. At most one per report.",
+      c("id", "INT", "pk"), c("report_id", "INT", "fk uq"), c("resident_id", "INT", "fk"), c("stars", "TINYINT"),
+      c("comment", "NVARCHAR(500)", "null"), c("created_at", NOW, "now")),
+    t("reopen_request", "reports", "A resident says the repair did not hold. It creates a new work order for a supervisor to check.",
+      c("id", "INT", "pk"), c("report_id", "INT", "fk"), c("resident_id", "INT", "fk"), c("reason", "NVARCHAR(500)"),
+      c("work_order_id", "INT", "fk null"), c("created_at", NOW, "now")),
+
+    t("work_order", "work", "The job for a team. A report can have several over time (rework, reopening), but only one open at once.",
+      c("id", "INT", "pk"), c("code", "NVARCHAR(20)", "uq"), c("report_id", "INT", "fk"), c("team_id", "INT", "fk"),
+      c("assigned_by_id", "INT", "fk"), c("submitted_by_id", "INT", "fk null"), c("rework_of_id", "INT", "fk null"),
+      c("status", "NVARCHAR(12)", "", "assigned,on_way,arrived,in_progress,checking,sent_back,approved"),
+      c("due_at", NOW), c("target_hours", "INT"), c("assigned_at", NOW, "now"), c("on_way_at", NOW, "null"), c("arrived_at", NOW, "null"),
+      c("started_at", NOW, "null"), c("submitted_at", NOW, "null"), c("closed_at", NOW, "null")),
+    t("work_photo", "work", "Before and after photos taken by the team.",
+      c("id", "INT", "pk"), c("work_order_id", "INT", "fk"), c("taken_by_id", "INT", "fk"),
+      c("kind", "NVARCHAR(8)", "", "before,after"), c("url", "NVARCHAR(300)"), c("taken_at", NOW, "now")),
+    t("work_note", "work", "A note the team wrote while working.",
+      c("id", "INT", "pk"), c("work_order_id", "INT", "fk"), c("author_id", "INT", "fk"), c("body", "NVARCHAR(500)"), c("created_at", NOW, "now")),
+    t("work_check", "work", "The supervisor's verdict on submitted work: approve, or send back with a reason.",
+      c("id", "INT", "pk"), c("work_order_id", "INT", "fk"), c("supervisor_id", "INT", "fk"),
+      c("decision", "NVARCHAR(10)", "", "approved,sent_back"), c("reason", "NVARCHAR(500)", "null"),
+      c("ai_reassessment", "NVARCHAR(1000)", "null"), c("checked_at", NOW, "now")),
+    t("escalation", "work", "A supervisor sends an order to the manager with a reason.",
+      c("id", "INT", "pk"), c("work_order_id", "INT", "fk"), c("raised_by_id", "INT", "fk"), c("sent_to_id", "INT", "fk"),
+      c("reason", "NVARCHAR(500)"), c("status", "NVARCHAR(8)", "", "open,handled"), c("raised_at", NOW, "now"), c("handled_at", NOW, "null")),
+
+    t("proposal", "community", "A question the municipality asks residents, with an end date.",
+      c("id", "INT", "pk"), c("municipality_id", "INT", "fk"), c("created_by_id", "INT", "fk"), c("question", "NVARCHAR(200)"),
+      c("details", "NVARCHAR(1000)", "null"), c("status", "NVARCHAR(8)", "", "open,closed,decided"), c("closes_at", NOW), c("created_at", NOW, "now")),
+    t("proposal_option", "community", "One answer residents can pick. Two to four per proposal.",
+      c("id", "INT", "pk"), c("proposal_id", "INT", "fk"), c("label", "NVARCHAR(100)"), c("sort_order", "TINYINT")),
+    t("proposal_vote", "community", "A resident's vote. The key allows one vote per account; changing it updates the row.",
+      c("proposal_id", "INT", "pk fk"), c("user_id", "INT", "pk fk"), c("option_id", "INT", "fk"), c("voted_at", NOW, "now"), c("changed_at", NOW, "null")),
+    t("proposal_decision", "community", "What the municipality decided after reading the results. One per proposal.",
+      c("proposal_id", "INT", "pk fk"), c("decided_by_id", "INT", "fk"), c("choice", "NVARCHAR(12)", "", "go_ahead,not_now,change_plan"),
+      c("message", "NVARCHAR(600)"), c("decided_at", NOW, "now")),
+
+    t("notification", "messages", "A message to a person, for example 'your report is fixed'.",
+      c("id", "INT", "pk"), c("user_id", "INT", "fk"), c("report_id", "INT", "fk null"), c("kind", "NVARCHAR(30)"),
+      c("body", "NVARCHAR(300)"), c("is_read", "BIT", "def0"), c("created_at", NOW, "now")),
+  ];
+
+  // from.col references to's key. fromCard is how many `from` rows one `to` row can have; toCard how many `to` rows one `from` row has.
+  // one = exactly one, zeroOne = optional, many = one or more, zeroMany = none or more.
+  const r = (from, col, to, fromCard, toCard, label) => ({ from, col, to, fromCard, toCard, label });
+  const RELS = [
+    r("department", "municipality_id", "municipality", "many", "one", "belongs to"),
+    r("area", "municipality_id", "municipality", "many", "one", "belongs to"),
+    r("category", "department_id", "department", "many", "one", "handled by"),
+    r("app_user", "municipality_id", "municipality", "many", "one", "belongs to"),
+    r("app_user", "department_id", "department", "zeroMany", "zeroOne", "works in"),
+    r("team", "department_id", "department", "many", "one", "belongs to"),
+    r("team", "leader_id", "app_user", "zeroMany", "one", "led by"),
+    r("team", "supervisor_id", "app_user", "zeroMany", "one", "supervised by"),
+    r("team_member", "team_id", "team", "zeroMany", "one", "has member"),
+    r("team_member", "user_id", "app_user", "zeroOne", "one", "is a member"),
+
+    r("report", "municipality_id", "municipality", "many", "one", "belongs to"),
+    r("report", "resident_id", "app_user", "zeroMany", "one", "filed by"),
+    r("report", "category_id", "category", "zeroMany", "one", "is a"),
+    r("report", "area_id", "area", "zeroMany", "zeroOne", "located in"),
+    r("report", "duplicate_of_id", "report", "zeroMany", "zeroOne", "duplicate of"),
+    r("report", "reviewed_by_id", "app_user", "zeroMany", "zeroOne", "reviewed by"),
+    r("report_photo", "report_id", "report", "zeroMany", "one", "shows"),
+    r("report_event", "report_id", "report", "many", "one", "records"),
+    r("report_event", "actor_id", "app_user", "zeroMany", "zeroOne", "done by"),
+    r("comment", "report_id", "report", "zeroMany", "one", "discusses"),
+    r("comment", "user_id", "app_user", "zeroMany", "one", "written by"),
+    r("report_vote", "report_id", "report", "zeroMany", "one", "backs"),
+    r("report_vote", "user_id", "app_user", "zeroMany", "one", "cast by"),
+    r("report_follow", "report_id", "report", "zeroMany", "one", "follows"),
+    r("report_follow", "user_id", "app_user", "zeroMany", "one", "followed by"),
+    r("rating", "report_id", "report", "zeroOne", "one", "rates"),
+    r("rating", "resident_id", "app_user", "zeroMany", "one", "given by"),
+    r("reopen_request", "report_id", "report", "zeroMany", "one", "reopens"),
+    r("reopen_request", "resident_id", "app_user", "zeroMany", "one", "asked by"),
+    r("reopen_request", "work_order_id", "work_order", "zeroOne", "zeroOne", "creates"),
+
+    r("work_order", "report_id", "report", "many", "one", "fixes"),
+    r("work_order", "team_id", "team", "zeroMany", "one", "assigned to"),
+    r("work_order", "assigned_by_id", "app_user", "zeroMany", "one", "assigned by"),
+    r("work_order", "submitted_by_id", "app_user", "zeroMany", "zeroOne", "submitted by"),
+    r("work_order", "rework_of_id", "work_order", "zeroOne", "zeroOne", "rework of"),
+    r("work_photo", "work_order_id", "work_order", "zeroMany", "one", "documents"),
+    r("work_photo", "taken_by_id", "app_user", "zeroMany", "one", "taken by"),
+    r("work_note", "work_order_id", "work_order", "zeroMany", "one", "notes on"),
+    r("work_note", "author_id", "app_user", "zeroMany", "one", "written by"),
+    r("work_check", "work_order_id", "work_order", "zeroMany", "one", "checks"),
+    r("work_check", "supervisor_id", "app_user", "zeroMany", "one", "checked by"),
+    r("escalation", "work_order_id", "work_order", "zeroMany", "one", "escalates"),
+    r("escalation", "raised_by_id", "app_user", "zeroMany", "one", "raised by"),
+    r("escalation", "sent_to_id", "app_user", "zeroMany", "one", "sent to"),
+
+    r("proposal", "municipality_id", "municipality", "zeroMany", "one", "asked by"),
+    r("proposal", "created_by_id", "app_user", "zeroMany", "one", "created by"),
+    r("proposal_option", "proposal_id", "proposal", "many", "one", "offers"),
+    r("proposal_vote", "proposal_id", "proposal", "zeroMany", "one", "votes on"),
+    r("proposal_vote", "user_id", "app_user", "zeroMany", "one", "cast by"),
+    r("proposal_vote", "option_id", "proposal_option", "zeroMany", "one", "picks"),
+    r("proposal_decision", "proposal_id", "proposal", "zeroOne", "one", "decides"),
+    r("proposal_decision", "decided_by_id", "app_user", "zeroMany", "one", "decided by"),
+
+    r("notification", "user_id", "app_user", "zeroMany", "one", "sent to"),
+    r("notification", "report_id", "report", "zeroMany", "zeroOne", "is about"),
+  ];
+
+  // One list per column of the diagrams, top to bottom.
+  const LAYOUT = [
+    ["municipality", "department", "area", "category", "proposal", "proposal_option", "proposal_vote", "proposal_decision"],
+    ["app_user", "team", "team_member"],
+    ["report", "report_photo", "report_event", "comment"],
+    ["report_vote", "report_follow", "rating", "reopen_request", "notification"],
+    ["work_order", "work_photo", "work_note", "work_check", "escalation"],
+  ];
+
+  // Statements the column definitions cannot express.
+  const EXTRA_SQL = [
+    "-- Only one open work order per report (rework and reopening create a new one after the last is approved)",
+    "CREATE UNIQUE INDEX [UX_work_order_one_open] ON [work_order]([report_id]) WHERE [status] <> 'approved';",
+    "",
+    "-- Searching reports by place and by stage",
+    "CREATE INDEX [IX_report_stage] ON [report]([municipality_id], [stage], [created_at]);",
+    "CREATE INDEX [IX_report_location] ON [report]([lat], [lng]);",
+    "CREATE INDEX [IX_notification_user] ON [notification]([user_id], [is_read], [created_at]);",
+  ];
+
+  window.RoadNaDB = { GROUPS, TABLES, RELS, LAYOUT, EXTRA_SQL };
+})();

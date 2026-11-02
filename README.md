@@ -4,21 +4,28 @@ Twenty-seven responsive frontend screens for a municipal issue-reporting portal,
 
 ## Preview
 
-The latest [frontend review](REVIEW-2026-10-15.md) lists the fixes, remaining workflow gaps and prioritized 3D map recommendations.
+The latest [frontend review](archive/notes/REVIEW-2026-10-15.md) lists the fixes, remaining workflow gaps and prioritized 3D map recommendations.
 
-**Account experience:** [Login](screens/login/index.html) and [Register](screens/register/index.html) use a formal municipal portal layout: a restrained teal identity panel, white forms, clear labels and responsive spacing. Both forms appear immediately, with no introductory scene, animation, photos or 3D dependencies. On phones, the form takes priority in a single-column layout. The existing registration fields, accessible inline validation, password controls, resident/staff login routes, recovery links and preview destinations remain intact. Shared account styling and validation live in `shared/account.css` and `shared/account.js`. The registration office module and its unused illustration have been removed.
+**Account experience:** [Login](pages/account/login/login.html) and [Register](pages/account/register/register.html) use a formal municipal portal layout: a restrained teal identity panel, white forms, clear labels and responsive spacing. Both forms appear immediately, with no introductory scene, animation, photos or 3D dependencies. On phones, the form takes priority in a single-column layout. The existing registration fields, accessible inline validation, password controls, resident/staff login routes, recovery links and preview destinations remain intact. Shared account styling and validation live in `shared/account.css` and `shared/account.js`. The registration office module and its unused illustration have been removed.
 
 Run `npm start` (or `node tools/serve.mjs`) from this folder and open [the screen directory](http://127.0.0.1:4173). The local server serves only the frontend files. You can also open `index.html` directly for a basic preview; the local server is preferable for fonts and clipboard controls.
+
+**Open it on a phone or another computer.** Run `npm run share` instead of `npm start`. It prints an address such as `http://192.168.8.55:4173`; type it into the browser of any device on the same Wi-Fi. Windows may ask to allow Node.js through the firewall: allow it for private networks. Everyone on that network can open the preview while the window runs, so press Ctrl+C to stop sharing. `npm start` stays on this computer only. To share outside your network, publish the files to a static host; the site is plain HTML, CSS and JS.
 
 Run `npm run check` (or `node tools/check.mjs`) to check screen structure, JavaScript syntax, local assets, cross-screen links and anchors, and the absence of storage or API calls. The preview server and checker use Node's built-in modules; no installation step is required.
 
 ## Structure
 
-- `index.html` — directory grouped into public, account, resident and administration screens.
-- `screens/<screen>/index.html` — semantic screen markup and sample content.
-- `screens/<screen>/style.css` — screen-specific layout and responsive styling.
-- `screens/<screen>/script.js` — presentation-only interactions and animations.
-- `screens/<screen>/assets/` — local artwork where available.
+- `index.html` + `shared/directory.css` — directory grouped into public, account, resident, team and administration pages.
+- `pages/<package>/<page>/` — one folder per page, grouped by who uses it. Each folder holds exactly three files named after the page, for example `pages/account/login/login.html`, `login.css` and `login.js`, plus `assets/` where a page has artwork.
+  - `pages/public/` — landing, public-map, help
+  - `pages/account/` — login, register, forgot-password, check-email, reset-password, password-updated
+  - `pages/resident/` — home, create-report, report-submitted, my-reports, report-details, notifications, profile, community
+  - `pages/team/` — tasks, task
+  - `pages/admin/` — dashboard, ops-map, review-assign, check-work, community, sla-orders, heatmap, accounts
+  - `pages/docs/` — database (ER diagram, schema diagram, tables and the SQL Server script, all drawn from `database-data.js`)
+- No inline CSS or JS: no `<style>` blocks, `style=""` attributes, inline `<script>` code or `on…=""` handlers. `npm run check` fails if any come back.
+- `archive/` — parked and old material, kept but not linked: the 3D city page, the landing page backups, old checkpoints and planning notes.
 - `shared/base.css` — local fonts, colors, typography, buttons and form controls.
 - `shared/auth.css` — account-screen layout.
 - `shared/app.css` — administration layouts and components shared by every signed-in screen.
@@ -31,39 +38,40 @@ Run `npm run check` (or `node tools/check.mjs`) to check screen structure, JavaS
 - `shared/ui.js` — shared navigation, password visibility, preview feedback and motion.
 - `tools/` — dependency-free development server and checks.
 
-Mockup and wireframe variants share one screen folder. The original ResetPasseord name is normalized to `reset-password`.
+Mockup and wireframe variants share one page folder. The original ResetPasseord name is normalized to `reset-password`.
 
 ## Screens
 
 | Screen | Area | Files |
 | --- | --- | --- |
-| Landing page | Public | [screens/landing-page/](screens/landing-page/index.html) |
-| Public report map | Public | [screens/public-guest-menu/](screens/public-guest-menu/index.html) |
-| Help and policies | Public | [screens/help/](screens/help/index.html) |
-| Login | Account | [screens/login/](screens/login/index.html) |
-| Register | Account | [screens/register/](screens/register/index.html) |
-| Forgot password | Account | [screens/forgot-password/](screens/forgot-password/index.html) |
-| Check email | Account | [screens/check-email/](screens/check-email/index.html) |
-| Reset password | Account | [screens/reset-password/](screens/reset-password/index.html) |
-| Password updated | Account | [screens/password-updated/](screens/password-updated/index.html) |
-| Resident home | Resident | [screens/home-menu/](screens/home-menu/index.html) |
-| Create report (4-step wizard) | Resident | [screens/create-report/](screens/create-report/index.html) |
-| Report submitted | Resident | [screens/report-submitted/](screens/report-submitted/index.html) |
-| My reports | Resident | [screens/my-reports/](screens/my-reports/index.html) |
-| Report details | Resident | [screens/report-details/](screens/report-details/index.html) |
-| Notifications | Resident | [screens/notifications/](screens/notifications/index.html) |
-| Community votes | Resident | [screens/community/](screens/community/index.html) |
-| Profile | Resident | [screens/profile/](screens/profile/index.html) |
-| My tasks | Field team | [screens/team-tasks/](screens/team-tasks/index.html) |
-| Task page | Field team | [screens/team-task/](screens/team-task/index.html) |
-| Admin dashboard | Administration | [screens/admin-dashboard/](screens/admin-dashboard/index.html) |
-| Operations map | Administration | [screens/admin-ops-map/](screens/admin-ops-map/index.html) |
-| Review and assign | Administration | [screens/admin-incident-triage/](screens/admin-incident-triage/index.html) |
-| Check work | Administration | [screens/supervisor-review/](screens/supervisor-review/index.html) |
-| Community proposals | Administration | [screens/admin-community/](screens/admin-community/index.html) |
-| SLA and work orders | Administration | [screens/admin-sla-orders/](screens/admin-sla-orders/index.html) |
-| Heatmap | Administration | [screens/admin-heatmap/](screens/admin-heatmap/index.html) |
-| CityWorld (3D, optional view) | Administration | [screens/city-world/](screens/city-world/index.html) |
+| Landing page | Public | [pages/public/landing/](pages/public/landing/landing.html) |
+| Public report map | Public | [pages/public/public-map/](pages/public/public-map/public-map.html) |
+| Help and policies | Public | [pages/public/help/](pages/public/help/help.html) |
+| Login | Account | [pages/account/login/](pages/account/login/login.html) |
+| Register | Account | [pages/account/register/](pages/account/register/register.html) |
+| Forgot password | Account | [pages/account/forgot-password/](pages/account/forgot-password/forgot-password.html) |
+| Check email | Account | [pages/account/check-email/](pages/account/check-email/check-email.html) |
+| Reset password | Account | [pages/account/reset-password/](pages/account/reset-password/reset-password.html) |
+| Password updated | Account | [pages/account/password-updated/](pages/account/password-updated/password-updated.html) |
+| Resident home | Resident | [pages/resident/home/](pages/resident/home/home.html) |
+| Create report (4-step wizard) | Resident | [pages/resident/create-report/](pages/resident/create-report/create-report.html) |
+| Report submitted | Resident | [pages/resident/report-submitted/](pages/resident/report-submitted/report-submitted.html) |
+| My reports | Resident | [pages/resident/my-reports/](pages/resident/my-reports/my-reports.html) |
+| Report details | Resident | [pages/resident/report-details/](pages/resident/report-details/report-details.html) |
+| Notifications | Resident | [pages/resident/notifications/](pages/resident/notifications/notifications.html) |
+| Community votes | Resident | [pages/resident/community/](pages/resident/community/community.html) |
+| Profile | Resident | [pages/resident/profile/](pages/resident/profile/profile.html) |
+| My tasks | Field team | [pages/team/tasks/](pages/team/tasks/tasks.html) |
+| Task page | Field team | [pages/team/task/](pages/team/task/task.html) |
+| Admin dashboard | Administration | [pages/admin/dashboard/](pages/admin/dashboard/dashboard.html) |
+| Operations map | Administration | [pages/admin/ops-map/](pages/admin/ops-map/ops-map.html) |
+| Review and assign | Administration | [pages/admin/review-assign/](pages/admin/review-assign/review-assign.html) |
+| Check work | Administration | [pages/admin/check-work/](pages/admin/check-work/check-work.html) |
+| Community proposals | Administration | [pages/admin/community/](pages/admin/community/community.html) |
+| SLA and work orders | Administration | [pages/admin/sla-orders/](pages/admin/sla-orders/sla-orders.html) |
+| Heatmap | Administration | [pages/admin/heatmap/](pages/admin/heatmap/heatmap.html) |
+| Accounts and teams | Administration (super admin) | [pages/admin/accounts/](pages/admin/accounts/accounts.html) |
+| Archive | Administration | [pages/admin/archive/](pages/admin/archive/archive.html) |
 
 ## Main flow in the preview
 
@@ -73,7 +81,7 @@ Mockup and wireframe variants share one screen folder. The original ResetPasseor
 4. The team works from **My tasks** (On my way, I have arrived, Start work, photos and notes). The list marks the next job with its distance and a Directions button that opens the phone's maps app; the task page has Get directions, a Take the before photo button, one-tap quick notes and a sticky next-step button. The team leader submits the work, and the list explains that it now waits for the supervisor.
 5. **Check work:** a supervisor compares before and after photos, then approves or sends it back with a reason.
 6. **Community:** the municipality publishes a proposal with an end date; residents vote once (changeable until it closes); results show only after closing; the municipality posts its decision.
-7. **Operations map:** reviewers, supervisors and municipality heads see reports and teams on one map (role views are a preview). A simulated clock moves teams to their tasks and changes report statuses (Live); the time slider and Play replay the morning from 06:00. The same data and clock drive the 3D city: open `screens/city-world/index.html?view=ops` (or use *Open 3D city view* on the map) to see each report as a real city problem (pothole, dark lamp, overflowing bin or flooded drain) with the city's pin coloured by status, each team as a real crew van that drives the streets to its job and back, hotspots, the same detail card and the same role views. The role and the time travel in the link between the 2D map and the 3D city. The 3D view is only for supervisors (their department by default), managers and super admins; reviewers get a notice pointing to the 2D map. Managers also get area cards (open, overdue, average fix time, resident rating), live headquarters numbers, Neighbourhood health in the Resident Quarter, and a wall display mode. Without `?view=ops`, CityWorld stays the public sandbox.
+7. **Operations map:** reviewers, supervisors and municipality heads see reports and teams on one map (role views are a preview). A simulated clock moves teams to their tasks and changes report statuses (Live); the time slider and Play replay the morning from 06:00. The 3D version of this view (`archive/city-world/index.html?view=ops`) still exists but is parked and not linked from any screen.
 
 ## Frontend behavior
 
@@ -89,8 +97,20 @@ Heatmap category and district filters update the sample density clusters, incide
 - Sample reports, hotspots and crews sit at real Irbid places checked on OpenStreetMap: University Street by Yarmouk University, Al-Hashemi Street downtown, Emaar Irbid Park, Irbid Camp, Al-Andalus, Bayt Ras, Al Bariha and King Abdullah II Park.
 - The tiles load live, so the maps need an internet connection. Offline, they show a note and the pins remain. The free OpenStreetMap tile service is only suitable for this preview, so the production build needs its own or a paid tile provider.
 
+**Preview roles.** Logging in (or the *Explore the frontend preview* buttons on the login page) picks a role: resident, reviewer, team leader, team member, supervisor, manager or super admin. `shared/access.js` remembers it in the current tab only (`window.name`, no storage) and applies the access table from the RoadNa workflow page: screens outside the role show a notice with a link home, read-only screens show a banner, and the sidebar hides what the role cannot open. With no role chosen every screen stays open. Real permissions will come from ASP.NET.
+
+Each role has its own sidebar, listing only its own step of the flow:
+
+| Role | Sidebar (full access unless marked) | Can also view |
+|---|---|---|
+| Reviewer | Review & assign, Operations map | |
+| Team leader / member | My tasks, task page (only the leader submits) | |
+| Supervisor | Check work, Operations map, Team tasks (view), SLA & orders (view, can escalate), Archive | Dashboard, Review & assign |
+| Manager | Dashboard (with Escalated to you), Operations map, SLA & orders, Heatmap, Community votes, Archive | Review & assign, Check work, team tasks, resident votes |
+| Super admin | Accounts & teams | Every other staff screen, linked from Accounts & teams |
+
 **No-login navigation.**
-- Every page is reachable, and no link is a dead end. Footer and policy links open [Help & policies](screens/help/index.html).
+- Every page is reachable, and no link is a dead end. Footer and policy links open [Help & policies](pages/public/help/help.html).
 - Valid forms go straight to the next screen in their flow.
 - On Login you choose *Resident* or *Municipal staff*. The expandable frontend preview section also links directly to Resident, Municipal staff, Field team and Supervisor screens.
 - The landing page's "Report an Issue" opens the report form directly.
@@ -99,13 +119,15 @@ Heatmap category and district filters update the sample density clusters, incide
 
 JavaScript does not use local storage, session storage, authentication logic or API requests; the only network traffic is map tiles. Image selections use temporary object URLs only and are never uploaded. Report image previews accept up to three JPG/PNG files, no larger than 10 MB each.
 
-## RoadNa CityWorld (v2)
+## RoadNa CityWorld (v2) — parked
 
-The landing page tells the RoadNa story as a scroll-directed film inside a 3D miniature city, from a pothole to a repaired street. [CityWorld](screens/city-world/index.html) is a full-window city where every building opens one of the screens, with a live sandbox: potholes slow traffic, open reports anger residents, and crews fix problems. Both use the shared engine in `shared/cityworld/` (Three.js r180, vendored, MIT). There is no build step, CDN, storage or API.
+**Status (2026-11-02): the 3D city is parked.** It is still in `archive/city-world/` and `shared/cityworld/` and works if you open its address directly, but no screen links to it. The landing page story still uses its engine. The operations map is now the 2D map only.
+
+The landing page tells the RoadNa story as a scroll-directed film inside a 3D miniature city, from a pothole to a repaired street. [CityWorld](archive/city-world/index.html) is a full-window city where every building opens one of the screens, with a live sandbox: potholes slow traffic, open reports anger residents, and crews fix problems. Both use the shared engine in `shared/cityworld/` (Three.js r180, vendored, MIT). There is no build step, CDN, storage or API.
 
 In the staff-only operations view, a compact statistics strip shows open reports, unassigned reports older than two hours and available crews. **Statistics** opens a breakdown in the existing panel: visible and verified-fixed counts, average dispatch/repair durations, department workload bars and crew phases. The figures are derived from the shared operations snapshot, selected department, shown statuses and simulated clock through `shared/ops-metrics.js`. Returning crews count as unavailable; incomplete timing records are excluded. The two-hour queue warning is a preview threshold, not an SLA. Charts use ordinary HTML and CSS. Area-card counts and repair durations use the same calculations. The normal sandbox is unchanged.
 
-Full notes, file map, tuning values, verification tips and open decisions: [CITYWORLD-HANDOFF.md](CITYWORLD-HANDOFF.md). Rollback to Codex's v1: [checkpoints/pre-cityworld-v2-2026-10-11/](checkpoints/pre-cityworld-v2-2026-10-11/RESTORE.md). The pre-CityWorld landing page is still at [original.html](screens/landing-page/original.html).
+Full notes, file map, tuning values, verification tips and open decisions: [CITYWORLD-HANDOFF.md](CITYWORLD-HANDOFF.md). Rollback to Codex's v1: [checkpoints/pre-cityworld-v2-2026-10-11/](checkpoints/pre-cityworld-v2-2026-10-11/RESTORE.md). The pre-CityWorld landing page is still at [original.html](pages/public/landing/original.html).
 
 ## ASP.NET integration
 

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4f9f8">
+  <meta name="description" content="A password reset link has been sent. Check your inbox to continue.">
+  <title>Check your email | RoadNa JO</title>
+  <link rel="stylesheet" href="../../../shared/base.css">
+  <link rel="stylesheet" href="../../../shared/auth.css">
+  <link rel="stylesheet" href="./check-email.css">
+  <script src="../../../shared/ui.js" defer></script>
+  <script src="./check-email.js" defer></script>
+  <script src="../../../shared/access.js"></script>
+</head>
+<body class="auth-page page-check-email">
+  <svg class="svg-sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <symbol id="i-account-balance" viewBox="0 0 24 24"><path d="M7 4V20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><path d="M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></symbol>
+  <symbol id="i-arrow-back" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></symbol>
+  <symbol id="i-schedule" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></symbol>
+  </svg>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="auth-header">
+    <a class="auth-brand" href="../../public/landing/landing.html" aria-label="RoadNa JO home">
+      <span class="auth-brand__text">
+        <span class="auth-brand__name"><svg class="r-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4V20M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></svg>oadNa<span class="logo-jo">JO</span></span>
+        <span class="auth-brand__tag auth-brand__tag--plain">Municipal portal</span>
+      </span>
+    </a>
+  </header>
+
+  <main class="auth-main" id="main">
+    <div class="auth-stack auth-stack--md">
+      <section class="auth-card auth-card--wide" aria-labelledby="check-title">
+        <div class="mail-indicator" aria-hidden="true">
+          <span class="mail-indicator__circle"><svg class="icon" width="28" height="28" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg></span>
+        </div>
+
+        <header class="auth-head auth-head--loose">
+          <h1 class="auth-title auth-title--lg" id="check-title">Check your email</h1>
+          <p class="auth-lead check-copy">We sent a password reset link to <strong class="email-chip">lina.obeidat@example.com</strong>. Click the link inside to set a new password.</p>
+        </header>
+
+        <div class="info-block">
+          <p><svg class="icon" width="15" height="15" aria-hidden="true" focusable="false"><use href="#i-schedule"/></svg><span>The security link will expire in <strong>30 minutes</strong>.</span></p>
+          <p class="is-muted"><svg class="icon" width="15" height="15" aria-hidden="true" focusable="false"><use href="#i-help"/></svg><span>Didn't receive the email? Check your spam folder or request a new link below.</span></p>
+        </div>
+
+        <p class="flow-preview">Preview state · no reset email has been sent.</p>
+        <div class="check-actions">
+          <!-- Frontend preview. ASP.NET will handle real submissions. -->
+          <a class="btn btn--primary btn--auth" href="../../account/reset-password/reset-password.html"><svg class="icon" width="16" height="16" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg>Preview password reset</a>
+          <div class="resend">
+            <button class="resend__btn" type="button" id="resend-btn" disabled><svg class="icon" width="11" height="11" aria-hidden="true" focusable="false"><use href="#i-refresh"/></svg><span id="resend-label">Resend link (<span id="resend-count">47</span>s)</span></button>
+            <p class="sr-only" id="resend-status" role="status" aria-live="polite"></p>
+          </div>
+          <hr class="check-divider">
+          <a class="auth-link auth-link--muted auth-link--center" href="../../account/login/login.html"><svg class="icon" width="13" height="13" aria-hidden="true" focusable="false"><use href="#i-arrow-back"/></svg>Back to log in</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="auth-footer auth-footer--bar">
+    <div class="auth-footer__row">
+      <p>RoadNa JO · Greater Irbid Municipality</p>
+      <nav aria-label="Legal information">
+        <ul>
+          <li><a href="../../public/help/help.html#privacy">Privacy policy</a></li>
+          <li><a href="../../public/help/help.html#terms">Terms of service</a></li>
+          <li><a href="../../public/help/help.html#accessibility">Accessibility</a></li>
+          <li><a href="../../public/help/help.html#support">Help desk</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

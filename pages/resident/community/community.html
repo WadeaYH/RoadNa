@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f2f9f8">
+  <meta name="description" content="Vote on proposals from your municipality and see the decisions it makes.">
+  <title>Community votes | RoadNa JO</title>
+  <link rel="stylesheet" href="../../../shared/base.css">
+  <link rel="stylesheet" href="../../../shared/app.css">
+  <link rel="stylesheet" href="../../../shared/resident.css">
+  <link rel="stylesheet" href="../../../shared/community.css">
+  <link rel="stylesheet" href="./community.css">
+  <script src="../../../shared/ui.js" defer></script>
+  <script src="./community.js" defer></script>
+  <script src="../../../shared/access.js"></script>
+</head>
+<body class="page-community">
+  <svg class="svg-sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <symbol id="i-account-balance" viewBox="0 0 24 24"><path d="M7 4V20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><path d="M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></symbol>
+  <symbol id="i-account-circle" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></symbol>
+  <symbol id="i-add-circle" viewBox="0 0 15 15"><path d="M6.75 11.25H8.25V8.25H11.25V6.75H8.25V3.75H6.75V6.75H3.75V8.25H6.75V11.25ZM7.5 15C6.4625 15 5.4875 14.8031 4.575 14.4094C3.6625 14.0156 2.86875 13.4812 2.19375 12.8062C1.51875 12.1312 0.984375 11.3375 0.590625 10.425C0.196875 9.5125 0 8.5375 0 7.5C0 6.4625 0.196875 5.4875 0.590625 4.575C0.984375 3.6625 1.51875 2.86875 2.19375 2.19375C2.86875 1.51875 3.6625 0.984375 4.575 0.590625C5.4875 0.196875 6.4625 0 7.5 0C8.5375 0 9.5125 0.196875 10.425 0.590625C11.3375 0.984375 12.1312 1.51875 12.8062 2.19375C13.4812 2.86875 14.0156 3.6625 14.4094 4.575C14.8031 5.4875 15 6.4625 15 7.5C15 8.5375 14.8031 9.5125 14.4094 10.425C14.0156 11.3375 13.4812 12.1312 12.8062 12.8062C12.1312 13.4812 11.3375 14.0156 10.425 14.4094C9.5125 14.8031 8.5375 15 7.5 15Z"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 14 14"><path d="M5.73333 9.73333L10.4333 5.03333L9.5 4.1L5.73333 7.86667L3.83333 5.96667L2.9 6.9L5.73333 9.73333ZM6.66667 13.3333C5.74444 13.3333 4.87778 13.1583 4.06667 12.8083C3.25556 12.4583 2.55 11.9833 1.95 11.3833C1.35 10.7833 0.875 10.0778 0.525 9.26667C0.175 8.45555 0 7.58889 0 6.66667C0 5.74444 0.175 4.87778 0.525 4.06667C0.875 3.25556 1.35 2.55 1.95 1.95C2.55 1.35 3.25556 0.875 4.06667 0.525C4.87778 0.175 5.74444 0 6.66667 0C7.58889 0 8.45555 0.175 9.26667 0.525C10.0778 0.875 10.7833 1.35 11.3833 1.95C11.9833 2.55 12.4583 3.25556 12.8083 4.06667C13.1583 4.87778 13.3333 5.74444 13.3333 6.66667C13.3333 7.58889 13.1583 8.45555 12.8083 9.26667C12.4583 10.0778 11.9833 10.7833 11.3833 11.3833C10.7833 11.9833 10.0778 12.4583 9.26667 12.8083C8.45555 13.1583 7.58889 13.3333 6.66667 13.3333ZM6.66667 12C8.15556 12 9.41667 11.4833 10.45 10.45C11.4833 9.41667 12 8.15556 12 6.66667C12 5.17778 11.4833 3.91667 10.45 2.88333C9.41667 1.85 8.15556 1.33333 6.66667 1.33333C5.17778 1.33333 3.91667 1.85 2.88333 2.88333C1.85 3.91667 1.33333 5.17778 1.33333 6.66667C1.33333 8.15556 1.85 9.41667 2.88333 10.45C3.91667 11.4833 5.17778 12 6.66667 12Z"/></symbol>
+  <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></symbol>
+  <symbol id="i-construction" viewBox="0 0 16 16"><path d="M13.6667 15.0208L9.10417 10.4583L10.8542 8.70833L15.4167 13.2708L13.6667 15.0208ZM2.16667 15.0208L0.416667 13.2708L6.16667 7.52083L4.75 6.10417L4.16667 6.6875L3.10417 5.625V7.33333L2.52083 7.91667L0 5.39583L0.583333 4.8125H2.29167L1.25 3.77083L4.20833 0.8125C4.48611 0.534722 4.78472 0.333333 5.10417 0.208333C5.42361 0.0833333 5.75 0.0208333 6.08333 0.0208333C6.41667 0.0208333 6.74306 0.0833333 7.0625 0.208333C7.38194 0.333333 7.68056 0.534722 7.95833 0.8125L6.04167 2.72917L7.08333 3.77083L6.5 4.35417L7.91667 5.77083L9.79167 3.89583C9.73611 3.74306 9.69097 3.58333 9.65625 3.41667C9.62153 3.25 9.60417 3.08333 9.60417 2.91667C9.60417 2.09722 9.88542 1.40625 10.4479 0.84375C11.0104 0.28125 11.7014 0 12.5208 0C12.7292 0 12.9271 0.0208333 13.1146 0.0625C13.3021 0.104167 13.4931 0.166667 13.6875 0.25L11.625 2.3125L13.125 3.8125L15.1875 1.75C15.2847 1.94444 15.3507 2.13542 15.3854 2.32292C15.4201 2.51042 15.4375 2.70833 15.4375 2.91667C15.4375 3.73611 15.1562 4.42708 14.5938 4.98958C14.0312 5.55208 13.3403 5.83333 12.5208 5.83333C12.3542 5.83333 12.1875 5.81944 12.0208 5.79167C11.8542 5.76389 11.6944 5.71528 11.5417 5.64583L2.16667 15.0208Z"/></symbol>
+  <symbol id="i-dashboard" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></symbol>
+  <symbol id="i-delete" viewBox="0 0 11 12"><path d="M2 12C1.63333 12 1.31944 11.8694 1.05833 11.6083C0.797222 11.3472 0.666667 11.0333 0.666667 10.6667V2H0V0.666667H3.33333V0H7.33333V0.666667H10.6667V2H10V10.6667C10 11.0333 9.86944 11.3472 9.60833 11.6083C9.34722 11.8694 9.03333 12 8.66667 12H2ZM8.66667 2H2V10.6667H8.66667V2ZM3.33333 9.33333H4.66667V3.33333H3.33333V9.33333ZM6 9.33333H7.33333V3.33333H6V9.33333ZM2 2V10.6667V2Z"/></symbol>
+  <symbol id="i-find" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></symbol>
+  <symbol id="i-lightbulb" viewBox="0 0 12 15"><path d="M5.625 15C5.2125 15 4.85938 14.8531 4.56563 14.5594C4.27188 14.2656 4.125 13.9125 4.125 13.5H7.125C7.125 13.9125 6.97812 14.2656 6.68437 14.5594C6.39062 14.8531 6.0375 15 5.625 15ZM2.625 12.75V11.25H8.625V12.75H2.625ZM2.8125 10.5C1.95 9.9875 1.26562 9.3 0.759375 8.4375C0.253125 7.575 0 6.6375 0 5.625C0 4.0625 0.546875 2.73438 1.64062 1.64062C2.73438 0.546875 4.0625 0 5.625 0C7.1875 0 8.51562 0.546875 9.60938 1.64062C10.7031 2.73438 11.25 4.0625 11.25 5.625C11.25 6.6375 10.9969 7.575 10.4906 8.4375C9.98438 9.3 9.3 9.9875 8.4375 10.5H2.8125ZM3.2625 9H7.9875C8.55 8.6 8.98438 8.10625 9.29062 7.51875C9.59687 6.93125 9.75 6.3 9.75 5.625C9.75 4.475 9.35 3.5 8.55 2.7C7.75 1.9 6.775 1.5 5.625 1.5C4.475 1.5 3.5 1.9 2.7 2.7C1.9 3.5 1.5 4.475 1.5 5.625C1.5 6.3 1.65313 6.93125 1.95938 7.51875C2.26562 8.10625 2.7 8.6 3.2625 9Z"/></symbol>
+  <symbol id="i-list-alt" viewBox="0 0 24 24"><path d="M19 5v14H5V5h14m1.1-2H3.9c-.5 0-.9.4-.9.9v16.2c0 .4.4.9.9.9h16.2c.4 0 .9-.5.9-.9V3.9c0-.5-.5-.9-.9-.9zM11 7h6v2h-6V7zm0 4h6v2h-6v-2zm0 4h6v2h-6v-2zM7 7h2v2H7V7zm0 4h2v2H7v-2zm0 4h2v2H7v-2z"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></symbol>
+  <symbol id="i-map-fill" viewBox="0 0 24 24"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></symbol>
+  <symbol id="i-walk" viewBox="0 0 24 24"><path d="M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7"/></symbol>
+  <symbol id="i-water-drop" viewBox="0 0 24 24"><path d="M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8zm0 18c-3.35 0-6-2.57-6-6.2 0-2.34 1.95-5.44 6-9.14 4.05 3.7 6 6.79 6 9.14 0 3.63-2.65 6.2-6 6.2z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 3.5 21 11V20.5H14.5V14.5H9.5V20.5H3Z"/></symbol>
+  </svg>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="res-shell">
+    <header class="res-top">
+      <a class="brand" href="../../resident/home/home.html" aria-label="RoadNa JO home">
+        <span class="brand__name"><svg class="r-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4V20M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></svg>oadNa<span class="logo-jo">JO</span></span>
+      </a>
+      <nav class="res-nav" aria-label="Main">
+        <a href="../../resident/home/home.html">Home</a>
+        <a href="../../resident/my-reports/my-reports.html">My reports</a>
+        <a href="../../public/public-map/public-map.html">Map</a>
+        <a href="../../resident/community/community.html" aria-current="page">Community</a>
+      </nav>
+      <span class="res-top__spacer"></span>
+      <a class="btn btn--primary" href="../../resident/create-report/create-report.html"><svg class="icon" width="15" height="15" aria-hidden="true" focusable="false"><use href="#i-add-circle"/></svg>Report an issue</a>
+      <a class="icon-btn" href="../../resident/notifications/notifications.html" aria-label="Notifications, 3 unread"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-bell"/></svg><span class="icon-btn__dot" aria-hidden="true"></span></a>
+      <a class="user-chip" href="../../resident/profile/profile.html" aria-label="Your profile"><span class="avatar">LO</span><span>Lina</span></a>
+    </header>
+    <div class="app-main">
+      <main class="app-content" id="main">
+        <header class="page-head">
+          <div class="page-head__text">
+            <h1>Community votes</h1>
+            <p>The municipality asks. You decide. One vote each, and you can change it until voting closes.</p>
+          </div>
+        </header>
+
+        <div class="toolbar">
+          <div class="tabs" role="group" aria-label="Filter proposals">
+            <button class="tab is-active" type="button" aria-pressed="true" data-filter="all">All <span class="tab__count">4</span></button>
+            <button class="tab" type="button" aria-pressed="false" data-filter="open">Open <span class="tab__count">2</span></button>
+            <button class="tab" type="button" aria-pressed="false" data-filter="closed">Closed <span class="tab__count">2</span></button>
+          </div>
+        </div>
+
+        <ul class="props" id="props">
+          <li class="prop" data-state="open">
+            <header class="prop__head"><span class="chip chip--assigned">Open for voting</span><span class="prop__when" data-days="16">Closes Oct 31 · 16 days left</span></header>
+            <h2 class="prop__title">Plant shade trees along University St?</h2>
+            <p class="prop__text">There is an empty strip next to the pavement between the university gate and the bus stop. Trees would give shade but take two parking spaces.</p>
+            <form class="prop__vote" data-end="Oct 31" data-days="16">
+              <fieldset class="prop__options">
+                <legend class="sr-only">Your choice</legend>
+                <label><input type="radio" name="vote-trees" value="Yes, plant shade trees" required><span>Yes, plant shade trees</span></label>
+                <label><input type="radio" name="vote-trees" value="Better lighting first"><span>Better lighting first</span></label>
+                <label><input type="radio" name="vote-trees" value="Not now"><span>Not now</span></label>
+              </fieldset>
+              <div class="prop__foot">
+                <button class="btn btn--primary" type="submit">Cast my vote</button>
+                <p class="prop__meta" aria-live="polite">Results appear after voting closes.</p>
+              </div>
+            </form>
+          </li>
+
+          <li class="prop" data-state="open">
+            <header class="prop__head"><span class="chip chip--assigned">Open for voting</span><span class="prop__when" data-days="21">Closes Nov 5 · 21 days left</span></header>
+            <h2 class="prop__title">Where should the new bus shelter go?</h2>
+            <p class="prop__text">One new shelter is planned near Yarmouk University. Pick the spot you would use most.</p>
+            <form class="prop__vote" data-end="Nov 5" data-days="21">
+              <fieldset class="prop__options">
+                <legend class="sr-only">Your choice</legend>
+                <label><input type="radio" name="vote-shelter" value="Next to the main gate" required><span>Next to the main gate</span></label>
+                <label><input type="radio" name="vote-shelter" value="Near the library" checked><span>Near the library</span></label>
+                <label><input type="radio" name="vote-shelter" value="Near the medical faculty"><span>Near the medical faculty</span></label>
+              </fieldset>
+              <div class="prop__foot">
+                <button class="btn btn--outline" type="submit">Change my vote</button>
+                <p class="prop__meta" aria-live="polite" data-days="21" data-until>You voted: Near the library. You can change it until Nov 5.</p>
+              </div>
+            </form>
+          </li>
+
+          <li class="prop" data-state="closed">
+            <header class="prop__head"><span class="chip chip--submitted">Closed</span><span class="prop__when" data-days="-3" data-suffix=" · 2,310 votes">Closed Oct 12 · 2,310 votes</span></header>
+            <h2 class="prop__title">A bike lane on Al-Hashemi St?</h2>
+            <p class="prop__text">A protected lane would remove one lane of traffic between the roundabout and the old market.</p>
+            <ul class="results" aria-label="Results">
+              <li class="result is-top"><span class="result__label">Yes, build the bike lane</span><span class="result__bar"><i class="u-w-58"></i></span><strong>58%</strong></li>
+              <li class="result"><span class="result__label">No, keep both lanes</span><span class="result__bar"><i class="u-w-31"></i></span><strong>31%</strong></li>
+              <li class="result"><span class="result__label">Only at weekends</span><span class="result__bar"><i class="u-w-11"></i></span><strong>11%</strong></li>
+            </ul>
+            <p class="decision decision--wait"><strong>The municipality is reviewing the results.</strong> You will be told when a decision is posted.</p>
+          </li>
+
+          <li class="prop" data-state="closed">
+            <header class="prop__head"><span class="chip chip--resolved">Decided</span><span class="prop__when" data-days="-10" data-suffix=" · 1,204 votes">Closed Oct 5 · 1,204 votes</span></header>
+            <h2 class="prop__title">Repaint the crosswalks on Al-Hashemi St?</h2>
+            <p class="prop__text">Several crosswalks near the old market have faded. Repainting closes the street for one night.</p>
+            <ul class="results" aria-label="Results">
+              <li class="result is-top"><span class="result__label">Yes, repaint them</span><span class="result__bar"><i class="u-w-71"></i></span><strong>71%</strong></li>
+              <li class="result"><span class="result__label">Wait until spring</span><span class="result__bar"><i class="u-w-29"></i></span><strong>29%</strong></li>
+            </ul>
+            <div class="decision">
+              <p class="decision__tag">Decision · Greater Irbid Municipality · Oct 9</p>
+              <p><strong>Going ahead.</strong> The crosswalks will be repainted on the night of Nov 1. Thank you to everyone who voted.</p>
+            </div>
+          </li>
+        </ul>
+      </main>
+    </div>
+  </div>
+
+  <nav class="res-tabs" aria-label="Main">
+    <a class="res-tab" href="../../resident/home/home.html"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-home"/></svg>Home</a>
+    <a class="res-tab" href="../../public/public-map/public-map.html"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-map-fill"/></svg>Map</a>
+    <a class="res-tab res-tab--report" href="../../resident/create-report/create-report.html"><span class="res-tab__disc"><svg class="icon" width="24" height="24" aria-hidden="true" focusable="false"><use href="#i-add-circle"/></svg></span>Report</a>
+    <a class="res-tab" href="../../resident/my-reports/my-reports.html"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-list-alt"/></svg>Reports</a>
+    <a class="res-tab" href="../../resident/profile/profile.html"><svg class="icon" width="22" height="22" aria-hidden="true" focusable="false"><use href="#i-account-circle"/></svg>Me</a>
+  </nav>
+</body>
+</html>

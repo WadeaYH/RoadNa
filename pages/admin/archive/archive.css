@@ -1,0 +1,19 @@
+/* Archive: closed reports (fixed or rejected). Builds on shared/app.css panels, tables and form controls. */
+.filters { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px 20px; padding: 16px 20px; margin-bottom: 24px; }
+.filters__field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.filters__field .select { width: 190px; }
+.filters__field--grow { flex: 1 1 260px; }
+.arch-table tbody tr { cursor: pointer; }
+.arch-table tbody tr:hover, .arch-table tbody tr[aria-selected="true"] { background: var(--teal-wash); }
+.arch-table td strong { display: block; }
+.arch-table td small { color: var(--muted); font-size: 12px; }
+.arch-table .row-btn { padding: 0; border: 0; background: none; color: var(--teal-deep); font: inherit; font-weight: 600; text-align: start; cursor: pointer; }
+.arch-empty { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 20px; color: var(--muted); }
+.arch-detail { margin-top: 24px; }
+.arch-facts { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px 24px; margin-bottom: 20px; font-size: 14px; }
+.arch-facts dt { color: var(--muted); font-size: 12px; }
+.arch-facts dd { margin: 2px 0 0; }
+.arch-detail__h { margin-bottom: 8px; font: 700 14px/20px var(--font-head); }
+.arch-history { display: flex; flex-direction: column; gap: 8px; padding-inline-start: 18px; list-style: disc; font-size: 14px; }
+.arch-history small { display: block; color: var(--muted); font-size: 12px; }
+@media (max-width: 640px) { .filters__field, .filters__field .select { width: 100%; } }

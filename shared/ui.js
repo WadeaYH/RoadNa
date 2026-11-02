@@ -38,7 +38,7 @@
       if (event.key !== "Enter") return;
       event.preventDefault();
       const staff = Boolean(input.closest(".app-shell--admin"));
-      const target = new URL(staff ? "../admin-incident-triage/index.html" : "../my-reports/index.html", window.location.href);
+      const target = new URL(staff ? "../../admin/review-assign/review-assign.html" : "../../resident/my-reports/my-reports.html", window.location.href);
       if (input.value.trim()) target.searchParams.set("q", input.value.trim());
       window.location.assign(target);
     });
@@ -222,5 +222,18 @@
     if (delay) item.style.transitionDelay = `${delay}ms`;
     item.classList.add("reveal-hide");
     observer.observe(item);
+  });
+})();
+
+// Sample dates count from today, so the preview never shows a voting deadline that has already passed.
+// data-days is days from today (negative = in the past); ASP.NET will send real dates instead.
+(() => {
+  const label = (n) => new Date(Date.now() + n * 864e5).toLocaleDateString("en", { month: "short", day: "numeric" });
+  document.querySelectorAll("[data-days]").forEach((el) => {
+    const n = Number(el.dataset.days);
+    const day = label(n);
+    if (el.matches("form")) el.dataset.end = day;
+    else if ("until" in el.dataset) el.textContent = el.textContent.replace(/until [A-Z][a-z]{2} \d+/, `until ${day}`);
+    else el.textContent = n >= 0 ? `Closes ${day} · ${n} day${n === 1 ? "" : "s"} left` : `Closed ${day}${el.dataset.suffix || ""}`;
   });
 })();
