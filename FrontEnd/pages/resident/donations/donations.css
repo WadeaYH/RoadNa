@@ -1,0 +1,48 @@
+/* Help fund repairs: open campaigns and the resident's own donations */
+.tabs { display: inline-flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.tab {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 4px 16px; border: 1px solid var(--line); border-radius: var(--radius-pill);
+  background: var(--surface); font-size: 15px; line-height: 20px; font-weight: 600; color: var(--muted);
+}
+.tab:hover { color: var(--text); border-color: var(--line-strong); }
+.tab[aria-selected="true"] { background: var(--teal-deep); border-color: var(--teal-deep); color: var(--on-brand); }
+.tab__count { font-size: 13px; line-height: 16px; font-weight: 700; opacity: .75; }
+.camp-list, .mine-list { display: grid; gap: 16px; }
+.camp { display: flex; flex-direction: column; gap: 12px; padding: 24px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); box-shadow: var(--shadow-sm); scroll-margin-top: 90px; }
+.camp.is-target { border-color: var(--teal); box-shadow: 0 0 0 3px var(--teal-wash); }
+.camp__head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.camp__title { font: 700 20px/26px var(--font-head); }
+.camp__why { color: var(--muted); }
+.camp__meta { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13px; color: var(--muted); }
+.fund-bar { position: relative; height: 12px; border-radius: var(--radius-pill); background: var(--surface-3); overflow: hidden; }
+.fund-bar__muni, .fund-bar__res { position: absolute; top: 0; bottom: 0; left: 0; }
+.fund-bar__muni { background: var(--slate); }
+.fund-bar__res { background: var(--teal); }
+.fund-legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 13px; }
+.fund-legend i { display: inline-block; width: 10px; height: 10px; margin-inline-end: 6px; border-radius: 3px; vertical-align: -1px; }
+.fund-legend .k-muni { background: var(--slate); }
+.fund-legend .k-res { background: var(--teal); }
+.camp__actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.mine { display: flex; flex-direction: column; gap: 10px; padding: 20px 24px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); }
+.mine__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.mine__amount { font: 700 22px/28px var(--font-head); font-variant-numeric: tabular-nums; }
+.mine__choice { display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: var(--radius-sm); background: var(--amber-wash); border: 1px solid var(--amber-line); }
+.mine__choice label { display: flex; align-items: center; gap: 8px; }
+.mine__choice .select { max-width: 420px; }
+.rules { margin-top: 24px; }
+.rules__list { display: grid; gap: 10px; padding: 20px 20px 20px 40px; list-style: decimal; }
+.donate-dialog form { display: flex; flex-direction: column; gap: 14px; text-align: start; }
+.amounts { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; border: 0; }
+.amounts legend { width: 100%; margin-bottom: 6px; }
+.amounts label { position: relative; }
+.amounts input { position: absolute; opacity: 0; }
+.amounts span { display: inline-block; padding: 10px 16px; border: 1px solid var(--line-strong); border-radius: var(--radius-pill); font-weight: 600; cursor: pointer; }
+.amounts input:checked + span { border-color: var(--teal); background: var(--teal-tint); color: var(--teal-deep); }
+.amounts input:focus-visible + span { outline: 3px solid var(--teal); outline-offset: 2px; }
+.donate__for { margin: 0; color: var(--muted); }
+.donate__cap { margin: 0; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--teal-wash); font-size: 14px; }
+.donate__note { margin: 0; font-size: 12px; color: var(--muted); }
+.field__error { color: var(--red-ink); font-size: 13px; }
+
+/* Choices use the brand colour */
+#mine-list input[type="radio"], #donate-form input[type="checkbox"] { accent-color: var(--teal); }

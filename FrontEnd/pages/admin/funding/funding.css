@@ -1,0 +1,22 @@
+/* Funding campaigns (manager). Builds on shared/app.css panels, tables and controls. */
+.fund-tabs { margin: 8px 0 16px; flex-wrap: wrap; }
+.fund-tabs .num { margin-inline-start: 4px; color: var(--muted); }
+.fund-list { display: flex; flex-direction: column; }
+.fund-item { display: flex; flex-direction: column; gap: 10px; padding: 18px 20px; border-top: 1px solid var(--line); }
+.fund-item:first-child { border-top: 0; }
+.fund-item__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
+.fund-item__title { font: 700 16px/22px var(--font-head); }
+.fund-item small { color: var(--muted); font-size: 12px; }
+.fund-item p { max-width: 80ch; }
+.fund-bar { position: relative; height: 10px; border-radius: var(--radius-pill); background: var(--surface-3); overflow: hidden; max-width: 640px; }
+.fund-bar span { position: absolute; top: 0; bottom: 0; left: 0; }
+.fund-bar .r { background: var(--teal); }
+.fund-bar .m { background: var(--slate); }
+.fund-nums { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 13px; color: var(--muted); }
+.fund-nums strong { color: var(--text); }
+.fund-form { display: grid; grid-template-columns: repeat(3, minmax(0, 200px)) auto; align-items: end; gap: 10px 12px; }
+.fund-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.fund-choice { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 13px; }
+.fund-empty { padding: 20px; color: var(--muted); }
+.fund-from { margin: 0 20px 4px; padding: 10px 14px; border-left: 3px solid var(--teal); border-radius: var(--radius-sm); background: var(--teal-wash); font-size: 14px; }
+@media (max-width: 760px) { .fund-form { grid-template-columns: 1fr; } }

@@ -1,0 +1,103 @@
+/* Formal account screens. Both forms are available immediately. */
+.account-page { --account-paper: #fff; --account-canvas: #f4f6f5; --account-ink: #213b3d; display: flex; flex-direction: column; min-height: 100dvh; background: var(--account-canvas); color: var(--account-ink); }
+.account-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 80px; padding: 16px clamp(20px, 4vw, 64px); background: #fff; border-bottom: 1px solid #e0e7e4; }
+.account-header .brand__name { font-size: 27px; white-space: nowrap; }
+.account-back { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 13px; font-weight: 500; color: #526769; }
+.account-main { flex: 1; display: grid; place-items: center; padding: 28px 28px 40px; }
+.account-layout { display: grid; grid-template-columns: minmax(280px, .8fr) minmax(0, 1.4fr); width: min(1040px, 100%); overflow: hidden; border: 1px solid #dce5e1; border-radius: 12px; background: var(--account-paper); box-shadow: 0 8px 32px #193e3606; }
+.account-context { display: flex; flex-direction: column; padding: 40px 36px 30px; background: #154a4d; color: #fff; }
+.context-label { color: #bfd4d1; font-size: 12px; line-height: 18px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+.account-context h2 { margin-top: 32px; font: 600 30px/1.22 var(--font-head); letter-spacing: -.03em; }
+.context-intro { margin-top: 18px; color: #d1e0dd; font-size: 14px; line-height: 24px; max-width: 30ch; }
+.context-services { display: grid; gap: 0; list-style: none; padding: 0; margin: 36px 0 40px; }
+.context-services li { display: flex; align-items: baseline; gap: 14px; padding-block: 17px; border-top: 1px solid #ffffff20; font-size: 13px; line-height: 21px; }
+.context-services li:last-child { border-bottom: 1px solid #ffffff20; }
+.context-services span { color: #a5c6c1; font-size: 12px; font-variant-numeric: tabular-nums; }
+.context-help { margin-top: auto; padding-top: 16px; }
+.context-help p { color: #bfd4d1; font-size: 12px; }
+.context-help a { display: inline-flex; align-items: center; gap: 18px; min-height: 44px; color: #fff; font-size: 13px; font-weight: 500; }
+.context-help a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.account-panel { min-width: 0; padding: 38px 48px; }
+.account-panel > * { width: 100%; max-width: var(--panel-width, 520px); margin-inline: auto; }
+.account-heading { margin-bottom: 28px; }
+.account-kicker { color: var(--teal-deep); font-size: 12px; line-height: 18px; letter-spacing: .04em; font-weight: 600; }
+.account-page h1 { margin-top: 10px; font: 600 clamp(28px, 2.8vw, 34px)/1.2 var(--font-body); letter-spacing: -.035em; text-wrap: balance; }
+.account-lead { margin-top: 12px; font-size: 14px; line-height: 23px; color: #617275; }
+.account-form { display: grid; gap: 20px; }
+.account-page .field { display: grid; align-content: start; gap: 7px; min-width: 0; }
+.account-page .field label { font-size: 13px; line-height: 20px; font-weight: 600; }
+.account-page .input { width: 100%; min-width: 0; min-height: 48px; height: 48px; border: 1px solid #bdcbc8; border-radius: 8px; padding: 11px 13px; background: #fff; color: var(--account-ink); font-size: 16px; line-height: 24px; box-shadow: none; }
+.account-page .input::placeholder { color: #7b8988; opacity: 1; }
+.account-page .input:focus { border-color: var(--teal); outline: 3px solid rgb(14 124 134 / 13%); outline-offset: 1px; }
+.account-page .input[aria-invalid="true"] { border-color: #aa3832; }
+.account-page .input-wrap { position: relative; }
+.account-page .input--pw { padding-inline-end: 64px; }
+.account-page .pw-toggle { position: absolute; inset-inline-end: 4px; top: 2px; transform: none; height: 44px; min-width: 52px; border: 0; border-radius: 4px; background: transparent; color: var(--teal-deep); font-size: 12px; font-weight: 600; }
+.account-page .pw-toggle:hover { background: #f0f5f3; }
+.account-page .field__hint { font-size: 12px; color: #617275; line-height: 18px; }
+.account-error { font-size: 12px; line-height: 18px; color: #a1332d; }
+.account-error[hidden], .account-summary[hidden] { display: none; }
+.account-summary { padding: 12px 14px; background: #fff2ed; border-inline-start: 3px solid #aa3832; border-radius: 4px; font-size: 13px; line-height: 20px; color: #8d3029; }
+.account-submit { width: 100%; min-height: 50px; border-radius: 8px; background: var(--teal-deep); color: #fff; border: 1px solid var(--teal-deep); display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: 600; font-size: 14px; }
+.account-submit:hover { background: #004e54; }
+.account-submit:active { background: #00474c; }
+.account-submit:disabled { opacity: .6; cursor: default; }
+.account-switch { margin-top: 24px; padding-top: 22px; border-top: 1px solid #e3e9e6; text-align: center; font-size: 13px; color: #617275; line-height: 22px; }
+.account-switch a { font-weight: 600; margin-inline-start: 4px; white-space: nowrap; }
+.account-preview { font-size: 12px; line-height: 18px; color: #617275; }
+.account-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; padding: 16px clamp(20px, 4vw, 64px); font-size: 12px; color: #617275; }
+.account-footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
+.account-footer a { color: inherit; min-height: 32px; display: inline-flex; align-items: center; }
+.account-page :focus-visible { outline: 3px solid var(--teal); outline-offset: 4px; }
+.account-context :focus-visible { outline-color: #c2e3db; }
+.account-page .skip-link:not(:focus) { clip-path: inset(50%); }
+@media (max-width: 1000px) { .account-layout { grid-template-columns: 270px minmax(0, 1fr); } .account-context { padding-inline: 28px; } .account-context h2 { font-size: 27px; } .account-panel { padding-inline: 32px; } }
+@media (max-width: 900px) { .account-main { padding: 24px 24px 32px; } .account-layout { display: block; max-width: 600px; } .account-context { display: none; } .account-panel { padding: 36px; } .account-panel > * { max-width: none; } }
+@media (max-width: 480px) { .account-header { min-height: 72px; padding: 12px 20px; } .account-header .brand__name { font-size: 24px; } .account-back { font-size: 12px; } .account-main { padding: 20px 16px 28px; align-items: start; } .account-panel { padding: 28px 22px; } .account-heading { margin-bottom: 26px; } .account-page h1 { font-size: 28px; } .account-footer { flex-direction: column; align-items: flex-start; gap: 5px; padding: 12px 20px 20px; } .account-footer nav { gap: 16px; } }
+
+/* ---------- Account pages, alive: a street in the side panel and a road on the card ---------- */
+.account-context { position: relative; overflow: hidden; }
+.acct-street { margin: auto -36px -30px; padding-top: 24px; }
+.acct-street svg { display: block; width: 100%; height: auto; }
+.st-glow { opacity: 0; }
+.acct-strip { position: relative; height: 6px; margin: -6px 0 22px; overflow: hidden; border-radius: 3px; background: #2f3a3d; }
+.acct-strip::before { content: ""; position: absolute; top: 2px; left: 0; width: calc(100% + 24px); height: 2px; background: linear-gradient(90deg, #e9e5d2 0 12px, transparent 12px) 0 0 / 24px 2px repeat-x; }
+.acct-strip i { position: absolute; top: 0; left: 0; width: 16px; height: 6px; border-radius: 2px; background: #f2a33a; }
+@media (min-width: 901px) { .acct-strip { display: none; } }
+/* The field you are in gets an amber lane under it */
+.account-page .field { position: relative; }
+.account-page .field::after { content: ""; position: absolute; left: 2px; right: 2px; bottom: -6px; height: 3px; border-radius: 2px; background: linear-gradient(90deg, #f2a33a 0 14px, transparent 14px) 0 0 / 24px 3px repeat-x; transform: scaleX(0); transform-origin: left center; opacity: 0; pointer-events: none; }
+.account-page .field:has(input:focus)::after { transform: none; opacity: 1; }
+.account-submit { position: relative; overflow: hidden; }
+.account-submit::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / 35%) 50%, transparent 70%); transform: translateX(-120%); pointer-events: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .acct-anim .account-layout { animation: acct-card .7s cubic-bezier(.32, .72, 0, 1) backwards; }
+  .acct-anim .account-context > * { animation: acct-up .6s cubic-bezier(.32, .72, 0, 1) backwards; animation-delay: calc(var(--i, 0) * 90ms + 200ms); }
+  .acct-anim .account-panel > * > *, .acct-anim .account-heading, .acct-anim .account-switch, .acct-anim .demo-access { animation: acct-up .55s cubic-bezier(.32, .72, 0, 1) backwards; animation-delay: calc(var(--i, 0) * 60ms + 260ms); }
+  .acct-anim .acct-street { animation: none; }
+  .st-lane { animation: st-lane 1.6s linear infinite; }
+  .st-car { animation: st-drive 7s cubic-bezier(.45, .05, .55, .95) infinite; }
+  .st-pin { transform-box: fill-box; transform-origin: 50% 100%; animation: st-drop 1s .9s cubic-bezier(.34, 1.56, .64, 1) backwards, st-bob 3.2s 2s ease-in-out infinite; }
+  .st-glow { animation: st-glow 3.4s 1.2s ease-in-out infinite; }
+  .st-windows rect { animation: st-win 6s ease-in-out infinite; }
+  .st-windows rect:nth-child(2n) { animation-delay: 1.5s; } .st-windows rect:nth-child(3n) { animation-delay: 3s; }
+  .acct-strip::before { animation: st-strip 1s linear infinite; }
+  .acct-strip i { animation: st-strip-car 3.6s cubic-bezier(.45, .05, .55, .95) infinite; }
+  .account-page .field::after { transition: transform .45s cubic-bezier(.32, .72, 0, 1), opacity .2s var(--ease-out); }
+  .account-submit:not(:disabled)::after { animation: acct-sheen 1s .2s var(--ease-out) 1 both; }
+  .account-submit:not(:disabled):hover::after { animation: acct-sheen .8s var(--ease-out) both; }
+  .account-form.is-shake { animation: acct-shake .42s cubic-bezier(.36, .07, .19, .97); }
+}
+@keyframes acct-card { from { opacity: 0; transform: translateY(24px) scale(.985); } }
+@keyframes acct-up { from { opacity: 0; transform: translateY(12px); } }
+@keyframes st-lane { to { transform: translateX(-26px); } }
+@keyframes st-drive { 0% { transform: translateX(-40px); } 100% { transform: translateX(360px); } }
+@keyframes st-drop { from { opacity: 0; transform: translateY(-40px); } 60% { opacity: 1; } }
+@keyframes st-bob { 0%, 100% { transform: none; } 50% { transform: translateY(-4px); } }
+@keyframes st-glow { 0%, 100% { opacity: .08; } 50% { opacity: .32; } }
+@keyframes st-win { 0%, 100% { opacity: 1; } 45% { opacity: .35; } }
+@keyframes st-strip { to { transform: translateX(-24px); } }
+@keyframes st-strip-car { 0% { transform: translateX(-20px); } 100% { transform: translateX(640px); } }
+@keyframes acct-sheen { from { transform: translateX(-120%); } to { transform: translateX(120%); } }
+@keyframes acct-shake { 10%, 90% { transform: translateX(-2px); } 20%, 80% { transform: translateX(4px); } 30%, 50%, 70% { transform: translateX(-6px); } 40%, 60% { transform: translateX(6px); } }

@@ -1,0 +1,10 @@
+node_modules/
+.claude/
+.verification/
+# Third-party reference clone with its own .git
+design-references/
+# Old exports
+DataBase/archive/
+*.zip
+.DS_Store
+Thumbs.db

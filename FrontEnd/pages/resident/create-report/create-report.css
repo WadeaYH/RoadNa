@@ -1,0 +1,215 @@
+/* Create Report — screen-specific styles. Shared: ../../../shared/base.css, ../../../shared/app.css */
+
+/* Progress stepper */
+.stepper { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-bottom: 24px; counter-reset: step; }
+.stepper__item { position: relative; display: flex; align-items: center; gap: 10px; padding-top: 14px; font-size: 13px; line-height: 18px; font-weight: 600; color: var(--muted); }
+.stepper__item::before { content: ""; position: absolute; top: 0; inset-inline: 0; height: 4px; border-radius: var(--radius-pill); background: var(--surface-3); }
+.stepper__item::after { content: ""; position: absolute; top: 0; inset-inline: 0; height: 4px; border-radius: var(--radius-pill); background: var(--teal); transform: scaleX(0); transform-origin: left center; transition: transform .5s cubic-bezier(.2, .7, .2, 1); }
+.stepper__item.is-done::after { transform: scaleX(1); }
+.stepper__item.is-done { color: var(--text); }
+.stepper__dot { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--surface-3); font-size: 12px; font-weight: 700; color: var(--muted); transition: background-color .25s ease, color .25s ease; }
+.stepper__item.is-done .stepper__dot { background: var(--teal); color: #fff; }
+
+/* Form sections */
+.form-section { padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+.form-section__head { display: flex; align-items: flex-start; gap: 14px; }
+.form-section__num { display: grid; place-items: center; flex: none; width: 28px; height: 28px; margin-top: 2px; border-radius: 50%; background: var(--teal-soft); font-family: var(--font-head); font-size: 14px; font-weight: 700; color: var(--teal-deep); }
+
+.cat-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; border: 0; min-width: 0; }
+.cat-tile { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 16px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); cursor: pointer; transition: border-color .18s ease, background-color .18s ease, box-shadow .18s ease, transform .18s ease; }
+.cat-tile:hover { border-color: var(--line-strong); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.cat-tile input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.cat-tile__icon { display: grid; place-items: center; width: 40px; height: 40px; margin-bottom: 8px; border-radius: var(--radius-sm); background: var(--surface-2); color: var(--teal); transition: background-color .18s ease, color .18s ease; }
+.cat-tile__name { font-size: 14px; line-height: 20px; font-weight: 600; }
+.cat-tile__hint { font-size: 12px; line-height: 16px; color: var(--muted); }
+.cat-tile:has(input:checked) { border-color: var(--teal); background: #f0fbfc; box-shadow: 0 0 0 3px rgb(14 124 134 / 14%); }
+.cat-tile:has(input:checked) .cat-tile__icon { background: var(--teal); color: #fff; }
+.cat-tile:has(input:focus-visible) { outline: 3px solid var(--teal); outline-offset: 2px; }
+
+.flags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; border: 0; min-width: 0; }
+.flags legend { width: 100%; margin-bottom: 8px; padding: 0; }
+.flag { position: relative; display: inline-flex; }
+.flag input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.flag span { display: inline-flex; align-items: center; min-height: 36px; padding: 6px 14px; border: 1px solid var(--line-strong); border-radius: var(--radius-pill); background: var(--surface); font-size: 13px; line-height: 20px; font-weight: 500; color: var(--muted); transition: background-color .16s ease, border-color .16s ease, color .16s ease; }
+.flag:hover span { border-color: var(--teal); }
+.flag input:checked + span { background: var(--teal); border-color: var(--teal); color: #fff; }
+.flag input:focus-visible + span { outline: 3px solid var(--teal); outline-offset: 2px; }
+
+/* Photo upload */
+.dropzone { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 32px 20px; border: 2px dashed var(--line-strong); border-radius: var(--radius-md); background: var(--surface-2); color: var(--muted); text-align: center; cursor: pointer; transition: border-color .2s ease, background-color .2s ease; }
+.dropzone .icon { margin-bottom: 8px; color: var(--teal); }
+.dropzone strong { font-size: 14px; line-height: 20px; font-weight: 600; color: var(--text); }
+.dropzone span { font-size: 12px; line-height: 16px; }
+.dropzone__link { color: var(--teal-deep); font-weight: 700; text-decoration: none; }
+.dropzone:hover, .dropzone.is-over { border-color: var(--teal); background: var(--teal-wash); }
+#photos:focus-visible + .previews, .dropzone:has(+ #photos:focus-visible) { outline: 3px solid var(--teal); outline-offset: 3px; }
+.previews { display: grid; grid-template-columns: repeat(3, minmax(0, 120px)); gap: 12px; }
+.previews[hidden] { display: none; }
+.preview { position: relative; aspect-ratio: 1; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface-3); }
+.preview img { width: 100%; height: 100%; object-fit: cover; }
+.preview button { position: absolute; top: 6px; inset-inline-end: 6px; display: grid; place-items: center; width: 28px; height: 28px; padding: 0; border: 0; border-radius: 50%; background: rgb(8 40 42 / 72%); color: #fff; }
+.preview button:hover { background: var(--red); }
+.preview { animation: preview-in .35s cubic-bezier(.2, .7, .2, 1); }
+@keyframes preview-in { from { opacity: 0; transform: scale(.92); } to { opacity: 1; transform: none; } }
+
+/* Map picker */
+.map-picker { position: relative; height: 280px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-md); background: #ebf0f5; }
+.map-picker__surface { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: crosshair; }
+.map-picker__surface svg { width: 100%; height: 100%; }
+.map-picker__pin { position: absolute; width: 34px; height: 34px; color: var(--amber); transform: translate(-50%, -100%); filter: drop-shadow(0 4px 6px rgb(8 40 42 / 30%)); pointer-events: none; animation: pin-drop .45s cubic-bezier(.34, 1.56, .64, 1); }
+.map-picker__pin[hidden] { display: none; }
+@keyframes pin-drop { from { opacity: 0; transform: translate(-50%, -160%); } to { opacity: 1; transform: translate(-50%, -100%); } }
+.map-picker__locate { position: absolute; top: 12px; inset-inline-end: 12px; }
+
+/* Side panels */
+
+@media (max-width: 720px) {
+  .stepper__item { font-size: 0; gap: 0; }
+  .stepper__item .stepper__dot { font-size: 12px; }
+  .stepper__item { justify-content: center; }
+  .form-section { padding: 20px 16px; }
+  .cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .previews { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .map-picker { height: 240px; }
+}
+@media (max-width: 420px) {
+  .cat-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .preview, .map-picker__pin { animation: none; }
+  .stepper__item::after { transition: none; }
+}
+
+/* Real map (shared/map.js) */
+.map-picker__map { cursor: crosshair; }
+.map-picker__locate { z-index: 1; }
+
+
+/* Wizard: one step at a time */
+
+.page-create .page-head { margin-bottom: 16px; }
+.wiz-step[hidden] { display: none; }
+.stepper__item.is-current { color: var(--teal-deep); }
+.stepper__item.is-current::before { background: var(--teal-line); }
+.stepper__item.is-current .stepper__dot { background: var(--teal-soft); color: var(--teal-deep); }
+.form-section__head { gap: 0; }
+.wiz-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 4px; padding-top: 20px; border-top: 1px solid var(--line); }
+.wiz-actions .btn--lg { min-width: 140px; }
+.cat-legend { grid-column: 1 / -1; padding: 0; }
+.cat-note { padding: 10px 14px; border-radius: var(--radius-sm); background: var(--teal-wash); color: var(--teal-ink); font-size: 14px; line-height: 20px; }
+.cat-note[hidden] { display: none; }
+.summary { display: flex; flex-direction: column; margin: 0; border: 1px solid var(--line); border-radius: var(--radius-md); }
+.summary > div { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 12px; padding: 12px 16px; }
+.summary > div + div { border-top: 1px solid var(--line); }
+.summary dt { font-size: 14px; line-height: 20px; color: var(--muted); }
+.summary dd { margin: 0; font-size: 15px; line-height: 22px; font-weight: 600; overflow-wrap: anywhere; }
+.anon { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; line-height: 22px; cursor: pointer; }
+.anon .switch { margin-top: 2px; }
+.anon strong { display: block; font-weight: 600; }
+.anon__hint { display: block; margin-top: 2px; font-size: 13px; line-height: 18px; color: var(--muted); }
+@media (max-width: 560px) {
+  .summary > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .wiz-actions .btn--lg { flex: 1; }
+}
+
+/* Phone: the stepper shows dots only, so name the current step in words */
+.step-label { display: none; margin: -12px 0 16px; font-size: 14px; line-height: 20px; font-weight: 600; color: var(--teal-deep); }
+@media (max-width: 720px) { .step-label { display: block; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  .wiz-step:not([hidden]) { animation: step-in .4s var(--ease-out); }
+}
+@keyframes step-in { from { opacity: 0; transform: translateX(18px); } }
+
+/* Sending again after a rejected report */
+.from-note { margin-top: 8px; padding: 10px 14px; border-left: 3px solid var(--teal); border-radius: var(--radius-sm); background: var(--teal-wash); color: var(--text); font-size: 14px; line-height: 20px; }
+
+/* ---------- The road: progress drawn as a street the RoadNa pin drives along ---------- */
+.road-progress { --i: 0; position: relative; margin-bottom: 24px; }
+.road { position: absolute; top: 0; inset-inline: 0; height: 30px; pointer-events: none; }
+.road__strip { position: absolute; top: 16px; inset-inline: 0; height: 10px; overflow: hidden; border-radius: var(--radius-pill); background: #4b4f55; }
+/* Fresh teal asphalt up to the current step (transform only) */
+.road__fill { position: absolute; inset: 0; background: var(--teal); transform: translateX(calc(-100% + (100% + 8px) * var(--i) / 4 + 14px)); transition: transform .7s cubic-bezier(.32, .72, 0, 1); }
+.road__lane { position: absolute; top: 4px; left: 0; width: calc(100% + 28px); height: 2px; background: linear-gradient(90deg, #e9e5d2 0 14px, transparent 14px) 0 0 / 28px 2px repeat-x; opacity: .85; }
+.road__car { position: absolute; top: 0; left: 0; width: 100%; transform: translateX(calc((100% + 8px) * var(--i) / 4)); transition: transform .7s cubic-bezier(.32, .72, 0, 1); }
+.road__pin { position: absolute; top: -8px; left: -1px; width: 26px; height: 30px; color: var(--teal-deep); filter: drop-shadow(0 3px 3px rgb(8 40 42 / 30%)); }
+.road__pin svg { width: 100%; height: 100%; fill: currentColor; }
+.road-progress .stepper { padding-top: 40px; margin-bottom: 0; }
+.road-progress .stepper__item { padding-top: 0; }
+.road-progress .stepper__item::before, .road-progress .stepper__item::after { display: none; }
+.road-progress .stepper__item.is-current { color: var(--teal-deep); }
+.road-progress .stepper__item.is-current .stepper__dot { background: var(--teal-deep); color: var(--on-brand); box-shadow: 0 0 0 4px var(--teal-tint); }
+@media (prefers-reduced-motion: no-preference) {
+  .road__lane { animation: lane-drift 2.6s linear infinite; } /* the one loop: lane dashes drift slowly, like driving */
+  .road-progress.is-moving .road__pin { animation: pin-hop .7s cubic-bezier(.32, .72, 0, 1); }
+}
+@keyframes lane-drift { to { transform: translateX(-28px); } }
+@keyframes pin-hop { 0%, 100% { transform: none; } 40% { transform: translateY(-7px) rotate(-6deg); } 75% { transform: translateY(1px); } }
+
+/* ---------- Scene beside the form: what this step is for ---------- */
+.page-create .app-content { max-width: 1120px; }
+.cr-layout { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 28px; align-items: start; }
+.cr-layout > .report-form { min-width: 0; }
+.cr-scene {
+  --scene-bg: #e7f4f2;
+  position: sticky; top: 112px; display: flex; flex-direction: column; gap: 10px; padding: 6px 6px 14px;
+  border: 1px solid rgb(14 124 134 / 12%); border-radius: 26px; background: rgb(255 255 255 / 65%);
+  box-shadow: 0 24px 48px -28px rgb(0 70 76 / 35%);
+}
+.cr-scene[data-step="place"] { --scene-bg: #e6eee9; }
+.cr-scene[data-step="details"] { --scene-bg: #fbf3e2; }
+.cr-scene[data-step="send"] { --scene-bg: #e7f5ec; }
+.cr-scene__stage { position: relative; aspect-ratio: 6 / 5; max-width: 100%; overflow: hidden; border-radius: 20px; background: var(--scene-bg); transition: background-color .5s var(--ease-out); }
+.scene { position: absolute; inset: 0; opacity: 0; transition: opacity .35s var(--ease-out); }
+.scene.is-active { opacity: 1; }
+.scene svg { display: block; width: 100%; height: 100%; }
+.cr-scene__cap { padding-inline: 12px; font-size: 14px; line-height: 20px; font-weight: 600; color: var(--teal-deep); text-wrap: pretty; }
+.sc-flash { opacity: 0; }
+.sc-focus { opacity: 0; }
+
+/* One move per step, then everything rests */
+@media (prefers-reduced-motion: no-preference) {
+  .scene--photo.is-active .sc-b { transform-box: fill-box; transform-origin: center; animation: sc-snap .5s cubic-bezier(.32, .72, 0, 1) backwards; }
+  .scene--photo.is-active .sc-b1 { --dx: -14px; --dy: -14px; } .scene--photo.is-active .sc-b2 { --dx: 14px; --dy: -14px; }
+  .scene--photo.is-active .sc-b3 { --dx: 14px; --dy: 14px; } .scene--photo.is-active .sc-b4 { --dx: -14px; --dy: 14px; }
+  .scene--photo.is-active .sc-focus { transform-box: fill-box; transform-origin: center; animation: sc-focus .5s .45s var(--ease-out) forwards; }
+  .scene--photo.is-active .sc-flash { animation: sc-flash .45s .85s ease-out; }
+  .scene--place.is-active .sc-pin { animation: sc-drop .75s .1s cubic-bezier(.34, 1.5, .64, 1) backwards; }
+  .scene--place.is-active .sc-shadow { transform-box: fill-box; transform-origin: center; animation: sc-shadow .75s .1s cubic-bezier(.34, 1.5, .64, 1) backwards; }
+  .scene--place.is-active .sc-ripple { transform-box: fill-box; transform-origin: center; animation: sc-ripple .9s .7s var(--ease-out) backwards; }
+  .scene--details.is-active .sc-line { transform-box: fill-box; transform-origin: left center; animation: sc-write .45s cubic-bezier(.32, .72, 0, 1) backwards; }
+  .scene--details.is-active .sc-l1 { animation-delay: .1s; } .scene--details.is-active .sc-l2 { animation-delay: .2s; }
+  .scene--details.is-active .sc-l3 { animation-delay: .32s; } .scene--details.is-active .sc-l4 { animation-delay: .42s; } .scene--details.is-active .sc-l5 { animation-delay: .52s; }
+  .scene--details.is-active .sc-chip { transform-box: fill-box; transform-origin: center; animation: sc-pop .4s cubic-bezier(.34, 1.5, .64, 1) backwards; }
+  .scene--details.is-active .sc-c1 { animation-delay: .7s; } .scene--details.is-active .sc-c2 { animation-delay: .82s; }
+  .scene--send.is-active .sc-letter { animation: sc-fly 1.1s .15s cubic-bezier(.45, .05, .25, 1) both; }
+  .scene--send.is-active .sc-check { transform-box: fill-box; transform-origin: center; animation: sc-pop .45s 1.2s cubic-bezier(.34, 1.5, .64, 1) backwards; }
+}
+/* The letter travels the dashed arc to the municipality door; without motion it waits at the door */
+.sc-letter { offset-path: path("M40 232C90 120 190 96 262 182"); offset-rotate: 0deg; offset-distance: 100%; }
+@keyframes sc-snap { from { opacity: 0; transform: translate(var(--dx), var(--dy)); } }
+@keyframes sc-focus { from { opacity: 0; transform: scale(2.2); } to { opacity: 1; transform: none; } }
+@keyframes sc-flash { 0% { opacity: 0; } 25% { opacity: .75; } 100% { opacity: 0; } }
+@keyframes sc-drop { from { opacity: 0; transform: translateY(-120px); } 40% { opacity: 1; } }
+@keyframes sc-shadow { from { opacity: 0; transform: scale(.3); } }
+@keyframes sc-ripple { from { opacity: .9; transform: scale(.6); } to { opacity: 0; transform: scale(3.2); } }
+@keyframes sc-write { from { transform: scaleX(0); } }
+@keyframes sc-pop { from { opacity: 0; transform: scale(.4); } }
+@keyframes sc-fly { from { offset-distance: 0%; transform: scale(.8); } 80% { opacity: 1; transform: scale(1); } to { offset-distance: 100%; transform: scale(.4); opacity: 0; } } /* it goes in the door */
+.sc-ripple { opacity: 0; }
+.scene--send .sc-check { opacity: 1; }
+
+/* Narrower screens: the scene becomes a short strip above the form */
+@media (max-width: 1099px) {
+  .cr-layout { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .cr-scene { position: relative; top: auto; order: -1; flex-direction: row; align-items: center; gap: 14px; padding: 6px; border-radius: 20px; }
+  .cr-scene__stage { flex: none; width: 132px; aspect-ratio: 6 / 5; border-radius: 15px; }
+  .cr-scene__cap { padding-inline: 0 10px; font-size: 14px; }
+}
+@media (max-width: 420px) {
+  .cr-scene__stage { width: 108px; }
+  .cr-scene__cap { font-size: 13px; line-height: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .road__fill, .road__car, .scene, .cr-scene__stage { transition: none; }
+}

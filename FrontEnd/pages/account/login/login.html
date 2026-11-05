@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#f4f6f5"><meta name="description" content="Log in to RoadNa JO to follow reports, access municipal services or manage your team."><title>Log in | RoadNa JO</title><link rel="icon" type="image/svg+xml" href="../../../shared/logo.svg"><link rel="stylesheet" href="../../../shared/base.css"><link rel="stylesheet" href="../../../shared/account.css"><link rel="stylesheet" href="./login.css"><script src="../../../shared/ui.js" defer></script><script src="../../../shared/account.js" defer></script><script src="./login.js" defer></script>  <script src="../../../shared/access.js"></script>
+</head>
+<body class="account-page login-page">
+  <a class="skip-link" href="#email">Skip to login</a>
+  <header class="account-header"><a class="brand" href="../../public/landing/landing.html" aria-label="RoadNa JO home"><span class="brand__name"><svg class="r-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4V20M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></svg>oadNa<span class="logo-jo">JO</span></span></a><a class="account-back" href="../../public/landing/landing.html"><span aria-hidden="true">←</span> Back to the city</a></header>
+  <main class="account-main login-main" id="main">
+    <div class="account-layout">
+      <aside class="account-context" aria-labelledby="services-title">
+        <p class="context-label">RoadNa JO · Municipal services</p>
+        <h2 id="services-title">Greater Irbid<br>Municipality</h2>
+        <p class="context-intro">Your connection to local services and a better neighbourhood.</p>
+        <ul class="context-services"><li><span aria-hidden="true">01</span>Report a local issue</li><li><span aria-hidden="true">02</span>Follow repair progress</li><li><span aria-hidden="true">03</span>Take part in community decisions</li></ul>
+        <div class="context-help"><p>Need assistance?</p><a href="../../public/help/help.html">Help &amp; support <span aria-hidden="true">↗</span></a></div>
+      </aside>
+    <section class="account-panel login-card" aria-labelledby="login-heading">
+      <header class="account-heading login-heading"><p class="account-kicker">Account access</p><h1 id="login-heading">Log in</h1><p class="account-lead">Access your reports and municipal services.</p></header>
+      <p class="login-notice" id="signed-out" role="status" hidden>You signed out. Log in again, or pick a preview role below.</p>
+      <form class="account-form login-form" data-account-form data-next="../../resident/home/home.html" data-next-staff="../../admin/dashboard/dashboard.html">
+        <p class="account-summary" data-error-summary role="alert" hidden></p>
+        <div class="field"><label for="email">Email address</label><input class="input" id="email" name="email" type="email" autocomplete="username" spellcheck="false" autocapitalize="none" required aria-describedby="email-error"><p class="account-error" id="email-error" hidden></p></div>
+        <div class="field"><div class="field-label-row"><label for="password">Password</label><a class="login-forgot" href="../../account/forgot-password/forgot-password.html">Forgot password?</a></div><div class="input-wrap"><input class="input input--pw" id="password" name="password" type="password" autocomplete="current-password" required aria-describedby="password-error"><button class="pw-toggle" type="button" data-toggle-password="#password" aria-pressed="false" aria-label="Show password">Show</button></div><p class="account-error" id="password-error" hidden></p></div>
+        <fieldset class="account-type"><legend>Sign in as</legend><label><input type="radio" name="account" value="resident" checked><span>Resident</span></label><label><input type="radio" name="account" value="staff"><span>Municipal staff</span></label></fieldset>
+        <div class="field" data-staff-role hidden><label for="staff-role">Your role</label><select class="select-role" id="staff-role" name="staffRole"><option value="reviewer">Reviewer</option><option value="team_leader">Team leader</option><option value="team_member">Team member</option><option value="supervisor">Supervisor</option><option value="manager">Manager</option><option value="admin">Super admin</option></select></div>
+        
+        <button class="account-submit" type="submit" disabled>Log in <span aria-hidden="true">→</span></button>
+      <noscript><p class="account-preview">Enable JavaScript to use this frontend preview. No account details will be sent.</p></noscript></form>
+      <p class="account-switch">Don't have an account? <a href="../../account/register/register.html">Create an account</a></p>
+      <details class="demo-access"><summary>Explore the frontend preview</summary><p>No account needed. Pick a role to see what it can open. Nothing is saved.</p><div class="demo-access__actions"><a href="../../resident/home/home.html" data-role="resident">Resident</a><a href="../../admin/review-assign/review-assign.html" data-role="reviewer">Reviewer</a><a href="../../team/tasks/tasks.html?as=leader" data-role="team_leader">Team leader</a><a href="../../team/tasks/tasks.html?as=member" data-role="team_member">Team member</a><a href="../../admin/check-work/check-work.html" data-role="supervisor">Supervisor</a><a href="../../admin/dashboard/dashboard.html" data-role="manager">Manager</a><a href="../../admin/accounts/accounts.html" data-role="admin">Super admin</a></div></details>
+    </section>
+    </div>
+  </main>
+  <footer class="account-footer"><p>RoadNa JO · Greater Irbid Municipality</p><nav aria-label="Legal information"><a href="../../public/help/help.html#privacy">Privacy</a><a href="../../public/help/help.html#terms">Terms</a><a href="../../public/help/help.html#accessibility">Accessibility</a></nav></footer>
+</body></html>

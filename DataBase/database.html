@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4f9f8">
+  <meta name="description" content="The RoadNa JO database design: an ER diagram, a schema diagram, every table and column, and the SQL Server script.">
+  <title>Database design | RoadNa JO</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/logo.svg">
+  <link rel="stylesheet" href="./assets/base.css">
+  <link rel="stylesheet" href="./database.css">
+  <script src="./database-data.js"></script>
+  <script src="./database.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the diagrams</a>
+  <header class="db-top">
+    <div class="db-top__inner">
+      <a class="brand" href="./database.html" aria-label="RoadNa JO database design"><span class="brand__name"><svg class="r-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4V20M7 5.7H13A4.2 4.2 0 0 1 13 14.1H7M12.8 14.1L17.6 20" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 8.2V9.6M7 12V13.4M7 15.8V17.2" fill="none" stroke="#d97706" stroke-width="1.3" stroke-linecap="round"/></svg>oadNa<span class="logo-jo">JO</span></span></a>
+      <p class="db-top__tag">Database design</p>
+    </div>
+  </header>
+
+  <main class="db-main" id="main">
+    <header class="db-head">
+      <h1>RoadNa JO database design</h1>
+      <p>How reports, work, people, community votes and donations are stored. Written for SQL Server and the ASP.NET backend. Everything on this page is drawn from one data file, so the diagrams, the table list and the SQL always agree.</p>
+      <dl class="db-stats" aria-label="Size of the design">
+        <div><dt>Tables</dt><dd id="stat-tables"></dd></div>
+        <div><dt>Columns</dt><dd id="stat-cols"></dd></div>
+        <div><dt>Relationships</dt><dd id="stat-rels"></dd></div>
+        <div><dt>Groups</dt><dd id="stat-groups"></dd></div>
+      </dl>
+    </header>
+
+    <div class="db-tabs" role="tablist" aria-label="Views">
+      <button type="button" role="tab" id="tab-er" aria-controls="view-er" aria-selected="true">ER diagram</button>
+      <button type="button" role="tab" id="tab-schema" aria-controls="view-schema" aria-selected="false" tabindex="-1">Schema diagram</button>
+      <button type="button" role="tab" id="tab-tables" aria-controls="view-tables" aria-selected="false" tabindex="-1">Tables</button>
+      <button type="button" role="tab" id="tab-sql" aria-controls="view-sql" aria-selected="false" tabindex="-1">SQL script</button>
+      <button type="button" role="tab" id="tab-rules" aria-controls="view-rules" aria-selected="false" tabindex="-1">Rules</button>
+    </div>
+
+    <section class="db-view" id="view-er" role="tabpanel" aria-labelledby="tab-er">
+      <p class="db-explain">The <strong>ER diagram</strong> shows what things exist and how they relate, without the details. Read a line as a sentence: a report is <em>filed by</em> one resident, and a resident files none or many reports. Click a table to follow its lines.</p>
+    </section>
+
+    <section class="db-view" id="view-schema" role="tabpanel" aria-labelledby="tab-schema" hidden>
+      <p class="db-explain">The <strong>schema diagram</strong> is the real database: every table with its columns and types. <span class="key key--pk">PK</span> is the primary key, <span class="key key--fk">FK</span> a link to another table, <span class="key key--uq">UQ</span> a value that cannot repeat. Lines run from the foreign key to the key it points at.</p>
+    </section>
+
+    <div class="db-toolbar" id="toolbar">
+      <ul class="db-legend" id="legend" aria-label="Table groups"></ul>
+      <div class="db-controls">
+        <label class="db-check"><input type="checkbox" id="opt-users"><span>Show links to <code>app_user</code> <span id="users-count"></span></span></label>
+        <label class="db-check" id="opt-labels-wrap"><input type="checkbox" id="opt-labels" checked><span>Name the relationships</span></label>
+        <div class="db-zoom" role="group" aria-label="Zoom">
+          <button class="btn btn--outline btn--sm" type="button" id="zoom-out" aria-label="Zoom out">&minus;</button>
+          <button class="btn btn--outline btn--sm" type="button" id="zoom-fit">Fit</button>
+          <button class="btn btn--outline btn--sm" type="button" id="zoom-in" aria-label="Zoom in">+</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="db-info" id="info" role="status" aria-live="polite">Click a table to follow its relationships. Click it again, or an empty spot, to let go.</p>
+
+    <div class="db-canvas" id="canvas" role="region" aria-label="Diagram" tabindex="0">
+      <svg class="db-svg" id="svg-er" role="img" aria-label="Entity relationship diagram of the RoadNa JO database"></svg>
+      <svg class="db-svg" id="svg-schema" role="img" aria-label="Schema diagram of the RoadNa JO database with every column" hidden></svg>
+    </div>
+
+    <section class="db-view" id="view-tables" role="tabpanel" aria-labelledby="tab-tables" hidden>
+      <p class="db-explain">Every table, what it is for, and each column. Tables are grouped by what they are about.</p>
+      <div id="tables-list"></div>
+    </section>
+
+    <section class="db-view" id="view-sql" role="tabpanel" aria-labelledby="tab-sql" hidden>
+      <p class="db-explain">A SQL Server script that creates the whole database. Tables come in an order that works: a table is created after the ones it points at.</p>
+      <div class="db-actions">
+        <button class="btn btn--primary btn--sm" type="button" id="sql-copy">Copy script</button>
+        <button class="btn btn--outline btn--sm" type="button" id="sql-download">Download roadna.sql</button>
+        <span class="db-note" id="sql-status" role="status" aria-live="polite"></span>
+      </div>
+      <pre class="db-sql" id="sql-text" tabindex="0"></pre>
+    </section>
+
+    <section class="db-view db-rules" id="view-rules" role="tabpanel" aria-labelledby="tab-rules" hidden>
+      <h2>What the schema guarantees</h2>
+      <ul class="db-rule-list">
+        <li><strong>One vote per account.</strong> A resident's vote on a proposal and an upvote on a report both use the person and the item together as the key, so a second vote cannot be stored. Changing a vote updates the same row.</li>
+        <li><strong>One rating per report.</strong> <code>rating.report_id</code> is unique.</li>
+        <li><strong>One team per person.</strong> <code>team_member.user_id</code> is unique, so nobody is on two crews.</li>
+        <li><strong>One open job per report.</strong> A filtered unique index allows a new work order only after the last one is approved or returned by its team. Rework and reopening start a new order that points back with <code>rework_of_id</code>. Each send-back adds to <code>rework_count</code>; the second one also escalates.</li>
+        <li><strong>One role per person.</strong> <code>app_user.role</code> accepts only the seven roles, and the app decides screens from it.</li>
+        <li><strong>One decision per proposal.</strong> <code>proposal_decision.proposal_id</code> is its own key.</li>
+        <li><strong>One campaign per report.</strong> <code>funding_campaign.report_id</code> is unique, so a repair is never funded twice.</li>
+        <li><strong>A gift stays traceable.</strong> <code>donation.payment_ref</code> is unique, and a gift can only be moved to a different campaign (<code>CK_donation_move</code>). Moved gifts keep their row and point at the new campaign with <code>moved_to_id</code>.</li>
+        <li><strong>Everything belongs to a municipality.</strong> Every report, person and proposal reaches a municipality, so many municipalities can share the platform without seeing each other.</li>
+        <li><strong>Only known words.</strong> Status columns carry a check that lists the allowed values.</li>
+      </ul>
+
+      <h2>What a resident sees</h2>
+      <p>Residents never see the staff stages. The app turns <code>report.stage</code> into three words, plus Rejected or Withdrawn.</p>
+      <div class="table-wrap">
+        <table class="db-map">
+          <thead><tr><th scope="col">Stored stage</th><th scope="col">Meaning for staff</th><th scope="col">Resident sees</th></tr></thead>
+          <tbody>
+            <tr><td><code>review</code></td><td>Waiting for a reviewer</td><td><span class="chip chip--submitted">Received</span></td></tr>
+            <tr><td><code>funding</code></td><td>No budget: waiting for a funding campaign</td><td><span class="chip chip--submitted">Received</span> with an Open for donations badge</td></tr>
+            <tr><td><code>waiting</code></td><td>Reviewed, no team free yet</td><td><span class="chip chip--progress">In progress</span></td></tr>
+            <tr><td><code>assigned</code>, <code>in_progress</code></td><td>A team has it and is working</td><td><span class="chip chip--progress">In progress</span></td></tr>
+            <tr><td><code>checking</code></td><td>Submitted, waiting for the supervisor (also after sending back)</td><td><span class="chip chip--progress">In progress</span></td></tr>
+            <tr><td><code>closed</code></td><td>Approved and archived</td><td><span class="chip chip--resolved">Fixed</span></td></tr>
+            <tr><td><code>rejected</code></td><td>Turned down at review, with a reason</td><td><span class="chip chip--rejected">Rejected</span></td></tr>
+            <tr><td><code>merged</code></td><td>A duplicate, joined to the first report (<code>duplicate_of_id</code>)</td><td>The status of the first report</td></tr>
+            <tr><td><code>withdrawn</code></td><td>Taken back by the resident before review</td><td><span class="chip chip--submitted">Withdrawn</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Who does what</h2>
+      <div class="table-wrap">
+        <table class="db-map">
+          <thead><tr><th scope="col">Role</th><th scope="col">Writes to</th></tr></thead>
+          <tbody>
+            <tr><td>Resident</td><td><code>report</code>, <code>report_photo</code>, <code>comment</code>, <code>report_vote</code>, <code>report_follow</code>, <code>rating</code>, <code>reopen_request</code>, <code>proposal_vote</code>, <code>donation</code> (giving, then refund or move); <code>report</code> (edit or withdraw before review)</td></tr>
+            <tr><td>Reviewer</td><td><code>report</code> (review, priority, rejection, merging, staff reports), <code>work_order</code> (assigning a team), <code>funding_campaign</code> (the request)</td></tr>
+            <tr><td>Team leader and member</td><td><code>work_order</code> (steps, or returning it with <code>return_reason</code>), <code>work_photo</code>, <code>work_note</code>; the leader submits</td></tr>
+            <tr><td>Supervisor</td><td><code>work_check</code>, <code>escalation</code>, <code>work_order.team_id</code> (reassigning)</td></tr>
+            <tr><td>Manager</td><td><code>proposal</code>, <code>proposal_decision</code>, <code>escalation</code> (handling), <code>funding_campaign</code> (approve, extend, cover a shortfall), <code>campaign_expense</code></td></tr>
+            <tr><td>Super admin</td><td><code>app_user</code>, <code>team</code> (including handing over a leader or supervisor), <code>team_member</code>, <code>department</code></td></tr>
+            <tr><td>The system</td><td><code>report_event</code>, <code>notification</code>, AI columns on <code>report</code>, <code>funding_campaign.raised</code>, refunds for donors who did not choose</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
